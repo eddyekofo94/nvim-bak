@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-dot::repo "git@github.com:eddyekofo94/nvim.git" "$NVIM_PERSONAL_DIR"
-
 if dot::os::mac; then
     # Install the nightly build of neovim
     # https://www.reddit.com/r/SolusProject/comments/iguvn6/how_can_i_install_neovim_nightly/ghs0zjw/?context=3
