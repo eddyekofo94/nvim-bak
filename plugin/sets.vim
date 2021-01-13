@@ -13,6 +13,10 @@ set ruler              			            " Show the cursor position all the time
 set mouse+=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
+set conceallevel=0                      " So that I can see `` in markdown files
+set cursorline                          " Enable highlighting of the current line
+set showtabline=2                       " Always show tabs
+set tabstop=4                           " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -26,6 +30,12 @@ set hidden                              " Keep all the buffers open in the backg
 set noerrorbells
 set noswapfile
 set nobackup
+set timeoutlen=1000                      " By default timeoutlen is 1000 ms
+set shiftround                          " For better indentation"
+set clipboard=unnamedplus               " Copy paste between vim and everything else
+set incsearch
+set guifont=JetBrainsMono\ Nerd\ Font
+set nowritebackup                       " This is recommended by coc
 set undodir=./undodir                   " Need a proper pluggin for it, all for keeping files saved
 set undofile
 set incsearch
@@ -44,3 +54,16 @@ set updatetime=50
 
 " Don't pass messages to | ins-completion-menu | .
 set shortmess+=c
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+function! MaxLineChars()
+    let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endfunction
+
+augroup MAX_CHARS_COLUMN
+    autocmd!
+    autocmd FileType cpp,h,hpp,cxx,cs,fish,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
+    autocmd BufLeave * :call clearmatches()
+augroup END
+
