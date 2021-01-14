@@ -74,20 +74,6 @@ source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 
-" Plugin: Galaxyline -------------------------- {{{
-
-colorscheme nord
-function! ConfigStatusLine()
-  lua require('plugins.nvcodeline')
-endfunction
-
-augroup status_line_init
-  autocmd!
-  autocmd VimEnter * call ConfigStatusLine()
-augroup END
-
-lua require'colorizer'.setup()
-" }}}
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
 
