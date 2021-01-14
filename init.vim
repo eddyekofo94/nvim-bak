@@ -22,6 +22,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Highlight when copied
+    Plug 'machakann/vim-highlightedyank'
+
     " See what keys do like in emacs
     Plug 'liuchengxu/vim-which-key'
     " Vista

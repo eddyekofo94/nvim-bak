@@ -24,3 +24,5 @@ augroup END
 
 lua require'colorizer'.setup()
 " }}}
+
+let g:highlightedyank_highlight_duration = 500
