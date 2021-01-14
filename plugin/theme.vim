@@ -25,4 +25,8 @@ augroup END
 lua require'colorizer'.setup()
 " }}}
 
-let g:highlightedyank_highlight_duration = 500
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
+augroup END
+highlight HighlightedyankRegion cterm=reverse gui=reverse

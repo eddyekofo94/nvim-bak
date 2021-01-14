@@ -51,5 +51,18 @@ xmap <Leader>l <Plug>(Limelight)
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
+
+augroup ZenMode
+  au!
+  autocmd User GoyoEnter Limelight
+  autocmd User GoyoEnter lua require('galaxyline').disable_galaxyline()
+augroup END
+" autocmd! User GoyoEnter Limelight lua require('galaxyline').disable_galaxyline()
+augroup ZenModeOff
+  au!
+  autocmd! User GotoLeave Limelight!
+  autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
+augroup END
+" autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
