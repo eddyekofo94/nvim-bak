@@ -20,6 +20,7 @@ set tabstop=4                           " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
+set autoread
 set smartindent
 "set smartcase
 "set ignorecase
@@ -46,6 +47,11 @@ set completeopt=menuone,noinsert,noselect
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
 
+" Decent wildmenu
+set wildmode=longest:full,full
+set wildmenu
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+
 " Gibe more space for displaying
 set cmdheight=2
 
@@ -55,7 +61,36 @@ set updatetime=50
 " Don't pass messages to | ins-completion-menu | .
 set shortmess+=c
 
+" Wrapping options
+set formatoptions=tc " wrap text and comments using textwidth
+set formatoptions+=r " continue comments when pressing ENTER in I mode
+set formatoptions+=q " enable formatting of comments with gq
+set formatoptions+=n " detect lists for formatting
+set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
+
+set lazyredraw
+set diffopt+=iwhite " No whitespace in vimdiff
+" Make diffing better: https://vimways.org/2018/the-power-of-diff/
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
+set synmaxcol=500
+set backspace=2 " Backspace over newlines
+set nofoldenable
+set ttyfast
+" Proper search
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+set list
+" settings for hidden chars
+" what particular chars they are displayed with
+:set lcs=tab:▒░,trail:▓
+" or
+:set listchars=tab:▒░,trail:▓
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -78,3 +113,9 @@ augroup THE_ED_CLEAN
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
+
+" Jump to last edit position on opening file
+if has("autocmd")
+  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
