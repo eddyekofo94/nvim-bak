@@ -1,4 +1,4 @@
-" sets - general configs
+" Sets: - general configs
 set nocompatible
 set exrc                                " For custumised vim setting (will load vim files in project) No
 set iskeyword+=-                      	" treat dash separated words as a word text object"
@@ -36,7 +36,7 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set incsearch
 set guifont=JetBrainsMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
-set undodir=./undodir                   " Need a proper pluggin for it, all for keeping files saved
+set undodir=$NVIM_PERSONAL_DIR/undodir                   " Need a proper pluggin for it, all for keeping files saved
 set undofile
 set incsearch
 set termguicolors
@@ -67,3 +67,14 @@ augroup MAX_CHARS_COLUMN
     autocmd BufLeave * :call clearmatches()
 augroup END
 
+" Remove whitespace
+function! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup THE_ED_CLEAN
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
