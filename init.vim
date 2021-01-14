@@ -12,34 +12,34 @@ source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
 call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
-
-    " Have the file system follow you around
-    Plug 'airblade/vim-rooter'
-    " Better Comments
-    Plug 'tpope/vim-commentary'
+Plug 'junegunn/limelight.vim'
+" Have the file system follow you around
+Plug 'airblade/vim-rooter'
+" Better Comments
+Plug 'tpope/vim-commentary'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " Highlight when copied
-    Plug 'machakann/vim-highlightedyank'
+Plug 'machakann/vim-highlightedyank'
 
-    " See what keys do like in emacs
-    Plug 'liuchengxu/vim-which-key'
-    " Vista
-    Plug 'liuchengxu/vista.vim'
-    " Terminal
-    Plug 'voldikss/vim-floaterm'
+" See what keys do like in emacs
+Plug 'liuchengxu/vim-which-key'
+" Vista
+Plug 'liuchengxu/vista.vim'
+" Terminal
+Plug 'voldikss/vim-floaterm'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
 " Closetags
 Plug 'alvan/vim-closetag'
 
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
-    " auto set indent settings
-    Plug 'tpope/vim-sleuth'
+" Better Syntax Support
+Plug 'sheerun/vim-polyglot'
+" auto set indent settings
+Plug 'tpope/vim-sleuth'
 " Undo Tree: For better undoing
 Plug 'mbbill/undotree'
 
@@ -60,12 +60,12 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim'
 
-    " Zen mode
-    Plug 'junegunn/goyo.vim'
-    " Smooth scroll
-    Plug 'psliwka/vim-smoothie'
-    " Colorizer
-    Plug 'norcalli/nvim-colorizer.lua'
+" Zen mode
+Plug 'junegunn/goyo.vim'
+" Smooth scroll
+Plug 'psliwka/vim-smoothie'
+" Colorizer
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 " Automatically install missing plugins on startup
