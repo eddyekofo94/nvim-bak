@@ -13,6 +13,7 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
+Plug 'godlygeek/tabular'                 " Line it up
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
 " Better tabline

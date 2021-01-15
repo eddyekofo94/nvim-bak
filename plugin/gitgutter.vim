@@ -11,5 +11,5 @@ let g:gitgutter_preview_win_floating = 1
 let g:gitgutter_enabled = 1
 
 highlight GitGutterAdd    guifg=#a3be8c ctermfg=2
-highlight GitGutterChange guifg=#88c8d0 ctermfg=3
+highlight GitGutterChange guifg=#81a1c1 ctermfg=3
 highlight GitGutterDelete guifg=#bf616a ctermfg=1

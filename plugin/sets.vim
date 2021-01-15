@@ -6,17 +6,17 @@ set formatoptions-=cro                  " Stop newline continution of comments
 
 set nowrap                              " Display long lines as just one line
 set whichwrap+=<,>,[,],h,l
-set encoding=utf-8                      " The encoding displayed
-set pumheight=10                        " Makes popup menu smaller
-set fileencoding=utf-8                  " The encoding written to file
-set ruler              			            " Show the cursor position all the time
-set mouse+=a                             " Enable your mouse
-set splitbelow                          " Horizontal splits will automatically be below
-set splitright                          " Vertical splits will automatically be to the right
-set conceallevel=0                      " So that I can see `` in markdown files
-set cursorline                          " Enable highlighting of the current line
-set showtabline=2                       " Always show tabs
-set tabstop=4                           " Insert 4 spaces for a tab
+set encoding=utf-8     " The encoding displayed
+set pumheight=10       " Makes popup menu smaller
+set fileencoding=utf-8 " The encoding written to file
+set ruler              " Show the cursor position all the time
+set mouse+=a           " Enable your mouse
+set splitbelow         " Horizontal splits will automatically be below
+set splitright         " Vertical splits will automatically be to the right
+set conceallevel=0     " So that I can see `` in markdown files
+set cursorline         " Enable highlighting of the current line
+set showtabline=2      " Always show tabs
+set tabstop=4          " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
@@ -41,7 +41,7 @@ set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keep
 set undofile
 set incsearch
 set termguicolors
-set scrolloff=8                         " start scholling when you're near the bottom by 8
+set scrolloff=10                         " start scholling when you're near the bottom by 8
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set completeopt=menuone,noinsert,noselect
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
@@ -61,7 +61,7 @@ set updatetime=50
 " Don't pass messages to | ins-completion-menu | .
 set shortmess+=c
 
-" Wrapping options
+                     " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
@@ -92,14 +92,14 @@ set list
 " or
 :set listchars=tab:▒░,trail:▓,eol:↵,nbsp:␣,extends:…,precedes:…
 
-function! MaxLineChars()
-    let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endfunction
-
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
 augroup END
+
+function! MaxLineChars()
+    let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endfunction
 
 highlight HighlightedyankRegion cterm=reverse gui=reverse
 
