@@ -82,6 +82,9 @@ source $XDG_CONFIG_HOME/nvim/plugin/rnvimr.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 
+" ROMOVE: netrw
+" let g:loaded_netrw= 1
+" let g:netrw_loaded_netrwPlugin= 1
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
