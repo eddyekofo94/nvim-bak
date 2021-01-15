@@ -16,10 +16,21 @@ Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'                 " Line it up
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
+
+" Theme
+" Nord! the best colorscheme
+Plug 'arcticicestudio/nord-vim'
+Plug 'glepnir/galaxyline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'srcery-colors/srcery-vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'gruvbox-community/gruvbox'
+
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments
 Plug 'tpope/vim-commentary'
+Plug 'lukas-reineke/format.nvim'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -30,14 +41,13 @@ Plug 'machakann/vim-highlightedyank'
 
 " See what keys do like in emacs
 Plug 'liuchengxu/vim-which-key'
+" TODO fix this, make it work
 " Vista
 Plug 'liuchengxu/vista.vim'
 " Terminal
 Plug 'voldikss/vim-floaterm'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
-" Closetags
-Plug 'alvan/vim-closetag'
 " Ranger file viewer
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'rbgrouleff/bclose.vim'
@@ -52,11 +62,6 @@ Plug 'mbbill/undotree'
 
 " Snippets
 Plug 'honza/vim-snippets'
-" Theme
-" Nord! the best colorscheme
-Plug 'arcticicestudio/nord-vim'
-Plug 'glepnir/galaxyline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 
 " Git
 Plug 'airblade/vim-gitgutter'
