@@ -1,3 +1,5 @@
+-- Eddy: Ekofo - Jan 2021
+-- Credit: https://github.com/ChristianChiarulli/nvim
 -- require'nvim-web-devicons'.setup()
 
 local gl = require('galaxyline')
@@ -77,7 +79,7 @@ gls.left[2] = {
                           ['!']  = colors.red,
                           t = colors.red}
       vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
-      return '  EdCode '
+      return '  EdVim '
     end,
     separator = ' ',
     separator_highlight = {colors.yellow,function()

@@ -54,6 +54,7 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "autocmd! User GoyoEnter Limelight
 "autocmd! User GoyoLeave Limelight!
 
+" TODO: Fix the limelight not closing on GoyoLeave!!
 augroup ZenMode
   au!
   autocmd User GoyoEnter Limelight

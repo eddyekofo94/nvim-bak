@@ -1,2 +1,5 @@
 undodir
 plugged/**
+.netrwhist
+.DS_Store
+

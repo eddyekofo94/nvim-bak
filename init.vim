@@ -35,7 +35,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'jiangmiao/auto-pairs'
 " Closetags
 Plug 'alvan/vim-closetag'
-
+" Ranger file viewer
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 " Better Syntax Support
 Plug 'sheerun/vim-polyglot'
 " auto set indent settings
@@ -49,9 +50,7 @@ Plug 'mbbill/undotree'
 " Nord! the best colorscheme
 Plug 'arcticicestudio/nord-vim'
 Plug 'glepnir/galaxyline.nvim'
-"Plug 'glepnir/spaceline.vim'
 Plug 'kyazdani42/nvim-web-devicons'
-"Plug 'itchyny/lightline.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -74,8 +73,11 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
+source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/plugin/rnvimr.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
+source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc

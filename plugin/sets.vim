@@ -19,7 +19,7 @@ set showtabline=2                       " Always show tabs
 set tabstop=4                           " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set expandtab
+set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
 set autoread
 set smartindent
 "set smartcase
@@ -37,7 +37,7 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set incsearch
 set guifont=JetBrainsMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
-set undodir=$NVIM_PERSONAL_DIR/undodir                   " Need a proper pluggin for it, all for keeping files saved
+set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
 set incsearch
 set termguicolors
@@ -90,11 +90,18 @@ set list
 " what particular chars they are displayed with
 :set lcs=tab:▒░,trail:▓
 " or
-:set listchars=tab:▒░,trail:▓
+:set listchars=tab:▒░,trail:▓,eol:↵,nbsp:␣,extends:…,precedes:…
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
+
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
+augroup END
+
+highlight HighlightedyankRegion cterm=reverse gui=reverse
 
 augroup MAX_CHARS_COLUMN
     autocmd!
