@@ -15,6 +15,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
+" Better tabline
+Plug 'romgrk/barbar.nvim'
 " Better Comments
 Plug 'tpope/vim-commentary'
 " Telescope for fuzzy searching
@@ -76,10 +78,12 @@ autocmd VimEnter *
   \| endif
 source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
 source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
 source $XDG_CONFIG_HOME/nvim/plugin/rnvimr.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
+source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 
 " ROMOVE: netrw
@@ -98,3 +102,6 @@ set secure
 set noshowcmd
 
 " }}}
+
+" TODO: see what this is doing, from the prime
+"augroup numbertoggle : autocmd! : autocmd BufEnter,FocusGained,InsertLeave * set relativenumber : autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber :augroup END
