@@ -1,93 +1,18 @@
 " Eddy Ekofo - Jan 2021
 
-" g Leader key
+" g Leader key: This has to be done early
 let mapleader=" "
 " let localleader=" "
 nnoremap <Space> <Nop>
 
 " LOAD: plugins
 source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
-" TODO: Convert to Lua, user packer add: https://github.com/wbthomason/packer.nvim
-" Follow TJ's example on how to install the plugin manager if it doesn't exist
-call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/limelight.vim'
-Plug 'godlygeek/tabular'                 " Line it up
-" Have the file system follow you around
-Plug 'airblade/vim-rooter'
-
-" Theme
-" Nord! the best colorscheme
-Plug 'arcticicestudio/nord-vim'
-Plug 'glepnir/galaxyline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'srcery-colors/srcery-vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'gruvbox-community/gruvbox'
-
-" Better tabline
-Plug 'romgrk/barbar.nvim'
-" Better Comments
-Plug 'tpope/vim-commentary'
-Plug 'lukas-reineke/format.nvim'
-" Telescope for fuzzy searching
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" Highlight when copied
-Plug 'machakann/vim-highlightedyank'
-
-" See what keys do like in emacs
-Plug 'liuchengxu/vim-which-key'
-" TODO fix this, make it work
-" Vista
-Plug 'liuchengxu/vista.vim'
-" Terminal
-Plug 'voldikss/vim-floaterm'
-" Auto pairs for '(' '[' '{'
-Plug 'jiangmiao/auto-pairs'
-" Ranger file viewer
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-Plug 'rbgrouleff/bclose.vim'
-" Dashboard
-Plug 'glepnir/dashboard-nvim'
-" Better Syntax Support
-Plug 'sheerun/vim-polyglot'
-" auto set indent settings
-Plug 'tpope/vim-sleuth'
-" Undo Tree: For better undoing
-Plug 'mbbill/undotree'
-
-" Snippets
-Plug 'honza/vim-snippets'
-
-" Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/gv.vim'
-Plug 'rhysd/git-messenger.vim'
-
-" Zen mode
-Plug 'junegunn/goyo.vim'
-" Smooth scroll
-Plug 'psliwka/vim-smoothie'
-" Colorizer
-Plug 'norcalli/nvim-colorizer.lua'
-call plug#end()
-" Automatically install missing plugins on startup
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
 source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
 source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
 source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
-source $XDG_CONFIG_HOME/nvim/plugin/rnvimr.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim

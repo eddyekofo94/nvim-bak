@@ -29,4 +29,4 @@ augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
 augroup END
-highlight HighlightedyankRegion cterm=reverse gui=reverse
+hi Visual term=reverse cterm=reverse guibg=#4c566a  guifg=#d8dee9

@@ -67,3 +67,11 @@ augroup ZenModeOff
   autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
 augroup END
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction

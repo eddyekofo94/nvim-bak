@@ -1,15 +1,7 @@
 
-" Telescope: keymaps.
-" TODO: map to quick_view, map git_files
-lua << EOF
-require('telescope').setup {
-  defaults = {
-    sorting_strategy = "ascending",
-    prompt_position = "top",
-  }
-}
-EOF
+" Telescope: keymaps & config
 " Using lua functions
+lua require('plugins.telescope')
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
