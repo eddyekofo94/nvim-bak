@@ -37,6 +37,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 " Ranger file viewer
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'rbgrouleff/bclose.vim'
+" Dashboard
+Plug 'glepnir/dashboard-nvim'
 " Better Syntax Support
 Plug 'sheerun/vim-polyglot'
 " auto set indent settings
@@ -44,8 +47,8 @@ Plug 'tpope/vim-sleuth'
 " Undo Tree: For better undoing
 Plug 'mbbill/undotree'
 
-    " Snippets
-    Plug 'honza/vim-snippets'
+" Snippets
+Plug 'honza/vim-snippets'
 " Theme
 " Nord! the best colorscheme
 Plug 'arcticicestudio/nord-vim'
@@ -66,7 +69,6 @@ Plug 'psliwka/vim-smoothie'
 " Colorizer
 Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
-
 " Automatically install missing plugins on startup
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -74,10 +76,12 @@ autocmd VimEnter *
   \| endif
 source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
+source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
 source $XDG_CONFIG_HOME/nvim/plugin/rnvimr.vim
 source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
-source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
+
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc

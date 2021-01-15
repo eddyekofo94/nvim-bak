@@ -47,17 +47,34 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map['/'] = [ ':call Comment()'                                 , 'comment' ]
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
-let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=file+'   , 'explorer' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['o'] = [ ':RnvimrToggle'                                   , 'open' ]
 let g:which_key_map['p'] = [ ':Telescope find_files'                                          , 'search files' ]
-let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
-let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
-let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               , 'move window' ]
 let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
+
+" Group mappings
+
+" a is for actions
+let g:which_key_map.a = {
+      \ 'name' : '+actions' ,
+      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
+      \ 'e' : [':CocCommand explorer'    , 'explorer'],
+      \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
+      \ 'l' : [':Bracey'                 , 'start live server'],
+      \ 'L' : [':BraceyStop'             , 'stop live server'],
+      \ 'm' : [':MarkdownPreview'        , 'markdown preview'],
+      \ 'M' : [':MarkdownPreviewStop'    , 'markdown preview stop'],
+      \ 'n' : [':set nonumber!'          , 'line-numbers'],
+      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
+      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
+      \ 't' : [':FloatermToggle'         , 'terminal'],
+      \ 'v' : [':Codi'                   , 'virtual repl on'],
+      \ 'V' : [':Codi!'                  , 'virtual repl off'],
+      \ 'w' : [':StripWhitespace'        , 'strip whitespace'],
+      \ }
 
 
 " Register which key map

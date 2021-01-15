@@ -58,12 +58,12 @@ gls.left[2] = {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
-      local mode_color = {n = colors.foreground,
+      local mode_color = {n = colors.darkblue,
                           i = colors.green,
                           v = colors.blue,
                           [''] = colors.blue,
                           V = colors.blue,
-                          c = colors.white,
+                          c = colors.magenta,
                           no = colors.magenta,
                           s = colors.orange,
                           S = colors.orange,
