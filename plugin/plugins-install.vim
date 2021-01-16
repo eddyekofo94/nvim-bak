@@ -12,6 +12,8 @@ Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it 
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
 Plug 'wbthomason/lsp-status.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
 

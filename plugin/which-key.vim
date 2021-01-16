@@ -76,6 +76,10 @@ let g:which_key_map.a = {
       \ 'w' : [':StripWhitespace'        , 'strip whitespace'],
       \ }
 
+let g:which_key_map.f = {
+      \'name' : '+find',
+      \ 'g' : [':Telescope live_grep'      , 'live grep' ]
+      \}
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
