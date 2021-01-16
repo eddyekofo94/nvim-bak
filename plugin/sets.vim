@@ -119,7 +119,7 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 augroup MAX_CHARS_COLUMN
     autocmd!
     autocmd FileType cpp,h,hpp,cxx,cs,fish,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufLeave * :call clearmatches()
+    autocmd BufLeave * :call clearmatches('w:m2')
 augroup END
 
 " Remove whitespace
@@ -139,3 +139,6 @@ if has("autocmd")
   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" You can't stop me
+cmap w!! w !sudo tee %

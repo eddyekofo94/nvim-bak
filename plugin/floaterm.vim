@@ -9,7 +9,7 @@ let g:floaterm_keymap_new    = '<F4>'
 " TODO: Find a way to kill the term
  " let g:floaterm_keymap_kill    = '<F9>'
 let g:floaterm_title=''
-let g:floaterm_shell='fish'
+let g:floaterm_shell='/usr/local/bin/fish'
 
 " Floaterm
 let g:floaterm_gitcommit='floaterm'

@@ -6,18 +6,24 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'                 " Line it up
+Plug 'pechorin/any-jump.vim'
+Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it is delicious
+" -- Configurations for neovim lsp.
+" --   neovim/neovim has all of the LSP code.
+Plug 'neovim/nvim-lspconfig'
+Plug 'wbthomason/lsp-status.nvim'
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
 
 " Theme
 " Nord! the best colorscheme
 Plug 'arcticicestudio/nord-vim'
-Plug 'glepnir/galaxyline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'srcery-colors/srcery-vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'gruvbox-community/gruvbox'
 
+Plug 'glepnir/galaxyline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments

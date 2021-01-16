@@ -1,9 +1,27 @@
 local telescope = require('telescope')
+-- RELOAD = require('plenary.reload').reload_module
+
+-- R = function(name)
+  -- RELOAD(name)
+  -- return require(name)
+-- end
+
+-- local should_reload = true
+-- local reloader = function()
+  -- if should_reload then
+    -- RELOAD('plenary')
+    -- RELOAD('popup')
+    -- RELOAD('telescope')
+  -- end
+-- end
+
+-- reloader()
 
 telescope.setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
+      '--color',
       '--no-heading',
       '--with-filename',
       '--line-number',
@@ -37,3 +55,55 @@ telescope.setup{
     qflist_previewer = require'telescope.previewers'.qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
   }
 }
+
+-- local M = {}
+
+-- function M.edit_neovim()
+  -- require('telescope.builtin').find_files {
+    -- prompt_title = "~ dotfiles ~",
+    -- shorten_path = true,
+    -- cwd = "~/.config/nvim",
+    -- width = .25,
+
+    -- layout_strategy = 'horizontal',
+    -- layout_config = {
+      -- preview_width = 0.65,
+    -- },
+  -- }
+-- end
+
+
+-- function M.edit_dotfiles()
+  -- require('telescope.builtin').find_files {
+    -- shorten_path = false,
+    -- cwd = "~/.files/",
+    -- prompt = "~ dot-framework ~",
+    -- layout_strategy = 'horizontal',
+    -- layout_config = {
+      -- preview_width = 0.55,
+    -- },
+  -- }
+-- end
+
+-- function M.fd()
+  -- require('telescope.builtin').fd()
+-- end
+
+-- function M.search_all_files()
+  -- require('telescope.builtin').find_files {
+    -- find_command = { 'rg', '--no-ignore', '--files', },
+  -- }
+-- end
+
+
+-- return setmetatable({}, {
+  -- __index = function(_, k)
+    -- reloader()
+
+    -- if M[k] then
+      -- return M[k]
+    -- else
+      -- return require('telescope.builtin')[k]
+    -- end
+  -- end
+-- })
