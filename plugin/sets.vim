@@ -47,8 +47,6 @@ set scrolloff=10                         " start scholling when you're near the 
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 " set complete+=kspell                    " INFO: :take a look into this option"
 set completeopt=menuone,noinsert,noselect,preview
-set wildmenu
-set wildmode=full
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
@@ -100,6 +98,8 @@ set list
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+" Leave paste mode when leaving insert mode
+autocmd InsertLeave * set nopaste
 " Remove banner from netrw
 " let g:netrw_banner = 0
 " let g:netrw_browse_split = 2
@@ -107,7 +107,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
-let g:netrw_localrmdir='rm -r'
+" let g:netrw_localrmdir='rm -r'
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!
@@ -158,3 +158,6 @@ cmap w!! w !sudo tee %
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
 
+" CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
+" Code formatting
+autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
