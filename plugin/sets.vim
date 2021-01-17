@@ -45,8 +45,8 @@ set incsearch
 set termguicolors
 set scrolloff=10                         " start scholling when you're near the bottom by 8
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
-" set complete+=kspell                    " INFO: :take a look into this option"
-set completeopt=menuone,noinsert,noselect,preview
+set complete+=kspell                    " INFO: :take a look into this option"
+set completeopt=menuone,noinsert,noselect
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
