@@ -1,4 +1,4 @@
--- Based to TJ's config -- reffer to that in the future
+-- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require('lspconfig')
 local nvim_status = require('lsp-status')
 local completion = require('completion')
@@ -8,6 +8,7 @@ local mapper = function(mode, key, result)
 end
 
 local custom_attach = function(client)
+
   if client.config.flags then
     client.config.flags.allow_incremental_sync = true
   end
@@ -31,24 +32,9 @@ local custom_attach = function(client)
     vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultInformation NonText ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultHint NonText ]]
-  -- telescope_mapper('gr', 'lsp_references', nil, true)
-  -- telescope_mapper('<space>fw', 'lsp_workspace_symbols', { ignore_filename = true }, true)
-  -- telescope_mapper('<space>ca', 'lsp_code_actions', nil, true)
 
-  local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
-  if filetype ~= 'lua' then
-    mapper('n', 'K', 'vim.lsp.buf.hover()')
-  end
-
-  mapper('i', '<c-s>', 'vim.lsp.buf.signature_help()')
-  -- TODO: configure rust, python, bash, lua, fish (maybe?)
-
-  vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 end
-
-lspconfig.yamlls.setup {
-  on_attach = custom_attach
-}
 
 lspconfig.clangd.setup({
   cmd = {
@@ -62,14 +48,29 @@ lspconfig.clangd.setup({
 
   -- Required for lsp-status
   init_options = {
-    clangdFileStatus = true
+     clangdFileStatus = true
   },
   handlers = nvim_status.extensions.clangd.setup(),
   capabilities = nvim_status.capabilities,
 })
 
--- bash
+-- TODO: Fix the lua setup
+-- require('nlua.lsp.nvim').setup(require('lspconfig'), {
+  -- on_attach = custom_nvim_lspconfig_attach,
+
+  -- Include globals you want to tell the LSP are real :)
+  -- globals = {
+    -- Colorbuddy
+    -- "Color", "c", "Group", "g", "s",
+  -- }
+-- })
+-- bash TODO: ensure that it works, I don't don't think it works
 lspconfig.bashls.setup{on_attach=custom_attach}
 
--- yaml
+-- yaml TODO: ensure that it works
 lspconfig.yamlls.setup{on_attach=custom_attach}
+
+-- It works, TODO: remove when fully confinced
+lspconfig.vimls.setup {
+  on_attach = custom_attach,
+}

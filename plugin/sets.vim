@@ -1,7 +1,7 @@
-" Sets: - general configs
+" Sets: - general conghigs
 set nocompatible
 set exrc                                " For custumised vim setting (will load vim files in project) No
-set iskeyword+=-                      	" treat dash separated words as a word text object"
+set iskeyword+=-                        " treat dash separated words as a word text object"
 set formatoptions-=cro                  " Stop newline continution of comments
 
 set nowrap                              " Display long lines as just one line
@@ -19,11 +19,13 @@ set showtabline=2      " Always show tabs
 set tabstop=4          " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
+set expandtab
+set cindent        " C based indenting :h cindent to read more"
 set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
 set autoread
 set smartindent
-"set smartcase
-"set ignorecase
+set smartcase
+" set ignorecase
 set relativenumber
 set number
 set nohlsearch
@@ -43,7 +45,11 @@ set incsearch
 set termguicolors
 set scrolloff=10                         " start scholling when you're near the bottom by 8
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
-set completeopt=menuone,noinsert,noselect
+" set complete+=kspell                    " INFO: :take a look into this option"
+set completeopt=menuone,noinsert,noselect,preview
+set wildmenu
+set wildmode=full
+set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
 
@@ -92,6 +98,8 @@ set list
 " or
 :set listchars=tab:▒░,trail:▓,eol:↵,nbsp:␣,extends:…,precedes:…
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 " Remove banner from netrw
 " let g:netrw_banner = 0
 " let g:netrw_browse_split = 2
@@ -99,6 +107,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
+let g:netrw_localrmdir='rm -r'
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!
@@ -142,3 +151,10 @@ endif
 
 " You can't stop me
 cmap w!! w !sudo tee %
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+

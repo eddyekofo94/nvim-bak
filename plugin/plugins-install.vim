@@ -14,6 +14,14 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'wbthomason/lsp-status.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Lua development
+Plug 'tjdevries/nlua.nvim'
+" (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
+"   but it's not currently required
+Plug 'euclidianAce/BetterLua.vim'
+
+" (OPTIONAL): If you wish to have fancy lua folds, you can check this out.
+Plug 'tjdevries/manillua.nvim'
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
 
@@ -59,6 +67,9 @@ Plug 'mbbill/undotree'
 
 " Snippets
 Plug 'honza/vim-snippets'
+Plug  'norcalli/snippets.nvim'
+Plug  'norcalli/ui.nvim'
+Plug 'SirVer/ultisnips'
 
 " Git
 Plug 'airblade/vim-gitgutter'

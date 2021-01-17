@@ -19,15 +19,7 @@ source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
 
-lua require('plugins.telescope')
-" lua require('lspconfig').clangd.setup{ on_attach=require('completion').on_attach }
-lua require('lsp.nvim-lsp')
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>gf <cmd>lua require('telescope.builtin').git_files()<cr>
-nnoremap <C-s> <cmd>lua require('telescope.builtin').goto_file_selection_split()<cr>
+lua require('init')
 " ROMOVE: netrw
 " let g:loaded_netrw= 1
 " let g:netrw_loaded_netrwPlugin= 1
