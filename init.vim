@@ -21,12 +21,16 @@ source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
 
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
+" Not sure about this maybe if it gets
+" too anoying you can change it again
 let g:completion_trigger_on_delete = 1
+let g:completion_confirm_key = "<CR>"
 let g:completion_trigger_keyword_length = 2 " default = 1
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 " possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
-" TODO: Fix this buuuuuggg!! I want tab completion and snippets
 let g:completion_enable_snippet = 'UltiSnips'
-let g:UltiSnipsExpandTrigger = '<f5>'
+" This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
+let g:UltiSnipsExpandTrigger = '<CR>'
 
 
 " ROMOVE: netrw
