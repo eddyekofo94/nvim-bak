@@ -9,6 +9,12 @@ nnoremap <silent> <TAB> :bnext<CR>
 " SHIFT-TAB will go back
 nnoremap <silent> <S-TAB> :bprevious<CR>
 
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 " Move selected line / block of text in visual mode
 " shift + k to move up
 " shift + j to move down
@@ -44,10 +50,6 @@ nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-" Limelight key mappings
-nmap <Leader>l <Plug>(Limelight)
-xmap <Leader>l <Plug>(Limelight)
-
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -67,3 +69,25 @@ augroup ZenModeOff
   autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
 augroup END
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
+" Source my init.vim
+" nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader><CR> :so $MYVIMRC<CR>
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <C-c> <esc>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+" I don't really agree with this setup but I will keep it here if I ever
+" find it decesarry one day
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Clears hlsearch after doing a search, otherwise just does normal <CR> stuff
+nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
+
+" Change the current word in insertmode.
+"   Auto places you into the spot where you can start typing to change it.
+nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
+
+nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
