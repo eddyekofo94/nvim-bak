@@ -128,7 +128,7 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 augroup MAX_CHARS_COLUMN
     autocmd!
     autocmd FileType cpp,h,hpp,cxx,cs,fish,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufLeave * :call clearmatches('w:m2')
+    autocmd BufLeave * :call clearmatches()
 augroup END
 
 " Remove whitespace
@@ -153,11 +153,12 @@ endif
 cmap w!! w !sudo tee %
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" imap <tab> <Plug>(completion_smart_tab)
+" imap <s-tab> <Plug>(completion_smart_s_tab)
 
 " CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
 " Code formatting
-autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+autocmd FileType c,cpp,h,hpp,proto,javascript AutoFormatBuffer clang-format

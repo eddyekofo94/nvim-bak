@@ -11,3 +11,4 @@ mapper("n", "<Leader>gg", "<cmd>lua require'telescope.builtin'.live_grep{}<CR>")
 mapper("n", "<Leader>fr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>") -- search references to symbol under cursor
 mapper("n", "<Leader>co", "<cmd>lua require'telescope.builtin'.colorscheme{}<CR>")    -- Fuzzy find colorschemes
 mapper("n", "<Leader>cm", "<cmd>lua require'telescope.builtin'.commands{}<CR>")       -- command history
+

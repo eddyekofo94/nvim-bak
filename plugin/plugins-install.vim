@@ -69,8 +69,15 @@ Plug 'mbbill/undotree'
 Plug 'honza/vim-snippets'
 Plug  'norcalli/snippets.nvim'
 Plug  'norcalli/ui.nvim'
+Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
-
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plug 'google/vim-glaive'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'

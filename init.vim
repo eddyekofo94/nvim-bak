@@ -20,6 +20,15 @@ source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
 
 lua require('init')
+" inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
+let g:completion_trigger_on_delete = 1
+let g:completion_trigger_keyword_length = 2 " default = 1
+" possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
+" TODO: Fix this buuuuuggg!! I want tab completion and snippets
+let g:completion_enable_snippet = 'UltiSnips'
+let g:UltiSnipsExpandTrigger = '<f5>'
+
+
 " ROMOVE: netrw
 " let g:loaded_netrw= 1
 " let g:netrw_loaded_netrwPlugin= 1

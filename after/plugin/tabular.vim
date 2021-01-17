@@ -1,7 +1,8 @@
-if !exists('g:tabular_loaded')
-  finish
-endif
+" Set up :make to use fish for syntax checking.
+compiler fish
 
-AddTabularPattern! nvar /nvarchar(\w*)/l1r0
-AddTabularPattern! f_comma /^[^,]*\zs,/
-AddTabularPattern! f_colon /^[^:]*\zs:/
+" Set this to have long lines wrap inside comments.
+setlocal textwidth=79
+
+" Enable folding of block structures in fish.
+setlocal foldmethod=expr
