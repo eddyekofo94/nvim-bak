@@ -32,7 +32,15 @@ let g:completion_enable_snippet = 'UltiSnips'
 " This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
 let g:UltiSnipsExpandTrigger = '<CR>'
 
-
+" lsp diagnostics Enable type inlay hints
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+augroup lsp_status
+    autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
+augroup end
 " ROMOVE: netrw
 " let g:loaded_netrw= 1
 " let g:netrw_loaded_netrwPlugin= 1
