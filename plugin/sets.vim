@@ -78,7 +78,7 @@ set diffopt+=iwhite " No whitespace in vimdiff
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set synmaxcol=500
-set backspace=2 " Backspace over newlines
+set backspace=indent,eol,start " Backspace over newlines
 set nofoldenable
 set ttyfast
 " Proper search
@@ -108,6 +108,10 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 " let g:netrw_localrmdir='rm -r'
+" Rust formatting
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!
@@ -162,3 +166,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
 " Code formatting
 autocmd FileType c,cpp,h,hpp,proto,javascript AutoFormatBuffer clang-format
+
+
+" Reconsider this option
+" Jump to start and end of line using the home row keys
+" map H ^
+" map L $

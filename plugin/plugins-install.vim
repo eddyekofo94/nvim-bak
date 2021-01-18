@@ -22,6 +22,8 @@ Plug 'tjdevries/nlua.nvim'
 "   but it's not currently required
 Plug 'euclidianAce/BetterLua.vim'
 
+" For rust developemnt
+Plug 'rust-lang/rust.vim'
 " (OPTIONAL): If you wish to have fancy lua folds, you can check this out.
 Plug 'tjdevries/manillua.nvim'
 " Have the file system follow you around
