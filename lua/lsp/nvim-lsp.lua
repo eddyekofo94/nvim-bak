@@ -29,9 +29,9 @@ local custom_attach = function(client)
 
     -- Diagnostic text colors
     vim.cmd [[ hi link LspDiagnosticsDefaultError ErrorMsg ]]
-    -- vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
-    -- vim.cmd [[ hi link LspDiagnosticsDefaultInformation NonText ]]
-    -- vim.cmd [[ hi link LspDiagnosticsDefaultHint NonText ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultInformation LightBlue ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultHint LightYellow ]]
 
     vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 end

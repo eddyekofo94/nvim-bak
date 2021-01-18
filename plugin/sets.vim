@@ -135,6 +135,20 @@ augroup MAX_CHARS_COLUMN
     autocmd BufLeave * :call clearmatches()
 augroup END
 
+" TODO: see a way to remobe matching pattern
+" Remove all matches for pattern.
+" function! s:UndoHighlight(pat)
+  " if type(a:pat) == type(0)
+    " let pattern = s:Pattern(a:pat)
+  " else
+    " let pattern = a:pat
+  " endif
+  " for m in getmatches()
+    " if m.pattern ==# pattern
+      " call matchdelete(w.m2)
+    " endif
+  " endfor
+" endfunction
 " Remove whitespace
 function! TrimWhitespace()
     let l:save = winsaveview()
