@@ -5,4 +5,5 @@
  require('plugins.treesitter')
  require('lsp.nvim-lsp')
  require('mappings')
+ require('lsp-status')
  -- require('snippets') TODO: snippets

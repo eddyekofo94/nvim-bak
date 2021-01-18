@@ -28,10 +28,10 @@ local custom_attach = function(client)
 
 
     -- Diagnostic text colors
-    vim.cmd [[ hi link LspDiagnosticsDefaultError WarningMsg ]]
-    vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
-    vim.cmd [[ hi link LspDiagnosticsDefaultInformation NonText ]]
-    vim.cmd [[ hi link LspDiagnosticsDefaultHint NonText ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultError ErrorMsg ]]
+    -- vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
+    -- vim.cmd [[ hi link LspDiagnosticsDefaultInformation NonText ]]
+    -- vim.cmd [[ hi link LspDiagnosticsDefaultHint NonText ]]
 
     vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 end
@@ -54,6 +54,19 @@ lspconfig.clangd.setup({
   capabilities = nvim_status.capabilities,
 })
 
+lspconfig.rust_analyzer.setup({
+  filetypes = {"rust"},
+  on_attach = custom_attach,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        signs = true,
+        virtual_text = true,
+        update_in_insert = true,
+      }
+    ),
+  }
+})
 -- TODO: Fix the lua setup
 -- require('nlua.lsp.nvim').setup(require('lspconfig'), {
   -- on_attach = custom_nvim_lspconfig_attach,
