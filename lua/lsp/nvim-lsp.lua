@@ -26,12 +26,24 @@ local custom_attach = function(client)
     mapper("n" , "<space>dp" , "vim.lsp.diagnostic.goto_prev()")
     mapper("n" , "<space>da" , "vim.lsp.diagnostic.set_loclist()")
 
-
     -- Diagnostic text colors
     vim.cmd [[ hi link LspDiagnosticsDefaultError ErrorMsg ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
-    vim.cmd [[ hi link LspDiagnosticsDefaultInformation LightBlue ]]
-    vim.cmd [[ hi link LspDiagnosticsDefaultHint LightYellow ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultInformation Tooltip ]]
+    vim.cmd [[ hi link LspDiagnosticsDefaultHint Tooltip ]]
+
+    -- Rust is currently the only thing w/ inlay hints
+    if filetype == 'rust' then
+      vim.cmd(
+        [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]]
+          .. [[aligned = true, prefix = " » " ]]
+        .. [[} ]]
+      )
+    end
+
+    if vim.tbl_contains({"go", "rust"}, filetype) then
+      vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    end
 
     vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 end
@@ -55,6 +67,7 @@ lspconfig.clangd.setup({
 })
 
 lspconfig.rust_analyzer.setup({
+  cmd = {"rust-analyzer"},
   filetypes = {"rust"},
   on_attach = custom_attach,
   handlers = {

@@ -37,7 +37,7 @@ set timeoutlen=1000                      " By default timeoutlen is 1000 ms
 set shiftround                          " For better indentation"
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 set incsearch
-set guifont=JetBrainsMono\ Nerd\ Font
+set guifont=UbuntuMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
@@ -60,7 +60,7 @@ set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp
 set cmdheight=2
 
 " Shorter update time for good user experience
-set updatetime=50
+set updatetime=300
 
 " Don't pass messages to | ins-completion-menu | .
 set shortmess+=c
@@ -97,7 +97,7 @@ set list
 :set listchars=tab:▒░,trail:▓,eol:↵,nbsp:␣,extends:…,precedes:…
 
 set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 " Remove banner from netrw
@@ -118,16 +118,9 @@ augroup AutoDeleteNetrwHiddenBuffers
   au FileType netrw setlocal bufhidden=wipe
 augroup end
 
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
-augroup END
-
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
-
-highlight HighlightedyankRegion cterm=reverse gui=reverse
 
 augroup MAX_CHARS_COLUMN
     autocmd!
@@ -135,20 +128,6 @@ augroup MAX_CHARS_COLUMN
     autocmd BufLeave * :call clearmatches()
 augroup END
 
-" TODO: see a way to remobe matching pattern
-" Remove all matches for pattern.
-" function! s:UndoHighlight(pat)
-  " if type(a:pat) == type(0)
-    " let pattern = s:Pattern(a:pat)
-  " else
-    " let pattern = a:pat
-  " endif
-  " for m in getmatches()
-    " if m.pattern ==# pattern
-      " call matchdelete(w.m2)
-    " endif
-  " endfor
-" endfunction
 " Remove whitespace
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -167,6 +146,7 @@ if has("autocmd")
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" lsp diagnostics Enable type inlay hints
 " You can't stop me
 cmap w!! w !sudo tee %
 

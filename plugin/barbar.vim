@@ -53,7 +53,7 @@ exe 'hi default BufferInactiveTarget   guifg=red gui=bold guibg=' . bg_inactive
 
 
 " For the shadow in buffer-picking mode
-hi default BufferShadow guifg=#000000 guibg=#000000
+hi default BufferShadow guifg=#ebcb8b guibg=#000000
 
 " Magic buffer-picking mode
 "nnoremap <silent> <C-s> :BufferPick<CR>

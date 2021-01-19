@@ -11,28 +11,30 @@ source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
 source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
 source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
-source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
 source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
 " source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
+source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
 
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
 " Not sure about this maybe if it gets
 " too anoying you can change it again
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+" This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
+let g:UltiSnipsExpandTrigger = '<CR>'
+" possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
+let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_trigger_on_delete = 1
 let g:completion_confirm_key = "<CR>"
 let g:completion_trigger_keyword_length = 2 " default = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-" possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
-let g:completion_enable_snippet = 'UltiSnips'
-" This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
-let g:UltiSnipsExpandTrigger = '<CR>'
 
-" lsp diagnostics Enable type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 " Goto previous/next diagnostic warning/error
