@@ -3,6 +3,8 @@ local lspconfig = require('lspconfig')
 local nvim_status = require('lsp-status')
 local completion = require('completion')
 
+nvim_status.register_progress()
+
 local mapper = function(mode, key, result)
   vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
 end
@@ -80,6 +82,7 @@ lspconfig.rust_analyzer.setup({
     ),
   }
 })
+
 -- TODO: Fix the lua setup
 -- require('nlua.lsp.nvim').setup(require('lspconfig'), {
   -- on_attach = custom_nvim_lspconfig_attach,
