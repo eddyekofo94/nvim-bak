@@ -108,10 +108,11 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 " let g:netrw_localrmdir='rm -r'
-" Rust formatting
-let g:rustfmt_autosave = 1
-let g:rustfmt_emit_files = 1
-let g:rustfmt_fail_silently = 0
+" Code Formating: Very sweet plugin works very well
+augroup Format
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+augroup END
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!

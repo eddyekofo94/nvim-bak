@@ -27,7 +27,7 @@ lua require('init')
 " Show diagnostic popup on cursor hold
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 " This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
-let g:UltiSnipsExpandTrigger = '<CR>'
+let g:UltiSnipsExpandTrigger = '<F5>'
 " possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_trigger_on_delete = 1
@@ -43,6 +43,7 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
+
 " ROMOVE: netrw
 " let g:loaded_netrw= 1
 " let g:netrw_loaded_netrwPlugin= 1
