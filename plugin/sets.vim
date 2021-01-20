@@ -11,8 +11,10 @@ set pumheight=10       " Makes popup menu smaller
 set fileencoding=utf-8 " The encoding written to file
 set ruler              " Show the cursor position all the time
 set mouse+=a           " Enable your mouse
+
 set splitbelow         " Horizontal splits will automatically be below
 set splitright         " Vertical splits will automatically be to the right
+
 set conceallevel=0     " So that I can see `` in markdown files
 set cursorline         " Enable highlighting of the current line
 set showtabline=2      " Always show tabs
@@ -24,11 +26,13 @@ set cindent        " C based indenting :h cindent to read more"
 set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
 set autoread
 set smartindent
-set smartcase
-" set ignorecase
+
 set relativenumber
 set number
-set nohlsearch
+
+set hlsearch
+set ignorecase                          " All your searches will be case insensitive"
+set smartcase                           " Your search will be case sensitive if it contains an uppercase letter"
 set hidden                              " Keep all the buffers open in the background
 set noerrorbells
 set noswapfile
@@ -36,20 +40,26 @@ set nobackup
 set timeoutlen=1000                      " By default timeoutlen is 1000 ms
 set shiftround                          " For better indentation"
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-set incsearch
 set guifont=UbuntuMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
-set incsearch
 set termguicolors
 set scrolloff=10                         " start scholling when you're near the bottom by 8
+set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option"
 set completeopt=menuone,noinsert,noselect
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
+setglobal fileformats=unix,dos,mac
+
+augroup CHAR_BREAK
+  au!
+  autocmd FileType vim set textwidth=120
+augroup end
+set textwidth=90
 
 " Decent wildmenu
 set wildmode=longest:full,full
@@ -81,10 +91,9 @@ set synmaxcol=500
 set backspace=indent,eol,start " Backspace over newlines
 set nofoldenable
 set ttyfast
+
 " Proper search
 set incsearch
-set ignorecase
-set smartcase
 set gdefault
 set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -101,18 +110,17 @@ set foldmethod=expr
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 " Remove banner from netrw
-" let g:netrw_banner = 0
-" let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
-" let g:netrw_localrmdir='rm -r'
+let g:netrw_localrmdir='rm -r'
+
 " Code Formating: Very sweet plugin works very well
 augroup Format
     autocmd!
     autocmd BufWritePost * FormatWrite
-augroup END
+augroup end
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!
@@ -127,7 +135,7 @@ augroup MAX_CHARS_COLUMN
     autocmd!
     autocmd FileType cpp,h,hpp,cxx,cs,fish,sh,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
-augroup END
+augroup end
 
 " Remove whitespace
 function! TrimWhitespace()
@@ -139,7 +147,7 @@ endfun
 augroup THE_ED_CLEAN
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
-augroup END
+augroup end
 
 " Jump to last edit position on opening file
 if has("autocmd")
@@ -147,7 +155,6 @@ if has("autocmd")
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" lsp diagnostics Enable type inlay hints
 " You can't stop me
 cmap w!! w !sudo tee %
 
@@ -155,15 +162,21 @@ cmap w!! w !sudo tee %
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" imap <tab> <Plug>(completion_smart_tab)
-" imap <s-tab> <Plug>(completion_smart_s_tab)
-
 " CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
 " Code formatting
 autocmd FileType c,cpp,h,hpp,proto,javascript AutoFormatBuffer clang-format
-
+autocmd FileType c,cpp,cs,java        setlocal commentstring=//\ %s
 
 " Reconsider this option
 " Jump to start and end of line using the home row keys
 " map H ^
 " map L $
+
+autocmd FileType * setlocal nolinebreak
+
+" Toggles the relative number
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup end

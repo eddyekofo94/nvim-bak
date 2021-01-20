@@ -3,9 +3,19 @@
 " TODO: Start migrating to LUA!!
 " g Leader key: This has to be done early
 let mapleader=" "
-" let localleader=" "
 nnoremap <Space> <Nop>
 
+augroup TerminalExit
+    au!
+    autocmd TermOpen * startinsert
+augroup end
+
+" For exiting the termial mode. Better than the default config
+tnoremap <Esc> <C-\><C-n><CR>
+" Teach a Vim to fish… not evn sure what this really does
+" if &shell =~# 'fish$'
+    " set shell=sh
+" endif
 " LOAD: plugins
 source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
 source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
@@ -44,10 +54,6 @@ augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
 
-" ROMOVE: netrw
-" let g:loaded_netrw= 1
-" let g:netrw_loaded_netrwPlugin= 1
-
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
 
@@ -61,7 +67,3 @@ set noshowcmd
 
 " }}}
 
-" TODO: see what this is doing, from the prime
-"augroup numbertoggle :
-"autocmd! : autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-": autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber :augroup END

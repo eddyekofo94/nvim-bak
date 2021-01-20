@@ -4,6 +4,8 @@
 vnoremap < <gv
 vnoremap > >gv
 
+" inoremap <M-I>      <C-O>^ "TODO see the def of this mapping from TPope
+
 " TAB in general mode will move to text buffer
 nnoremap <silent> <TAB> :bnext<CR>
 " SHIFT-TAB will go back
@@ -91,3 +93,4 @@ nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
+nnoremap Y  y$
