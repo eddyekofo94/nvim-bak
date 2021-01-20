@@ -1,5 +1,5 @@
 " Eddy Ekofo - Jan 2021
-"
+
 " TODO: Start migrating to LUA!!
 " g Leader key: This has to be done early
 let mapleader=" "
@@ -12,10 +12,7 @@ augroup end
 
 " For exiting the termial mode. Better than the default config
 tnoremap <Esc> <C-\><C-n><CR>
-" Teach a Vim to fish… not evn sure what this really does
-" if &shell =~# 'fish$'
-    " set shell=sh
-" endif
+
 " LOAD: plugins
 source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
 source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
