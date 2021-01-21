@@ -47,6 +47,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map['/'] = [ ':call Comment()'                                 , 'comment' ]
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
+let g:which_key_map['b'] = [ ':bd!'                                          , 'buffer delete' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['t'] = [ ':term'                                   , 'terminal' ]

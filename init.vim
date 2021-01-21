@@ -5,9 +5,22 @@
 let mapleader=" "
 nnoremap <Space> <Nop>
 
+augroup SET_SHELL
+    au!
+    autocmd BufEnter * set shell=/bin/bash
+augroup end
+
+augroup SOURCE_VIM_FILES
+    au!
+    autocmd BufWritePost vim :so $MYVIMRC
+augroup end
+
 augroup TerminalExit
     au!
+    autocmd TermOpen * set shell=/usr/local/bin/fish
     autocmd TermOpen * startinsert
+    autocmd TermOpen * set norelativenumber!
+    autocmd TermOpen * set number!
 augroup end
 
 " For exiting the termial mode. Better than the default config
@@ -42,11 +55,10 @@ let g:completion_confirm_key = "<CR>"
 let g:completion_trigger_keyword_length = 2 " default = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
+
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
 augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
@@ -58,9 +70,5 @@ augroup end
 " This will prevent :autocmd, shell and write commands from being
 " run inside project-specific .vimrc files unless theyÕre owned by you.
 set secure
-
-" ShowCommand: turn off character printing to vim status line
-set noshowcmd
-
 " }}}
 

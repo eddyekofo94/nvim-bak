@@ -93,4 +93,7 @@ nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
-nnoremap Y  y$
+nnoremap Y  y$ " Thank you TPope
+
+nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>

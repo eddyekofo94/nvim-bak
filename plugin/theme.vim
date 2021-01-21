@@ -34,5 +34,5 @@ augroup END
 hi Visual  cterm=reverse ctermbg=NONE guibg=#4c566a  guifg=#d8dee9
 " Override the default Red & white
 highlight ErrorMsg guibg=NONE guifg=#fa616a
-highlight Tooltip guibg=NONE guifg=#88c0d0
-highlight WarningMsg guibg=NONE guifg=#ffd394
+" highlight Tooltip guibg=NONE guifg=#88c0d0
+" highlight WarningMsg guibg=NONE guifg=#ffd394

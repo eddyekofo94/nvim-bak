@@ -3,6 +3,7 @@
 --
  require('plugins.telescope')
  require('plugins.treesitter')
+-- require('plugins.web-devicons')
  require('lsp.nvim-lsp')
  require('format-nvim')
  require('mappings')
