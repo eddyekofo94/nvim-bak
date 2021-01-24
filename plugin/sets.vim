@@ -133,7 +133,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType cpp,h,hpp,cxx,*.cs,fish,*.sh,bash,*.ru,ts,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType *.cpp,*.h,*.hpp,cxx,*.cs,fish,*.sh,bash,*.ru,ts,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
 augroup end
 

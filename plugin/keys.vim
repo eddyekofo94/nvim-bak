@@ -85,9 +85,6 @@ inoremap <C-c> <esc>
 " find it decesarry one day
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-" Clears hlsearch after doing a search, otherwise just does normal <CR> stuff
-nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
-
 " Change the current word in insertmode.
 "   Auto places you into the spot where you can start typing to change it.
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
