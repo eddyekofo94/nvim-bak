@@ -14,7 +14,7 @@ local saga = require 'lspsaga'
 -- border_style = 1
 
 local opts = {
-  error_sign = 'xxx'
+  error_sign = ''
 }
 
 saga.init_lsp_saga(opts)
