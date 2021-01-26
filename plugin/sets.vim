@@ -101,9 +101,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set list
 " settings for hidden chars
 " what particular chars they are displayed with
-:set lcs=tab:▒░,trail:▓
-" or
-:set listchars=tab:▒░,trail:▓,eol:↵,nbsp:␣,extends:…,precedes:…
+set listchars=eol:↵,nbsp:␣,extends:…,precedes:…
 
 set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()

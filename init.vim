@@ -52,7 +52,7 @@ let g:completion_trigger_on_delete = 1
 let g:completion_confirm_key = "<CR>"
 let g:completion_sorting = "length"
 let g:completion_matching_smart_case = 1
-" let g:completion_trigger_keyword_length = 2 " default = 1
+let g:completion_trigger_keyword_length = 2 " default = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 augroup CompletionTriggerCharacter
     autocmd!
@@ -65,6 +65,24 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
+
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'UltiSnips']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'},
+    \{'mode': 'file'}
+\]
+
+" set guicursor+=n-v-c:blinkon0
+" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
+set guicursor+=i:block-Cursor
+set guicursor+=n-v-c:blinkon10
+set guicursor+=a:blinkon20
+
+" lsp provider to find the currsor word definition and reference
+nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+" code action
+nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc

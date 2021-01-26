@@ -11,6 +11,7 @@ Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it 
 " -- Configurations for neovim lsp.
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'wbthomason/lsp-status.nvim'
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
@@ -24,6 +25,7 @@ Plug 'euclidianAce/BetterLua.vim'
 
 " For rust developemnt
 Plug 'rust-lang/rust.vim' " Not sure I need this
+Plug 'octol/vim-cpp-enhanced-highlight'
 " (OPTIONAL): If you wish to have fancy lua folds, you can check this out.
 Plug 'tjdevries/manillua.nvim'
 " Have the file system follow you around
@@ -76,6 +78,7 @@ Plug 'honza/vim-snippets'
 Plug  'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
+
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
 Plug 'google/vim-maktaba'
