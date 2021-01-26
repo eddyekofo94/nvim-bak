@@ -11,6 +11,7 @@ Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it 
 " -- Configurations for neovim lsp.
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'wbthomason/lsp-status.nvim'
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
@@ -22,6 +23,9 @@ Plug 'tjdevries/nlua.nvim'
 "   but it's not currently required
 Plug 'euclidianAce/BetterLua.vim'
 
+" For rust developemnt
+Plug 'rust-lang/rust.vim' " Not sure I need this
+Plug 'octol/vim-cpp-enhanced-highlight'
 " (OPTIONAL): If you wish to have fancy lua folds, you can check this out.
 Plug 'tjdevries/manillua.nvim'
 " Have the file system follow you around
@@ -33,13 +37,15 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'srcery-colors/srcery-vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'gruvbox-community/gruvbox'
-
+" Used for the status-line
 Plug 'glepnir/galaxyline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+" The lovely format plugin
 Plug 'lukas-reineke/format.nvim'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
@@ -69,10 +75,10 @@ Plug 'mbbill/undotree'
 
 " Snippets
 Plug 'honza/vim-snippets'
-Plug  'norcalli/snippets.nvim'
 Plug  'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
+
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
 Plug 'google/vim-maktaba'

@@ -26,9 +26,9 @@ let bufferline.semantic_letters = v:true
 let bufferline.letters =
   \ 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP'
 
-let bg_current = get(nvim_get_hl_by_name('Normal',     1), 'background', '#000000')
-let bg_visible = get(nvim_get_hl_by_name('TabLineSel', 1), 'background', '#000000')
-let bg_inactive = get(nvim_get_hl_by_name('TabLine',   1), 'background', '#000000')
+let bg_current = get(nvim_get_hl_by_name('WarningMsg',     1), 'background', 'None')
+let bg_visible = get(nvim_get_hl_by_name('TabLineSel', 1), 'background', 'None')
+let bg_inactive = get(nvim_get_hl_by_name('TabLine',   1), 'background', 'None')
 
 " For the current active buffer
 hi default link BufferCurrent      Normal
@@ -53,7 +53,7 @@ exe 'hi default BufferInactiveTarget   guifg=red gui=bold guibg=' . bg_inactive
 
 
 " For the shadow in buffer-picking mode
-hi default BufferShadow guifg=#000000 guibg=#000000
+hi default BufferShadow guifg=#ebcb8b guibg=#000000
 
 " Magic buffer-picking mode
 "nnoremap <silent> <C-s> :BufferPick<CR>

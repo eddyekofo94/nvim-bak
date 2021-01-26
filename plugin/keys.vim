@@ -4,6 +4,8 @@
 vnoremap < <gv
 vnoremap > >gv
 
+" inoremap <M-I>      <C-O>^ "TODO see the def of this mapping from TPope
+
 " TAB in general mode will move to text buffer
 nnoremap <silent> <TAB> :bnext<CR>
 " SHIFT-TAB will go back
@@ -83,11 +85,12 @@ inoremap <C-c> <esc>
 " find it decesarry one day
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-" Clears hlsearch after doing a search, otherwise just does normal <CR> stuff
-nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
-
 " Change the current word in insertmode.
 "   Auto places you into the spot where you can start typing to change it.
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
+nnoremap Y  y$ " Thank you TPope
+
+nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
