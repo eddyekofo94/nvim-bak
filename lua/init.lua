@@ -6,6 +6,7 @@
 -- require('plugins.web-devicons')
  require('lsp.nvim-lsp')
  require('lsp.lspsaga')
+ require('lsp.lsputils')
  require('format-nvim')
  require('mappings')
  require('lsp-status')

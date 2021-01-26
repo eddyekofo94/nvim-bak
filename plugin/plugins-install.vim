@@ -12,7 +12,9 @@ Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it 
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'wbthomason/lsp-status.nvim'
+Plug 'wbthomason/lsp-status.nvim'       " TODO: make sure this works
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
