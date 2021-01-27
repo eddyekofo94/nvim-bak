@@ -66,6 +66,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'voldikss/vim-floaterm'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
+" File explorer
+Plug 'kyazdani42/nvim-tree.lua'
 " Dashboard
 Plug 'glepnir/dashboard-nvim'
 " Better Syntax Support

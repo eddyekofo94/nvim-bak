@@ -31,13 +31,12 @@ source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
 source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
 source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
-" source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
 source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
 source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/nvim-tree.vim
 source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
-
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
 " Not sure about this maybe if it gets
@@ -63,6 +62,7 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 augroup lsp_status
+    au!
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
 
@@ -73,10 +73,6 @@ let g:completion_chain_complete_list = [
     \{'mode': 'file'}
 \]
 
-" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
-set guicursor+=i:block-Cursor
-set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
-set guicursor+=a:blinkon20
 
 " TODO: Keep an eye on updates for this plugin. Very buggy
 " lsp provider to find the currsor word definition and reference
