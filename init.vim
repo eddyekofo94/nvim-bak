@@ -73,12 +73,12 @@ let g:completion_chain_complete_list = [
     \{'mode': 'file'}
 \]
 
-" set guicursor+=n-v-c:blinkon0
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
-set guicursor+=n-v-c:blinkon10
+set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
 set guicursor+=a:blinkon20
 
+" TODO: Keep an eye on updates for this plugin. Very buggy
 " lsp provider to find the currsor word definition and reference
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 " code action

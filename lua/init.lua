@@ -5,6 +5,7 @@
  require('plugins.treesitter')
 -- require('plugins.web-devicons')
  require('lsp.nvim-lsp')
+ require('lsp.nvim-lsp-status')
  require('lsp.lspsaga')
  require('lsp.lsputils')
  require('format-nvim')

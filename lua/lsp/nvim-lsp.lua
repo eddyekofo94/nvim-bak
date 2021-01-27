@@ -1,9 +1,9 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require('lspconfig')
-local nvim_status = require('lsp-status')
+local lsp_status = require('lsp-status')
 local completion = require('completion')
 
-nvim_status.register_progress()
+lsp_status.register_progress()
 
 local mapper = function(mode, key, result)
   vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
@@ -80,8 +80,8 @@ lspconfig.clangd.setup({
   init_options = {
      clangdFileStatus = true
   },
-  handlers = nvim_status.extensions.clangd.setup(),
-  capabilities = nvim_status.capabilities,
+  handlers = lsp_status.extensions.clangd.setup(),
+  capabilities = lsp_status.capabilities,
 })
 
 lspconfig.rust_analyzer.setup({
