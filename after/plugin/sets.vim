@@ -60,7 +60,7 @@ augroup CHAR_BREAK
   au!
   autocmd FileType vim set textwidth=120
 augroup end
-set textwidth=90
+" set textwidth=90
 
 " Decent wildmenu
 set wildmode=longest:full,full
@@ -120,10 +120,6 @@ augroup FMT
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
-augroup AutoDeleteNetrwHiddenBuffers
-  au!
-  au FileType netrw setlocal bufhidden=wipe
-augroup end
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)

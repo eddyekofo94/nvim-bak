@@ -84,6 +84,7 @@ Plug 'mbbill/undotree'
 Plug  'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " For window toggling
 Plug 'szw/vim-maximizer'

@@ -104,23 +104,31 @@ lspconfig.rust_analyzer.setup(
     }
 )
 
--- TODO: Fix the lua setup
--- require('nlua.lsp.nvim').setup(require('lspconfig'), {
--- on_attach = custom_nvim_lspconfig_attach,
+lspconfig.cmake.setup(
+    {
+        cmd = {"cmake-language-server"},
+        filetypes = {"cmake"},
+        on_attach = custom_attach,
+        init_options = {
+            buildDirectory = "build/"
+        }
+    }
+)
 
--- Include globals you want to tell the LSP are real :)
--- globals = {
--- Colorbuddy
--- "Color", "c", "Group", "g", "s",
--- }
--- })
+-- TODO: Fix the lua setup
+require("nlua.lsp.nvim").setup(
+    require("lspconfig"),
+    {
+        on_attach = custom_attach
+        -- Include globals you want to tell the LSP are real :)
+    }
+)
 -- bash TODO: ensure that it works, I don't don't think it works
 lspconfig.bashls.setup {on_attach = custom_attach}
 
 -- yaml TODO: ensure that it works
 lspconfig.yamlls.setup {on_attach = custom_attach}
 
--- It works, TODO: remove when fully confinced
 lspconfig.vimls.setup {
     on_attach = custom_attach
 }
