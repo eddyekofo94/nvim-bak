@@ -18,25 +18,25 @@ augroup end
 augroup TerminalExit
     au!
     autocmd TermOpen * set shell=/usr/local/bin/fish
-    autocmd TermOpen * startinsert
+    autocmd TermOpen  term://* startinsert
 augroup end
-
+nnoremap <silent> <C-w><C-t> :belowright vsplit<CR>:term<CR>
 " For exiting the termial mode. Better than the default config
 tnoremap <Esc> <C-\><C-n><CR>
 
 " LOAD: plugins
-source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
-source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
-source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
-source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
-source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
-source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
-source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
-source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
-source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/sets.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/plugins-install.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/keys.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/floaterm.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/dashboard.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/vim-router.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/theme.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/gitgutter.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/nvim-tree.vim
-source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/barbar.vim
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
 " Not sure about this maybe if it gets
@@ -53,11 +53,13 @@ let g:completion_sorting = "length"
 let g:completion_matching_smart_case = 1
 let g:completion_trigger_keyword_length = 2 " default = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 augroup CompletionTriggerCharacter
     autocmd!
     autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::']
+    autocmd BufEnter c,cpp let g:completion_trigger_character = ['.', '::']
 augroup end
+
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 

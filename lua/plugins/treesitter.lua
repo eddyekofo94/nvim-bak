@@ -3,7 +3,19 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true              -- false will disable the whole extension
   },
-    indent = {
-        enable = true,
-    },
+  indent = {
+      enable = true,
+  },
+  refactor = {
+    highlight_definitions = {enable = true},
+    highlight_current_scope = {enable = false},
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        -- mapping to rename reference under cursor
+        smart_rename = 'grr',
+      },
+    }
+
+}
 }

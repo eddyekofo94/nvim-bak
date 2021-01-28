@@ -52,9 +52,6 @@ nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-" Open new file adjacent to current file
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
 "autocmd! User GoyoEnter Limelight
 "autocmd! User GoyoLeave Limelight!
 

@@ -1,5 +1,5 @@
 " This is for the tree view
-let g:nvim_tree_width = 40 "30 by default
+" let g:nvim_tree_width = 40 "30 by default
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
 let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
@@ -48,5 +48,5 @@ let g:nvim_tree_bindings = {
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+nnoremap <leader>e :NvimTreeFindFile<CR>
 " NvimTreeOpen and NvimTreeClose are also available if you need them

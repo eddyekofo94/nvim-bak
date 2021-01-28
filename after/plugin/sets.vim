@@ -49,6 +49,7 @@ set scrolloff=10                         " start scholling when you're near the 
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option"
+set pumblend=17
 set completeopt=menuone,noinsert,noselect
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
@@ -65,6 +66,8 @@ set textwidth=90
 set wildmode=longest:full,full
 set wildmenu
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+set wildoptions=pum
+
 
 " Gibe more space for displaying
 set cmdheight=2
@@ -104,15 +107,14 @@ set list
 set listchars=eol:↵,nbsp:␣,extends:…,precedes:…
 
 set foldmethod=expr
+
+" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
+set guicursor+=i:block-Cursor
+set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
+set guicursor+=a:blinkon20
 " set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
-" Remove banner from netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
-let g:netrw_localrmdir='rm -r'
 
 " Code Formating: Very sweet plugin works very well
 augroup Format
@@ -131,7 +133,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType *.cpp,*.h,*.hpp,cxx,*.cs,fish,*.sh,bash,*.ru,ts,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
 augroup end
 
