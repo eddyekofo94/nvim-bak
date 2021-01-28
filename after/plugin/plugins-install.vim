@@ -1,6 +1,7 @@
 
 " TODO: Convert to Lua, user packer add: https://github.com/wbthomason/packer.nvim
 " Follow TJ's example on how to install the plugin manager if it doesn't exist
+
 call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -47,11 +48,10 @@ Plug 'romgrk/barbar.nvim'
 " Better Comments
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-" The lovely format plugin
-" Plug 'lukas-reineke/format.nvim' " This formatter creates an unecessary file ~format* etc
-
 " Trying this formatter instead
 Plug 'sbdchd/neoformat'
+" Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -85,13 +85,8 @@ Plug  'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
 
-" Add maktaba and codefmt to the runtimepath.
-" (The latter must be installed before it can be used.)
-" Plug 'google/vim-maktaba'
-" Plug 'google/vim-codefmt'
-" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" `:help :Glaive` for usage.
-" Plug 'google/vim-glaive'
+" For window toggling
+Plug 'szw/vim-maximizer'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'

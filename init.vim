@@ -13,13 +13,13 @@ augroup end
 augroup SOURCE_VIM_FILES
     au!
     autocmd BufWritePost vim :so $MYVIMRC
-augroup end
+augroup END
 
 augroup TerminalExit
     au!
     autocmd TermOpen * set shell=/usr/local/bin/fish
     autocmd TermOpen  * startinsert
-augroup end
+augroup END
 
 " Maximise the window size
 map <F5> <C-W>_<C-W><Bar>
@@ -36,6 +36,7 @@ source $XDG_CONFIG_HOME/nvim/after/plugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/dashboard.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/vim-router.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/theme.vim
+source $XDG_CONFIG_HOME/nvim/after/plugin/vim-indent-guides.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/gitgutter.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
 source $XDG_CONFIG_HOME/nvim/after/plugin/nvim-tree.vim
@@ -85,6 +86,7 @@ nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 " code action
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 
+nnoremap <leader>m :MaximizerToggle!<CR>
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
 
