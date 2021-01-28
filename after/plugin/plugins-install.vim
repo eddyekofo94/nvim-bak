@@ -48,7 +48,10 @@ Plug 'romgrk/barbar.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 " The lovely format plugin
-Plug 'lukas-reineke/format.nvim'
+" Plug 'lukas-reineke/format.nvim' " This formatter creates an unecessary file ~format* etc
+
+" Trying this formatter instead
+Plug 'sbdchd/neoformat'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -78,18 +81,17 @@ Plug 'tpope/vim-sleuth'
 Plug 'mbbill/undotree'
 
 " Snippets
-Plug 'honza/vim-snippets'
 Plug  'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-codefmt'
 " Also add Glaive, which is used to configure codefmt's maktaba flags. See
 " `:help :Glaive` for usage.
-Plug 'google/vim-glaive'
+" Plug 'google/vim-glaive'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'

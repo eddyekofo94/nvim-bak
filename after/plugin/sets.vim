@@ -116,12 +116,10 @@ set guicursor+=a:blinkon20
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
-" Code Formating: Very sweet plugin works very well
-augroup Format
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-augroup end
-
+augroup FMT
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 augroup AutoDeleteNetrwHiddenBuffers
   au!
   au FileType netrw setlocal bufhidden=wipe
@@ -161,11 +159,6 @@ cmap w!! w !sudo tee %
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
-" Code formatting
-autocmd FileType c,cpp,h,hpp,proto,javascript AutoFormatBuffer clang-format
-autocmd FileType c,cpp,cs,java        setlocal commentstring=//\ %s
 
 " Reconsider this option
 " Jump to start and end of line using the home row keys

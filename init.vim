@@ -18,8 +18,11 @@ augroup end
 augroup TerminalExit
     au!
     autocmd TermOpen * set shell=/usr/local/bin/fish
-    autocmd TermOpen  term://* startinsert
+    autocmd TermOpen  * startinsert
 augroup end
+
+" Maximise the window size
+map <F5> <C-W>_<C-W><Bar>
 nnoremap <silent> <C-w><C-t> :belowright vsplit<CR>:term<CR>
 " For exiting the termial mode. Better than the default config
 tnoremap <Esc> <C-\><C-n><CR>

@@ -9,7 +9,7 @@
  require('lsp.nvim-lsp-status')
  require('lsp.lspsaga')
  require('lsp.lsputils')
- require('format-nvim')
+ -- require('format-nvim')
  require('mappings')
  require('lsp-status')
  -- require('snippets') TODO: snippets
