@@ -64,6 +64,11 @@ local custom_attach = function(client)
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+    if filetype ~= "lua" then
+        mapper("n", "K", "vim.lsp.buf.hover()")
+    end
+
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
