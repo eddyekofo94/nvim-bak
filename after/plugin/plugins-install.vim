@@ -50,8 +50,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 " Trying this formatter instead
 Plug 'sbdchd/neoformat'
-" Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
