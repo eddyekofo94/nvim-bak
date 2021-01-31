@@ -68,7 +68,6 @@ set wildmenu
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 set wildoptions=pum
 
-
 " Gibe more space for displaying
 set cmdheight=2
 

@@ -1,8 +1,6 @@
-local nvim_status = require("lsp-status")
+local lsp_status = require("lsp-status")
 
-local status = {}
-
-status.select_symbol = function(cursor_pos, symbol)
+lsp_status.select_symbol = function(cursor_pos, symbol)
     if symbol.valueRange then
         local value_range = {
             ["start"] = {
@@ -19,9 +17,9 @@ status.select_symbol = function(cursor_pos, symbol)
     end
 end
 
-status.activate = function()
-    nvim_status.config {
-        select_symbol = status.select_symbol,
+lsp_status.activate = function()
+    lsp_status.config {
+        select_symbol = lsp_status.select_symbol,
         indicator_errors = "",
         indicator_warnings = "",
         indicator_info = "🛈",
@@ -30,15 +28,15 @@ status.activate = function()
         spinner_frames = {"⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"}
     }
 
-    nvim_status.register_progress()
+    lsp_status.register_progress()
 end
 
-status.on_attach = function(client)
-    nvim_status.on_attach(client)
+lsp_status.on_attach = function(client)
+    lsp_status.on_attach(client)
 
     vim.cmd [[augroup ed_lsp_status]]
     vim.cmd [[  autocmd CursorHold,BufEnter <buffer> lua require('lsp-status').update_current_function()]]
     vim.cmd [[augroup END]]
 end
 
-return status
+return lsp_status

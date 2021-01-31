@@ -17,7 +17,7 @@ local custom_attach = function(client)
     completion.on_attach(client)
 
     -- set up mappings (only apply when LSP client attached)
-    mapper("n", "K", "vim.lsp.buf.hover()")
+    -- mapper("n", "K", "vim.lsp.buf.hover()")
     mapper("n", "gD", "vim.lsp.buf.definition()")
     mapper("n", "gi", "vim.lsp.buf.implementation()")
     mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
@@ -35,6 +35,19 @@ local custom_attach = function(client)
     vim.cmd [[ hi link LspDiagnosticsDefaultWarning WarningMsg ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultInformation Tooltip ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultHint Tooltip ]]
+
+    -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    -- vim.lsp.with(
+    -- vim.lsp.diagnostic.on_publish_diagnostics,
+    -- {
+    -- virtual_text = false,
+    -- underline = true,
+    -- signs = true
+    -- }
+    -- )
+    vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+    vim.cmd [[autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()]]
+    -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then

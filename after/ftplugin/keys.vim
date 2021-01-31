@@ -67,9 +67,9 @@ augroup ZenModeOff
   autocmd! User GotoLeave Limelight!
   autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
 augroup END
+
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
 " Source my init.vim
-" nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.

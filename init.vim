@@ -21,32 +21,25 @@ augroup TerminalExit
     autocmd TermOpen  * startinsert
 augroup END
 
-" Maximise the window size
-map <F5> <C-W>_<C-W><Bar>
 nnoremap <silent> <C-w><C-t> :belowright vsplit<CR>:term<CR>
 " For exiting the termial mode. Better than the default config
 tnoremap <Esc> <C-\><C-n><CR>
 
 " LOAD: plugins
-source $XDG_CONFIG_HOME/nvim/after/plugin/sets.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/plugins-install.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/keys.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/which-key.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/floaterm.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/dashboard.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/vim-router.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/theme.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/vim-indent-guides.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/gitgutter.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/nvim-tree.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/barbar.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/sets.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/plugins-install.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/keys.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/floaterm.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/dashboard.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/vim-router.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/theme.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/gitgutter.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/tabular.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/nvim-tree.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/barbar.vim
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
-" Not sure about this maybe if it gets
-" too anoying you can change it again
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 " This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
 let g:UltiSnipsExpandTrigger = '<F5>'
 " possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
@@ -72,6 +65,9 @@ augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
 
+nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+
+" nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 let g:completion_chain_complete_list = [
     \{'complete_items': ['lsp', 'UltiSnips']},
     \{'mode': '<c-p>'},
@@ -79,14 +75,10 @@ let g:completion_chain_complete_list = [
     \{'mode': 'file'}
 \]
 
-
+" nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 " TODO: Keep an eye on updates for this plugin. Very buggy
-" lsp provider to find the currsor word definition and reference
-nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-" code action
-nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+" nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 
-nnoremap <leader>m :MaximizerToggle!<CR>
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
 

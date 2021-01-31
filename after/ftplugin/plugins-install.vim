@@ -22,6 +22,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Lua development
 Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/astronauta.nvim'
+Plug 'b3nj5m1n/kommentary'
 " (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
 "   but it's not currently required
 Plug 'euclidianAce/BetterLua.vim'
@@ -46,7 +48,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 " Trying this formatter instead
 Plug 'sbdchd/neoformat'

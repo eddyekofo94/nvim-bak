@@ -13,6 +13,10 @@ local saga = require "lspsaga"
 -- 1: thin border | 2: rounded border | 3: thick border
 -- border_style = 1
 
+local mapper = function(mode, key, result)
+    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+end
+
 local opts = {
     error_sign = "",
     warn_sign = "",
@@ -20,4 +24,6 @@ local opts = {
     code_action_icon = " "
 }
 
+mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- search all files, respecting .gitignore if one exists
+mapper("n", "<leader>ca", "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>") --
 saga.init_lsp_saga(opts)
