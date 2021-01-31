@@ -24,6 +24,18 @@ local opts = {
     code_action_icon = " "
 }
 
+mapper("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
+mapper("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>")
+mapper("n", "gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")
+mapper("n", "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
+-- TODO: fix since it os not working :/
 mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- search all files, respecting .gitignore if one exists
 mapper("n", "<leader>ca", "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>") --
+-- jump diagnostic
+mapper("n", "<leader>dp", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>") --
+mapper("n", "<leader>dn", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>") --
+
+vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
+-- vim.cmd [[autocmd CursorHold * lua require'lspsaga.signaturehelp'.signature_help()]]
+
 saga.init_lsp_saga(opts)

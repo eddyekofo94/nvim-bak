@@ -20,14 +20,14 @@ local custom_attach = function(client)
     -- mapper("n", "K", "vim.lsp.buf.hover()")
     mapper("n", "gD", "vim.lsp.buf.definition()")
     mapper("n", "gi", "vim.lsp.buf.implementation()")
-    mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
+    -- mapper("n", "<C-k>", "vim.lsp.buf.signature_help()")
     mapper("n", "<c-]>", "vim.lsp.buf.definition()")
     mapper("n", "gR", "vim.lsp.buf.references()")
-    mapper("n", "gr", "vim.lsp.buf.rename()")
-    mapper("n", "H", "vim.lsp.buf.code_action()")
+    -- mapper("n", "gr", "vim.lsp.buf.rename()")
+    -- mapper("n", "H", "vim.lsp.buf.code_action()")
     mapper("n", "gin", "vim.lsp.buf.incoming_calls()")
-    mapper("n", "<space>dn", "vim.lsp.diagnostic.goto_next()")
-    mapper("n", "<space>dp", "vim.lsp.diagnostic.goto_prev()")
+    -- mapper("n", "<space>dn", "vim.lsp.diagnostic.goto_next()")
+    -- mapper("n", "<space>dp", "vim.lsp.diagnostic.goto_prev()")
     mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
 
     -- Diagnostic text colors
@@ -36,17 +36,16 @@ local custom_attach = function(client)
     vim.cmd [[ hi link LspDiagnosticsDefaultInformation Tooltip ]]
     vim.cmd [[ hi link LspDiagnosticsDefaultHint Tooltip ]]
 
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    -- vim.lsp.with(
-    -- vim.lsp.diagnostic.on_publish_diagnostics,
-    -- {
-    -- virtual_text = false,
-    -- underline = true,
-    -- signs = true
-    -- }
-    -- )
-    vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-    vim.cmd [[autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()]]
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            virtual_text = false,
+            underline = true,
+            signs = true
+        }
+    )
+    -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
     -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
     -- Set autocommands conditional on server_capabilities

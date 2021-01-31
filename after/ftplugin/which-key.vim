@@ -65,7 +65,7 @@ let g:which_key_map.a = {
       \ 'c' : [':ColorizerToggle'        , 'colorizer'],
       \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
       \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
-      \ 't' : [':FloatermToggle'         , 'terminal'],
+      \ 't' : [':FloatermToggle'         , 'float term'],
       \ 'w' : [':StripWhitespace'        , 'strip whitespace'],
       \ }
 

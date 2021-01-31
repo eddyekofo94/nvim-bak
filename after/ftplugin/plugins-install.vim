@@ -23,6 +23,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 " Lua development
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/astronauta.nvim'
+
+" This replaces tpope's vim-commentary
 Plug 'b3nj5m1n/kommentary'
 " (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
 "   but it's not currently required
@@ -48,7 +50,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments
-"Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 " Trying this formatter instead
 Plug 'sbdchd/neoformat'
@@ -81,7 +82,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'mbbill/undotree'
 
 " Snippets
-Plug  'norcalli/ui.nvim'
+Plug 'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'

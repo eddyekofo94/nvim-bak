@@ -65,8 +65,6 @@ augroup lsp_status
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
 
-nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
-
 " nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 let g:completion_chain_complete_list = [
     \{'complete_items': ['lsp', 'UltiSnips']},
@@ -74,10 +72,6 @@ let g:completion_chain_complete_list = [
     \{'mode': '<c-n>'},
     \{'mode': 'file'}
 \]
-
-" nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-" TODO: Keep an eye on updates for this plugin. Very buggy
-" nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
