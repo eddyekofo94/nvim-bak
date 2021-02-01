@@ -15,25 +15,16 @@ augroup SOURCE_VIM_FILES
     autocmd BufWritePost vim :so $MYVIMRC
 augroup END
 
-augroup TerminalExit
-    au!
-    autocmd TermOpen * set shell=/usr/local/bin/fish
-    autocmd TermOpen  * startinsert
-augroup END
-
-nnoremap <silent> <C-w><C-t> :belowright vsplit<CR>:term<CR>
-" For exiting the termial mode. Better than the default config
-tnoremap <Esc> <C-\><C-n><CR>
 
 " LOAD: plugins
-source $XDG_CONFIG_HOME/nvim/after/ftplugin/sets.vim
-source $XDG_CONFIG_HOME/nvim/after/ftplugin/plugins-install.vim
-source $XDG_CONFIG_HOME/nvim/after/ftplugin/keys.vim
+source $XDG_CONFIG_HOME/nvim/general/sets.vim
+source $XDG_CONFIG_HOME/nvim/general/plugins-install.vim
+source $XDG_CONFIG_HOME/nvim/general/keys.vim
+source $XDG_CONFIG_HOME/nvim/general/theme.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/which-key.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/dashboard.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/vim-router.vim
-source $XDG_CONFIG_HOME/nvim/after/ftplugin/theme.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/gitgutter.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/tabular.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/nvim-tree.vim
