@@ -4,8 +4,6 @@
 vnoremap < <gv
 vnoremap > >gv
 
-" inoremap <M-I>      <C-O>^ "TODO see the def of this mapping from TPope
-
 " TAB in general mode will move to text buffer
 nnoremap <silent> <TAB> :bnext<CR>
 " SHIFT-TAB will go back

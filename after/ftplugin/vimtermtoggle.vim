@@ -12,12 +12,10 @@ function! Termtoggle(height)
             exec ":term"
             let g:term_buf = bufnr("")
             set nonumber
+            startinsert
             set norelativenumber
             set signcolumn=no
         endtry
-        " if mode() != 'i' && mode() != 't'
-          " call feedkeys('i')
-        " endif
         let g:term_win = win_getid()
     endif
 endfunction

@@ -15,12 +15,13 @@ augroup SOURCE_VIM_FILES
     autocmd BufWritePost vim :so $MYVIMRC
 augroup END
 
-
 " LOAD: plugins
+source $XDG_CONFIG_HOME/nvim/general/terminal.vim
 source $XDG_CONFIG_HOME/nvim/general/sets.vim
 source $XDG_CONFIG_HOME/nvim/general/plugins-install.vim
 source $XDG_CONFIG_HOME/nvim/general/keys.vim
 source $XDG_CONFIG_HOME/nvim/general/theme.vim
+source $XDG_CONFIG_HOME/nvim/general/terminal.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/which-key.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/floaterm.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/dashboard.vim
