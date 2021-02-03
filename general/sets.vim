@@ -126,7 +126,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType *.cpp,h,*.hpp,cxx,*.cs,*.fish,*.shell,*.bash,*.ru,*.ts,*.java,*.php,*.lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
 augroup end
 
@@ -165,6 +165,6 @@ autocmd FileType * setlocal nolinebreak
 " Toggles the relative number
 augroup numbertoggle
     autocmd!
-    autocmd FileType,FocusGained,InsertLeave cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber!
+    autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber!
     autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber!
 augroup end
