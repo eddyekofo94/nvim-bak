@@ -49,6 +49,7 @@ set scrolloff=10                         " start scholling when you're near the 
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option"
+set pumblend=17
 set completeopt=menuone,noinsert,noselect
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
@@ -59,12 +60,13 @@ augroup CHAR_BREAK
   au!
   autocmd FileType vim set textwidth=120
 augroup end
-set textwidth=90
+" set textwidth=90
 
 " Decent wildmenu
 set wildmode=longest:full,full
 set wildmenu
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+set wildoptions=pum
 
 " Gibe more space for displaying
 set cmdheight=2
@@ -104,26 +106,19 @@ set list
 set listchars=eol:↵,nbsp:␣,extends:…,precedes:…
 
 set foldmethod=expr
+
+" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
+set guicursor+=i:block-Cursor
+set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
+set guicursor+=a:blinkon20
 " set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
-" Remove banner from netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
-let g:netrw_localrmdir='rm -r'
 
-" Code Formating: Very sweet plugin works very well
-augroup Format
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-augroup end
-
-augroup AutoDeleteNetrwHiddenBuffers
-  au!
-  au FileType netrw setlocal bufhidden=wipe
-augroup end
+augroup FMT
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -131,7 +126,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType *.cpp,*.h,*.hpp,cxx,*.cs,fish,*.sh,bash,*.ru,ts,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType *.cpp,h,*.hpp,cxx,*.cs,*.fish,*.shell,*.bash,*.ru,*.ts,*.java,*.php,*.lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
 augroup end
 
@@ -160,11 +155,6 @@ cmap w!! w !sudo tee %
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" CPP setup done using this tutorial https://xuechendi.github.io/2019/11/11/VIM-CPP-IDE-2019-111-11-VIM_CPP_IDE
-" Code formatting
-autocmd FileType c,cpp,h,hpp,proto,javascript AutoFormatBuffer clang-format
-autocmd FileType c,cpp,cs,java        setlocal commentstring=//\ %s
-
 " Reconsider this option
 " Jump to start and end of line using the home row keys
 " map H ^
@@ -175,6 +165,6 @@ autocmd FileType * setlocal nolinebreak
 " Toggles the relative number
 augroup numbertoggle
     autocmd!
-    autocmd FileType,BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd FileType,BufLeave,FocusLost,InsertEnter * set norelativenumber
+    autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber!
+    autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber!
 augroup end

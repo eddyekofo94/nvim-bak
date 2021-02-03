@@ -4,8 +4,6 @@
 vnoremap < <gv
 vnoremap > >gv
 
-" inoremap <M-I>      <C-O>^ "TODO see the def of this mapping from TPope
-
 " TAB in general mode will move to text buffer
 nnoremap <silent> <TAB> :bnext<CR>
 " SHIFT-TAB will go back
@@ -52,9 +50,6 @@ nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-" Open new file adjacent to current file
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
 "autocmd! User GoyoEnter Limelight
 "autocmd! User GoyoLeave Limelight!
 
@@ -70,9 +65,9 @@ augroup ZenModeOff
   autocmd! User GotoLeave Limelight!
   autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
 augroup END
+
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
 " Source my init.vim
-" nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.

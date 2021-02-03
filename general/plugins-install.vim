@@ -1,6 +1,7 @@
 
 " TODO: Convert to Lua, user packer add: https://github.com/wbthomason/packer.nvim
 " Follow TJ's example on how to install the plugin manager if it doesn't exist
+
 call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -12,13 +13,19 @@ Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it 
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'wbthomason/lsp-status.nvim'
+Plug 'wbthomason/lsp-status.nvim'       " TODO: make sure this works
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Lua development
 Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/astronauta.nvim'
+
+" This replaces tpope's vim-commentary
+Plug 'b3nj5m1n/kommentary'
 " (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
 "   but it's not currently required
 Plug 'euclidianAce/BetterLua.vim'
@@ -43,10 +50,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Better tabline
 Plug 'romgrk/barbar.nvim'
 " Better Comments
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-" The lovely format plugin
-Plug 'lukas-reineke/format.nvim'
+" Trying this formatter instead
+Plug 'sbdchd/neoformat'
 " Telescope for fuzzy searching
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -64,6 +70,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'voldikss/vim-floaterm'
 " Auto pairs for '(' '[' '{'
 Plug 'jiangmiao/auto-pairs'
+" File explorer
+Plug 'kyazdani42/nvim-tree.lua'
 " Dashboard
 Plug 'glepnir/dashboard-nvim'
 " Better Syntax Support
@@ -74,18 +82,13 @@ Plug 'tpope/vim-sleuth'
 Plug 'mbbill/undotree'
 
 " Snippets
-Plug 'honza/vim-snippets'
-Plug  'norcalli/ui.nvim'
+Plug 'norcalli/ui.nvim'
 Plug 'dag/vim-fish'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" Add maktaba and codefmt to the runtimepath.
-" (The latter must be installed before it can be used.)
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" `:help :Glaive` for usage.
-Plug 'google/vim-glaive'
+" For window toggling
+Plug 'szw/vim-maximizer'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'

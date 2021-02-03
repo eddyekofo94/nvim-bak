@@ -1,12 +1,14 @@
 --
 -- INITIALISE EVERYTHING
 --
- require('plugins.telescope')
- require('plugins.treesitter')
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.plug-colorizer")
 -- require('plugins.web-devicons')
- require('lsp.nvim-lsp')
- require('lsp.lspsaga')
- require('format-nvim')
- require('mappings')
- require('lsp-status')
- -- require('snippets') TODO: snippets
+require("lsp.nvim-lsp")
+-- require("lsp.nvim-lsp-status")
+require("lsp.nvim-lspsaga")
+require("lsp.lsputils")
+require("mappings")
+require("lsp-status")
+-- require('snippets') TODO: snippets

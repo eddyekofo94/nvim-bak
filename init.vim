@@ -13,37 +13,25 @@ augroup end
 augroup SOURCE_VIM_FILES
     au!
     autocmd BufWritePost vim :so $MYVIMRC
-augroup end
-
-augroup TerminalExit
-    au!
-    autocmd TermOpen * set shell=/usr/local/bin/fish
-    autocmd TermOpen * startinsert
-augroup end
-
-" For exiting the termial mode. Better than the default config
-tnoremap <Esc> <C-\><C-n><CR>
+augroup END
 
 " LOAD: plugins
-source $XDG_CONFIG_HOME/nvim/plugin/sets.vim
-source $XDG_CONFIG_HOME/nvim/plugin/plugins-install.vim
-source $XDG_CONFIG_HOME/nvim/plugin/keys.vim
-source $XDG_CONFIG_HOME/nvim/plugin/which-key.vim
-source $XDG_CONFIG_HOME/nvim/plugin/floaterm.vim
-source $XDG_CONFIG_HOME/nvim/plugin/dashboard.vim
-" source $XDG_CONFIG_HOME/nvim/plugin/telescope.vim
-source $XDG_CONFIG_HOME/nvim/plugin/vim-router.vim
-source $XDG_CONFIG_HOME/nvim/plugin/theme.vim
-source $XDG_CONFIG_HOME/nvim/plugin/gitgutter.vim
-source $XDG_CONFIG_HOME/nvim/after/plugin/tabular.vim
-source $XDG_CONFIG_HOME/nvim/plugin/barbar.vim
-
+source $XDG_CONFIG_HOME/nvim/general/terminal.vim
+source $XDG_CONFIG_HOME/nvim/general/sets.vim
+source $XDG_CONFIG_HOME/nvim/general/plugins-install.vim
+source $XDG_CONFIG_HOME/nvim/general/keys.vim
+source $XDG_CONFIG_HOME/nvim/general/theme.vim
+source $XDG_CONFIG_HOME/nvim/general/terminal.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/which-key.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/floaterm.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/dashboard.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/vim-router.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/gitgutter.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/tabular.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/nvim-tree.vim
+source $XDG_CONFIG_HOME/nvim/after/ftplugin/barbar.vim
 lua require('init')
 " inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
-" Not sure about this maybe if it gets
-" too anoying you can change it again
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 " This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
 let g:UltiSnipsExpandTrigger = '<F5>'
 " possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
@@ -54,35 +42,28 @@ let g:completion_sorting = "length"
 let g:completion_matching_smart_case = 1
 let g:completion_trigger_keyword_length = 2 " default = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 augroup CompletionTriggerCharacter
     autocmd!
     autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::']
+    autocmd BufEnter c,cpp let g:completion_trigger_character = ['.', '::']
 augroup end
+
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 augroup lsp_status
+    au!
     autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
 augroup end
 
+" nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 let g:completion_chain_complete_list = [
     \{'complete_items': ['lsp', 'UltiSnips']},
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'},
     \{'mode': 'file'}
 \]
-
-" set guicursor+=n-v-c:blinkon0
-" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
-set guicursor+=i:block-Cursor
-set guicursor+=n-v-c:blinkon10
-set guicursor+=a:blinkon20
-
-" lsp provider to find the currsor word definition and reference
-nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-" code action
-nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc
