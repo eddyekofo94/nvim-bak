@@ -10,11 +10,6 @@ augroup SET_SHELL
     autocmd VimEnter * set shell=/bin/bash
 augroup end
 
-augroup SOURCE_VIM_FILES
-    au!
-    autocmd BufWritePost vim :so $MYVIMRC
-augroup END
-
 " LOAD: plugins
 source $XDG_CONFIG_HOME/nvim/general/terminal.vim
 source $XDG_CONFIG_HOME/nvim/general/sets.vim
@@ -31,39 +26,11 @@ source $XDG_CONFIG_HOME/nvim/after/ftplugin/tabular.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/nvim-tree.vim
 source $XDG_CONFIG_HOME/nvim/after/ftplugin/barbar.vim
 lua require('init')
-" inoremap <C-f> <C-x><C-f> TODO: see if this can be utilised somehow
-" This fixes the tab completion: https://stackoverflow.com/a/16625862/5458010
+
 let g:UltiSnipsExpandTrigger = '<F5>'
-" possible value: 'UltiSnips', 'Neosnippet', 'vim-vsnip', 'snippets.nvim'
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_trigger_on_delete = 1
-let g:completion_confirm_key = "<CR>"
-let g:completion_sorting = "length"
-let g:completion_matching_smart_case = 1
-let g:completion_trigger_keyword_length = 2 " default = 1
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-augroup CompletionTriggerCharacter
-    autocmd!
-    autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter c,cpp let g:completion_trigger_character = ['.', '::']
-augroup end
-
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
-
-augroup lsp_status
-    au!
-    autocmd BufRead,BufNewFile autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
-augroup end
-
-" nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'UltiSnips']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'},
-    \{'mode': 'file'}
-\]
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 
 " General: Cleanup ---------------------------- {{{
 " commands that need to run at the end of my vimrc

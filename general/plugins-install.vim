@@ -3,26 +3,24 @@
 " Follow TJ's example on how to install the plugin manager if it doesn't exist
 
 call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'                 " Line it up
-Plug 'pechorin/any-jump.vim'
-Plug 'rhysd/git-messenger.vim'            " Floatinf git, looks like VSCode, it is delicious
 " -- Configurations for neovim lsp.
 " --   neovim/neovim has all of the LSP code.
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'wbthomason/lsp-status.nvim'       " TODO: make sure this works
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-lsputils'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'onsails/lspkind-nvim'
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Lua development
 Plug 'tjdevries/nlua.nvim'
-Plug 'tjdevries/astronauta.nvim'
 
 " This replaces tpope's vim-commentary
 Plug 'b3nj5m1n/kommentary'
@@ -32,9 +30,6 @@ Plug 'euclidianAce/BetterLua.vim'
 
 " For rust developemnt
 Plug 'rust-lang/rust.vim' " Not sure I need this
-Plug 'octol/vim-cpp-enhanced-highlight'
-" (OPTIONAL): If you wish to have fancy lua folds, you can check this out.
-Plug 'tjdevries/manillua.nvim'
 " Have the file system follow you around
 Plug 'airblade/vim-rooter'
 
@@ -63,9 +58,6 @@ Plug 'machakann/vim-highlightedyank'
 
 " See what keys do like in emacs
 Plug 'liuchengxu/vim-which-key'
-" TODO fix this, make it work
-" Vista
-Plug 'liuchengxu/vista.vim'
 " Terminal
 Plug 'voldikss/vim-floaterm'
 " Auto pairs for '(' '[' '{'
@@ -76,8 +68,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'glepnir/dashboard-nvim'
 " Better Syntax Support
 Plug 'sheerun/vim-polyglot'
-" auto set indent settings
-Plug 'tpope/vim-sleuth'
 " Undo Tree: For better undoing
 Plug 'mbbill/undotree'
 
@@ -92,8 +82,6 @@ Plug 'szw/vim-maximizer'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim'
 
 " Zen mode

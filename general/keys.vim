@@ -13,8 +13,6 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
 " Move selected line / block of text in visual mode
 " shift + k to move up
 " shift + j to move down
@@ -57,13 +55,13 @@ cnoremap %s/ %sm/
 augroup ZenMode
   au!
   autocmd User GoyoEnter Limelight
-  autocmd User GoyoEnter lua require('galaxyline').disable_galaxyline()
+  autocmd User GoyoEnter lua require 'galaxyline'.disable_galaxyline()
 augroup END
 " autocmd! User GoyoEnter Limelight lua require('galaxyline').disable_galaxyline()
 augroup ZenModeOff
   au!
-  autocmd! User GotoLeave Limelight!
-  autocmd User GoyoLeave lua require('galaxyline').galaxyline_augroup()
+  autocmd User GoyoLeave lua require 'galaxyline'.galaxyline_augroup()
+  autocmd User GotoLeave Limelight!
 augroup END
 
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
@@ -89,3 +87,5 @@ nnoremap Y  y$ " Thank you TPope
 
 nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+nnoremap <leader>af :Neoformat<CR>

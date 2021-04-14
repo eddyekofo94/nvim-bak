@@ -50,7 +50,7 @@ set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option"
 set pumblend=17
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 set virtualedit=block
 set signcolumn=yes                      " It sets the collum in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
@@ -111,14 +111,21 @@ set foldmethod=expr
 set guicursor+=i:block-Cursor
 set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
 set guicursor+=a:blinkon20
-" set foldexpr=nvim_treesitter#foldexpr()
+
+set foldmethod=expr
+set foldlevelstart=99
+set foldexpr=nvim_treesitter#foldexpr()
+
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
-augroup FMT
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" augroup FMT
+  " autocmd!
+  " autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+
+" Have Neoformat only msg when there is an error
+let g:neoformat_only_msg_on_error = 1
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -165,6 +172,6 @@ autocmd FileType * setlocal nolinebreak
 " Toggles the relative number
 augroup numbertoggle
     autocmd!
-    autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber!
+    autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber
     autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber!
 augroup end
