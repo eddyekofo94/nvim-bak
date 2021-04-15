@@ -37,6 +37,12 @@ vim.cmd([[
   nnoremap <silent> <C-Right> :vertical resize +2<CR>
 ]])
 
+-- TODO: Fix this since it's not working
+KeyMapper("n", "<C-Up>", "resize -2")
+KeyMapper("n", "<C-Down>", "resize +2")
+KeyMapper("n", "<C-Left>", ":vertical resize -2")
+KeyMapper("n", "<C-Right>", ":vertical resize +2")
+
 -- better indenting
 vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})

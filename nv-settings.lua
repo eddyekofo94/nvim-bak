@@ -16,8 +16,7 @@ O.wrap_lines = false
 O.treesitter.ensure_installed = "all"
 O.treesitter.ignore_install = {"haskell"}
 O.treesitter.highlight.enabled = true
-O.treesitter.playground.enabled = true
-O.treesitter.rainbow.enabled = false
+O.treesitter.playground.enabled = true O.treesitter.rainbow.enabled = false
 
 
 O.clang.diagnostics.virtual_text = false
@@ -51,3 +50,8 @@ O.tsserver.autoformat = true
 O.json.autoformat = true
 
 -- create custom autocommand field (This would be easy with lua)
+
+KeyMapper = function(mode, key, result)
+    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
+end
+
