@@ -57,17 +57,20 @@ return require("packer").startup(
 
         -- Status Line and Bufferline
         use {"glepnir/galaxyline.nvim"}
-        -- use { 'glepnir/galaxyline.nvim', config = function() require'nv-galaxyline' end } -- inline fn alternative
         use "romgrk/barbar.nvim"
 
         -- Telescope
         use "nvim-lua/popup.nvim"
         use "nvim-lua/plenary.nvim"
         use "nvim-telescope/telescope.nvim"
+        use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
         use "nvim-telescope/telescope-media-files.nvim"
 
         -- Explorer
         use "kyazdani42/nvim-tree.lua"
+
+        -- Window Toggle
+        use "szw/vim-maximizer"
 
         -- Color
         use "christianchiarulli/nvcode-color-schemes.vim"
@@ -75,11 +78,9 @@ return require("packer").startup(
         use "sheerun/vim-polyglot"
 
         -- Git
-        -- use 'TimUntersberger/neogit'
         use {"lewis6991/gitsigns.nvim", requires = {"nvim-lua/plenary.nvim"}}
         use "f-person/git-blame.nvim"
         use "tpope/vim-fugitive"
-        use "tpope/vim-rhubarb"
 
         -- Easily Create Gists
         use "mattn/vim-gist"
