@@ -244,6 +244,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-doge"
   },
+  ["vim-fish"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-fish"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-floaterm"
@@ -263,6 +267,10 @@ _G.packer_plugins = {
   ["vim-matchup"] = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-matchup"
+  },
+  ["vim-maximizer"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-maximizer"
   },
   ["vim-polyglot"] = {
     loaded = true,
