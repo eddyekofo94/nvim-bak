@@ -45,10 +45,13 @@ require("nv-dependency")
 -- Which Key (Hope to replace with Lua plugin someday)
 vim.cmd("source ~/.config/nvim/vimscript/nv-whichkey/init.vim")
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
+vim.cmd("source ~/.config/nvim/vimscript/keys.vim")
+vim.cmd("source ~/.config/nvim/vimscript/sets.vim")
 
 -- LSP
 require("lsp")
 require("lsp.clangd")
+require("lsp.cmake")
 require("lsp.php-ls")
 require("lsp.dart-ls")
 require("lsp.lua-ls")
