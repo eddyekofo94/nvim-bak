@@ -38,6 +38,7 @@ let g:which_key_map['p'] = [ ':Telescope find_files'                            
 " TODO create entire treesitter section
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
+let g:which_key_map['w'] = [ ':MaximizerToggle'                          , 'max window']
 " TODO play nice with status line
 let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
 
