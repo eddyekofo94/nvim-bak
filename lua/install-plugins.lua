@@ -41,6 +41,7 @@ return require("packer").startup(
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"folke/lsp-trouble.nvim", opt = true}
         use {"tjdevries/nlua.nvim", opt = true}
+         use 'onsails/lspkind-nvim'
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
