@@ -3,8 +3,9 @@ require("plugins.telescope")
 require("plugins.web-devicons")
 require("plugins.autopairs")
 require("plugins.galaxyline")
--- inoremap <silent><expr> <C-Space> compe#complete()
--- inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+require("plugins.barbar")
+require("plugins.gitsigns")
+require("plugins.nvimtree")
 
 -- nvim-comment
 require("nvim_comment").setup()
