@@ -20,3 +20,4 @@ require("plugins")
 
 -- Which Key (Hope to replace with Lua plugin someday)
 vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")
+vim.cmd("source ~/.config/nvim/vimscript/keys.vim")

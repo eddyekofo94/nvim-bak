@@ -18,9 +18,9 @@ local mapper = function(mode, key, result)
 end
 
 local opts = {
-    error_sign = "",
+    error_sign = "",
     warn_sign = "",
-    hint_sign = "!",
+    hint_sign = "",
     code_action_icon = " "
 }
 

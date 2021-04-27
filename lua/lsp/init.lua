@@ -1,6 +1,8 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require("lspconfig")
 
+_ = require("lspkind").init()
+
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
 end
@@ -80,6 +82,35 @@ local custom_attach = function(client)
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
+-- symbols for autocomplete
+vim.lsp.protocol.CompletionItemKind = {
+    "   (Text) ",
+    "   (Method)",
+    "   (Function)",
+    "   (Constructor)",
+    " ﴲ  (Field)",
+    "[] (Variable)",
+    "   (Class)",
+    " ﰮ  (Interface)",
+    "   (Module)",
+    " 襁 (Property)",
+    "   (Unit)",
+    "   (Value)",
+    " 練 (Enum)",
+    "   (Keyword)",
+    " ﬌  (Snippet)",
+    "   (Color)",
+    "   (File)",
+    "   (Reference)",
+    "   (Folder)",
+    "   (EnumMember)",
+    " ﲀ  (Constant)",
+    " ﳤ  (Struct)",
+    "   (Event)",
+    "   (Operator)",
+    "   (TypeParameter)"
+}
+
 lspconfig.clangd.setup(
     {
         cmd = {
@@ -137,24 +168,24 @@ lspconfig.cmake.setup(
 local sumneko_root_path = DATA_PATH .. "/lspinstall/lua"
 local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 
-require'lspconfig'.sumneko_lua.setup {
+require "lspconfig".sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     on_attach = custom_attach,
     settings = {
         Lua = {
             runtime = {
                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
+                version = "LuaJIT",
                 -- Setup your lua path
-                path = vim.split(package.path, ';')
+                path = vim.split(package.path, ";")
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
+                globals = {"vim"}
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true},
+                library = {[vim.fn.expand("$VIMRUNTIME/lua")] = true, [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true},
                 maxPreload = 10000
             }
         }
@@ -170,3 +201,9 @@ lspconfig.yamlls.setup {on_attach = custom_attach}
 lspconfig.vimls.setup {
     on_attach = custom_attach
 }
+
+-- Initialise other settings
+--require("nvim-compe")
+
+require("lsp.nvim-compe")
+require("lsp.nvim-lspsaga")

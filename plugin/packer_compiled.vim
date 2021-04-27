@@ -101,6 +101,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-trouble.nvim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
   ["lspsaga.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -112,7 +116,7 @@ _G.packer_plugins = {
   },
   ["nlua.nvim"] = {
     loaded = false,
-    needs_bufread = true,
+    needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nlua.nvim"
   },
   ["nvcode-color-schemes.vim"] = {
