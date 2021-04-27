@@ -11,11 +11,24 @@ telescope.setup {
             "--smart-case"
         },
         prompt_position = "top",
-        prompt_prefix = "»",
+        prompt_prefix = "❯ ",
+        selection_caret = "❯ ",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
-        layout_defaults = {},
+        layout_defaults = {
+            horizontal = {
+                width_padding = 0.1,
+                height_padding = 0.1,
+                preview_width = 0.6
+            },
+            vertical = {
+                width_padding = 0.05,
+                height_padding = 1,
+                preview_height = 0.5
+            }
+        },
+        scroll_strategy = "cycle",
         file_sorter = require "telescope.sorters".get_fuzzy_file,
         file_ignore_patterns = {},
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
