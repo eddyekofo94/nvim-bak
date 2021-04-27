@@ -2,6 +2,7 @@
 require("plugins.telescope")
 require("plugins.web-devicons")
 require("plugins.autopairs")
+require("plugins.galaxyline")
 -- inoremap <silent><expr> <C-Space> compe#complete()
 -- inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
