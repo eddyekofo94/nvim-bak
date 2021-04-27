@@ -4,11 +4,7 @@
 vnoremap < <gv
 vnoremap > >gv
 
-" TAB in general mode will move to text buffer
-nnoremap <silent> <TAB> :bnext<CR>
-" SHIFT-TAB will go back
-nnoremap <silent> <S-TAB> :bprevious<CR>
-
+" TODO: if it works in lua, REMOVW!"
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -85,6 +81,7 @@ nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 nnoremap Y  y$ " Thank you TPope
 
+" TODO: Fix in the future, not working at all
 nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 

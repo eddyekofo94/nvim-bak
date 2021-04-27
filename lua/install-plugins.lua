@@ -41,7 +41,7 @@ return require("packer").startup(
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"folke/lsp-trouble.nvim", opt = true}
         use {"tjdevries/nlua.nvim", opt = true}
-         use 'onsails/lspkind-nvim'
+        use "onsails/lspkind-nvim"
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
@@ -58,6 +58,8 @@ return require("packer").startup(
         use {"hrsh7th/nvim-compe", opt = true}
         use {"hrsh7th/vim-vsnip", opt = true}
         use {"rafamadriz/friendly-snippets", opt = true}
+        use {"SirVer/ultisnips"}
+        use {"honza/vim-snippets"}
         use "dag/vim-fish"
 
         -- Treesitter
@@ -75,7 +77,10 @@ return require("packer").startup(
         use {"windwp/nvim-autopairs", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
-
+        use {"tjdevries/astronauta.nvim"}
+        use {"tpope/vim-surround"}
+        use {"mbbill/undotree"}
+        use {"norcalli/nvim-colorizer.lua"}
         -- Window Toggle
         use "szw/vim-maximizer"
 
@@ -92,6 +97,7 @@ return require("packer").startup(
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
         require_plugin("nvim-lspinstall")
+        require_plugin("astronauta")
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")

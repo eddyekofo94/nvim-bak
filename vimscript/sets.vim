@@ -119,11 +119,6 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
-" augroup FMT
-  " autocmd!
-  " autocmd BufWritePre * undojoin | Neoformat
-" augroup END
-
 " Have Neoformat only msg when there is an error
 let g:neoformat_only_msg_on_error = 1
 

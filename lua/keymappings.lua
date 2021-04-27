@@ -14,6 +14,7 @@ mapper("n", "<Leader>cm", "<cmd>lua require'telescope.builtin'.commands{}<CR>") 
 
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 vim.g.mapleader = " "
+vim.cmd("let g:UltiSnipsExpandTrigger = '<F5>'")
 
 -- no hl
 vim.api.nvim_set_keymap("n", "<Leader>h", ":set hlsearch!<CR>", {noremap = true, silent = true})

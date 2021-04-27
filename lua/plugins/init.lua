@@ -6,6 +6,8 @@ require("plugins.galaxyline")
 require("plugins.barbar")
 require("plugins.gitsigns")
 require("plugins.nvimtree")
+require("plugins.dashboard")
+require("plugins.treesitter")
 
 -- nvim-comment
 require("nvim_comment").setup()
