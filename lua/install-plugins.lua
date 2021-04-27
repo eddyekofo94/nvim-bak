@@ -40,6 +40,7 @@ return require("packer").startup(
         use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"folke/lsp-trouble.nvim", opt = true}
+        use {"tjdevries/nlua.nvim", opt = true}
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
