@@ -20,7 +20,7 @@ require "colorizer".setup()
 require "toggleterm".setup {
     size = 20,
     open_mapping = [[<c-\>]],
-    hide_numbers = true,
+    -- hide_numbers = true,
     start_in_insert = true,
     persist_size = true,
     shell = vim.o.shell, -- change the default shell
