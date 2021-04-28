@@ -78,8 +78,12 @@ return require("packer").startup(
         use {"terrortylor/nvim-comment", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
         use {"tjdevries/astronauta.nvim"}
+        use {"godlygeek/tabular", opt = true}
+        -- TODO: not working
         use {"tpope/vim-surround"}
+        -- TODO: fix
         use {"mbbill/undotree"}
+
         use {"norcalli/nvim-colorizer.lua"}
         -- Window Toggle
         use "szw/vim-maximizer"

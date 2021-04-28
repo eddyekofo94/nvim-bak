@@ -10,15 +10,34 @@ require "compe".setup {
     source_timeout = 200,
     incomplete_delay = 400,
     allow_prefix_unmatch = false,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    documentation = true,
     source = {
-        ultisnips = true,
-        nvim_lsp = true,
-        path = true,
-        buffer = true,
-        vsnip = true,
-        nvim_lua = true,
-        spell = true
+        ultisnips = {kind = "  "},
+        nvim_lsp = {kind = "  "},
+        buffer = {kind = "  "},
+        spell = {kind = "  "},
+        path = {kind = "  "},
+        calc = {kind = "  "},
+        vsnip = {kind = "  "},
+        nvim_lua = false,
+        tags = false,
+        vim_dadbod_completion = true,
+        -- snippets_nvim = {kind = "  "},
+        treesitter = {kind = "  "},
+        emoji = {kind = " ﲃ ", filetypes = {"markdown", "text"}}
     }
+    -- source = {
+    --     ultisnips = true,
+    --     nvim_lsp = true,
+    --     path = true,
+    --     buffer = true,
+    --     vsnip = true,
+    --     nvim_lua = true,
+    --     spell = true
+    -- }
 }
 
 local mapper = function(mode, key, result)
