@@ -1,0 +1,16 @@
+
+vim.cmd("source ~/.config/nvim/vimscript/sets.vim")
+vim.cmd("source ~/.config/nvim/vimscript/keys.vim")
+require("install-plugins")
+require("globals")
+require("utils")
+vim.cmd("luafile ~/.config/nvim/base-settings.lua")
+require("autocommands")
+require("settings")
+require("keymappings")
+require("colorscheme")
+require("lsp")
+require("plugins")
+
+-- Which Key (Hope to replace with Lua plugin someday)
+vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")

@@ -18,9 +18,9 @@ local mapper = function(mode, key, result)
 end
 
 local opts = {
-    error_sign = "",
+    error_sign = "",
     warn_sign = "",
-    hint_sign = "!",
+    hint_sign = "",
     code_action_icon = " "
 }
 
@@ -36,6 +36,5 @@ mapper("n", "dp", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev
 mapper("n", "dn", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>") --
 
 vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
--- vim.cmd [[autocmd CursorHold * lua require'lspsaga.signaturehelp'.signature_help()]]
 
 saga.init_lsp_saga(opts)
