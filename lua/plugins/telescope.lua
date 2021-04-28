@@ -39,8 +39,6 @@ telescope.setup {
         preview_cutoff = 120,
         results_height = 1,
         results_width = 0.8,
-        border = {},
-        borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
         color_devicons = true,
         use_less = true,
         set_env = {["COLORTERM"] = "truecolor"}, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe

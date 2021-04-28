@@ -169,5 +169,5 @@ autocmd FileType * setlocal nolinebreak
 augroup numbertoggle
     autocmd!
     autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber
-    autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber!
+    autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber
 augroup end

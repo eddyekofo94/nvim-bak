@@ -100,6 +100,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
   ["lsp-trouble.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -200,6 +204,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/popup.nvim"
   },
+  ["sql.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
   tabular = {
     after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tabular/after/plugin/TabularMaps.vim" },
     loaded = false,
@@ -219,6 +227,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tokyonight.nvim"
   },
   ultisnips = {
     loaded = true,
