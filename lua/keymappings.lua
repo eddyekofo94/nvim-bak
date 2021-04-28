@@ -48,3 +48,7 @@ vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", {noremap = true, silent
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
 vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
+
+-- Terminal: exiting the terminal mode
+-- vim.api.nvim_set_keymap("tn", )
+vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
