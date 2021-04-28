@@ -4,6 +4,7 @@ local gl = require("galaxyline")
 local colors = {
     -- bg = '#2E2E2E',
     bg = "#1f2335",
+    fg = "#c0caf5",
     yellow = "#e0af68",
     dark_yellow = "#D7BA7D",
     cyan = "#4EC9B0",
@@ -79,7 +80,7 @@ gls.left[3] = {
         condition = condition.check_git_workspace,
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {colors.fg, colors.bg}
     }
 }
 
@@ -141,7 +142,7 @@ gls.right[6] = {
         provider = "LineColumn",
         separator = "  ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {colors.fg, colors.bg}
     }
 }
 
@@ -150,7 +151,7 @@ gls.right[7] = {
         provider = "LinePercent",
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {colors.fg, colors.bg}
     }
 }
 
@@ -202,12 +203,12 @@ gls.short_line_left[1] = {
         provider = "FileTypeName",
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {colors.fg, colors.bg}
     }
 }
 
 gls.short_line_left[2] = {
-    SFileName = {provider = "SFileName", condition = condition.buffer_not_empty, highlight = {colors.comment, colors.bg}}
+    SFileName = {provider = "SFileName", condition = condition.buffer_not_empty, highlight = {colors.fg, colors.bg}}
 }
 
-gls.short_line_right[1] = {BufferIcon = {provider = "BufferIcon", highlight = {colors.comment, colors.bg}}}
+gls.short_line_right[1] = {BufferIcon = {provider = "BufferIcon", highlight = {colors.fg, colors.bg}}}
