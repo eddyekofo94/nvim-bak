@@ -20,9 +20,9 @@ local custom_attach = function(client)
     mapper("n", "gin", "vim.lsp.buf.incoming_calls()")
     mapper("n", "da", "vim.lsp.diagnostic.set_loclist()")
 
-    vim.api.nvim_command(
-        [[autocmd CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })]]
-    )
+    -- vim.api.nvim_command(
+    --     [[autocmd CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })]]
+    -- )
 
     -- auto format
     if client.resolved_capabilities.document_formatting then
