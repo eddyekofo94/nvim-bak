@@ -27,10 +27,12 @@ let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               ,
 let g:which_key_map['d'] = [ ':bd!'                                            , 'buffer delete' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
 let g:which_key_map['f'] = [ ':Neoformat'                           , 'format file' ]
+let g:which_key_map['g'] = [ ':LazyGit'                           , 'git' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['r'] = [ ':Telescope oldfiles'                                   , 'recent files' ]
 let g:which_key_map['p'] = [ ':Telescope find_files'                                   , 'find files' ]
+let g:which_key_map['t'] = [ ':ToggleTerm'                                   , 'terminal' ]
 " TODO create entire treesitter section
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
 let g:which_key_map['w'] = [ ':MaximizerToggle'                          , 'max window']
@@ -103,22 +105,22 @@ let g:which_key_map.S = {
       \ 'l' : [':SessionLoad'           , 'load Session'],
       \ }
 
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'b' : [':GitBlameToggle'                   , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'j' : [':NextHunk'                         , 'next hunk'],
-      \ 'k' : [':PrevHunk'                         , 'prev hunk'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
-      \ 'r' : [':ResetHunk'                        , 'reset hunk'],
-      \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
-      \ 's' : [':StageHunk'                        , 'stage hunk'],
-      \ 'S' : [':Gstatus'                          , 'status'],
-      \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
-      \ }
+" g is for git Changing it to lazygit
+" let g:which_key_map.g = {
+"       \ 'name' : '+git' ,
+"       \ 'b' : [':GitBlameToggle'                   , 'blame'],
+"       \ 'B' : [':GBrowse'                          , 'browse'],
+"       \ 'd' : [':Git diff'                         , 'diff'],
+"       \ 'j' : [':NextHunk'                         , 'next hunk'],
+"       \ 'k' : [':PrevHunk'                         , 'prev hunk'],
+"       \ 'l' : [':Git log'                          , 'log'],
+"       \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
+"       \ 'r' : [':ResetHunk'                        , 'reset hunk'],
+"       \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
+"       \ 's' : [':StageHunk'                        , 'stage hunk'],
+"       \ 'S' : [':Gstatus'                          , 'status'],
+"       \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
+"       \ }
 
 " l is for language server protocol
 let g:which_key_map.l = {
