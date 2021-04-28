@@ -51,6 +51,13 @@ return require("packer").startup(
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+        use {
+            "nvim-telescope/telescope-frecency.nvim",
+            config = function()
+                require "telescope".load_extension("frecency")
+            end
+        }
+        use "tami5/sql.nvim"
 
         -- Debugging
         use {"mfussenegger/nvim-dap", opt = true}
@@ -107,6 +114,7 @@ return require("packer").startup(
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")
         require_plugin("telescope-fzf-native.nvim")
+        require_plugin("telescope-frecency.nvim")
         require_plugin("nvim-dap")
         require_plugin("vim-rooter")
         require_plugin("nvim-compe")

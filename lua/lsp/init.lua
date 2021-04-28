@@ -192,7 +192,6 @@ require "lspconfig".sumneko_lua.setup {
     }
 }
 
--- bash TODO: ensure that it works, I don't don't think it works
 lspconfig.bashls.setup {on_attach = custom_attach}
 
 -- yaml TODO: ensure that it works
@@ -201,9 +200,6 @@ lspconfig.yamlls.setup {on_attach = custom_attach}
 lspconfig.vimls.setup {
     on_attach = custom_attach
 }
-
--- Initialise other settings
---require("nvim-compe")
 
 require("lsp.nvim-compe")
 require("lsp.nvim-lspsaga")
