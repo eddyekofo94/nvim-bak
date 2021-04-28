@@ -109,7 +109,7 @@ set foldmethod=expr
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
-set guicursor+=n-v-c:blinkon10 " TODO: Blinking is still not working
+set guicursor+=n-v-c:blinkon10
 set guicursor+=a:blinkon20
 
 set foldmethod=expr
@@ -122,6 +122,7 @@ autocmd InsertLeave * set nopaste
 " Have Neoformat only msg when there is an error
 let g:neoformat_only_msg_on_error = 1
 
+" TODO: fix this... why is it not working?
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction

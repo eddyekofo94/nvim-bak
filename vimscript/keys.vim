@@ -62,6 +62,7 @@ augroup END
 
 " autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
 " Source my init.vim
+" TODO: see how to load the init.lua file without closing vim
 nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
@@ -84,6 +85,7 @@ nnoremap Y  y$ " Thank you TPope
 " TODO: Fix in the future, not working at all
 nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
 
 " In order for compe.nvim to work"
 inoremap <silent><expr> <C-Space> compe#complete()

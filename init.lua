@@ -11,7 +11,6 @@ require("keymappings")
 require("colorscheme")
 require("lsp")
 require("plugins")
--- require("vim-rooter")
 
 -- Which Key (Hope to replace with Lua plugin someday)
 vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")
