@@ -33,10 +33,10 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Resise window with arrow keys
-nnoremap <silent> <Up>  :resize +2<CR>
-nnoremap <silent> <Down>    :resize -2<CR>
-nnoremap <silent> <Left>  :vertical resize -2<CR>
-nnoremap <silent> <Right> :vertical resize +2<CR>
+" nnoremap <silent> <Up>  :resize +2<CR>
+" nnoremap <silent> <Down>    :resize -2<CR>
+" nnoremap <silent> <Left>  :vertical resize -2<CR>
+" nnoremap <silent> <Right> :vertical resize +2<CR>
 
 " Very magic by default, got this from theRimragen (Don't knoq exactly what it
 " does
