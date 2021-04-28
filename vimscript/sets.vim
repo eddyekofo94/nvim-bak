@@ -166,8 +166,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd FileType * setlocal nolinebreak
 
 " Toggles the relative number
-augroup numbertoggle
-    autocmd!
-    autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber
-    autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber!
-augroup end
+" augroup numbertoggle
+"     autocmd!
+"     autocmd FileType,FocusGained,InsertLeave cpp,h,*.hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim  set relativenumber
+"     autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,*.cs,fish,shell,bash,ru,ts,java,php,lua,javascript,*.vim set norelativenumber
+" augroup end
