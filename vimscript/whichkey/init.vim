@@ -135,6 +135,7 @@ let g:which_key_map.l = {
       \ 'p' : [':Lspsaga preview_definition'         , 'preview definition'],
       \ 'q' : [':Telescope quickfix'                 , 'quickfix'],
       \ 'r' : [':Lspsaga rename'                     , 'rename'],
+      \ 't' : [':LspTroubleToggle'                  , 'trouble'],
       \ 'T' : [':LspTypeDefinition'                  , 'type defintion'],
       \ 'x' : [':cclose'                             , 'close quickfix'],
       \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],

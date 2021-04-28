@@ -42,6 +42,7 @@ return require("packer").startup(
         use {"folke/lsp-trouble.nvim", opt = true}
         use {"tjdevries/nlua.nvim", opt = true}
         use "onsails/lspkind-nvim"
+        use "folke/lsp-colors.nvim" -- improves the lsp warning colours
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
@@ -108,6 +109,7 @@ return require("packer").startup(
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
+        require_plugin("lsp-trouble.nvim")
         require_plugin("nvim-lspinstall")
         require_plugin("astronauta")
         require_plugin("popup.nvim")
