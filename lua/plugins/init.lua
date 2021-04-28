@@ -14,5 +14,14 @@ require("nvim_comment").setup()
 vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
-require'colorizer'.setup()
+require "colorizer".setup()
 
+-- Terminal
+require "toggleterm".setup {
+    size = 20,
+    hide_numbers = true,
+    start_in_insert = true,
+    persist_size = true,
+    shell = vim.o.shell, -- change the default shell
+    direction = {"vertical", "horizontal", "window", "float"}
+}

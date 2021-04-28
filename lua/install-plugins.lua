@@ -79,8 +79,12 @@ return require("packer").startup(
         use "kyazdani42/nvim-tree.lua"
         use {"airblade/vim-rooter", opt = true}
 
+        -- Terminal
+        use {"akinsho/nvim-toggleterm.lua", opt = true}
+
         -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}
+        use {"kdheepak/lazygit.nvim", opt = true}
         use {"liuchengxu/vim-which-key", opt = true}
         use {"ChristianChiarulli/dashboard-nvim", opt = true}
         use {"windwp/nvim-autopairs", opt = true}
@@ -88,10 +92,10 @@ return require("packer").startup(
         use {"kevinhwang91/nvim-bqf", opt = true}
         use {"tjdevries/astronauta.nvim"}
         use {"godlygeek/tabular", opt = true}
+        use {"mbbill/undotree"}
+
         -- TODO: not working
         use {"tpope/vim-surround"}
-        -- TODO: fix
-        use {"mbbill/undotree"}
 
         use {"norcalli/nvim-colorizer.lua"}
         -- Window Toggle
@@ -116,6 +120,7 @@ return require("packer").startup(
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")
+        require_plugin("nvim-toggleterm.lua")
         require_plugin("telescope-fzf-native.nvim")
         require_plugin("telescope-frecency.nvim")
         require_plugin("nvim-dap")
@@ -126,6 +131,7 @@ return require("packer").startup(
         require_plugin("nvim-ts-autotag")
         require_plugin("nvim-tree.lua")
         require_plugin("gitsigns.nvim")
+        require_plugin("lazygit.nvim")
         require_plugin("vim-which-key")
         require_plugin("dashboard-nvim")
         require_plugin("nvim-autopairs")
