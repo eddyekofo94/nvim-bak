@@ -117,6 +117,7 @@ return require("packer").startup(
         require_plugin("lsp-trouble.nvim")
         require_plugin("nvim-lspinstall")
         require_plugin("astronauta")
+        require_plugin("tabular")
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")

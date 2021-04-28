@@ -10,7 +10,7 @@ nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
 let g:which_key_map =  {}
-let g:which_key_sep = '→'
+let g:which_key_sep = ' → '
 
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0
@@ -21,18 +21,18 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
-let g:which_key_map['/'] = 'comment toggle'
-let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
-let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
-let g:which_key_map['d'] = [ ':bd!'                                            , 'buffer delete' ]
-let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
-let g:which_key_map['f'] = [ ':Neoformat'                           , 'format file' ]
-let g:which_key_map['g'] = [ ':LazyGit'                           , 'git' ]
-let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
-let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['r'] = [ ':Telescope oldfiles'                                   , 'recent files' ]
-let g:which_key_map['p'] = [ ':Telescope find_files'                                   , 'find files' ]
-let g:which_key_map['t'] = [ ':ToggleTerm'                                   , 'terminal' ]
+let g:which_key_map[ ' / ' ] =   ' comment toggle        '
+let g:which_key_map[ ' ; ' ] = [ ' :Dashboard            ' , ' home screen       ' ]
+let g:which_key_map[ ' ? ' ] = [ ' :NvimTreeFindFile     ' , ' find current file ' ]
+let g:which_key_map[ ' d ' ] = [ ' :bd!                  ' , ' buffer delete     ' ]
+let g:which_key_map[ ' e ' ] = [ ' :NvimTreeToggle       ' , ' explorer          ' ]
+let g:which_key_map[ ' f ' ] = [ ' :Neoformat            ' , ' format file       ' ]
+let g:which_key_map[ ' g ' ] = [ ' :LazyGit              ' , ' git               ' ]
+let g:which_key_map[ ' h ' ] = [ ' <C-W>s                ' , ' split below       ' ]
+let g:which_key_map[ ' H ' ] = [ ' :let @/ = ""          ' , ' no highlight      ' ]
+let g:which_key_map[ ' r ' ] = [ ' :Telescope oldfiles   ' , ' recent files      ' ]
+let g:which_key_map[ ' p ' ] = [ ' :Telescope find_files ' , ' find files        ' ]
+let g:which_key_map[ ' t ' ] = [ ' :ToggleTerm           ' , ' terminal          ' ]
 " TODO create entire treesitter section
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
 let g:which_key_map['w'] = [ ':MaximizerToggle'                          , 'max window']
@@ -104,23 +104,6 @@ let g:which_key_map.S = {
       \ 's' : [':SessionSave'           , 'save session'],
       \ 'l' : [':SessionLoad'           , 'load Session'],
       \ }
-
-" g is for git Changing it to lazygit
-" let g:which_key_map.g = {
-"       \ 'name' : '+git' ,
-"       \ 'b' : [':GitBlameToggle'                   , 'blame'],
-"       \ 'B' : [':GBrowse'                          , 'browse'],
-"       \ 'd' : [':Git diff'                         , 'diff'],
-"       \ 'j' : [':NextHunk'                         , 'next hunk'],
-"       \ 'k' : [':PrevHunk'                         , 'prev hunk'],
-"       \ 'l' : [':Git log'                          , 'log'],
-"       \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
-"       \ 'r' : [':ResetHunk'                        , 'reset hunk'],
-"       \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
-"       \ 's' : [':StageHunk'                        , 'stage hunk'],
-"       \ 'S' : [':Gstatus'                          , 'status'],
-"       \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
-"       \ }
 
 " l is for language server protocol
 let g:which_key_map.l = {
