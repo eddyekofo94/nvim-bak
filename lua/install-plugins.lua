@@ -44,6 +44,8 @@ return require("packer").startup(
         use {"onsails/lspkind-nvim", opt = true}
         use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
         use {"wbthomason/lsp-status.nvim", opt = true}
+        use 'RishabhRD/popfix'
+        use 'RishabhRD/nvim-lsputils'
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
