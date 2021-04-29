@@ -41,8 +41,9 @@ return require("packer").startup(
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"folke/lsp-trouble.nvim", opt = true}
         use {"tjdevries/nlua.nvim", opt = true}
-        use "onsails/lspkind-nvim"
-        use "folke/lsp-colors.nvim" -- improves the lsp warning colours
+        use {"onsails/lspkind-nvim", opt = true}
+        use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
+        use {"wbthomason/lsp-status.nvim", opt = true}
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
@@ -103,7 +104,7 @@ return require("packer").startup(
 
         -- Color
         use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-        use {'folke/tokyonight.nvim', opt = true}
+        use {"folke/tokyonight.nvim", opt = true}
 
         -- Icons
         use {"kyazdani42/nvim-web-devicons", opt = true}
@@ -114,9 +115,13 @@ return require("packer").startup(
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
+        require_plugin("lsp-status.nvim")
         require_plugin("lsp-trouble.nvim")
+        require_plugin("lspkind-nvim")
         require_plugin("nvim-lspinstall")
+        require_plugin("lsp-colors.nvim")
         require_plugin("astronauta")
+        require_plugin("nlua.nvim")
         require_plugin("tabular")
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
