@@ -24,7 +24,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map['/'] = 'comment toggle'
 let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
-let g:which_key_map['d'] = [ ':bd!'                                            , 'buffer delete' ]
+" let g:which_key_map['d'] = [ ':bd!'                                            , 'buffer delete' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
 let g:which_key_map['f'] = [ ':Neoformat'                           , 'format file' ]
 let g:which_key_map['g'] = [ ':LazyGit'                           , 'git' ]
@@ -49,11 +49,11 @@ let g:which_key_map.b = {
       \ 'd' : [':BufferClose'               , 'delete-buffer'],
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ 's' : [':Telescope buffers'                , 'buffers'],
       \ }
 
 " d is for debug
-let g:which_key_map.d = {
+let g:which_key_map.D = {
       \ 'name' : '+debug' ,
       \ 'b' : ['DebugToggleBreakpoint '        , 'toggle breakpoint'],
       \ 'c' : ['DebugContinue'                 , 'continue'],
@@ -82,6 +82,7 @@ let g:which_key_map.F = {
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
       \ '.' : [':Telescope filetypes'                   , 'filetypes'],
+      \ 'b' : [':Telescope buffers'                , 'buffers'],
       \ 'B' : [':Telescope git_branches'                , 'git branches'],
       \ 'd' : [':Telescope lsp_document_diagnostics'    , 'document_diagnostics'],
       \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace_diagnostics'],
@@ -94,7 +95,7 @@ let g:which_key_map.s = {
       \ 'q' : [':Telescope frecency'                 , 'frecency'],
       \ 's' : [':Telescope live_grep'                   , 'string'],
       \ 'r' : [':Telescope registers'                   , 'registers'],
-      \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
+      \ 'w' : [':Telescope file_browser'                , 'file browser'],
       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
       \ }
 
