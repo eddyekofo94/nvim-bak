@@ -21,8 +21,11 @@ local opts = {
     error_sign = "",
     warn_sign = "",
     hint_sign = "",
-    code_action_icon = " "
+    code_action_icon = " ",
+rename_prompt_prefix = '>'
 }
+
+vim.lsp.handlers["textDocument/hover"] = require('lspsaga.hover').handler
 
 mapper("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
 mapper("n", "H", "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>") --

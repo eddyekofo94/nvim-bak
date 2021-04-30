@@ -8,8 +8,4 @@ vim.lsp.handlers["textDocument/typeDefinition"] = require "lsputil.locations".ty
 vim.lsp.handlers["textDocument/implementation"] = require "lsputil.locations".implementation_handler
 vim.lsp.handlers["textDocument/documentSymbol"] = require "lsputil.symbols".document_handler
 vim.lsp.handlers["workspace/symbol"] = require "lsputil.symbols".workspace_handler
-vim.lsp.handlers["textDocument/hover"] = require('lspsaga.hover').handler
-
-local saga_config = require('lspsaga').config_values
-saga_config.rename_prompt_prefix = '>'
 
