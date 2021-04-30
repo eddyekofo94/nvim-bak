@@ -7,22 +7,26 @@ local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
 end
 
+local custom_init = function(client)
+    client.config.flags = client.config.flags or {}
+    client.config.flags.allow_incremental_sync = true
+end
+
+local nvim_status = require("lsp-status")
+
 local custom_attach = function(client)
     if client.config.flags then
         client.config.flags.allow_incremental_sync = true
     end
 
+    nvim_status.on_attach(client)
     -- set up mappings (only apply when LSP client attached)
-    mapper("n", "gD", "vim.lsp.buf.definition()")
-    mapper("n", "gi", "vim.lsp.buf.implementation()")
+    mapper("n", "<space>dD", "vim.lsp.buf.definition()")
+    mapper("n", "<space>di", "vim.lsp.buf.implementation()")
     mapper("n", "<c-]>", "vim.lsp.buf.definition()")
-    mapper("n", "gR", "vim.lsp.buf.references()")
-    mapper("n", "gin", "vim.lsp.buf.incoming_calls()")
-    mapper("n", "da", "vim.lsp.diagnostic.set_loclist()")
-
-    -- vim.api.nvim_command(
-    --     [[autocmd CursorHold  * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false })]]
-    -- )
+    mapper("n", "<space>dR", "vim.lsp.buf.references()")
+    mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
+    mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
 
     -- auto format
     if client.resolved_capabilities.document_formatting then
@@ -36,8 +40,8 @@ local custom_attach = function(client)
         vim.api.nvim_exec(
             [[
         hi LspReferenceRead cterm=bold ctermbg=None guibg=None guifg=LightYellow
-        hi LspReferenceText cterm=bold ctermbg=None guibg=None guifg=LightYellow
-        hi LspReferenceWrite cterm=bold ctermbg=None guibg=None guifg=LightYellow
+        hi LspReferenceText cterm=bold ctermbg=None guibg=None guifg=LightGreen
+        hi LspReferenceWrite cterm=bold ctermbg=None guibg=None guifg=Pink
         augroup lsp_document_highlight
           autocmd!
           autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -62,6 +66,9 @@ local custom_attach = function(client)
             update_in_insert = true
         }
     )
+
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
     -- Rust is currently the only thing w/ inlay hints
     if filetype == "rust" then
         vim.cmd(
@@ -74,13 +81,19 @@ local custom_attach = function(client)
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 
-    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     if filetype ~= "lua" then
         mapper("n", "K", "vim.lsp.buf.hover()")
     end
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
+
+local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+updated_capabilities.textDocument.codeLens = {
+    dynamicRegistration = false
+}
+
+updated_capabilities = vim.tbl_extend("keep", updated_capabilities, nvim_status.capabilities)
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
@@ -120,11 +133,14 @@ lspconfig.clangd.setup(
             "--clang-tidy",
             "--header-insertion=iwyu"
         },
+        on_init = custom_init,
         on_attach = custom_attach,
         -- Required for lsp-status
         init_options = {
             clangdFileStatus = true
-        }
+        },
+        handlers = nvim_status.extensions.clangd.setup(),
+        capabilities = nvim_status.capabilities
     }
 )
 
@@ -157,47 +173,24 @@ lspconfig.cmake.setup(
     }
 )
 
--- -- TODO: Fix the lua setup
--- require("nlua.lsp.nvim").setup(
---     require("lspconfig"),
---     {
---         on_attach = custom_attach
---     }
--- )
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-local sumneko_root_path = DATA_PATH .. "/lspinstall/lua"
-local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
-
-require "lspconfig".sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-    on_attach = custom_attach,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-                -- Setup your lua path
-                path = vim.split(package.path, ";")
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {"vim"}
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = {[vim.fn.expand("$VIMRUNTIME/lua")] = true, [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true},
-                maxPreload = 10000
-            }
-        }
+require("nlua.lsp.nvim").setup(
+    lspconfig,
+    {
+        on_init = custom_init,
+        on_attach = custom_attach
     }
-}
+)
 
 lspconfig.bashls.setup {on_attach = custom_attach}
 
 -- yaml TODO: ensure that it works
-lspconfig.yamlls.setup {on_attach = custom_attach}
+lspconfig.yamlls.setup {
+    on_init = custom_init,
+    on_attach = custom_attach
+}
 
 lspconfig.vimls.setup {
+    on_init = custom_init,
     on_attach = custom_attach
 }
 
@@ -210,5 +203,7 @@ require("lsp-colors").setup(
     }
 )
 require("trouble").setup {}
-require("lsp.nvim-compe")
-require("lsp.nvim-lspsaga")
+require("lsp.compe")
+require("lsp.lspsaga")
+require("handlers")
+require("status").activate()

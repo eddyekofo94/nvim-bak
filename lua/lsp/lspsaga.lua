@@ -31,10 +31,14 @@ mapper("n", "gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")
 mapper("n", "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
 -- TODO: fix since it os not working :/
 mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- search all files, respecting .gitignore if one exists
--- jump diagnostic
-mapper("n", "<space>dp", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>") --
-mapper("n", "<space>dn", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>") --
+-- TODO: not working -- jump diagnostic
+mapper("n", "[e", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>") --
+mapper("n", "]e", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>") --
 
-vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
+-- TODO: fix why it's not working?
+mapper("n", "<c-f>", "require('lspsaga.action').smart_scroll_with_saga(1)")
+mapper("n", "<c-b>", "require('lspsaga.action').smart_scroll_with_saga(-1)")
+
+vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_cursor_diagnostics()]]
 
 saga.init_lsp_saga(opts)
