@@ -22,10 +22,10 @@ local opts = {
     warn_sign = "",
     hint_sign = "",
     code_action_icon = " ",
-rename_prompt_prefix = '>'
+    rename_prompt_prefix = ">"
 }
 
-vim.lsp.handlers["textDocument/hover"] = require('lspsaga.hover').handler
+vim.lsp.handlers["textDocument/hover"] = require("lspsaga.hover").handler
 
 mapper("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
 mapper("n", "H", "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>") --
@@ -34,13 +34,10 @@ mapper("n", "gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")
 mapper("n", "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
 -- TODO: fix since it os not working :/
 mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- search all files, respecting .gitignore if one exists
--- TODO: not working -- jump diagnostic
-mapper("n", "[e", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>") --
-mapper("n", "]e", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>") --
 
 -- TODO: fix why it's not working?
-mapper("n", "<c-f>", "require('lspsaga.action').smart_scroll_with_saga(1)")
-mapper("n", "<c-b>", "require('lspsaga.action').smart_scroll_with_saga(-1)")
+mapper("n", "<c-f>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
+mapper("n", "<c-b>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
 
 vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_cursor_diagnostics()]]
 
