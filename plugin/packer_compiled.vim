@@ -100,9 +100,20 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = false,
+    needs_bufread = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lazygit.nvim"
+  },
   ["lsp-colors.nvim"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-colors.nvim"
+  },
+  ["lsp-status.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-status.nvim"
   },
   ["lsp-trouble.nvim"] = {
     loaded = false,
@@ -110,8 +121,9 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-trouble.nvim"
   },
   ["lspkind-nvim"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = false,
@@ -171,6 +183,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-lspinstall"
+  },
+  ["nvim-toggleterm.lua"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-toggleterm.lua"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
