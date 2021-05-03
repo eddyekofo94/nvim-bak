@@ -21,12 +21,15 @@ local custom_attach = function(client)
 
     nvim_status.on_attach(client)
     -- set up mappings (only apply when LSP client attached)
-    mapper("n", "<space>dD", "vim.lsp.buf.definition()")
+    mapper("n", "<space>dD", "vim.lsp.buf.declaration()")
     mapper("n", "<space>di", "vim.lsp.buf.implementation()")
     mapper("n", "<c-]>", "vim.lsp.buf.definition()")
+    mapper("n", "<c-k>", "vim.lsp.buf.definition()")
     mapper("n", "<space>dR", "vim.lsp.buf.references()")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
     mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
+    mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
+    mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
 
     -- auto format
     if client.resolved_capabilities.document_formatting then
@@ -35,6 +38,12 @@ local custom_attach = function(client)
         vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
         vim.api.nvim_command [[augroup END]]
     end
+
+    -- TODO: find a way to get this working in the future
+    if client.resolved_capabilities.document_range_formatting then
+        mapper("v", "<space>lF", "vim.lsp.buf.range_formatting()")
+    end
+
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec(
@@ -58,7 +67,7 @@ local custom_attach = function(client)
         {
             underline = true,
             -- Hide virtual text
-            virtual_text = false,
+            virtual_text = true,
             -- Increase diagnostic signs priority
             signs = {
                 priority = 9999
@@ -194,6 +203,7 @@ lspconfig.vimls.setup {
     on_attach = custom_attach
 }
 
+-- Helps with the diagnostics error detection
 require("lsp-colors").setup(
     {
         Error = "#db4b4b",
@@ -202,10 +212,12 @@ require("lsp-colors").setup(
         Hint = "#10B981"
     }
 )
+-- mapped to <space>lt -- this shows a list of diagnostics
 require("trouble").setup {}
+-- for completion
 require("lsp.compe")
+-- some lsp helps
 require("lsp.lspsaga")
-require("handlers")
-require("status").activate()
+-- helps the lsp experience
 require("lsp.handlers")
 require("lsp.status").activate()
