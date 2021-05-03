@@ -27,7 +27,7 @@ let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               ,
 " let g:which_key_map['d'] = [ ':bd!'                                            , 'buffer delete' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
 let g:which_key_map['f'] = [ ':Neoformat'                           , 'format file' ]
-let g:which_key_map['g'] = [ ':LazyGit'                           , 'git' ]
+let g:which_key_map['G'] = [ ':LazyGit'                           , 'git' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['r'] = [ ':Telescope oldfiles'                                   , 'recent files' ]
@@ -84,6 +84,16 @@ let g:which_key_map.F = {
     \ '6' : [':set foldlevel=6'   , 'level6']
     \ }
 
+" S is for Session
+let g:which_key_map.g = {
+      \ 'name' : '+Git' ,
+      \ 's' : [':Gitsigns stage_hunk'           , 'stage hunk'],
+      \ 'u' : [':Gitsigns undo_stage_hunk'           , 'undo stage hunk'],
+      \ 'r' : [':Gitsigns reset_hunk'           , 'reset hunk'],
+      \ 'R' : [':Gitsigns reset_buffer'           , 'reset buffer'],
+      \ 'p' : [':Gitsigns preview_hunk'           , 'preview hunk'],
+      \ 'b' : [':Gitsigns blame_line'           , 'blame line'],
+      \ }
 " s is for search powered by telescope
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
