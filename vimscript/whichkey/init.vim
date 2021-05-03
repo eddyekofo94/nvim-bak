@@ -51,6 +51,12 @@ let g:which_key_map.b = {
       \ 'p' : ['bprevious'              , 'previous-buffer'],
       \ 's' : [':Telescope buffers'                , 'buffers'],
       \ }
+" d is for diagnostics
+let g:which_key_map.d = {
+            \ 'name' : '+diagnostics',
+            \ 'n': [':Lspsaga diagnostic_jump_next', 'diagnostics next'],
+            \ 'p': [':Lspsaga diagnostic_jump_prev', 'diagnostics prev'],
+            \}
 
 " d is for debug
 let g:which_key_map.D = {
