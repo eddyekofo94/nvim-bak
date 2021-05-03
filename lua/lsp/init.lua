@@ -24,7 +24,6 @@ local custom_attach = function(client)
     mapper("n", "<space>dD", "vim.lsp.buf.declaration()")
     mapper("n", "<space>di", "vim.lsp.buf.implementation()")
     mapper("n", "<c-]>", "vim.lsp.buf.definition()")
-    mapper("n", "<c-k>", "vim.lsp.buf.definition()")
     mapper("n", "<space>dR", "vim.lsp.buf.references()")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
     mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
@@ -213,7 +212,7 @@ require("lsp-colors").setup(
     }
 )
 -- mapped to <space>lt -- this shows a list of diagnostics
-require("trouble").setup {}
+require("lsp.lsptrouble")
 -- for completion
 require("lsp.compe")
 -- some lsp helps
