@@ -2,7 +2,6 @@ local gl = require("galaxyline")
 -- get my theme in galaxyline repo
 -- local colors = require('galaxyline.theme').default
 local colors = {
-    -- bg = '#2E2E2E',
     bg = "#1f2335",
     fg = "#c0caf5",
     yellow = "#e0af68",
@@ -124,7 +123,6 @@ gls.right[5] = {
     }
 }
 
-
 gls.right[8] = {
     GitIcon = {
         provider = function()
@@ -156,6 +154,7 @@ gls.right[10] = {
         highlight = {colors.green, colors.bg}
     }
 }
+
 gls.right[11] = {
     DiffModified = {
         provider = "DiffModified",
@@ -164,6 +163,7 @@ gls.right[11] = {
         highlight = {colors.blue, colors.bg}
     }
 }
+
 gls.right[12] = {
     DiffRemove = {
         provider = "DiffRemove",
@@ -172,6 +172,7 @@ gls.right[12] = {
         highlight = {colors.red, colors.bg}
     }
 }
+
 gls.right[13] = {
     BufferType = {
         provider = "FileTypeName",

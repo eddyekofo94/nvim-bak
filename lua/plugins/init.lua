@@ -15,6 +15,7 @@ vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true,
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
 require "colorizer".setup()
+require "surround".setup {} -- TODO: fix this
 
 -- Terminal
 require "toggleterm".setup {

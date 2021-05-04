@@ -44,8 +44,8 @@ return require("packer").startup(
         use {"onsails/lspkind-nvim", opt = true}
         use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
         use {"wbthomason/lsp-status.nvim", opt = true}
-        use 'RishabhRD/popfix'
-        use 'RishabhRD/nvim-lsputils'
+        use "RishabhRD/popfix"
+        use "RishabhRD/nvim-lsputils"
 
         -- " Trying this formatter instead
         use "sbdchd/neoformat"
@@ -98,7 +98,8 @@ return require("packer").startup(
         use {"mbbill/undotree"}
 
         -- TODO: not working
-        use {"tpope/vim-surround"}
+        use {"tpope/vim-surround", opt = true}
+        use {"blackCauldron7/surround.nvim"}
 
         use {"norcalli/nvim-colorizer.lua"}
         -- Window Toggle
