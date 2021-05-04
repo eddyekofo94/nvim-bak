@@ -63,49 +63,36 @@ print(vim.fn.getbufvar(0, "ts"))
 vim.fn.getbufvar(0, "ts")
 
 gls.left[2] = {
-    GitIcon = {
-        provider = function()
-            return " "
-        end,
-        condition = condition.check_git_workspace,
-        separator = " ",
-        separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.orange, colors.bg}
+    FileIcon = {
+        provider = "FileIcon",
+        condition = condition.buffer_not_empty,
+        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
     }
 }
 
 gls.left[3] = {
-    GitBranch = {
-        provider = "GitBranch",
-        condition = condition.check_git_workspace,
-        separator = " ",
+    FileName = {
+        provider = "FileName",
+        condition = condition.buffer_not_empty,
+        highlight = {colors.orange, colors.bg}
+    }
+}
+
+gls.left[4] = {
+    LineInfo = {
+        provider = "LineColumn",
+        separator = "  ",
         separator_highlight = {"NONE", colors.bg},
         highlight = {colors.fg, colors.bg}
     }
 }
 
-gls.left[4] = {
-    DiffAdd = {
-        provider = "DiffAdd",
-        condition = condition.hide_in_width,
-        icon = "  ",
-        highlight = {colors.green, colors.bg}
-    }
-}
 gls.left[5] = {
-    DiffModified = {
-        provider = "DiffModified",
-        condition = condition.hide_in_width,
-        icon = " 柳",
-        highlight = {colors.blue, colors.bg}
-    }
-}
-gls.left[6] = {
-    DiffRemove = {
-        provider = "DiffRemove",
-        condition = condition.hide_in_width,
-        icon = "  ",
-        highlight = {colors.red, colors.bg}
+    PerCent = {
+        provider = "LinePercent",
+        separator = " ",
+        separator_highlight = {"NONE", colors.bg},
+        highlight = {colors.fg, colors.bg}
     }
 }
 
@@ -137,47 +124,65 @@ gls.right[5] = {
     }
 }
 
-gls.right[6] = {
-    LineInfo = {
-        provider = "LineColumn",
-        separator = "  ",
-        separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.fg, colors.bg}
-    }
-}
-
-gls.right[7] = {
-    PerCent = {
-        provider = "LinePercent",
-        separator = " ",
-        separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.fg, colors.bg}
-    }
-}
 
 gls.right[8] = {
-    Tabstop = {
+    GitIcon = {
         provider = function()
-            return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
+            return " "
         end,
-        condition = condition.hide_in_width,
+        condition = condition.check_git_workspace,
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {colors.orange, colors.bg}
     }
 }
 
 gls.right[9] = {
+    GitBranch = {
+        provider = "GitBranch",
+        condition = condition.check_git_workspace,
+        separator = " ",
+        separator_highlight = {"NONE", colors.bg},
+        highlight = {colors.fg, colors.bg}
+    }
+}
+
+gls.right[10] = {
+    DiffAdd = {
+        provider = "DiffAdd",
+        condition = condition.hide_in_width,
+        separator = " ",
+        icon = "  ",
+        highlight = {colors.green, colors.bg}
+    }
+}
+gls.right[11] = {
+    DiffModified = {
+        provider = "DiffModified",
+        condition = condition.hide_in_width,
+        icon = " 柳",
+        highlight = {colors.blue, colors.bg}
+    }
+}
+gls.right[12] = {
+    DiffRemove = {
+        provider = "DiffRemove",
+        condition = condition.hide_in_width,
+        icon = "  ",
+        highlight = {colors.red, colors.bg}
+    }
+}
+gls.right[13] = {
     BufferType = {
         provider = "FileTypeName",
         condition = condition.hide_in_width,
-        separator = " ",
+        separator = " | ",
         separator_highlight = {"NONE", colors.bg},
         highlight = {colors.comment, colors.bg}
     }
 }
 
-gls.right[10] = {
+gls.right[14] = {
     FileEncode = {
         provider = "FileEncode",
         condition = condition.hide_in_width,
@@ -187,7 +192,7 @@ gls.right[10] = {
     }
 }
 
-gls.right[11] = {
+gls.right[15] = {
     Space = {
         provider = function()
             return " "
