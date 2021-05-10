@@ -106,7 +106,6 @@ return require("packer").startup(
         use "szw/vim-maximizer"
 
         -- Color
-        use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
         use {"folke/tokyonight.nvim", opt = true}
 
         -- Icons
@@ -146,7 +145,6 @@ return require("packer").startup(
         require_plugin("nvim-autopairs")
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
-        require_plugin("nvcode-color-schemes.vim")
         require_plugin("nvim-web-devicons")
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")
