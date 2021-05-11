@@ -45,16 +45,16 @@ return require("packer").startup(
         use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
         use {"wbthomason/lsp-status.nvim", opt = true}
         use "RishabhRD/popfix"
-        use "RishabhRD/nvim-lsputils"
+        use {"RishabhRD/nvim-lsputils", opt = true}
 
         -- " Trying this formatter instead
-        use "sbdchd/neoformat"
+        use {"sbdchd/neoformat", opt = true}
 
         -- Telescope
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
-        use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+        use {"nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true}
         use {
             "nvim-telescope/telescope-frecency.nvim",
             config = function()
@@ -70,22 +70,24 @@ return require("packer").startup(
         use {"hrsh7th/nvim-compe", opt = true}
         use {"hrsh7th/vim-vsnip", opt = true}
         use {"rafamadriz/friendly-snippets", opt = true}
-        use {"SirVer/ultisnips"}
-        use {"honza/vim-snippets"}
-        use "dag/vim-fish"
+        use {"SirVer/ultisnips", opt = true}
+        use {"honza/vim-snippets", opt = true}
+        use {"dag/vim-fish", opt = true}
 
         -- Treesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
         use {"windwp/nvim-ts-autotag", opt = true}
 
         -- Explorer
-        use "kyazdani42/nvim-tree.lua"
+        use {"kyazdani42/nvim-tree.lua", opt = true}
+        use {"kevinhwang91/rnvimr", opt = true}
         use {"airblade/vim-rooter", opt = true}
 
         -- Terminal
         use {"akinsho/nvim-toggleterm.lua", opt = true}
+        use {"voldikss/vim-floaterm", opt = true}
 
-        -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
+        use {"lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua"}
         use {"lewis6991/gitsigns.nvim", opt = true}
         use {"kdheepak/lazygit.nvim", opt = true}
         use {"liuchengxu/vim-which-key", opt = true}
@@ -99,11 +101,11 @@ return require("packer").startup(
 
         -- TODO: not working
         use {"tpope/vim-surround", opt = true}
-        use {"blackCauldron7/surround.nvim"}
+        use {"blackCauldron7/surround.nvim", opt = true} -- TODO: ensure it works
 
-        use {"norcalli/nvim-colorizer.lua"}
+        use {"norcalli/nvim-colorizer.lua", opt = true}
         -- Window Toggle
-        use "szw/vim-maximizer"
+        use {"szw/vim-maximizer", opt = true}
 
         -- Color
         use {"folke/tokyonight.nvim", opt = true}
@@ -117,13 +119,20 @@ return require("packer").startup(
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
+        require_plugin("vim-maximizer")
+        require_plugin("nvim-lsputils")
         require_plugin("lsp-status.nvim")
         require_plugin("lsp-trouble.nvim")
+        require_plugin("ultisnips")
+        require_plugin("vim-floaterm")
         require_plugin("lspkind-nvim")
         require_plugin("nvim-lspinstall")
+        require_plugin("rnvimr")
         require_plugin("lsp-colors.nvim")
+        require_plugin("nvim-colorizer.lua")
         require_plugin("astronauta")
         require_plugin("nlua.nvim")
+        require_plugin("indent-blankline.nvim")
         require_plugin("tabular")
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
@@ -150,5 +159,6 @@ return require("packer").startup(
         require_plugin("barbar.nvim")
         require_plugin("tokyonight.nvim")
         require_plugin("vim-surround")
+        require_plugin("surround.nvim")
     end
 )
