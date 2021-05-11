@@ -31,6 +31,7 @@ let g:which_key_map['G'] = [ ':LazyGit'                           , 'git' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['r'] = [ ':Telescope oldfiles'                                   , 'recent files' ]
+let g:which_key_map['R'] = [ ':RnvimrToggle'                                   , 'ranger' ]
 let g:which_key_map['p'] = [ ':Telescope find_files'                                   , 'find files' ]
 let g:which_key_map['t'] = [ ':ToggleTerm'                                   , 'terminal' ]
 " TODO create entire treesitter section
