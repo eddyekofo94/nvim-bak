@@ -119,17 +119,13 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
-" Have Neoformat only msg when there is an error
-let g:neoformat_only_msg_on_error = 1
-
-" TODO: fix this... why is it not working?
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType *.cpp,h,*.hpp,cxx,*.cs,*.fish,*.shell,*.bash,*.ru,*.ts,*.java,*.php,*.lua,javascript :call MaxLineChars()
+    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave * :call clearmatches()
 augroup end
 
@@ -165,9 +161,3 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 autocmd FileType * setlocal nolinebreak
 
-" Toggles the relative number
-augroup numbertoggle
-    autocmd!
-    autocmd FileType,FocusGained,InsertLeave cpp,h,hpp,cxx,cs,fish,shell,bash,ru,ts,java,php,lua,javascript,vim  set relativenumber!
-    autocmd FileType,BufLeave,FocusLost,InsertEnter cpp,h,hpp,cxx,cs,fish,shell,bash,ru,ts,java,php,lua,javascript,vim set norelativenumber!
-augroup end
