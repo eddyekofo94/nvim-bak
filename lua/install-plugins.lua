@@ -94,6 +94,7 @@ return require("packer").startup(
         use {"ChristianChiarulli/dashboard-nvim", opt = true}
         use {"windwp/nvim-autopairs", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
+        use {"folke/todo-comments.nvim", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
         use {"tjdevries/astronauta.nvim"}
         use {"godlygeek/tabular", opt = true}
