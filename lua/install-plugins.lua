@@ -54,6 +54,7 @@ return require("packer").startup(
         use {"nvim-lua/popup.nvim", opt = true}
         use {"nvim-lua/plenary.nvim", opt = true}
         use {"nvim-telescope/telescope.nvim", opt = true}
+        use {"nvim-telescope/telescope-fzf-writer.nvim", opt = true}
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true}
         use {
             "nvim-telescope/telescope-frecency.nvim",
@@ -124,6 +125,8 @@ return require("packer").startup(
         require_plugin("nvim-lsputils")
         require_plugin("lsp-status.nvim")
         require_plugin("lsp-trouble.nvim")
+        require_plugin("todo-comments.nvim")
+        require_plugin("neoformat")
         require_plugin("ultisnips")
         require_plugin("vim-floaterm")
         require_plugin("lspkind-nvim")
@@ -138,6 +141,7 @@ return require("packer").startup(
         require_plugin("popup.nvim")
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")
+        require_plugin("telescope-fzf-writer.nvim")
         require_plugin("nvim-toggleterm.lua")
         require_plugin("telescope-fzf-native.nvim")
         require_plugin("telescope-frecency.nvim")

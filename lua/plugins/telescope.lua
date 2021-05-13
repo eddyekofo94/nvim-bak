@@ -59,6 +59,14 @@ telescope.setup {
                     ["nvim"] = "/home/eddyekofo/.config/nvim/",
                     ["dotfiles"] = "/home/eddyekofo/.files/"
                 }
+            },
+            fzf_writer = {
+                minimum_grep_characters = 2,
+                minimum_files_characters = 2,
+                -- Disabled by default. TODO fix if slowing things down
+                -- Will probably slow down some aspects of the sorter, but can make color highlights.
+                -- I will work on this more later.
+                use_highlighter = true
             }
         },
         mappings = {
@@ -80,3 +88,6 @@ telescope.setup {
 }
 
 require("telescope").load_extension("fzf")
+--TODO Fix this, it is broken
+--require("telescope").extensions.fzf_writer.staged_grep()
+--require('telescope').extensions.fzf_writer.files()
