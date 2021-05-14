@@ -17,6 +17,7 @@ set splitright         " Vertical splits will automatically be to the right
 
 set conceallevel=0     " So that I can see `` in markdown files
 set cursorline         " Enable highlighting of the current line
+set cursorcolumn       " Enable column highlight
 set showtabline=2      " Always show tabs
 set tabstop=4          " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
