@@ -1,4 +1,11 @@
 require("which-key").setup {}
+require("which-key").setup {
+    plugins = {
+        presets = {
+            operators = false
+        }
+    }
+}
 local wk = require("which-key")
 
 local mappings = {
@@ -7,6 +14,9 @@ local mappings = {
         p = {":BufferPick<cr>", "pick buffer"},
         d = {":BufferOrderByDirectory<cr>", "order by directory"},
         l = {":BufferOrderByLanguage<cr>", "order by language"}
+        p = {":BufferPick<cr>", "Pick Buffer"},
+        d = {":BufferOrderByDirectory<cr>", "Order by Directory"},
+        l = {":BufferOrderByLanguage<cr>", "Order by Language"}
     },
     d = {
         name = "+diagnostics",
@@ -45,13 +55,7 @@ local mappings = {
     },
     s = {
         name = "search", -- optional group name
-        b = {"<cmd>Telescope buffers<cr>", "Buffers"}, -- create a binding with label
-        B = {"<cmd>Telescope git_branches<cr>", "Git Branches"}, -- create a binding with label
-        f = {"<cmd>Telescope find_files<cr>", "Find File"}, -- create a binding with label
-        r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = false, buffer = 123}, -- additional options for creating the keymap
-        s = {'<cmd>lua require("telescope").extensions.fzf_writer.staged_grep()<CR>', "String"},
-        t = {"<cmd>Telescope filetypes<cr>", "Filetype"}, -- create a binding with label
-        T = {"<cmd>TodoTelescope<cr>", "TODO"} -- just a label. don't create any mapping
+        b = {":Telescope buffers<cr>", "Buffers"}, -- create a binding with label
     },
     S = {
         name = "+Session",
@@ -59,13 +63,10 @@ local mappings = {
         l = {":SessionLoad<cr>", "load Session"}
     },
     f = {"<cmd>Neoformat<cr>", "Format File"},
-    G = {"<cmd>LazyGit<cr>", "lazygit"},
     E = {"<cmd>NvimTreeFindFile<cr>", "Find Current file"},
     p = {"<cmd>Telescope find_files<cr>", "Find File"},
     r = {"<cmd>Telescope oldfiles<cr>", "Recent File"},
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
-    v = {"<C-W>v", "split right"},
-    w = {"<cmd>MaximizerToggle<CR>", "max window"}
 }
 
 wk.register(mappings, {prefix = "<leader>"})
