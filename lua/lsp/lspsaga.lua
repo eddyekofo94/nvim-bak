@@ -32,10 +32,10 @@ mapper("n", "H", "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>") --
 mapper("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>")
 mapper("n", "gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")
 mapper("n", "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
--- TODO: fix since it os not working :/
+-- FIX: since it os not working :/
 mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- search all files, respecting .gitignore if one exists
 
--- TODO: fix why it's not working?
+-- FIX: why it's not working?
 mapper("n", "<c-f>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
 mapper("n", "<c-b>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
 
