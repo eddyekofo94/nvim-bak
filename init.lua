@@ -12,5 +12,6 @@ require("colorscheme")
 require("lsp")
 require("plugins")
 
--- Which Key (Hope to replace with Lua plugin someday)
-vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")
+-- Which Key (Hope to replace with Lua plugin someday) INFO: currently removing
+-- this
+--vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")
