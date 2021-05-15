@@ -41,6 +41,7 @@ local mappings = {
         v = {":LspVirtualTextToggle<cr>", "lsp toggle virtual text"},
         l = {":Lspsaga lsp_finder<cr>", "lsp finder"},
         L = {":Lspsaga show_line_diagnostics<cr>", "line_diagnostics"},
+        O = {":SymbolsOutline<cr>", "symbol outline"},
         p = {":Lspsaga preview_definition<cr>", "preview definition"},
         q = {":Telescope quickfix<cr>", "quickfix"},
         r = {":Lspsaga rename<cr>", "rename"},
@@ -73,6 +74,7 @@ local mappings = {
     p = {"<cmd>Telescope find_files<cr>", "Find File"},
     r = {"<cmd>Telescope oldfiles<cr>", "Recent File"},
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
+    T = {"<cmd>TodoQuickFix<cr>", "Search TODO"},
     v = {"<C-W>v", "Split Right"},
     w = {"<cmd>MaximizerToggle<CR>", "Max Window"}
 }
