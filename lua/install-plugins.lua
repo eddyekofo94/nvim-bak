@@ -40,6 +40,7 @@ return require("packer").startup(
         use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"folke/lsp-trouble.nvim", opt = true}
+        use {"simrat39/symbols-outline.nvim", opt = true}
         use {"tjdevries/nlua.nvim", opt = true}
         use {"onsails/lspkind-nvim", opt = true}
         use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
@@ -91,7 +92,6 @@ return require("packer").startup(
         use {"lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua"}
         use {"lewis6991/gitsigns.nvim", opt = true}
         use {"kdheepak/lazygit.nvim", opt = true}
-        -- use {"liuchengxu/vim-which-key", opt = true}
         use {"folke/which-key.nvim", opt = true}
         use {"ChristianChiarulli/dashboard-nvim", opt = true}
         use {"windwp/nvim-autopairs", opt = true}
@@ -155,7 +155,6 @@ return require("packer").startup(
         require_plugin("nvim-tree.lua")
         require_plugin("gitsigns.nvim")
         require_plugin("lazygit.nvim")
-        -- require_plugin("vim-which-key")
         require_plugin("which-key.nvim")
         require_plugin("dashboard-nvim")
         require_plugin("nvim-autopairs")

@@ -51,6 +51,12 @@ local mappings = {
         s = {":Telescope lsp_document_symbols<cr>", "document symbols"},
         S = {":Telescope lsp_workspace_symbols<cr>", "workspace symbols"}
     },
+    o = {
+        o = "Add line below"
+    },
+    O = {
+        O = "Add line above"
+    },
     s = {
         name = "search", -- optional group name
         b = {":Telescope buffers<cr>", "Buffers"}, -- create a binding with label
