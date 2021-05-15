@@ -78,7 +78,7 @@ set updatetime=300
 " Don't pass messages to | ins-completion-menu | .
 set shortmess+=c
 
-                     " Wrapping options
+" Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq

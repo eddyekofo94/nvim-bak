@@ -1,4 +1,3 @@
-require("which-key").setup {}
 require("which-key").setup {
     plugins = {
         presets = {
@@ -6,14 +5,12 @@ require("which-key").setup {
         }
     }
 }
+
 local wk = require("which-key")
 
 local mappings = {
     b = {
         name = "+buffer",
-        p = {":BufferPick<cr>", "pick buffer"},
-        d = {":BufferOrderByDirectory<cr>", "order by directory"},
-        l = {":BufferOrderByLanguage<cr>", "order by language"}
         p = {":BufferPick<cr>", "Pick Buffer"},
         d = {":BufferOrderByDirectory<cr>", "Order by Directory"},
         l = {":BufferOrderByLanguage<cr>", "Order by Language"}
@@ -38,7 +35,7 @@ local mappings = {
         A = {":Lspsaga range_code_action<cr>", "selected action"},
         d = {":Telescope lsp_document_diagnostics<cr>", "document diagnostics"},
         D = {":Telescope lsp_workspace_diagnostics<cr>", "workspace diagnostics"},
-        f = {":LspFormatting", "format<cr>"},
+        f = {":LspFormatting<cr>", "format"},
         h = {":Lspsaga signature_help<cr>", "signature help"},
         I = {":LspInfo<cr>", "lsp info"},
         v = {":LspVirtualTextToggle<cr>", "lsp toggle virtual text"},
@@ -56,17 +53,28 @@ local mappings = {
     s = {
         name = "search", -- optional group name
         b = {":Telescope buffers<cr>", "Buffers"}, -- create a binding with label
+        B = {":Telescope git_branches<cr>", "Git Branches"}, -- create a binding with label
+        f = {":Telescope find_files<cr>", "Find File"}, -- create a binding with label
+        r = {":Telescope oldfiles<cr>", "Open Recent File", noremap = false, buffer = 123}, -- additional options for creating the keymap
+        s = {':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>', "String"},
+        t = {":Telescope filetypes<cr>", "Filetype"}, -- create a binding with label
+        T = {":TodoTelescope<cr>", "TODO"} -- just a label. don't create any mapping
     },
     S = {
         name = "+Session",
         s = {":SessionSave<cr>", "save session"},
         l = {":SessionLoad<cr>", "load Session"}
     },
+    ["/"] = "Comment",
+    ["h"] = "Highlight",
     f = {"<cmd>Neoformat<cr>", "Format File"},
+    G = {"<cmd>LazyGit<cr>", "Lazygit"},
     E = {"<cmd>NvimTreeFindFile<cr>", "Find Current file"},
     p = {"<cmd>Telescope find_files<cr>", "Find File"},
     r = {"<cmd>Telescope oldfiles<cr>", "Recent File"},
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
+    v = {"<C-W>v", "Split Right"},
+    w = {"<cmd>MaximizerToggle<CR>", "Max Window"}
 }
 
 wk.register(mappings, {prefix = "<leader>"})
