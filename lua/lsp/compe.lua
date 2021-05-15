@@ -37,17 +37,8 @@ require "compe".setup {
     --     vsnip = true,
     --     nvim_lua = true,
     --     spell = true
-    -- while
     -- }
 }
-
-local mapper = function(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
-end
--- vim.api.nvim_set_keymap
-mapper("i", "<expr> <C-Space>", "compe#complete()")
-mapper("i", "<expr> <CR>", "compe#confirm('<CR>')")
-mapper("i", "<expr> <C-e>", "compe#close('<C-e>')")
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
