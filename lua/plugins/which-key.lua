@@ -8,7 +8,7 @@ require("which-key").setup {
 
 local wk = require("which-key")
 
-local mappings = {
+local leader_mappings = {
     b = {
         name = "+buffer",
         p = {":BufferPick<cr>", "Pick Buffer"},
@@ -50,12 +50,6 @@ local mappings = {
         x = {":cclose<cr>", "close quickfix"},
         s = {":Telescope lsp_document_symbols<cr>", "document symbols"},
         S = {":Telescope lsp_workspace_symbols<cr>", "workspace symbols"}
-    },
-    o = {
-        o = "Add line below"
-    },
-    O = {
-        O = "Add line above"
     },
     s = {
         name = "search", -- optional group name
