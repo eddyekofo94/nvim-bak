@@ -67,11 +67,12 @@ local leader_mappings = {
         l = {":SessionLoad<cr>", "load Session"}
     },
     ["/"] = "Comment",
+    ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
     ["h"] = "Highlight",
     H = {':let @/ = ""<cr>', "Remove Highlight"},
     f = {"<cmd>Neoformat<cr>", "Format File"},
     G = {"<cmd>LazyGit<cr>", "Lazygit"},
-    E = {"<cmd>NvimTreeFindFile<cr>", "Find Current file"},
+    e = {"Explorer"},
     p = {"<cmd>Telescope find_files<cr>", "Find File"},
     r = {"<cmd>Telescope oldfiles<cr>", "Recent File"},
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
@@ -89,6 +90,23 @@ local text_object_mappings = {
     }
 }
 
+local next_movement_mappings = {
+    ["]"] = {
+        name = "next",
+        c = {"next git hunk"},
+        d = {"next diagnostic"}
+    }
+}
+
+local prev_movement_mappings = {
+    ["["] = {
+        name = "prev",
+        c = {"prev git hunk"},
+        d = {"prev diagnostic"}
+    }
+}
+
 wk.register(leader_mappings, {prefix = "<leader>"})
 wk.register(text_object_mappings, {prefix = ""})
-
+wk.register(prev_movement_mappings, {prefix = ""})
+wk.register(next_movement_mappings, {prefix = ""})
