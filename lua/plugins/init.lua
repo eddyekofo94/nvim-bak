@@ -1,24 +1,4 @@
--- Initialize plugins
-require("plugins.telescope")
-require("plugins.web-devicons")
-require("plugins.autopairs")
-require("plugins.galaxyline")
-require("plugins.barbar")
-require("plugins.gitsigns")
-require("plugins.nvimtree")
-require("plugins.dashboard")
-require("plugins.treesitter")
-require("plugins.which-key")
-
--- nvim-comment
-require("nvim_comment").setup()
-vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-
-require "colorizer".setup()
-require "surround".setup {} -- TODO: fix this
-require "todo-comments".setup {}
-
+-- Various plugins which I installed
 -- Terminal
 require "toggleterm".setup {
     size = 20,
@@ -93,3 +73,24 @@ vim.g.indent_blankline_context_patterns = {
     "for"
 }
 vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
+
+
+-- nvim-comment
+require("nvim_comment").setup()
+vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+
+-- Initialize plugins
+require "colorizer".setup()
+require "surround".setup {} -- TODO: fix this
+require "todo-comments".setup {}
+require("plugins.telescope")
+require("plugins.web-devicons")
+require("plugins.autopairs")
+require("plugins.galaxyline")
+require("plugins.barbar")
+require("plugins.gitsigns")
+require("plugins.nvimtree")
+require("plugins.dashboard")
+require("plugins.treesitter")
+require("plugins.which-key")

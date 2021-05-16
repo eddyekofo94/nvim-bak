@@ -1,14 +1,13 @@
-
-vim.cmd("source ~/.config/nvim/vimscript/sets.vim")
+-- Initialise eveything from here
+require("globals")
 vim.cmd("source ~/.config/nvim/vimscript/keys.vim")
 require("install-plugins")
-require("globals")
-require("utils")
+require("colorscheme")
 vim.cmd("luafile ~/.config/nvim/base-settings.lua")
+require("utils")
 require("autocommands")
 require("settings")
 require("keymappings")
-require("colorscheme")
 require("lsp")
 require("plugins")
 

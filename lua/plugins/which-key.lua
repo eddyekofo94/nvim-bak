@@ -62,7 +62,7 @@ local mappings = {
         b = {":Telescope buffers<cr>", "Buffers"}, -- create a binding with label
         B = {":Telescope git_branches<cr>", "Git Branches"}, -- create a binding with label
         f = {":Telescope find_files<cr>", "Find File"}, -- create a binding with label
-        r = {":Telescope oldfiles<cr>", "Open Recent File", noremap = false, buffer = 123}, -- additional options for creating the keymap
+        r = {":Telescope oldfiles<cr>", "Open Recent File"}, -- additional options for creating the keymap
         s = {':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>', "String"},
         t = {":Telescope filetypes<cr>", "Filetype"}, -- create a binding with label
         T = {":TodoTelescope<cr>", "TODO"} -- just a label. don't create any mapping
@@ -74,6 +74,7 @@ local mappings = {
     },
     ["/"] = "Comment",
     ["h"] = "Highlight",
+    H = {':let @/ = ""<cr>', "Remove Highlight"},
     f = {"<cmd>Neoformat<cr>", "Format File"},
     G = {"<cmd>LazyGit<cr>", "Lazygit"},
     E = {"<cmd>NvimTreeFindFile<cr>", "Find Current file"},
@@ -85,6 +86,15 @@ local mappings = {
     w = {"<cmd>MaximizerToggle<CR>", "Max Window"}
 }
 
-wk.register(mappings, {prefix = "<leader>"})
+local text_object_mappings = {
+    o = {
+        o = "Add line below"
+    },
+    O = {
+        O = "Add line above"
+    }
+}
 
-return wk
+wk.register(leader_mappings, {prefix = "<leader>"})
+wk.register(text_object_mappings, {prefix = ""})
+
