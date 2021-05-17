@@ -1,14 +1,5 @@
 -- Various plugins which I installed
 -- Terminal
-require "toggleterm".setup {
-    size = 20,
-    open_mapping = [[<c-\>]],
-    hide_numbers = true,
-    start_in_insert = true,
-    shell = vim.o.shell, -- change the default shell
-    direction = {"vertical"}
-}
-
 vim.g.floaterm_keymap_toggle = "<F5>" -- TODO: fix
 vim.g.floaterm_keymap_next = "<F2>"
 vim.g.floaterm_keymap_prev = "<F3>"
@@ -47,7 +38,7 @@ vim.g.indent_blankline_filetype_exclude = {
     "vista",
     "help",
     "todoist",
-    "NvimTree",
+    -- "NvimTree",
     "peekaboo",
     "git",
     "TelescopePrompt",
@@ -85,12 +76,12 @@ require "colorizer".setup()
 require "surround".setup {} -- TODO: fix this
 require "todo-comments".setup {}
 require("plugins.telescope")
+-- require("plugins.dashboard")
 require("plugins.web-devicons")
 require("plugins.autopairs")
 require("plugins.galaxyline")
 require("plugins.barbar")
 require("plugins.gitsigns")
 require("plugins.nvimtree")
-require("plugins.dashboard")
-require("plugins.treesitter")
+-- require("plugins.treesitter")
 require("plugins.which-key")
