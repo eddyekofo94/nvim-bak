@@ -63,7 +63,6 @@ utils.define_augroups(
         _buffer_bindings = {
             {"FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>"},
             {"FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>"},
-            {"FileType", "toggleterm", "nnoremap <silent> <buffer> q :q<CR>"}
         },
         _auto_formatters = auto_formatters
     }
