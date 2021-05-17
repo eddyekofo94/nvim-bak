@@ -43,7 +43,6 @@ set nobackup
 set timeoutlen=1000                      " By default timeoutlen is 1000 ms
 set shiftround                          " For better indentation"
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-" set guifont=UbuntuMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
@@ -53,7 +52,6 @@ set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option
 set pumblend=17 ""Enables pseudo-transparency for the popup-menu
-set completeopt=menu,menuone,noselect " The option needed in oeder for compe pluggin to work
 set virtualedit=block
 set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
@@ -63,7 +61,6 @@ augroup CHAR_BREAK
   au!
   autocmd FileType vim set textwidth=120
 augroup end
-" set textwidth=90
 
 " Decent wildmenu
 set wildmode=longest:full,full
@@ -131,8 +128,8 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufLeave,BufDelete * :call clearmatches()
+    autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    autocmd BufWinLeave,BufDelete * :call clearmatches()
 augroup end
 
 " Remove whitespace
