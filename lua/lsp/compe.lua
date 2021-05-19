@@ -15,13 +15,13 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
+        vsnip = {kind = "  "}, -- BUG: not working... fix
         ultisnips = {kind = "  "}, -- TODO: why the lspkind not working
         nvim_lsp = {kind = "  "},
         buffer = {kind = "  "},
         spell = {kind = "  "},
         path = {kind = "  "},
         calc = {kind = "  "},
-        vsnip = {kind = "  "}, -- BUG: not working... fix
         nvim_lua = true,
         tags = false,
         vim_dadbod_completion = true,
