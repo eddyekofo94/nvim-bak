@@ -11,9 +11,12 @@ local wk = require("which-key")
 local leader_mappings = {
     b = {
         name = "+buffer",
-        p = {":BufferPick<cr>", "Pick Buffer"},
         d = {":BufferOrderByDirectory<cr>", "Order by Directory"},
-        l = {":BufferOrderByLanguage<cr>", "Order by Language"}
+        c = {":BufferCloseAllButCurrent<cr>", "Close all but current"},
+        l = {":BufferOrderByLanguage<cr>", "Order by Language"},
+        p = {":BufferPick<cr>", "Pick Buffer"},
+        r = {":BufferCloseBufferRight<cr>", "Buffer close right"},
+        x = {":BufferDelete<cr>", "Buffer delete"},
     },
     d = {
         name = "+diagnostics",
