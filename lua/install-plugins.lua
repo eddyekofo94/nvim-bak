@@ -44,6 +44,7 @@ return require("packer").startup(
         use {"tjdevries/nlua.nvim", opt = true}
         use {"onsails/lspkind-nvim", opt = true}
         use {"folke/lsp-colors.nvim", opt = true} -- improves the lsp warning colours TODO: ensure it works
+        use {"nvim-lua/lsp_extensions.nvim", opt = true}
         use {"wbthomason/lsp-status.nvim", opt = true}
         use "RishabhRD/popfix"
         use {"RishabhRD/nvim-lsputils", opt = true}
@@ -57,6 +58,7 @@ return require("packer").startup(
         use {"nvim-telescope/telescope.nvim", opt = true}
         use {"nvim-telescope/telescope-fzf-writer.nvim", opt = true}
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true}
+        use {"nvim-telescope/telescope-project.nvim", opt = true}
         use {
             "nvim-telescope/telescope-frecency.nvim",
             config = function()
@@ -67,13 +69,17 @@ return require("packer").startup(
 
         -- Debugging
         use {"mfussenegger/nvim-dap", opt = true}
+        use {"rcarriga/nvim-dap-ui", opt = true}
 
         -- Autocomplete
         use {"hrsh7th/nvim-compe", opt = true}
+
         use {"hrsh7th/vim-vsnip", opt = true}
         use {"rafamadriz/friendly-snippets", opt = true}
+
         use {"SirVer/ultisnips", opt = true}
         use {"honza/vim-snippets", opt = true}
+
         use {"dag/vim-fish", opt = true}
 
         -- Treesitter
@@ -86,7 +92,6 @@ return require("packer").startup(
         use {"airblade/vim-rooter", opt = true}
 
         -- Terminal
-        use {"akinsho/nvim-toggleterm.lua", opt = true}
         use {"voldikss/vim-floaterm", opt = true}
 
         use {"lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua"}
@@ -112,6 +117,7 @@ return require("packer").startup(
 
         -- Color
         use {"folke/tokyonight.nvim", opt = true}
+        use {"shaunsingh/nord.nvim", opt = true}
 
         -- Icons
         use {"kyazdani42/nvim-web-devicons", opt = true}
@@ -126,11 +132,14 @@ return require("packer").startup(
         require_plugin("nvim-lsputils")
         require_plugin("lsp-status.nvim")
         require_plugin("lsp-trouble.nvim")
+        require_plugin("symbols-outline.nvim")
         require_plugin("todo-comments.nvim")
         require_plugin("neoformat")
+        require_plugin("lsp_extensions.nvim")
         require_plugin("ultisnips")
         require_plugin("vim-floaterm")
         require_plugin("lspkind-nvim")
+        require_plugin("which-key.nvim")
         require_plugin("nvim-lspinstall")
         require_plugin("rnvimr")
         require_plugin("lsp-colors.nvim")
@@ -143,19 +152,21 @@ return require("packer").startup(
         require_plugin("plenary.nvim")
         require_plugin("telescope.nvim")
         require_plugin("telescope-fzf-writer.nvim")
-        require_plugin("nvim-toggleterm.lua")
         require_plugin("telescope-fzf-native.nvim")
         require_plugin("telescope-frecency.nvim")
+        require_plugin("telescope-project.nvim")
         require_plugin("nvim-dap")
+        require_plugin("nvim-dap-ui")
         require_plugin("vim-rooter")
         require_plugin("nvim-compe")
         require_plugin("vim-vsnip")
+        require_plugin("friendly-snippets")
+        -- require_plugin("vim-vsnip-integ")
         require_plugin("nvim-treesitter")
         require_plugin("nvim-ts-autotag")
         require_plugin("nvim-tree.lua")
         require_plugin("gitsigns.nvim")
         require_plugin("lazygit.nvim")
-        require_plugin("which-key.nvim")
         require_plugin("dashboard-nvim")
         require_plugin("nvim-autopairs")
         require_plugin("nvim-comment")
@@ -164,6 +175,7 @@ return require("packer").startup(
         require_plugin("galaxyline.nvim")
         require_plugin("barbar.nvim")
         require_plugin("tokyonight.nvim")
+        require_plugin("nord.nvim")
         require_plugin("vim-surround")
         require_plugin("surround.nvim")
     end

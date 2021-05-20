@@ -40,7 +40,7 @@ local custom_attach = function(client)
 
     -- TODO: find a way to get this working in the future
     if client.resolved_capabilities.document_range_formatting then
-        mapper("v", "<space>lF", "vim.lsp.buf.range_formatting()")
+        mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
     end
 
     -- Set autocommands conditional on server_capabilities
@@ -100,6 +100,14 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 updated_capabilities.textDocument.codeLens = {
     dynamicRegistration = false
 }
+updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
+updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdit"
+    }
+}
 
 updated_capabilities = vim.tbl_extend("keep", updated_capabilities, nvim_status.capabilities)
 
@@ -157,6 +165,7 @@ lspconfig.rust_analyzer.setup(
         cmd = {"rust-analyzer"},
         filetypes = {"rust"},
         on_attach = custom_attach,
+        capabilities = updated_capabilities,
         handlers = {
             ["textDocument/publishDiagnostics"] = vim.lsp.with(
                 vim.lsp.diagnostic.on_publish_diagnostics,
