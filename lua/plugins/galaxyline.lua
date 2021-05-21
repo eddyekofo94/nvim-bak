@@ -101,11 +101,19 @@ gls.right[1] = {
 gls.right[2] = {DiagnosticWarn = {provider = "DiagnosticWarn", icon = "  ", highlight = {colors.orange, colors.bg}}}
 
 gls.right[3] = {
-    DiagnosticHint = {provider = "DiagnosticHint", icon = "  ", highlight = {colors.vivid_blue, colors.bg}}
+    DiagnosticHint = {
+        provider = "DiagnosticHint",
+        icon = "  ",
+        highlight = {gruvbox.natural_blue, colors.bg}
+    }
 }
 
 gls.right[4] = {
-    DiagnosticInfo = {provider = "DiagnosticInfo", icon = "  ", highlight = {colors.info_yellow, colors.bg}}
+    DiagnosticInfo = {
+        provider = "DiagnosticInfo",
+        icon = "  ",
+        highlight = {gruvbox.natural_blue, colors.bg}
+    }
 }
 
 gls.right[5] = {
