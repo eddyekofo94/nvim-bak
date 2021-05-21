@@ -1,7 +1,7 @@
 O = {
     auto_close_tree = 0,
     auto_complete = true,
-    colorscheme = 'tokyonight',
+    colorscheme = 'gruvbox',
     hidden_files = true,
     wrap_lines = false,
     number = true,
@@ -9,6 +9,11 @@ O = {
     shell = 'fish',
 
     -- @usage pass a table with your desired languages
+
+
+
+
+
     treesitter = {
         ensure_installed = "maintained",
         ignore_install = {"haskell"},
