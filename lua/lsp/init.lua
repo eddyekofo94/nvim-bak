@@ -4,7 +4,8 @@ local lspconfig = require("lspconfig")
 _ = require("lspkind").init()
 
 local mapper = function(mode, key, result)
-    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>",
+                                {noremap = true, silent = true})
 end
 
 local custom_init = function(client)
@@ -34,7 +35,8 @@ local custom_attach = function(client)
     if client.resolved_capabilities.document_formatting then
         vim.api.nvim_command [[augroup Format]]
         vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api
+            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
         vim.api.nvim_command [[augroup END]]
     end
 
@@ -45,8 +47,7 @@ local custom_attach = function(client)
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
+        vim.api.nvim_exec([[
         hi LspReferenceRead cterm=bold ctermbg=None guibg=None guifg=LightYellow
         hi LspReferenceText cterm=bold ctermbg=None guibg=None guifg=LightGreen
         hi LspReferenceWrite cterm=bold ctermbg=None guibg=None guifg=Pink
@@ -55,25 +56,18 @@ local custom_attach = function(client)
           autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
           autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
-      ]],
-            false
-        )
+      ]], false)
     end
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        {
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
             -- Hide virtual text
             virtual_text = true,
             -- Increase diagnostic signs priority
-            signs = {
-                priority = 9999
-            },
+            signs = {priority = 9999},
             update_in_insert = true
-        }
-    )
+        })
 
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
@@ -81,145 +75,91 @@ local custom_attach = function(client)
     if filetype == "rust" then
         vim.cmd(
             [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]] ..
-                [[aligned = true, prefix = " » " ]] .. [[} ]]
-        )
+                [[aligned = true, prefix = " » " ]] .. [[} ]])
     end
 
     if vim.tbl_contains({"go", "rust"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 
-    if filetype ~= "lua" then
-        mapper("n", "K", "vim.lsp.buf.hover()")
-    end
+    if filetype ~= "lua" then mapper("n", "K", "vim.lsp.buf.hover()") end
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
-updated_capabilities.textDocument.codeLens = {
-    dynamicRegistration = false
-}
-updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
+updated_capabilities.textDocument.codeLens = {dynamicRegistration = false}
+updated_capabilities.textDocument.completion.completionItem.snippetSupport =
+    true
 updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdit"
-    }
+    properties = {"documentation", "detail", "additionalTextEdit"}
 }
 
-updated_capabilities = vim.tbl_extend("keep", updated_capabilities, nvim_status.capabilities)
+updated_capabilities = vim.tbl_extend("keep", updated_capabilities,
+                                      nvim_status.capabilities)
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ",
-    "   (Method)",
-    "   (Function)",
-    "   (Constructor)",
-    " ﴲ  (Field)",
-    "[] (Variable)",
-    "   (Class)",
-    " ﰮ  (Interface)",
-    "   (Module)",
-    " 襁 (Property)",
-    "   (Unit)",
-    "   (Value)",
-    " 練 (Enum)",
-    "   (Keyword)",
-    " ﬌  (Snippet)",
-    "   (Color)",
-    "   (File)",
-    "   (Reference)",
-    "   (Folder)",
-    "   (EnumMember)",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
-    "   (Event)",
-    "   (Operator)",
-    "   (TypeParameter)"
+    "   (Text) ", "   (Method)", "   (Function)",
+    "   (Constructor)", " ﴲ  (Field)", "[] (Variable)", "   (Class)",
+    " ﰮ  (Interface)", "   (Module)", " 襁 (Property)", "   (Unit)",
+    "   (Value)", " 練 (Enum)", "   (Keyword)", " ﬌  (Snippet)",
+    "   (Color)", "   (File)", "   (Reference)", "   (Folder)",
+    "   (EnumMember)", " ﲀ  (Constant)", " ﳤ  (Struct)", "   (Event)",
+    "   (Operator)", "   (TypeParameter)"
 }
 
-lspconfig.clangd.setup(
-    {
-        cmd = {
-            "clangd",
-            "--background-index",
-            "--suggest-missing-includes",
-            "--clang-tidy",
-            "--header-insertion=iwyu"
-        },
-        on_init = custom_init,
-        on_attach = custom_attach,
-        -- Required for lsp-status
-        init_options = {
-            clangdFileStatus = true
-        },
-        handlers = nvim_status.extensions.clangd.setup(),
-        capabilities = nvim_status.capabilities
-    }
-)
+lspconfig.clangd.setup({
+    cmd = {
+        "clangd", "--background-index", "--suggest-missing-includes",
+        "--clang-tidy", "--header-insertion=iwyu"
+    },
+    on_init = custom_init,
+    on_attach = custom_attach,
+    -- Required for lsp-status
+    init_options = {clangdFileStatus = true},
+    handlers = nvim_status.extensions.clangd.setup(),
+    capabilities = nvim_status.capabilities
+})
 
-lspconfig.rust_analyzer.setup(
-    {
-        cmd = {"rust-analyzer"},
-        filetypes = {"rust"},
-        on_attach = custom_attach,
-        capabilities = updated_capabilities,
-        handlers = {
-            ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics,
-                {
-                    signs = true,
-                    virtual_text = true,
-                    update_in_insert = true
-                }
-            )
-        }
+lspconfig.rust_analyzer.setup({
+    cmd = {"rust-analyzer"},
+    filetypes = {"rust"},
+    on_attach = custom_attach,
+    capabilities = updated_capabilities,
+    handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic
+                                                               .on_publish_diagnostics,
+                                                           {
+            signs = true,
+            virtual_text = true,
+            update_in_insert = true
+        })
     }
-)
+})
 
-lspconfig.cmake.setup(
-    {
-        cmd = {"cmake-language-server"},
-        filetypes = {"cmake"},
-        on_attach = custom_attach,
-        init_options = {
-            buildDirectory = "build/"
-        }
-    }
-)
+lspconfig.cmake.setup({
+    cmd = {"cmake-language-server"},
+    filetypes = {"cmake"},
+    on_attach = custom_attach,
+    init_options = {buildDirectory = "build/"}
+})
 
-require("nlua.lsp.nvim").setup(
-    lspconfig,
-    {
-        on_init = custom_init,
-        on_attach = custom_attach
-    }
-)
+require("nlua.lsp.nvim").setup(lspconfig, {
+    on_init = custom_init,
+    on_attach = custom_attach
+})
 
 lspconfig.bashls.setup {on_attach = custom_attach}
 
 -- yaml TODO: ensure that it works
-lspconfig.yamlls.setup {
-    on_init = custom_init,
-    on_attach = custom_attach
-}
+lspconfig.yamlls.setup {on_init = custom_init, on_attach = custom_attach}
 
-lspconfig.vimls.setup {
-    on_init = custom_init,
-    on_attach = custom_attach
-}
+lspconfig.vimls.setup {on_init = custom_init, on_attach = custom_attach}
 
 -- Helps with the diagnostics error detection
-require("lsp-colors").setup(
-    {
-        Error = "#db4b4b",
-        Warning = "#e0af68",
-        Information = "#0db9d7",
-        Hint = "#10B981"
-    }
-)
+require("lsp-colors").setup()
+
 -- mapped to <space>lt -- this shows a list of diagnostics
 require("lsp.lsptrouble")
 -- for completion
