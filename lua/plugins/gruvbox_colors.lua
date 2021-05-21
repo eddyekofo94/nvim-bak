@@ -37,6 +37,7 @@ local gruvbox_colors = {
   faded_aqua = "#427b58",
   faded_orange = "#af3a03",
   comment = "#928374",
+  none = "NONE"
 }
 
 return gruvbox_colors
