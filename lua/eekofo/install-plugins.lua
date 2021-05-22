@@ -87,9 +87,6 @@ return require("packer").startup(function(use)
     use {"kevinhwang91/rnvimr", opt = true}
     use {"airblade/vim-rooter", opt = true}
 
-    -- Terminal
-    use {"voldikss/vim-floaterm", opt = true}
-
     use {"lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua"}
     use {"lewis6991/gitsigns.nvim", opt = true}
     use {"kdheepak/lazygit.nvim", opt = true}
@@ -138,7 +135,6 @@ return require("packer").startup(function(use)
     require_plugin("neoformat")
     require_plugin("lsp_extensions.nvim")
     require_plugin("ultisnips")
-    require_plugin("vim-floaterm")
     require_plugin("lspkind-nvim")
     require_plugin("which-key.nvim")
     require_plugin("nvim-lspinstall")
