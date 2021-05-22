@@ -1,5 +1,5 @@
 vim.cmd("set termguicolors")
-local utils = require("utils")
+local utils = require("eekofo.utils")
 
 local auto_formatters = {}
 

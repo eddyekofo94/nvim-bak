@@ -1,4 +1,4 @@
-local colors = require"plugins.gruvbox_colors"
+local colors = require"eekofo.plugins.gruvbox_colors"
 require "nvim-web-devicons".setup(
     {
         -- your personnal icons can go here (to override)

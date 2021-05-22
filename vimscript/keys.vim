@@ -38,24 +38,6 @@ nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-"autocmd! User GoyoEnter Limelight
-"autocmd! User GoyoLeave Limelight!
-
-" TODO: Fix the limelight not closing on GoyoLeave!!
-augroup ZenMode
-  au!
-  autocmd User GoyoEnter Limelight
-  autocmd User GoyoEnter lua require 'galaxyline'.disable_galaxyline()
-augroup END
-" autocmd! User GoyoEnter Limelight lua require('galaxyline').disable_galaxyline()
-augroup ZenModeOff
-  au!
-  autocmd User GoyoLeave lua require 'galaxyline'.galaxyline_augroup()
-  autocmd User GotoLeave Limelight!
-augroup END
-
-" autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
-
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <C-c> <esc>
 
@@ -76,4 +58,5 @@ nnoremap Y  y$ " Thank you TPope
 " TODO: Fix in the future, not working at all
 nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
 
