@@ -4,7 +4,7 @@
 local lualine = require 'lualine'
 
 -- Color table for highlights
-local colors = require "plugins.gruvbox_colors"
+local colors = O.gruvbox_colors
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
