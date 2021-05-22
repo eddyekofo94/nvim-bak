@@ -46,7 +46,6 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
-set termguicolors
 set scrolloff=10                         " start scholling when you're near the bottom by 8
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
@@ -128,8 +127,8 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufWinLeave,BufDelete * :call clearmatches()
+    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
 " Remove whitespace

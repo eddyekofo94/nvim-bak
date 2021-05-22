@@ -125,6 +125,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-trouble.nvim"
   },
+  ["lsp_extensions.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp_extensions.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -144,6 +149,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nlua.nvim"
+  },
+  ["nord.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = false,
@@ -176,6 +186,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
+  ["nvim-dap-ui"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-dap-ui"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,
@@ -190,11 +205,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-lsputils"
-  },
-  ["nvim-toggleterm.lua"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-toggleterm.lua"
   },
   ["nvim-tree.lua"] = {
     loaded = false,
@@ -247,6 +257,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/surround.nvim"
   },
+  ["symbols-outline.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/symbols-outline.nvim"
+  },
   tabular = {
     after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tabular/after/plugin/TabularMaps.vim" },
     loaded = false,
@@ -267,6 +282,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-fzf-writer.nvim"
+  },
+  ["telescope-project.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim"
   },
   ["telescope.nvim"] = {
     loaded = false,

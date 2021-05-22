@@ -32,4 +32,9 @@ function M.define_augroups(definitions) -- {{{1
     end
 end
 
+function ReloadConfig()
+    print('Reloading config')
+    require'plenary.reload'.reload_module('eekofo')
+end
+
 return M

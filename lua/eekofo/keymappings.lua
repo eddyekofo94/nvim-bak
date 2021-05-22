@@ -5,7 +5,7 @@ end
 
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 vim.g.mapleader = " "
-vim.g.UltiSnipsExpandTrigger = "<F5>"
+-- vim.g.UltiSnipsExpandTrigger = "<F5>"
 -- vim.cmd("let g:UltiSnipsExpandTrigger = '<F5>'")
 
 -- no hl

@@ -1,0 +1,8 @@
+require("settings")
+require("colorscheme")
+require("install-plugins")
+require("eekofo.plugins")
+require("eekofo.lsp")
+require("utils")
+require("autocommands")
+require("keymappings")

@@ -1,3 +1,4 @@
+-- INFO: not sure if is working!
 local nvim_status  = require('lsp-status')
 
 local status = {}

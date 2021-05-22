@@ -1,3 +1,4 @@
+local colors = require"plugins.gruvbox_colors"
 require "nvim-web-devicons".setup(
     {
         -- your personnal icons can go here (to override)
@@ -10,12 +11,12 @@ require "nvim-web-devicons".setup(
             },
             fish = {
                 icon = "",
-                color = "#FF9250",
+                color = colors.orange,
                 name = "Fish"
             }
         },
         -- globally enable default icons (default to false)
         -- will get overriden by `get_icons` option
-        default = false
+        -- default = false
     }
 )

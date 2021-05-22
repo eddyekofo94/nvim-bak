@@ -76,11 +76,11 @@ require "colorizer".setup()
 require "surround".setup {} -- TODO: fix this
 require "todo-comments".setup {}
 require("plugins.telescope")
--- require("plugins.dashboard")
+require("plugins.dashboard")
 require("plugins.web-devicons")
 require("plugins.autopairs")
 --require("plugins.galaxyline")
--- require("plugins.evil_lualine")
+require("plugins.lualine")
 require("plugins.barbar")
 require("plugins.gitsigns")
 require("plugins.nvimtree")

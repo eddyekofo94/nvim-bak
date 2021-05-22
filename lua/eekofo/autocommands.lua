@@ -1,3 +1,4 @@
+vim.cmd("set termguicolors")
 local utils = require("utils")
 
 local auto_formatters = {}

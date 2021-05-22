@@ -1,20 +1,10 @@
 local gl = require("galaxyline")
 -- get my theme in galaxyline repo
--- local colors = require('galaxyline.theme').default
-local colors = {
-    bg = "#1f2335",
-    fg = "#c0caf5",
-    yellow = "#e0af68",
-    dark_yellow = "#D7BA7D",
-    cyan = "#4EC9B0",
-    green = "#9ece6a",
-    light_green = "#73daca",
-    string_orange = "#CE9178",
-    orange = "#ff9e64",
-    purple = "#9d7cd8",
-    magenta = "#bb9af7",
-    grey = "#858585",
-    blue = "#7aa2f7",
+local colors = require('galaxyline.theme').default
+
+local gruvbox = require "plugins.gruvbox_colors"
+
+local info_colors = {
     vivid_blue = "#4FC1FF",
     light_blue = "#9CDCFE",
     red = "#f7768e",
@@ -22,9 +12,10 @@ local colors = {
     info_yellow = "#FFCC66",
     comment = "#565f89"
 }
+
 local condition = require("galaxyline.condition")
 local gls = gl.section
-gl.short_line_list = {"NvimTree", "vista", "dbui", "packer"}
+gls.short_line_list = {"NvimTree", "vista", "dbui", "packer"}
 
 gls.left[1] = {
     ViMode = {
@@ -65,7 +56,10 @@ gls.left[2] = {
     FileIcon = {
         provider = "FileIcon",
         condition = condition.buffer_not_empty,
-        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+        highlight = {
+            require("galaxyline.provider_fileinfo").get_file_icon_color,
+            colors.bg
+        }
     }
 }
 
@@ -96,9 +90,19 @@ gls.left[5] = {
 }
 
 gls.right[1] = {
-    DiagnosticError = {provider = "DiagnosticError", icon = "  ", highlight = {colors.error_red, colors.bg}}
+    DiagnosticError = {
+        provider = "DiagnosticError",
+        icon = "  ",
+        highlight = {gruvbox.natural_red, colors.bg}
+    }
 }
-gls.right[2] = {DiagnosticWarn = {provider = "DiagnosticWarn", icon = "  ", highlight = {colors.orange, colors.bg}}}
+gls.right[2] = {
+    DiagnosticWarn = {
+        provider = "DiagnosticWarn",
+        icon = "  ",
+        highlight = {gruvbox.bright_orange, colors.bg}
+    }
+}
 
 gls.right[3] = {
     DiagnosticHint = {
@@ -121,21 +125,17 @@ gls.right[5] = {
         provider = "GetLspClient",
         condition = function()
             local tbl = {["dashboard"] = true, [" "] = true}
-            if tbl[vim.bo.filetype] then
-                return false
-            end
+            if tbl[vim.bo.filetype] then return false end
             return true
         end,
         icon = " ",
-        highlight = {colors.comment, colors.bg}
+        highlight = {gruvbox.comment, colors.bg}
     }
 }
 
 gls.right[8] = {
     GitIcon = {
-        provider = function()
-            return " "
-        end,
+        provider = function() return " " end,
         condition = condition.check_git_workspace,
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
@@ -187,7 +187,7 @@ gls.right[13] = {
         condition = condition.hide_in_width,
         separator = " | ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {gruvbox.comment, colors.bg}
     }
 }
 
@@ -197,15 +197,13 @@ gls.right[14] = {
         condition = condition.hide_in_width,
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
-        highlight = {colors.comment, colors.bg}
+        highlight = {gruvbox.comment, colors.bg}
     }
 }
 
 gls.right[15] = {
     Space = {
-        provider = function()
-            return " "
-        end,
+        provider = function() return " " end,
         separator = " ",
         separator_highlight = {"NONE", colors.bg},
         highlight = {colors.orange, colors.bg}
@@ -222,7 +220,13 @@ gls.short_line_left[1] = {
 }
 
 gls.short_line_left[2] = {
-    SFileName = {provider = "SFileName", condition = condition.buffer_not_empty, highlight = {colors.fg, colors.bg}}
+    SFileName = {
+        provider = "SFileName",
+        condition = condition.buffer_not_empty,
+        highlight = {colors.fg, colors.bg}
+    }
 }
 
-gls.short_line_right[1] = {BufferIcon = {provider = "BufferIcon", highlight = {colors.fg, colors.bg}}}
+gls.short_line_right[1] = {
+    BufferIcon = {provider = "BufferIcon", highlight = {colors.fg, colors.bg}}
+}
