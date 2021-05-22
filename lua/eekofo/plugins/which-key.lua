@@ -1,10 +1,4 @@
-require("which-key").setup {
-    plugins = {
-        presets = {
-            operators = false
-        }
-    }
-}
+require("which-key").setup {plugins = {presets = {operators = false}}}
 
 local wk = require("which-key")
 
@@ -17,7 +11,7 @@ local leader_mappings = {
         t = {":BufferOrderByLanguage<cr>", "Order by Language"},
         p = {":BufferPick<cr>", "Pick Buffer"},
         r = {":BufferCloseBuffersRight<cr>", "Buffer close right"},
-        x = {":BufferCloseAllButCurrent<cr>", "Close all but current"},
+        x = {":BufferCloseAllButCurrent<cr>", "Close all but current"}
     },
     d = {
         name = "+diagnostics",
@@ -38,7 +32,9 @@ local leader_mappings = {
         a = {":Lspsaga code_action<cr>", "code action"},
         A = {":Lspsaga range_code_action<cr>", "selected action"},
         d = {":Telescope lsp_document_diagnostics<cr>", "document diagnostics"},
-        D = {":Telescope lsp_workspace_diagnostics<cr>", "workspace diagnostics"},
+        D = {
+            ":Telescope lsp_workspace_diagnostics<cr>", "workspace diagnostics"
+        },
         f = {":LspFormatting<cr>", "format"},
         h = {":Lspsaga signature_help<cr>", "signature help"},
         I = {":LspInfo<cr>", "lsp info"},
@@ -61,16 +57,24 @@ local leader_mappings = {
         b = {":Telescope buffers<cr>", "buffers"},
         B = {":Telescope git_branches<cr>", "git branches"},
         d = {":Telescope lsp_document_diagnostics<cr>", "document_diagnostics"},
-        D = {":Telescope lsp_workspace_diagnostics<cr>", "workspace_diagnostics"},
+        D = {
+            ":Telescope lsp_workspace_diagnostics<cr>", "workspace_diagnostics"
+        },
         f = {":Telescope find_files<cr>", "files"},
         h = {":Telescope command_history<cr>", "history"},
         i = {":Telescope media_files<cr>", "media files"},
         m = {":Telescope marks<cr>", "marks"},
         M = {":Telescope man_pages<cr>", "man_pages"},
         o = {":Telescope vim_options<cr>", "vim_options"},
-        p = {":lua require'telescope'.extensions.project.project{}<cr>", "projects"}, -- TODO: learn how to create projects
+        p = {
+            ":lua require'telescope'.extensions.project.project{}<cr>",
+            "projects"
+        }, -- TODO: learn how to create projects
         q = {":Telescope frecency<cr>", "frecency"},
-        s = {':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>', "string async"},
+        s = {
+            ':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>',
+            "string async"
+        },
         S = {":Telescope live_grep<cr>", "string"},
         T = {":TodoTelescope<cr>", "TODO"},
         r = {":Telescope registers<cr>", "registers"},
@@ -89,8 +93,25 @@ local leader_mappings = {
     f = {"<cmd>Neoformat<cr>", "Format File"},
     G = {"<cmd>LazyGit<cr>", "Lazygit"},
     e = {"Explorer"},
+    o = {
+        name = "Add line below",
+        o = {
+            ":<C-u>call append(line(\".\"),   repeat([\"\"], v:count1))<CR>",
+            "inset line"
+        }
+    },
+    O = {
+        name = "Add line above",
+        O = {
+            ":<C-u>call append(line(\".\")-1, repeat([\"\"], v:count1))<CR>",
+            "inset line"
+        }
+    },
     p = {"<cmd>Telescope find_files<cr>", "Find File"},
-    P = {"<cmd>:lua require'telescope'.extensions.project.project{}<cr>", "Find Project"},
+    P = {
+        "<cmd>:lua require'telescope'.extensions.project.project{}<cr>",
+        "Find Project"
+    },
     r = {"<cmd>Telescope oldfiles<cr>", "Recent File"},
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
     t = {"<cmd>rightbelow vsp | terminal<cr>", "terminal"},
@@ -101,32 +122,14 @@ local leader_mappings = {
     W = {"<C-W>q", "Close Window"}
 }
 
-local text_object_mappings = {
-    o = {
-        o = "Add line below"
-    },
-    O = {
-        O = "Add line above"
-    }
-}
-
 local next_movement_mappings = {
-    ["]"] = {
-        name = "next",
-        c = {"next git hunk"},
-        d = {"next diagnostic"}
-    }
+    ["]"] = {name = "next", c = {"next git hunk"}, d = {"next diagnostic"}}
 }
 
 local prev_movement_mappings = {
-    ["["] = {
-        name = "prev",
-        c = {"prev git hunk"},
-        d = {"prev diagnostic"}
-    }
+    ["["] = {name = "prev", c = {"prev git hunk"}, d = {"prev diagnostic"}}
 }
 
 wk.register(leader_mappings, {prefix = "<leader>"})
-wk.register(text_object_mappings, {prefix = ""})
 wk.register(prev_movement_mappings, {prefix = ""})
 wk.register(next_movement_mappings, {prefix = ""})
