@@ -95,6 +95,7 @@ local leader_mappings = {
     R = {"<cmd>RnvimrToggle<cr>", "Ranger"},
     t = {"<cmd>rightbelow vsp | terminal<cr>", "terminal"},
     T = {"<cmd>TodoQuickFix<cr>", "Search TODO"},
+    U = {"<cmd>UndotreeShow<cr>", "Undotree show"},
     v = {"<C-W>v", "Split Right"},
     w = {"<cmd>MaximizerToggle<CR>", "Max Window"}
 }
