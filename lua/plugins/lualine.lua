@@ -4,7 +4,7 @@
 local lualine = require 'lualine'
 
 -- Color table for highlights
-local colors = require"plugins.gruvbox_colors"
+local colors = require "plugins.gruvbox_colors"
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -21,6 +21,10 @@ local conditions = {
 local config = {
     options = {
         -- Disable sections and component separators
+        disabled_filetypes = {
+            'undotree', "NvimTree", "vista", "dbui", "packer", "OUTLINE",
+            "SymbolsOutline"
+        },
         component_separators = "",
         section_separators = "",
         options = {theme = 'gruvbox'}
@@ -74,7 +78,7 @@ ins_left {
     function()
         -- auto change color according to neovims mode
         local mode_color = {
-            n = colors.red,
+            n = colors.bright_blue,
             i = colors.green,
             v = colors.blue,
             [''] = colors.blue,
@@ -96,9 +100,8 @@ ins_left {
             t = colors.red
         }
         vim.api.nvim_command('hi! LualineMode guifg=' ..
-                                 mode_color[vim.fn.mode()] .. " guibg=" ..
-                                 colors.none)
-        return ''
+                                 mode_color[vim.fn.mode()])
+        return ''
     end,
     color = "LualineMode",
     left_padding = 0
