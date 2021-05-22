@@ -82,7 +82,6 @@ local leader_mappings = {
         s = {":SessionSave<cr>", "save session"},
         l = {":SessionLoad<cr>", "load Session"}
     },
-    --h["/"] = "Comment",
     ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
     ["H"] = "Disable Highlight",
@@ -98,7 +97,8 @@ local leader_mappings = {
     T = {"<cmd>TodoQuickFix<cr>", "Search TODO"},
     U = {"<cmd>UndotreeShow<cr>", "Undotree show"},
     v = {"<C-W>v", "Split Right"},
-    w = {"<cmd>MaximizerToggle<CR>", "Max Window"}
+    w = {"<cmd>MaximizerToggle<CR>", "Max Window"},
+    W = {"<C-W>q", "Close Window"}
 }
 
 local text_object_mappings = {
