@@ -161,11 +161,11 @@ lspconfig.vimls.setup {on_init = custom_init, on_attach = custom_attach}
 require("lsp-colors").setup()
 
 -- mapped to <space>lt -- this shows a list of diagnostics
-require("lsp.lsptrouble")
+require("eekofo.lsp.lsptrouble")
 -- for completion
-require("lsp.compe")
+require("eekofo.lsp.compe")
 -- some lsp helps
-require("lsp.lspsaga")
+require("eekofo.lsp.lspsaga")
 -- helps the lsp experience
-require("lsp.handlers")
-require("lsp.status").activate()
+require("eekofo.lsp.handlers")
+require("eekofo.lsp.status").activate()
