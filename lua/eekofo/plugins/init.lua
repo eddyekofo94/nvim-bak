@@ -26,11 +26,6 @@ vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
 
 -- nvim-comment
 require("nvim_comment").setup()
--- vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
--- BUG: not working since I moved the files aroung
--- see how to clean it up some how
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>",
-                        {noremap = true, silent = true})
 
 -- Initialize plugins
 require"colorizer".setup()

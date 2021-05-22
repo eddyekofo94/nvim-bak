@@ -3,16 +3,20 @@ local mapper = function(mode, key, result)
     vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
 
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", {noremap = true, silent = true})
+vim.api
+    .nvim_set_keymap("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 vim.g.mapleader = " "
--- vim.g.UltiSnipsExpandTrigger = "<F5>"
+
+vim.g.UltiSnipsExpandTrigger = "<F5>"
 -- vim.cmd("let g:UltiSnipsExpandTrigger = '<F5>'")
 
 -- no hl
-vim.api.nvim_set_keymap("n", "<Leader>H", ":set hlsearch!<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>H", ":set hlsearch!<CR>",
+                        {noremap = true, silent = true})
 
 -- explorer
-vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>",
+                        {noremap = true, silent = true})
 
 -- better window movement
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", {silent = true})

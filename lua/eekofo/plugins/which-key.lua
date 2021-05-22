@@ -82,7 +82,8 @@ local leader_mappings = {
         s = {":SessionSave<cr>", "save session"},
         l = {":SessionLoad<cr>", "load Session"}
     },
-    ["/"] = "Comment",
+    --h["/"] = "Comment",
+    ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
     ["H"] = "Disable Highlight",
     h = {':let @/ = ""<cr>', "Clear Highlight"},
