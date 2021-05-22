@@ -15,7 +15,7 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
-        vsnip = {kind = "  "}, 
+        vsnip = {kind = "  "},
         ultisnips = {kind = "  "}, -- TODO: why the lspkind not working
         nvim_lsp = {kind = "  "},
         buffer = {kind = "  "},
