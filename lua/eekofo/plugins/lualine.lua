@@ -68,18 +68,12 @@ local function ins_right(component)
 end
 
 ins_left {
-    function() return '▊' end,
-    color = {fg = colors.blue}, -- Sets highlighting of component
-    left_padding = 0 -- We don't need space before this
-}
-
-ins_left {
     -- mode component
     function()
         -- auto change color according to neovims mode
         local mode_color = {
             n = colors.bright_blue,
-            i = colors.green,
+            i = colors.bright_green,
             v = colors.blue,
             [''] = colors.blue,
             V = colors.blue,
@@ -99,12 +93,13 @@ ins_left {
             ['!'] = colors.red,
             t = colors.red
         }
-        vim.api.nvim_command('hi! LualineMode guifg=' ..
-                                 mode_color[vim.fn.mode()])
+        vim.api.nvim_command('hi! LualineMode guibg=' ..
+                                 mode_color[vim.fn.mode()]..' guifg='..colors.bg)
         return ''
     end,
     color = "LualineMode",
-    left_padding = 0
+    left_padding = 2,
+    right_padding = 2
 }
 
 ins_left {
@@ -200,12 +195,6 @@ ins_right {
     color_modified = colors.orange,
     color_removed = colors.red,
     condition = conditions.hide_in_width
-}
-
-ins_right {
-    function() return '▊' end,
-    color = {fg = colors.blue},
-    right_padding = 0
 }
 
 -- Now don't forget to initialize lualine

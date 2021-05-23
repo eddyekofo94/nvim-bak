@@ -30,11 +30,11 @@ telescope.setup {
             }
         },
         scroll_strategy = "cycle",
-        file_sorter = require "telescope.sorters".get_fuzzy_file,
+        file_sorter = require "telescope.sorters".get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
-        winblend = 0, -- transparency
+        winblend = 6, -- transparency
         width = 0.75,
         preview_cutoff = 120,
         results_height = 1,

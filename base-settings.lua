@@ -9,7 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'gruvbox'
+O.colorscheme = 'gruvbox-material'
 O.auto_close_tree = 0
 O.wrap_lines = false
 

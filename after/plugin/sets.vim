@@ -163,26 +163,20 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 autocmd FileType * setlocal nolinebreak
 
-
 augroup Terminal
     au!
     autocmd TermOpen  * startinsert
     autocmd FileType term set nonumber
 augroup END
 
-function! ReloadFiles()
-    :echo "Reloading files"
-    lua  require'plenary.reload'.reload_module('eekofo')
-endfunction
-
-augroup THE_RELOADER
-    autocmd!
-    autocmd FileWritePost vim :call ReloadFiles()
-augroup end
-
 " Override the default Red & white
 " INFO move this to a lua file when ready
-highlight ErrorMsg guibg=NONE guifg=#fb4934
-highlight Tooltip guibg=NONE guifg=#83a598
-highlight WarningMsg guibg=NONE guifg=#fabd2f
+" highlight ErrorMsg guibg=NONE guifg=#fb4934
+" highlight Tooltip guibg=NONE guifg=#83a598
+" highlight WarningMsg guibg=NONE guifg=#fabd2f
+
+"TODO: finally move these to a lua file
+colorscheme gruvbox-material
+hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
+let g:gruvbox_material_diagnostic_line_highlight = 1
 

@@ -157,6 +157,13 @@ lspconfig.yamlls.setup {on_init = custom_init, on_attach = custom_attach}
 
 lspconfig.vimls.setup {on_init = custom_init, on_attach = custom_attach}
 
+--lspconfig.nginx.setup({
+   -- cmd = {"nginx-language-server"},
+  --  filetypes = {"nginx", "conf"},
+  --  on_attach = custom_attach,
+ --   init_options = {rootPatterns = "nginx.conf", ".git"}
+--})
+
 -- Helps with the diagnostics error detection
 require("lsp-colors").setup()
 
