@@ -109,10 +109,9 @@ return require("packer").startup(function(use)
     use {"szw/vim-maximizer", opt = true}
 
     -- Color
-    use {"folke/tokyonight.nvim", opt = true}
-    use {"gruvbox-community/gruvbox", opt = true}
     -- use {"sainnhe/gruvbox-material", opt = true}
-    use {"eddyekofo94/gruvbox-material.nvim", opt = true}
+    -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
+    use {"eddyekofo94/gruvbox-flat.nvim", opt = true}
 
     -- Icons
     use {"kyazdani42/nvim-web-devicons", opt = true}
@@ -170,11 +169,9 @@ return require("packer").startup(function(use)
     require_plugin("nvim-bqf")
     require_plugin("nvim-web-devicons")
     require_plugin("barbar.nvim")
-    require_plugin("tokyonight.nvim")
-    require_plugin("gruvbox")
     -- require_plugin("gruvbox-material")
-    require_plugin("gruvbox-material.nvim")
-    require_plugin("nord.nvim")
+    require_plugin("gruvbox-flat.nvim")
+    -- require_plugin("gruvbox-material.nvim")
     require_plugin("vim-surround")
     require_plugin("surround.nvim")
 end)
