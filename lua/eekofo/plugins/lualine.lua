@@ -1,11 +1,10 @@
--- Eviline config for lualine
+-- INFO: Heavily inspired by: Eviline config for lualine
 -- Author: shadmansaleh
 -- Credit: glepnir
 local lualine = require 'lualine'
 
 -- Color table for highlights
--- local colors = O.gruvbox_colors
-local colors = require("gruvbox-material.colors")
+local colors = O.gruvbox_colors
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -28,7 +27,7 @@ local config = {
         },
         component_separators = "",
         section_separators = "",
-        options = {theme = 'gruvbox-material'}
+        options = {theme = 'gruvbox-flat'}
         -- theme = {
         --   -- We are going to use lualine_c an lualine_x as left and
         --   -- right section. Both are highlighted by c theme .  So we
@@ -192,7 +191,7 @@ ins_right {
 ins_right {
     'diff',
     -- Is it me or the symbol for modified us really weird
-    symbols = {added = ' ', modified = '柳 ', removed = ' '},
+    symbols = {added = ' ', modified = '柳', removed = ' '},
     color_added = colors.green,
     color_modified = colors.orange,
     color_removed = colors.red,
