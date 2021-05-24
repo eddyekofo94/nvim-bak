@@ -177,6 +177,6 @@ augroup END
 
 "TODO: finally move these to a lua file
 colorscheme gruvbox-material
-hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
+" hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
 let g:gruvbox_material_diagnostic_line_highlight = 1
 
