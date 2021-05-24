@@ -176,7 +176,7 @@ augroup END
 " highlight WarningMsg guibg=NONE guifg=#fabd2f
 
 "TODO: finally move these to a lua file
-colorscheme gruvbox-material
+colorscheme gruvbox-flat
 " hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
 let g:gruvbox_material_diagnostic_line_highlight = 1
 
