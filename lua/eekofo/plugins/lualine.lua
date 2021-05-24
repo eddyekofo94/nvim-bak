@@ -4,7 +4,8 @@
 local lualine = require 'lualine'
 
 -- Color table for highlights
-local colors = O.gruvbox_colors
+-- local colors = O.gruvbox_colors
+local colors = require("gruvbox-material.colors")
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -27,7 +28,7 @@ local config = {
         },
         component_separators = "",
         section_separators = "",
-        options = {theme = 'gruvbox'}
+        options = {theme = 'gruvbox-material'}
         -- theme = {
         --   -- We are going to use lualine_c an lualine_x as left and
         --   -- right section. Both are highlighted by c theme .  So we
@@ -72,19 +73,19 @@ ins_left {
     function()
         -- auto change color according to neovims mode
         local mode_color = {
-            n = colors.bright_blue,
-            i = colors.bright_green,
+            n = colors.blue,
+            i = colors.green,
             v = colors.blue,
             [''] = colors.blue,
             V = colors.blue,
-            c = colors.bright_purple,
+            c = colors.purple,
             no = colors.red,
             s = colors.orange,
             S = colors.orange,
             [''] = colors.orange,
             ic = colors.yellow,
-            R = colors.faded_purple,
-            Rv = colors.faded_purple,
+            R = colors.purple,
+            Rv = colors.purple,
             cv = colors.red,
             ce = colors.red,
             r = colors.cyan,
@@ -94,7 +95,8 @@ ins_left {
             t = colors.red
         }
         vim.api.nvim_command('hi! LualineMode guibg=' ..
-                                 mode_color[vim.fn.mode()]..' guifg='..colors.bg)
+                                 mode_color[vim.fn.mode()] .. ' guifg=' ..
+                                 colors.bg)
         return ''
     end,
     color = "LualineMode",
@@ -126,7 +128,7 @@ ins_left {
 ins_left {
     'filename',
     condition = conditions.buffer_not_empty,
-    color = {fg = colors.bright_purple, gui = 'bold'}
+    color = {fg = colors.purple, gui = 'bold'}
 }
 
 ins_left {'location'}
@@ -184,7 +186,7 @@ ins_right {
     'branch',
     icon = '',
     condition = conditions.check_git_workspace,
-    color = {fg = colors.faded_purple, gui = 'bold'}
+    color = {fg = colors.purple, gui = 'bold'}
 }
 
 ins_right {
