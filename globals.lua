@@ -73,13 +73,13 @@ O = {
         filetypes = {'rb', 'erb', 'rakefile'}
     },
     gruvbox_colors = {
-        bg0 = "#282828",
+        bg = "#282828",
         bg1 = "#32302f", -- cursor color
         bg2 = "#32302f",
         bg3 = "#45403d",
         bg4 = "#45403d",
         bg5 = "#5a524c",
-        fg0 = "#d4be98",
+        fg = "#d4be98",
         fg1 = "#ddc7a1",
         red = "#ea6962",
         orange = "#e78a4e",
