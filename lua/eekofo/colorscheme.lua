@@ -6,3 +6,5 @@ vim.cmd("set background=dark")
 vim.cmd("hi ErrorMsg guifg=".. colors.red.." guibg=NONE")
 vim.cmd("hi WarningMsg guifg=".. colors.yellow.." guibg=NONE")
 vim.cmd("hi Tooltip guifg=".. colors.aqua.." guibg=NONE")
+
+vim.g.gruvbox_flat_style = "dark"
