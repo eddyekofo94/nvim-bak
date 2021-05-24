@@ -9,7 +9,8 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'gruvbox-material'
+-- O.colorscheme = 'gruvbox-material'
+O.colorscheme = 'gruvbox-material.nvim'
 O.auto_close_tree = 0
 O.wrap_lines = false
 
