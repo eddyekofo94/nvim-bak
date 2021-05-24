@@ -111,8 +111,8 @@ return require("packer").startup(function(use)
     -- Color
     use {"folke/tokyonight.nvim", opt = true}
     use {"gruvbox-community/gruvbox", opt = true}
-    use {"sainnhe/gruvbox-material", opt = true}
-    use {"shaunsingh/nord.nvim", opt = true}
+    -- use {"sainnhe/gruvbox-material", opt = true}
+    use {"eddyekofo94/gruvbox-material.nvim", opt = true}
 
     -- Icons
     use {"kyazdani42/nvim-web-devicons", opt = true}
@@ -172,7 +172,8 @@ return require("packer").startup(function(use)
     require_plugin("barbar.nvim")
     require_plugin("tokyonight.nvim")
     require_plugin("gruvbox")
-    require_plugin("gruvbox-material")
+    -- require_plugin("gruvbox-material")
+    require_plugin("gruvbox-material.nvim")
     require_plugin("nord.nvim")
     require_plugin("vim-surround")
     require_plugin("surround.nvim")
