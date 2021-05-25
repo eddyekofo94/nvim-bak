@@ -13,7 +13,6 @@ require("gitsigns").setup {
         -- Default keymap options
         noremap = true,
         buffer = true,
-        -- TODO: fix in the future
         ["n ]c"] = {expr = true, '&diff ? \']c\' : \'<cmd>lua require"gitsigns".next_hunk()<CR>\''},
         ["n [c"] = {expr = true, '&diff ? \'[c\' : \'<cmd>lua require"gitsigns".prev_hunk()<CR>\''}
     },
