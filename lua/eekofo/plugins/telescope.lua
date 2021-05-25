@@ -13,7 +13,6 @@ telescope.setup {
         },
         prompt_position = "top",
         prompt_prefix = "$ ",
-        -- selection_caret = "❯ ",
         selection_caret = "契",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
