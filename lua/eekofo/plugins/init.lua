@@ -29,7 +29,7 @@ require("nvim_comment").setup()
 
 -- Initialize plugins
 require"colorizer".setup()
-require"surround".setup {} 
+require"surround".setup {} -- TODO: fix this
 require"todo-comments".setup {}
 require("eekofo.plugins.telescope")
 require("eekofo.plugins.dashboard")
