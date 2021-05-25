@@ -163,7 +163,6 @@ ins_left {
         return msg
     end,
     icon = ' LSP:',
-    -- color = {fg = colors.fg},
     condition = conditions.hide_in_width
 }
 
