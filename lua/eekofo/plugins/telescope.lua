@@ -30,11 +30,11 @@ telescope.setup {
             }
         },
         scroll_strategy = "cycle",
-        file_sorter = require "telescope.sorters".get_fuzzy_file,
+        file_sorter = require "telescope.sorters".get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
-        winblend = 0, -- transparency
+        winblend = 6, -- transparency
         width = 0.75,
         preview_cutoff = 120,
         results_height = 1,
@@ -59,6 +59,14 @@ telescope.setup {
                     ["nvim"] = "/home/eddyekofo/.config/nvim/",
                     ["dotfiles"] = "/home/eddyekofo/.files/"
                 }
+            },
+            fzf_writer = {
+                minimum_grep_characters = 2,
+                minimum_files_characters = 2,
+                -- Disabled by default. TODO fix if slowing things down
+                -- Will probably slow down some aspects of the sorter, but can make color highlights.
+                -- I will work on this more later.
+                use_highlighter = true
             }
         },
         mappings = {
@@ -80,3 +88,7 @@ telescope.setup {
 }
 
 require("telescope").load_extension("fzf")
+require "telescope".load_extension("project")
+--TODO Fix this, it is broken
+--require("telescope").extensions.fzf_writer.staged_grep() -- Added to which-key
+--require('telescope').extensions.fzf_writer.files()

@@ -1,16 +1,7 @@
-
-vim.cmd("source ~/.config/nvim/vimscript/sets.vim")
+-- Initialise eveything from here
+--require("globals")
 vim.cmd("source ~/.config/nvim/vimscript/keys.vim")
-require("install-plugins")
-require("globals")
-require("utils")
+vim.cmd("luafile ~/.config/nvim/globals.lua")
 vim.cmd("luafile ~/.config/nvim/base-settings.lua")
-require("autocommands")
-require("settings")
-require("keymappings")
-require("colorscheme")
-require("lsp")
-require("plugins")
-
--- Which Key (Hope to replace with Lua plugin someday)
-vim.cmd("source ~/.config/nvim/vimscript/whichkey/init.vim")
+require("eekofo")
+require('plenary.reload').reload_module('eekofo', true)

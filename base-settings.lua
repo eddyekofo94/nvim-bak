@@ -9,12 +9,13 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'tokyonight'
+-- O.colorscheme = 'gruvbox-material'
+O.colorscheme = 'gruvbox-material.nvim'
 O.auto_close_tree = 0
 O.wrap_lines = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
-O.treesitter.ensure_installed = "all"
+O.treesitter.ensure_installed = "maintained"
 O.treesitter.ignore_install = {"haskell"}
 O.treesitter.highlight.enabled = true
 
@@ -38,7 +39,6 @@ O.python.diagnostics.underline = true
 -- lua
 -- TODO look into stylua
 O.lua.formatter = 'lua-format'
--- O.lua.formatter = 'lua-format'
 O.lua.autoformat = false
 
 -- javascript

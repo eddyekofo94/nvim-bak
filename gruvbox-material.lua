@@ -1,0 +1,20 @@
+   if &background ==# 'dark'
+      let palette1 = {
+            \ 'bg0':              ['#282828',   '235'],
+            \ 'bg1':              ['#32302f',   '236'],
+            \ 'bg2':              ['#32302f',   '236'],
+            \ 'bg3':              ['#45403d',   '237'],
+            \ 'bg4':              ['#45403d',   '237'],
+            \ 'bg5':              ['#5a524c',   '239'],
+            \ 'bg_statusline1':   ['#32302f',   '236'],
+            \ 'bg_statusline2':   ['#3a3735',   '236'],
+            \ 'bg_statusline3':   ['#504945',   '240'],
+            \ 'bg_diff_green':    ['#34381b',   '22'],
+            \ 'bg_visual_green':  ['#3b4439',   '22'],
+            \ 'bg_diff_red':      ['#402120',   '52'],
+            \ 'bg_visual_red':    ['#4c3432',   '52'],
+            \ 'bg_diff_blue':     ['#0e363e',   '17'],
+            \ 'bg_visual_blue':   ['#374141',   '17'],
+            \ 'bg_visual_yellow': ['#4f422e',   '94'],
+            \ 'bg_current_word':  ['#3c3836',   '237']
+            \ }

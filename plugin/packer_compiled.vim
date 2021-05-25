@@ -100,18 +100,40 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim"
+  },
+  ["lazygit.nvim"] = {
+    loaded = false,
+    needs_bufread = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lazygit.nvim"
+  },
   ["lsp-colors.nvim"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-colors.nvim"
+  },
+  ["lsp-status.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-status.nvim"
   },
   ["lsp-trouble.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-trouble.nvim"
   },
+  ["lsp_extensions.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp_extensions.nvim"
+  },
   ["lspkind-nvim"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = false,
@@ -119,18 +141,19 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
   },
   neoformat = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/neoformat"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   ["nlua.nvim"] = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nlua.nvim"
   },
-  ["nvcode-color-schemes.vim"] = {
+  ["nord.nvim"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim"
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = false,
@@ -143,8 +166,9 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-bqf"
   },
   ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-comment"] = {
     loaded = false,
@@ -162,6 +186,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
+  ["nvim-dap-ui"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-dap-ui"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,
@@ -172,9 +201,15 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-lspinstall"
   },
+  ["nvim-lsputils"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-lsputils"
+  },
   ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -199,14 +234,33 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/plenary.nvim"
   },
+  popfix = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/popfix"
+  },
   ["popup.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/popup.nvim"
   },
+  rnvimr = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/rnvimr"
+  },
   ["sql.nvim"] = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/sql.nvim"
+  },
+  ["surround.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/surround.nvim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/symbols-outline.nvim"
   },
   tabular = {
     after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tabular/after/plugin/TabularMaps.vim" },
@@ -220,13 +274,29 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-fzf-native.nvim"
+  },
+  ["telescope-fzf-writer.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-fzf-writer.nvim"
+  },
+  ["telescope-project.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim"
   },
   ["telescope.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
+  ["todo-comments.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/todo-comments.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = false,
@@ -234,20 +304,29 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tokyonight.nvim"
   },
   ultisnips = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/ultisnips"
+    after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/ultisnips/after/plugin/UltiSnips_after.vim" },
+    loaded = false,
+    needs_bufread = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/ultisnips"
   },
   undotree = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/undotree"
   },
   ["vim-fish"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-fish"
+    loaded = false,
+    needs_bufread = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-fish"
+  },
+  ["vim-floaterm"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-floaterm"
   },
   ["vim-maximizer"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-maximizer"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-maximizer"
   },
   ["vim-rooter"] = {
     loaded = false,
@@ -255,22 +334,24 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-rooter"
   },
   ["vim-snippets"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-snippets"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-snippets"
   },
   ["vim-surround"] = {
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-surround"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-surround"
   },
   ["vim-vsnip"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
-  ["vim-which-key"] = {
+  ["which-key.nvim"] = {
     loaded = false,
-    needs_bufread = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-which-key"
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/which-key.nvim"
   }
 }
 

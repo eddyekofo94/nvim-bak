@@ -4,7 +4,7 @@
 vnoremap < <gv
 vnoremap > >gv
 
-" TODO: if it works in lua, REMOVW!"
+" TODO: if it works in lua, REMOVE!"
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -32,38 +32,11 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" Resise window with arrow keys
-" nnoremap <silent> <Up>  :resize +2<CR>
-" nnoremap <silent> <Down>    :resize -2<CR>
-" nnoremap <silent> <Left>  :vertical resize -2<CR>
-" nnoremap <silent> <Right> :vertical resize +2<CR>
-
 " Very magic by default, got this from theRimragen (Don't knoq exactly what it
 " does
 nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
-
-"autocmd! User GoyoEnter Limelight
-"autocmd! User GoyoLeave Limelight!
-
-" TODO: Fix the limelight not closing on GoyoLeave!!
-augroup ZenMode
-  au!
-  autocmd User GoyoEnter Limelight
-  autocmd User GoyoEnter lua require 'galaxyline'.disable_galaxyline()
-augroup END
-" autocmd! User GoyoEnter Limelight lua require('galaxyline').disable_galaxyline()
-augroup ZenModeOff
-  au!
-  autocmd User GoyoLeave lua require 'galaxyline'.galaxyline_augroup()
-  autocmd User GotoLeave Limelight!
-augroup END
-
-" autocmd! User GoyoLeave Limelight! lua require('galaxyline').galaxyline_augroup()
-" Source my init.vim
-" TODO: see how to load the init.lua file without closing vim
-nnoremap <Leader><CR> :so $MYVIMRC<CR>
 
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <C-c> <esc>
@@ -82,14 +55,7 @@ nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 nnoremap Y  y$ " Thank you TPope
 
-" TODO: Fix in the future, not working at all
-nnoremap <silent> oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+" TODO: move to a lua file, very useful command
+" nnoremap <silent><leader>oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+" nnoremap <silent><leader>OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
-
-" In order for compe.nvim to work"
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })

@@ -1,11 +1,13 @@
-" Sets: - general conghigs
+" Sets: - general configs
+" TODO: slowly move to lua if possible
+
 set nocompatible
 set exrc                                " For custumised vim setting (will load vim files in project) No
 set iskeyword+=-                        " treat dash separated words as a word text object"
 set formatoptions-=cro                  " Stop newline continution of comments
 
 set nowrap                              " Display long lines as just one line
-set whichwrap+=<,>,[,],h,l
+set whichwrap+=<,>,[,],h,l " Not sure what this does
 set encoding=utf-8     " The encoding displayed
 set pumheight=10       " Makes popup menu smaller
 set fileencoding=utf-8 " The encoding written to file
@@ -25,35 +27,32 @@ set shiftwidth=4
 set expandtab
 set cindent        " C based indenting :h cindent to read more"
 set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
-set autoread
+set autoread    " When a file has been detected to have been changed load it
 set smartindent
 
 set relativenumber
 set number
 
 set hlsearch
-set ignorecase                          " All your searches will be case insensitive"
-set smartcase                           " Your search will be case sensitive if it contains an uppercase letter"
-set hidden                              " Keep all the buffers open in the background
+set ignorecase " All your searches will be case insensitive
+set smartcase  " Your search will be case sensitive if it contains an uppercase letter
+set hidden     " Keep all the buffers open in the background
 set noerrorbells
-set noswapfile
+set noswapfile " Helpful for undotree pluggin
 set nobackup
 set timeoutlen=1000                      " By default timeoutlen is 1000 ms
 set shiftround                          " For better indentation"
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-set guifont=UbuntuMono\ Nerd\ Font
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
-set termguicolors
 set scrolloff=10                         " start scholling when you're near the bottom by 8
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
-set complete+=kspell                    " INFO: :take a look into this option"
-set pumblend=17
-set completeopt=menu,menuone,noselect
+set complete+=kspell                    " INFO: :take a look into this option
+set pumblend=17 ""Enables pseudo-transparency for the popup-menu
 set virtualedit=block
-set signcolumn=yes                      " It sets the collum in the gutter for linting sake
+set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
 setglobal fileformats=unix,dos,mac
 
@@ -61,7 +60,6 @@ augroup CHAR_BREAK
   au!
   autocmd FileType vim set textwidth=120
 augroup end
-" set textwidth=90
 
 " Decent wildmenu
 set wildmode=longest:full,full
@@ -83,8 +81,7 @@ set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
-set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
-
+set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines INFO: not sure about this
 set lazyredraw
 set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
@@ -92,7 +89,7 @@ set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set synmaxcol=500
 set backspace=indent,eol,start " Backspace over newlines
-set nofoldenable
+" set nofoldenable
 set ttyfast
 
 " Proper search
@@ -104,9 +101,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set list
 " settings for hidden chars
 " what particular chars they are displayed with
-set listchars=eol:↵,nbsp:␣,extends:…,precedes:…
-
-set foldmethod=expr
+set listchars=eol:↵
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
@@ -117,17 +112,23 @@ set foldmethod=expr
 set foldlevelstart=99
 set foldexpr=nvim_treesitter#foldexpr()
 
-" Leave paste mode when leaving insert mode
+" Leave paste mode when leaving insert mode INFO: I don't get this fully
 autocmd InsertLeave * set nopaste
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
 
+" TODO: look into this
+" augroup Clear_Max_Chars
+"     autocmd!
+"     autocmd FileType vim,dashboard,toggleterm,terminal :call clearmatches()
+" augroup end
+
 augroup MAX_CHARS_COLUMN
     autocmd!
     autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufLeave * :call clearmatches()
+    autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
 " Remove whitespace
@@ -161,4 +162,21 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " map L $
 
 autocmd FileType * setlocal nolinebreak
+
+augroup Terminal
+    au!
+    autocmd TermOpen  * startinsert
+    autocmd FileType term set nonumber
+augroup END
+
+" Override the default Red & white
+" INFO move this to a lua file when ready
+" highlight ErrorMsg guibg=NONE guifg=#fb4934
+" highlight Tooltip guibg=NONE guifg=#83a598
+" highlight WarningMsg guibg=NONE guifg=#fabd2f
+
+"TODO: finally move these to a lua file
+colorscheme gruvbox-flat
+" hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
+let g:gruvbox_material_diagnostic_line_highlight = 1
 

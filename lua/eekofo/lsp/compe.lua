@@ -3,26 +3,26 @@ vim.o.completeopt = "menuone,noselect"
 require "compe".setup {
     enabled = true,
     autocomplete = true,
-    debug = false,
+    debug = true, -- BUG: enabled for debugging.. to be removed
     min_length = 1,
     preselect = "enable",
     throttle_time = 80,
     source_timeout = 200,
     incomplete_delay = 400,
-    allow_prefix_unmatch = false,
+    -- allow_prefix_unmatch = false,
     max_abbr_width = 100,
     max_kind_width = 100,
     max_menu_width = 100,
     documentation = true,
     source = {
-        ultisnips = {kind = "  "},
+        vsnip = {kind = "  "},
+        ultisnips = {kind = "  "}, -- TODO: why the lspkind not working
         nvim_lsp = {kind = "  "},
         buffer = {kind = "  "},
         spell = {kind = "  "},
         path = {kind = "  "},
         calc = {kind = "  "},
-        vsnip = {kind = "  "},
-        nvim_lua = false,
+        nvim_lua = true,
         tags = false,
         vim_dadbod_completion = true,
         -- snippets_nvim = {kind = "  "},
@@ -39,14 +39,6 @@ require "compe".setup {
     --     spell = true
     -- }
 }
-
-local mapper = function(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
-end
--- vim.api.nvim_set_keymap
-mapper("i", "<expr> <C-Space>", "compe#complete()")
-mapper("i", "<expr> <CR>", "compe#confirm('<CR>')")
-mapper("i", "<expr> <C-e>", "compe#close('<C-e>')")
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -89,3 +81,9 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", {expr = true})

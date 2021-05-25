@@ -1,6 +1,6 @@
 require("gitsigns").setup {
     signs = {
-        -- TODO add hl to colorscheme
+        -- TODO add hl to colorscheme..
         add = {hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn"},
         change = {hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn"},
         delete = {hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn"},
@@ -12,7 +12,10 @@ require("gitsigns").setup {
     keymaps = {
         -- Default keymap options
         noremap = true,
-        buffer = true
+        buffer = true,
+        -- TODO: fix in the future
+        ["n ]c"] = {expr = true, '&diff ? \']c\' : \'<cmd>lua require"gitsigns".next_hunk()<CR>\''},
+        ["n [c"] = {expr = true, '&diff ? \'[c\' : \'<cmd>lua require"gitsigns".prev_hunk()<CR>\''}
     },
     watch_index = {
         interval = 1000
