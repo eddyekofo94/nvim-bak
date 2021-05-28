@@ -135,24 +135,38 @@ return require("packer").startup(function(use)
             require'session-lens'.setup {
                 shorten_path = false,
                 prompt_title = 'Pick your saved session',
-                winblend = 0
+                winblend = 4
             }
         end
     }
     -- centerpad, but much better (uses a floating window!!)
     use {
         'folke/zen-mode.nvim',
-        config = function()
-            require("zen-mode").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
+        config = function() require("zen-mode").setup {} end,
+        opt = true
     }
- -- show lsp hover docs automatically
+    -- show lsp hover docs automatically
+    use {'ray-x/lsp_signature.nvim'}
+
+    use {
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        config = function()
+            -- Set default browser to open in
+            vim.g.mkdp_browser = ''
+            -- Print the preview url in the command line output
+            vim.g.mkdp_echo_preview_url = 1
+            -- Start markdown preview server on port 5000
+            vim.g.mkdp_port = 5000
+        end,
+        opt = true,
+    }
+
+    -- for automatic list bulleting when writing markdown or plaintext
   use {
-    'ray-x/lsp_signature.nvim',
+    'dkarter/bullets.vim',
+    opt = true,
+    ft = { 'markdown', 'text', 'latex', 'tex' },
   }
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
@@ -170,10 +184,12 @@ return require("packer").startup(function(use)
     use {"romgrk/barbar.nvim", opt = true}
 
     require_plugin("nvim-lspconfig")
+    require_plugin("bullets.vim")
     require_plugin("lspsaga.nvim")
     require_plugin("vim-maximizer")
     require_plugin("nvim-lsputils")
     require_plugin("lsp-status.nvim")
+    require_plugin("zen-mode.nvim")
     require_plugin("lsp-trouble.nvim")
     require_plugin("symbols-outline.nvim")
     require_plugin("todo-comments.nvim")

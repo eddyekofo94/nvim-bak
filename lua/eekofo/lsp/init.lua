@@ -59,6 +59,12 @@ local custom_attach = function(client)
       ]], false)
     end
 
+    require"lsp_signature".on_attach({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {border = "single"},
+         hint_enable = false, -- virtual hint enable
+    })
+
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
         vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,

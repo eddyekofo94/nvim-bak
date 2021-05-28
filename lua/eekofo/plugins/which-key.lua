@@ -120,7 +120,8 @@ local leader_mappings = {
     U = {"<cmd>UndotreeShow<cr>", "Undotree show"},
     v = {"<C-W>v", "Split Right"},
     w = {"<cmd>MaximizerToggle<CR>", "Max Window"},
-    W = {"<C-W>q", "Close Window"}
+    W = {"<C-W>q", "Close Window"},
+    z = {":ZenMode<cr>", "zen mode"}
 }
 
 local next_movement_mappings = {
