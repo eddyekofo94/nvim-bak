@@ -139,6 +139,21 @@ return require("packer").startup(function(use)
             }
         end
     }
+    -- centerpad, but much better (uses a floating window!!)
+    use {
+        'folke/zen-mode.nvim',
+        config = function()
+            require("zen-mode").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
+ -- show lsp hover docs automatically
+  use {
+    'ray-x/lsp_signature.nvim',
+  }
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
     use {"eddyekofo94/gruvbox-flat.nvim", opt = true}
