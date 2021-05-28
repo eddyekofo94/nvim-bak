@@ -3,6 +3,8 @@ local fn = vim.fn
 
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
+vim.cmd "autocmd BufWritePost install-plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
+
 if fn.empty(fn.glob(install_path)) > 0 then
     execute("!git clone https://github.com/wbthomason/packer.nvim " ..
                 install_path)
@@ -26,8 +28,6 @@ local function require_plugin(plugin)
     if ok then vim.cmd("packadd " .. plugin) end
     return ok, err, code
 end
-
-vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require("packer").startup(function(use)
     -- Packer can manage itself as an optional plugin
@@ -73,7 +73,6 @@ return require("packer").startup(function(use)
     use {"hrsh7th/vim-vsnip", opt = true}
     use {"rafamadriz/friendly-snippets", opt = true}
 
-    use {"SirVer/ultisnips", opt = true}
     use {"honza/vim-snippets", opt = true}
 
     use {"dag/vim-fish", opt = true}
@@ -108,8 +107,39 @@ return require("packer").startup(function(use)
     -- Window Toggle
     use {"szw/vim-maximizer", opt = true}
 
+    -- smooth scrolling in neovim
+    use {
+        'karb94/neoscroll.nvim',
+        config = function()
+            require('neoscroll').setup()
+            require('neoscroll.config').set_mappings({
+                ['<C-y>'] = {'scroll', {'-0.05', 'false', '20'}},
+                ['<C-e>'] = {'scroll', {'0.05', 'false', '20'}}
+            })
+        end
+    }
+
+    -- better session management in neovim
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require'auto-session'.setup {
+                log_level = 'error',
+                auto_session_root_dir = vim.fn.stdpath('config') .. '/sessions/'
+            }
+        end
+    }
+    use {
+        'rmagatti/session-lens',
+        config = function()
+            require'session-lens'.setup {
+                shorten_path = false,
+                prompt_title = 'Pick your saved session',
+                winblend = 0
+            }
+        end
+    }
     -- Color
-    -- use {"sainnhe/gruvbox-material", opt = true}
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
     use {"eddyekofo94/gruvbox-flat.nvim", opt = true}
 
@@ -134,7 +164,6 @@ return require("packer").startup(function(use)
     require_plugin("todo-comments.nvim")
     require_plugin("neoformat")
     require_plugin("lsp_extensions.nvim")
-    require_plugin("ultisnips")
     require_plugin("lspkind-nvim")
     require_plugin("which-key.nvim")
     require_plugin("nvim-lspinstall")
@@ -171,7 +200,7 @@ return require("packer").startup(function(use)
     require_plugin("barbar.nvim")
     -- require_plugin("gruvbox-material")
     require_plugin("gruvbox-flat.nvim")
-    -- require_plugin("gruvbox-material.nvim")
+    require_plugin("gruvbox-material.nvim")
     require_plugin("vim-surround")
     require_plugin("surround.nvim")
 end)

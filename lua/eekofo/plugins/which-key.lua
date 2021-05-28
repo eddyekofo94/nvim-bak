@@ -83,8 +83,9 @@ local leader_mappings = {
     },
     S = {
         name = "+Session",
-        s = {":SessionSave<cr>", "save session"},
-        l = {":SessionLoad<cr>", "load Session"}
+        f = {"<cmd>SearchSession<cr>", "find session"},
+        s = {":SaveSession<cr>", "save session"},
+        l = {":RestoreSession<cr>", "load Session"}
     },
     ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},

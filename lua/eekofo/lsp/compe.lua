@@ -16,7 +16,6 @@ require "compe".setup {
     documentation = true,
     source = {
         vsnip = {kind = "  "},
-        ultisnips = {kind = "  "}, -- TODO: why the lspkind not working
         nvim_lsp = {kind = "  "},
         buffer = {kind = "  "},
         spell = {kind = "  "},
