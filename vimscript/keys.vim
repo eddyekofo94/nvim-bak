@@ -54,8 +54,3 @@ nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 nnoremap Y  y$ " Thank you TPope
-
-" TODO: move to a lua file, very useful command
-" nnoremap <silent><leader>oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-" nnoremap <silent><leader>OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
