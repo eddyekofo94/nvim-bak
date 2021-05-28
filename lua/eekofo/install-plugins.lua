@@ -159,15 +159,20 @@ return require("packer").startup(function(use)
             -- Start markdown preview server on port 5000
             vim.g.mkdp_port = 5000
         end,
-        opt = true,
+        opt = true
     }
 
     -- for automatic list bulleting when writing markdown or plaintext
-  use {
-    'dkarter/bullets.vim',
-    opt = true,
-    ft = { 'markdown', 'text', 'latex', 'tex' },
-  }
+    use {
+        'dkarter/bullets.vim',
+        opt = true,
+        ft = {'markdown', 'text', 'latex', 'tex'}
+    }
+
+    use {
+        "numtostr/FTerm.nvim",
+        config = function() require("FTerm").setup() end
+    }
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
     use {"eddyekofo94/gruvbox-flat.nvim", opt = true}

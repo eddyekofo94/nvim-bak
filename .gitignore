@@ -3,6 +3,6 @@ plugged/**
 .netrwhist
 .DS_Store
 ~formatting**
-plugin/**
+plugin
 plugin/packer_compiled.vim
 sessions/**

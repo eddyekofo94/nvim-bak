@@ -15,6 +15,8 @@ vim.g.indent_blankline_filetype_exclude = {
     "peekaboo", "git", "TelescopePrompt", "undotree", "flutterToolsOutline", ""
 }
 
+vim.g.indent_start_level = 1
+
 vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_current_context = true
@@ -42,3 +44,4 @@ require("eekofo.plugins.nvimtree")
 require("eekofo.plugins.treesitter")
 require("eekofo.plugins.which-key")
 require("eekofo.plugins.dap")
+require("eekofo.plugins.fterm")
