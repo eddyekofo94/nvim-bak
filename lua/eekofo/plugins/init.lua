@@ -14,6 +14,7 @@ require("eekofo.plugins.which-key")
 require("eekofo.plugins.dap")
 require("eekofo.plugins.fterm")
 require("eekofo.plugins.indent_blankline")
+require("eekofo.plugins.neoscroll")
 require"colorizer".setup()
 require("FTerm").setup()
 require"surround".setup {}

@@ -57,9 +57,7 @@ return require("packer").startup(function(use)
     use {"nvim-telescope/telescope-fzf-writer.nvim", opt = true}
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true}
     use {"nvim-telescope/telescope-project.nvim", opt = true}
-    use {
-        "nvim-telescope/telescope-frecency.nvim",
-    }
+    use {"nvim-telescope/telescope-frecency.nvim", opt = true}
     use "tami5/sql.nvim"
 
     -- Debugging
@@ -109,35 +107,13 @@ return require("packer").startup(function(use)
     -- smooth scrolling in neovim
     use {
         'karb94/neoscroll.nvim',
-        config = function()
-            require('neoscroll').setup()
-            require('neoscroll.config').set_mappings({
-                ['<C-y>'] = {'scroll', {'-0.05', 'false', '20'}},
-                ['<C-e>'] = {'scroll', {'0.05', 'false', '20'}}
-            })
-        end
+        opt = true
     }
 
     -- better session management in neovim
-    use {
-        'rmagatti/auto-session',
-        config = function()
-            require'auto-session'.setup {
-                log_level = 'error',
-                auto_session_root_dir = vim.fn.stdpath('config') .. '/sessions/'
-            }
-        end
-    }
-    use {
-        'rmagatti/session-lens',
-        config = function()
-            require'session-lens'.setup {
-                shorten_path = false,
-                prompt_title = 'Pick your saved session',
-                winblend = 4
-            }
-        end
-    }
+    use {'rmagatti/auto-session', opt = true}
+    use {'rmagatti/session-lens', opt = true} -- BUG: fix searching sessions
+
     -- centerpad, but much better (uses a floating window!!)
     use {
         'folke/zen-mode.nvim',
@@ -168,10 +144,7 @@ return require("packer").startup(function(use)
         ft = {'markdown', 'text', 'latex', 'tex'}
     }
 
-    use {
-        "numtostr/FTerm.nvim",
-        config = function() require("FTerm").setup() end
-    }
+    use {"numtostr/FTerm.nvim", opt = true}
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
     use {"eddyekofo94/gruvbox-flat.nvim", opt = true}
@@ -187,6 +160,10 @@ return require("packer").startup(function(use)
     use {"romgrk/barbar.nvim", opt = true}
 
     require_plugin("nvim-lspconfig")
+    require_plugin("markdown-preview.nvim")
+    require_plugin("FTerm.nvim")
+    require_plugin("auto-session")
+    -- require_plugin("session-lens")
     require_plugin("bullets.vim")
     require_plugin("lspsaga.nvim")
     require_plugin("vim-maximizer")
@@ -234,7 +211,7 @@ return require("packer").startup(function(use)
     require_plugin("barbar.nvim")
     -- require_plugin("gruvbox-material")
     require_plugin("gruvbox-flat.nvim")
-    require_plugin("gruvbox-material.nvim")
     require_plugin("vim-surround")
     require_plugin("surround.nvim")
+    require_plugin("neoscroll.nvim")
 end)
