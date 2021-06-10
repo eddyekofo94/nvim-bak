@@ -59,7 +59,6 @@ return require("packer").startup(function(use)
     use {"nvim-telescope/telescope-project.nvim", opt = true}
     use {
         "nvim-telescope/telescope-frecency.nvim",
-        config = function() require"telescope".load_extension("frecency") end
     }
     use "tami5/sql.nvim"
 
