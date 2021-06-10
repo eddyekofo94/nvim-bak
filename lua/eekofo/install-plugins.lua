@@ -180,7 +180,6 @@ return require("packer").startup(function(use)
     use {"kyazdani42/nvim-web-devicons", opt = true}
 
     -- Status Line and Bufferline
-    -- use {"glepnir/galaxyline.nvim", opt = true}
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
