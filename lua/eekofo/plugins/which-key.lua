@@ -83,6 +83,7 @@ local leader_mappings = {
     },
     S = {
         name = "+Session",
+        d = {":DeleteSession<cr>", "delete session"},
         f = {"<cmd>SearchSession<cr>", "find session"},
         s = {":SaveSession<cr>", "save session"},
         l = {":RestoreSession<cr>", "load Session"}
