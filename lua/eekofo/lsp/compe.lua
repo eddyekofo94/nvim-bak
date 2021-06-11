@@ -21,10 +21,9 @@ require "compe".setup {
         spell = {kind = "  "},
         path = {kind = "  "},
         calc = {kind = "  "},
-        nvim_lua = true,
+        nvim_lua = {kind = "  "},
         tags = false,
         vim_dadbod_completion = true,
-        -- snippets_nvim = {kind = "  "},
         treesitter = {kind = "  "},
         emoji = {kind = " ﲃ ", filetypes = {"markdown", "text"}}
     }
