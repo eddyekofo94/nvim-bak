@@ -6,11 +6,11 @@ require'auto-session'.setup {
     auto_session_root_dir = vim.fn.stdpath('config') .. '/sessions/'
 }
 
-require'session-lens'.setup ( {
+require'session-lens'.setup({
     shorten_path = false,
     prompt_title = 'Pick session',
     winblend = 4
-}
-)
+})
+
 require("telescope").load_extension("session-lens")
 
