@@ -48,9 +48,6 @@ local custom_attach = function(client)
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=None guibg=None guifg=LightYellow
-        hi LspReferenceText cterm=bold ctermbg=None guibg=None guifg=LightGreen
-        hi LspReferenceWrite cterm=bold ctermbg=None guibg=None guifg=Pink
         augroup lsp_document_highlight
           autocmd!
           autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -62,7 +59,7 @@ local custom_attach = function(client)
     require"lsp_signature".on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = {border = "single"},
-         hint_enable = false, -- virtual hint enable
+        hint_enable = false -- virtual hint enable
     })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -148,7 +145,7 @@ lspconfig.cmake.setup({
     cmd = {"cmake-language-server"},
     filetypes = {"cmake"},
     on_attach = custom_attach,
-    init_options = {buildDirectory = "build/"}
+    init_options = {buildDirectory = "build"}
 })
 
 require("nlua.lsp.nvim").setup(lspconfig, {
