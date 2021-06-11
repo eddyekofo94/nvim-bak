@@ -1,4 +1,3 @@
-
 -- better session management in neovim
 require'auto-session'.setup {
     log_level = 'error',
@@ -7,10 +6,11 @@ require'auto-session'.setup {
     auto_session_root_dir = vim.fn.stdpath('config') .. '/sessions/'
 }
 
---TODO: Fix the session bug
--- --require'session-lens'.setup {
--- --    shorten_path = false,
---  --   prompt_title = 'Pick session',
---   --  winblend = 4
--- --}
+require'session-lens'.setup ( {
+    shorten_path = false,
+    prompt_title = 'Pick session',
+    winblend = 4
+}
+)
+require("telescope").load_extension("session-lens")
 

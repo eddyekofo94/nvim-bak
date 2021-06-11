@@ -112,7 +112,7 @@ return require("packer").startup(function(use)
 
     -- better session management in neovim
     use {'rmagatti/auto-session', opt = true}
-    use {'rmagatti/session-lens', opt = true} -- BUG: fix searching sessions
+    use {'rmagatti/session-lens'} -- INFO: must be available at load time
 
     -- centerpad, but much better (uses a floating window!!)
     use {
@@ -163,7 +163,6 @@ return require("packer").startup(function(use)
     require_plugin("markdown-preview.nvim")
     require_plugin("FTerm.nvim")
     require_plugin("auto-session")
-    -- require_plugin("session-lens")
     require_plugin("bullets.vim")
     require_plugin("lspsaga.nvim")
     require_plugin("vim-maximizer")
