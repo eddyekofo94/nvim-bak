@@ -169,12 +169,6 @@ augroup Terminal
     autocmd FileType term set nonumber
 augroup END
 
-" Override the default Red & white
-" INFO move this to a lua file when ready
-" highlight ErrorMsg guibg=NONE guifg=#fb4934
-" highlight Tooltip guibg=NONE guifg=#83a598
-" highlight WarningMsg guibg=NONE guifg=#fabd2f
-
 "TODO: finally move these to a lua file
 colorscheme gruvbox-flat
 " hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
