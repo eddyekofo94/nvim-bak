@@ -28,15 +28,6 @@ require "compe".setup {
         treesitter = {kind = "  "},
         emoji = {kind = " ﲃ ", filetypes = {"markdown", "text"}}
     }
-    -- source = {
-    --     ultisnips = true,
-    --     nvim_lsp = true,
-    --     path = true,
-    --     buffer = true,
-    --     vsnip = true,
-    --     nvim_lua = true,
-    --     spell = true
-    -- }
 }
 
 local t = function(str)
