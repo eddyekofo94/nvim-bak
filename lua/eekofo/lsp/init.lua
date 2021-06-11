@@ -13,6 +13,8 @@ local custom_init = function(client)
     client.config.flags.allow_incremental_sync = true
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 local nvim_status = require("lsp-status")
 
 local custom_attach = function(client)
@@ -44,6 +46,11 @@ local custom_attach = function(client)
     if client.resolved_capabilities.document_range_formatting then
         mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
     end
+
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {'documentation', 'detail', 'additionalTextEdits'}
+    }
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -90,17 +97,6 @@ local custom_attach = function(client)
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
-local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
-updated_capabilities.textDocument.codeLens = {dynamicRegistration = false}
-updated_capabilities.textDocument.completion.completionItem.snippetSupport =
-    true
-updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {"documentation", "detail", "additionalTextEdit"}
-}
-
-updated_capabilities = vim.tbl_extend("keep", updated_capabilities,
-                                      nvim_status.capabilities)
-
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
     "   (Text) ", "   (Method)", "   (Function)",
@@ -129,7 +125,7 @@ lspconfig.rust_analyzer.setup({
     cmd = {"rust-analyzer"},
     filetypes = {"rust"},
     on_attach = custom_attach,
-    capabilities = updated_capabilities,
+    capabilities = capabilities,
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic
                                                                .on_publish_diagnostics,
