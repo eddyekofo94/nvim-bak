@@ -105,10 +105,7 @@ return require("packer").startup(function(use)
     use {"szw/vim-maximizer", opt = true}
 
     -- smooth scrolling in neovim
-    use {
-        'karb94/neoscroll.nvim',
-        opt = true
-    }
+    use {'karb94/neoscroll.nvim', opt = true}
 
     -- better session management in neovim
     use {'rmagatti/auto-session', opt = true}
