@@ -11,7 +11,7 @@ an executable
 O.auto_complete = true
 --O.colorscheme = 'gruvbox-material'
 O.colorscheme = 'gruvbox-flat'
-O.auto_close_tree = 0
+O.auto_close_tree = 1
 O.wrap_lines = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
