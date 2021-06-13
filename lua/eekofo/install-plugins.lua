@@ -63,6 +63,7 @@ return require("packer").startup(function(use)
     -- Debugging
     use {"mfussenegger/nvim-dap", opt = true}
     use {"rcarriga/nvim-dap-ui", opt = true}
+    use 'famiu/nvim-reload' -- TODO: make this plugin useful someday
 
     -- Autocomplete
     use {"hrsh7th/nvim-compe", opt = true}
