@@ -88,6 +88,7 @@ local leader_mappings = {
         s = {":SaveSession<cr>", "save session"},
         l = {":RestoreSession<cr>", "load Session"}
     },
+    ["%"] = {":so %<cr>", "source file"},
     ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
     ["~"] = {":NvimTreeRefresh<cr>", "refresh tree"},
