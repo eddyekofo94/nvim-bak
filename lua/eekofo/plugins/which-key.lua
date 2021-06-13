@@ -90,6 +90,7 @@ local leader_mappings = {
     },
     ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
+    ["~"] = {":NvimTreeRefresh<cr>", "refresh tree"},
     ["H"] = "Disable Highlight",
     h = {':let @/ = ""<cr>', "Clear Highlight"},
     f = {"<cmd>Neoformat<cr>", "Format File"},
