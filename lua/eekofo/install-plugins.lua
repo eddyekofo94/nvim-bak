@@ -58,6 +58,7 @@ return require("packer").startup(function(use)
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true}
     use {"nvim-telescope/telescope-project.nvim", opt = true}
     use {"nvim-telescope/telescope-frecency.nvim", opt = true}
+    use {"jvgrootveld/telescope-zoxide", opt = true}
     use "tami5/sql.nvim"
 
     -- Debugging
@@ -189,6 +190,7 @@ return require("packer").startup(function(use)
     require_plugin("telescope-fzf-native.nvim")
     require_plugin("telescope-frecency.nvim")
     require_plugin("telescope-project.nvim")
+    require_plugin("telescope-zoxide")
     require_plugin("nvim-dap")
     require_plugin("nvim-dap-ui")
     require_plugin("vim-rooter")

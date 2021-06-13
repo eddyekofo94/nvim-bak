@@ -79,7 +79,8 @@ local leader_mappings = {
         T = {":TodoTelescope<cr>", "TODO"},
         r = {":Telescope registers<cr>", "registers"},
         w = {":Telescope file_browser<cr>", "file browser"},
-        u = {":Telescope colorscheme<cr>", "colorschemes"}
+        u = {":Telescope colorscheme<cr>", "colorschemes"},
+        z = {":Telescope zoxide list<cr>", "zoxide"}
     },
     S = {
         name = "+Session",
