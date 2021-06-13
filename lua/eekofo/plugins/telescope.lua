@@ -4,12 +4,8 @@ local actions = require("telescope.actions")
 telescope.setup {
     defaults = {
         vimgrep_arguments = {
-            "rg",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case"
+            "rg", "--no-heading", "--with-filename", "--line-number",
+            "--column", "--smart-case"
         },
         prompt_position = "top",
         prompt_prefix = "$ ",
@@ -30,9 +26,9 @@ telescope.setup {
             }
         },
         scroll_strategy = "cycle",
-        file_sorter = require "telescope.sorters".get_fuzzy_file, -- TODO: find a better file sorter (if possible)
+        file_sorter = require"telescope.sorters".get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
-        generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
+        generic_sorter = require"telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 4, -- transparency
         width = 0.95,
@@ -42,9 +38,9 @@ telescope.setup {
         color_devicons = true,
         use_less = true,
         set_env = {["COLORTERM"] = "truecolor"}, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
-        file_previewer = require "telescope.previewers".vim_buffer_cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
-        grep_previewer = require "telescope.previewers".vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
-        qflist_previewer = require "telescope.previewers".qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
+        file_previewer = require"telescope.previewers".vim_buffer_cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
+        grep_previewer = require"telescope.previewers".vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
+        qflist_previewer = require"telescope.previewers".qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
         extensions = {
             fzf = {
                 override_generic_sorter = false, -- override the generic sorter
@@ -88,7 +84,8 @@ telescope.setup {
 }
 
 require("telescope").load_extension("fzf")
-require "telescope".load_extension("project")
+require"telescope".load_extension("project")
 require"telescope".load_extension("frecency")
---require("telescope").extensions.fzf_writer.staged_grep() -- Added to which-key
---require('telescope').extensions.fzf_writer.files()
+require'telescope'.load_extension('zoxide')
+-- require("telescope").extensions.fzf_writer.staged_grep() -- Added to which-key
+-- require('telescope').extensions.fzf_writer.files()
