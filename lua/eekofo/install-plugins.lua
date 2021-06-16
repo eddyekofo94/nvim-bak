@@ -147,6 +147,7 @@ return require("packer").startup(function(use)
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
     use {"eddyekofo94/gruvbox-flat.nvim", opt = true}
+    use {"eddyekofo94/gruvbox-flat.nvim"}
 
     -- Icons
     use {"kyazdani42/nvim-web-devicons", opt = true}
