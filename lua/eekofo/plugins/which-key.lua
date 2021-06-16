@@ -6,12 +6,9 @@ local leader_mappings = {
     b = {
         name = "+buffer",
         d = {":BufferDelete<cr>", "Buffer delete"},
-        f = {":BufferOrderByDirectory<cr>", "Order by Directory"},
-        l = {":BufferCloseBuffersLeft<cr>", "Buffer close left"},
-        t = {":BufferOrderByLanguage<cr>", "Order by Language"},
-        p = {":BufferPick<cr>", "Pick Buffer"},
-        r = {":BufferCloseBuffersRight<cr>", "Buffer close right"},
-        x = {":BufferCloseAllButCurrent<cr>", "Close all but current"}
+        e = {":BufferLineSortByExtension<cr>", "sort by lang"},
+        p = {":BufferLinePick<cr>", "Pick Buffer"},
+        x = {":%bd|e#|bd#<cr>", "close all but current"}
     },
     d = {
         name = "+diagnostics",
@@ -62,7 +59,7 @@ local leader_mappings = {
         },
         f = {":Telescope find_files<cr>", "files"},
         h = {":Telescope command_history<cr>", "history"},
-        i = {":Telescope media_files<cr>", "media files"},
+        -- i = {":Telescope media_files<cr>", "media files"},
         m = {":Telescope marks<cr>", "marks"},
         M = {":Telescope man_pages<cr>", "man_pages"},
         o = {":Telescope vim_options<cr>", "vim_options"},
@@ -93,7 +90,6 @@ local leader_mappings = {
     ["/"] = {":CommentToggle<CR>", "Comment"},
     ["?"] = {":NvimTreeFindFile<cr>", "find current file"},
     ["~"] = {":NvimTreeRefresh<cr>", "refresh tree"},
-    ["H"] = "Disable Highlight",
     h = {':let @/ = ""<cr>', "Clear Highlight"},
     f = {"<cmd>Neoformat<cr>", "Format File"},
     G = {"<cmd>LazyGit<cr>", "Lazygit"},
