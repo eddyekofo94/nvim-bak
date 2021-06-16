@@ -157,7 +157,6 @@ return require("packer").startup(function(use)
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    use {"romgrk/barbar.nvim", opt = true}
 
     require_plugin("nvim-lspconfig")
     require_plugin("markdown-preview.nvim")
@@ -208,7 +207,6 @@ return require("packer").startup(function(use)
     require_plugin("nvim-comment")
     require_plugin("nvim-bqf")
     require_plugin("nvim-web-devicons")
-    require_plugin("barbar.nvim")
     -- require_plugin("gruvbox-material")
     require_plugin("gruvbox-flat.nvim")
     require_plugin("vim-surround")
