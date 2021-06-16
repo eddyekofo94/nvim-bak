@@ -155,7 +155,6 @@ cmap w!! w !sudo tee %
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Reconsider this option
 " Jump to start and end of line using the home row keys
 " map H ^
@@ -168,9 +167,4 @@ augroup Terminal
     autocmd TermOpen  * startinsert
     autocmd FileType term set nonumber
 augroup END
-
-"TODO: finally move these to a lua file
-colorscheme gruvbox-flat
-" hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
-let g:gruvbox_material_diagnostic_line_highlight = 1
 
