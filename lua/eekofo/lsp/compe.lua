@@ -3,7 +3,7 @@ vim.o.completeopt = "menuone,noselect"
 require "compe".setup {
     enabled = true,
     autocomplete = true,
-    debug = true, -- BUG: enabled for debugging.. to be removed
+    debug = false,
     min_length = 1,
     preselect = "enable",
     throttle_time = 80,
