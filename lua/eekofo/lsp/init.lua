@@ -1,5 +1,6 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require("lspconfig")
+local nnoremap = vim.keymap.nnoremap
 
 _ = require("lspkind").init()
 
@@ -93,6 +94,9 @@ local custom_attach = function(client)
     end
 
     if filetype ~= "lua" then mapper("n", "K", "vim.lsp.buf.hover()") end
+    if filetype == "cpp" then
+        nnoremap { "<s-f>",":ClangdSwitchSourceHeader<CR>", buffer = 0 }
+    end
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
