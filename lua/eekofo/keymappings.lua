@@ -7,6 +7,11 @@ vim.api
     .nvim_set_keymap("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 vim.g.mapleader = " "
 
+-- COPY EVERYTHING/ALL
+mapper("n", "<C-a>", ": %y+<CR>")
+-- SAVE
+mapper("n", "<C-s>", ":w!<CR>")
+
 -- explorer
 vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>",
                         {noremap = true, silent = true})
