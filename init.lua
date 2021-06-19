@@ -1,4 +1,5 @@
 -- Initialise eveything from here
-require("globals")
-require("base-settings")
+
+vim.cmd("luafile ~/.config/nvim/globals.lua")
+vim.cmd("luafile ~/.config/nvim/base-settings.lua")
 require("eekofo")
