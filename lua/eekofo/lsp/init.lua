@@ -137,13 +137,14 @@ lspconfig.rust_analyzer.setup({
     }
 })
 
-lspconfig.cmake.setup({
-    cmd = {"cmake-language-server"},
-    filetypes = {"cmake"},
-    on_attach = custom_attach,
-    init_options = {buildDirectory = "build"}
-})
-
+if 1 == vim.fn.executable "cmake-language-server" then
+    lspconfig.cmake.setup({
+        cmd = {"cmake-language-server"},
+        filetypes = {"cmake"},
+        on_attach = custom_attach,
+        init_options = {buildDirectory = "build"}
+    })
+end
 require("nlua.lsp.nvim").setup(lspconfig, {
     on_init = custom_init,
     on_attach = custom_attach
