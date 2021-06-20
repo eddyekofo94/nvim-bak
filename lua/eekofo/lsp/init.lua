@@ -34,19 +34,19 @@ local custom_attach = function(client)
     mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
     mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
 
-    -- auto format
-    if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api
-            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
-        vim.api.nvim_command [[augroup END]]
-    end
+    -- auto format INFO: disabled. Use Neoformat since this impacts performance
+    -- if client.resolved_capabilities.document_formatting then
+    --     vim.api.nvim_command [[augroup Format]]
+    --     vim.api.nvim_command [[autocmd! * <buffer>]]
+    --     vim.api
+    --         .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+    --     vim.api.nvim_command [[augroup END]]
+    -- end
 
     -- TODO: find a way to get this working in the future
-    if client.resolved_capabilities.document_range_formatting then
-        mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
-    end
+    -- if client.resolved_capabilities.document_range_formatting then
+    --     mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
+    -- end
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
