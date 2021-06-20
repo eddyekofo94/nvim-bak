@@ -174,9 +174,5 @@ require("eekofo.lsp.lspsaga")
 require("eekofo.lsp.handlers")
 require("eekofo.lsp.status").activate()
 
-
-return {
-  on_attach = custom_attach,
-  capabilities = capabilities,
-}
+return {on_attach = custom_attach, capabilities = capabilities}
 
