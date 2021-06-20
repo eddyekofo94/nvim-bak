@@ -13,9 +13,9 @@ vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_context_patterns = {
-    "class", "function", "method", "block", "list_literal", "selector", "^if",
-    "^table", "if_statement", "while", "for"
+    "class", "function", "method", "^if", "if_statement", "while", "for",
+    "with", "func_literal", "list_literal", "selector", "table", "while",
+    "^block", "try", "except", "argument_list", "object", "dictionary"
 }
-
 vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
 
