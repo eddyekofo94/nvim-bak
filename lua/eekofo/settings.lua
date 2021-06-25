@@ -24,6 +24,7 @@ vim.cmd('set sw=4') -- Change the number of space characters inserted for indent
 vim.cmd("set shiftround")
 vim.bo.expandtab = true -- Converts tabs to spaces
 vim.bo.smartindent = true -- Makes indenting smart
+vim.cmd("set backspace=indent,eol,start")
 vim.cmd("set scrolloff=8") -- " start scholling when you're near the bottom by 8
 vim.cmd("set sidescrolloff=6")
 vim.wo.number = O.number -- set numbered lines
