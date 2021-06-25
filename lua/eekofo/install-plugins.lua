@@ -60,6 +60,7 @@ return require("packer").startup(function(use)
     use {"nvim-telescope/telescope-frecency.nvim", opt = true}
     use {"jvgrootveld/telescope-zoxide", opt = true}
     use {"nvim-telescope/telescope-media-files.nvim", opt = true}
+    -- use {"gelguy/wilder.nvim", opt = true} -- TODO: Look how to use this in the future
     use "tami5/sql.nvim"
 
     -- Debugging
@@ -193,6 +194,7 @@ return require("packer").startup(function(use)
     require_plugin("telescope-project.nvim")
     require_plugin("telescope-zoxide")
     require_plugin("telescope-media-files.nvim")
+    -- require_plugin("wilder.nvim")
     require_plugin("nvim-dap")
     require_plugin("nvim-dap-ui")
     require_plugin("vim-rooter")
