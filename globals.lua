@@ -2,7 +2,8 @@ O = {
     auto_close_tree = 0,
     auto_complete = true,
     -- colorscheme = 'gruvbox',
-    colorscheme = 'gruvbox-material.nvim',
+    -- colorscheme = 'gruvbox-material.nvim',
+    colorscheme = 'gruvbox-material',
     hidden_files = true,
     wrap_lines = false,
     number = true,
@@ -19,7 +20,7 @@ O = {
         rainbow = {enabled = false}
     },
 
-    database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
+    database = {save_location = '~/.config/nveekofo_db', auto_execute = 1},
     python = {
         linter = '',
         -- @usage can be 'yapf', 'black'
@@ -107,14 +108,19 @@ O = {
 -- css = {formatter = '', autoformat = false, virtual_text = true},
 -- json = {formatter = '', autoformat = false, virtual_text = true}
 
-function ReloadConfig()
-    print('Reloading config')
-    require'plenary.reload'.reload_module('eekofo')
-end
-
-vim.api.nvim_set_keymap("n", "<leader><CR>", ":ReloadConfig()<cr>",
-                        {expr = true})
-
 DATA_PATH = vim.fn.stdpath('data')
 CACHE_PATH = vim.fn.stdpath('cache')
 
+P = function(v)
+    print(vim.inspect(v))
+    return v
+    end
+
+    if pcall(require, "plenary") then
+    RELOAD = require("plenary.reload").reload_module
+
+    R = function(name)
+        RELOAD(name)
+        return require(name)
+    end
+end
