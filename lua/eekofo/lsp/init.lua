@@ -1,6 +1,5 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require("lspconfig")
-local nnoremap = vim.keymap.nnoremap
 
 _ = require("lspkind").init()
 
@@ -34,35 +33,27 @@ local custom_attach = function(client)
     mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
     mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
 
-    -- auto format INFO: disabled. Use Neoformat since this impacts performance
-    -- if client.resolved_capabilities.document_formatting then
-    --     vim.api.nvim_command [[augroup Format]]
-    --     vim.api.nvim_command [[autocmd! * <buffer>]]
-    --     vim.api
-    --         .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
-    --     vim.api.nvim_command [[augroup END]]
-    -- end
-
     -- TODO: find a way to get this working in the future
-    -- if client.resolved_capabilities.document_range_formatting then
-    --     mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
-    -- end
-
+    if client.resolved_capabilities.document_range_formatting then
+        mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
+    end
+    capabilities = vim.tbl_deep_extend("keep", capabilities, nvim_status.capabilities)
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
         properties = {'documentation', 'detail', 'additionalTextEdits'}
     }
 
+    -- NOTE: using lspsaga popup install
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-        augroup lsp_document_highlight
-          autocmd!
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]], false)
-    end
+    --  if client.resolved_capabilities.document_highlight then
+    --     vim.api.nvim_exec([[
+    --    augroup lsp_document_highlight
+    --     autocmd!
+    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    -- augroup END
+    --  ]], false)
+    -- end
 
     require"lsp_signature".on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -95,7 +86,9 @@ local custom_attach = function(client)
 
     if filetype ~= "lua" then mapper("n", "K", "vim.lsp.buf.hover()") end
     if filetype == "cpp" then
-        nnoremap { "<s-f>",":ClangdSwitchSourceHeader<CR>", buffer = 0 }
+        vim.api.nvim_buf_set_keymap(0, "n", "<s-f>",
+                                    "<cmd>ClangdSwitchSourceHeader<CR>",
+                                    {noremap = true, silent = true})
     end
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
