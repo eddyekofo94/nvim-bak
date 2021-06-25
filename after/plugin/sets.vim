@@ -104,7 +104,7 @@ set list
 
 " settings for hidden chars
 " what particular chars they are displayed with
-set listchars=eol:↵
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
