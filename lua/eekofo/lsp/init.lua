@@ -15,14 +15,11 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local nvim_status = require("lsp-status")
-
 local custom_attach = function(client)
     if client.config.flags then
         client.config.flags.allow_incremental_sync = true
     end
 
-    nvim_status.on_attach(client)
     -- set up mappings (only apply when LSP client attached)
     mapper("n", "<space>dD", "vim.lsp.buf.declaration()")
     mapper("n", "<space>di", "vim.lsp.buf.implementation()")
@@ -37,7 +34,6 @@ local custom_attach = function(client)
     if client.resolved_capabilities.document_range_formatting then
         mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
     end
-    capabilities = vim.tbl_deep_extend("keep", capabilities, nvim_status.capabilities)
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
         properties = {'documentation', 'detail', 'additionalTextEdits'}
@@ -64,8 +60,11 @@ local custom_attach = function(client)
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
         vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
-            -- Hide virtual text
-            virtual_text = true,
+            -- Hide/Show virtual text
+            virtual_text = {
+                prefix = "",
+                severity_limit = "Warning"
+            },
             -- Increase diagnostic signs priority
             signs = {priority = 9999},
             update_in_insert = true
@@ -80,7 +79,7 @@ local custom_attach = function(client)
                 [[aligned = true, prefix = " » " ]] .. [[} ]])
     end
 
-    if vim.tbl_contains({"go", "rust"}, filetype) then
+    if vim.tbl_contains({"go", "rust", "cpp"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 
@@ -114,8 +113,7 @@ lspconfig.clangd.setup({
     on_attach = custom_attach,
     -- Required for lsp-status
     init_options = {clangdFileStatus = true},
-    handlers = nvim_status.extensions.clangd.setup(),
-    capabilities = nvim_status.capabilities
+    capabilities = capabilities
 })
 
 lspconfig.rust_analyzer.setup({
