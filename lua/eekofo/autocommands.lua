@@ -19,7 +19,6 @@ local lua_format = {"BufWritePre", "*.lua", "lua vim.lsp.buf.formatting_sync(nil
 if O.lua.autoformat then
     table.insert(auto_formatters, lua_format)
 end
-
 local json_format = {"BufWritePre", "*.json", "lua vim.lsp.buf.formatting_sync(nil, 1000)"}
 if O.json.autoformat then
     table.insert(auto_formatters, json_format)
