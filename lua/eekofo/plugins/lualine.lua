@@ -23,7 +23,7 @@ local config = {
         -- Disable sections and component separators
         disabled_filetypes = {
             'undotree', "NvimTree", "vista", "dbui", "packer", "OUTLINE",
-            "SymbolsOutline"
+            "Outline"
         },
         component_separators = "",
         section_separators = "",
