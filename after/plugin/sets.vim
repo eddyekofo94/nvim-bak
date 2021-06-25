@@ -55,6 +55,8 @@ set virtualedit=block
 set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
 setglobal fileformats=unix,dos,mac
+" Load an indent file for the detected file type.
+filetype indent on
 
 augroup CHAR_BREAK
   au!
@@ -99,6 +101,7 @@ set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set list
+
 " settings for hidden chars
 " what particular chars they are displayed with
 set listchars=eol:↵
@@ -167,4 +170,24 @@ augroup Terminal
     autocmd TermOpen  * startinsert
     autocmd FileType term set nonumber
 augroup END
+
+highlight HighlightedyankRegion cterm=reverse gui=reverse
+
+" Display cursorline and cursorcolumn ONLY in active window.
+augroup cursor_off
+    autocmd!
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
+augroup END
+
+" Resize split windows using arrow keys by pressing:
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+noremap <c-up> <c-w>+
+noremap <c-down> <c-w>-
+noremap <c-left> <c-w>>
+noremap <c-right> <c-w><
+
+" Center the cursor vertically when moving to the next word during a search.
+nnoremap n nzz
+nnoremap N Nzz
 
