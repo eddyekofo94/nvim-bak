@@ -30,10 +30,6 @@ local custom_attach = function(client)
     mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
     mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
 
-    -- TODO: find a way to get this working in the future
-    if client.resolved_capabilities.document_range_formatting then
-        mapper("v", "<leader>lF", "vim.lsp.buf.range_formatting()")
-    end
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
         properties = {'documentation', 'detail', 'additionalTextEdits'}
@@ -78,8 +74,15 @@ local custom_attach = function(client)
             [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]] ..
                 [[aligned = true, prefix = " » " ]] .. [[} ]])
     end
-
-    if vim.tbl_contains({"go", "rust", "cpp"}, filetype) then
+  -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        mapper("n", "<leader>lf",
+                       "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+    elseif client.resolved_capabilities.document_range_formatting then
+        mapper("n", "<leader>lf",
+                       "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
+    end
+    if vim.tbl_contains({"go", "rust"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 
