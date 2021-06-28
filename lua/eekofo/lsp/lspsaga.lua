@@ -1,16 +1,16 @@
-local saga = require "lspsaga"
+local saga = require("lspsaga")
 
 local mapper = function(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+	vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
 local opts = {
-    error_sign = "",
-    warn_sign = "",
-    hint_sign = "",
-    infor_sign = "",
-    code_action_icon = " ",
-    rename_prompt_prefix = ">"
+	error_sign = "",
+	warn_sign = "",
+	hint_sign = "",
+	infor_sign = "",
+	code_action_icon = " ",
+	rename_prompt_prefix = ">",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("lspsaga.hover").handler
@@ -25,6 +25,6 @@ mapper("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- sear
 mapper("n", "<c-f>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
 mapper("n", "<c-b>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
 
-vim.cmd [[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_cursor_diagnostics()]]
+vim.cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_cursor_diagnostics()]])
 
 saga.init_lsp_saga(opts)
