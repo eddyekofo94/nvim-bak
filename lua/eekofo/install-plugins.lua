@@ -61,7 +61,6 @@ return require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-frecency.nvim", opt = true })
 	use({ "jvgrootveld/telescope-zoxide", opt = true })
 	use({ "nvim-telescope/telescope-media-files.nvim", opt = true })
-	-- use {"gelguy/wilder.nvim", opt = true} -- TODO: Look how to use this in the future
 	use("tami5/sql.nvim")
 
 	-- Debugging
@@ -77,7 +76,7 @@ return require("packer").startup(function(use)
 
 	use({ "honza/vim-snippets", opt = true })
 
-	use({ "dag/vim-fish", opt = true })
+	use({ "blankname/vim-fish", opt = true })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -89,8 +88,10 @@ return require("packer").startup(function(use)
 	use({ "airblade/vim-rooter", opt = true })
 
 	use({ "lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua" })
+
 	use({ "lewis6991/gitsigns.nvim", opt = true })
 	use({ "kdheepak/lazygit.nvim", opt = true })
+	use({ "sindrets/diffview.nvim", opt = true })
 	use({ "folke/which-key.nvim", opt = true })
 	use({ "ChristianChiarulli/dashboard-nvim", opt = true })
 	use({ "windwp/nvim-autopairs", opt = true })
@@ -149,21 +150,27 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "numtostr/FTerm.nvim", opt = true })
+
+	use({ "dstein64/vim-startuptime" })
+
 	-- Color
-	-- use {"eddyekofo94/gruvbox-material.nvim", opt = true}
-	use({ "eddyekofo94/gruvbox-flat.nvim" })
+	-- use {"eddyekofo94/gruvbox-material.nvim"}
+	use({ "yonlu/omni.vim" })
+	use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
 
 	-- Icons
 	use({ "kyazdani42/nvim-web-devicons", opt = true })
 
 	-- Status Line and Bufferline
-	use({
-		"hoob3rt/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
+	-- use({
+	-- 	"hoob3rt/lualine.nvim",
+	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	-- })
+    use ({'famiu/feline.nvim', opt = true})
 	use({ "akinsho/nvim-bufferline.lua", opt = true })
 
 	require_plugin("nvim-lspconfig")
+    require_plugin("feline.nvim")
 	require_plugin("markdown-preview.nvim")
 	require_plugin("FTerm.nvim")
 	require_plugin("auto-session")
@@ -197,7 +204,6 @@ return require("packer").startup(function(use)
 	require_plugin("telescope-project.nvim")
 	require_plugin("telescope-zoxide")
 	require_plugin("telescope-media-files.nvim")
-	-- require_plugin("wilder.nvim")
 	require_plugin("nvim-dap")
 	require_plugin("nvim-dap-ui")
 	require_plugin("vim-rooter")
@@ -209,13 +215,13 @@ return require("packer").startup(function(use)
 	require_plugin("nvim-tree.lua")
 	require_plugin("gitsigns.nvim")
 	require_plugin("lazygit.nvim")
+    require_plugin("diffview.nvim")
 	require_plugin("dashboard-nvim")
 	require_plugin("nvim-autopairs")
 	require_plugin("nvim-comment")
 	require_plugin("nvim-bqf")
 	require_plugin("nvim-web-devicons")
 	require_plugin("nvim-bufferline.lua")
-	-- require_plugin("gruvbox-material")
 	require_plugin("vim-surround")
 	require_plugin("surround.nvim")
 	require_plugin("neoscroll.nvim")
