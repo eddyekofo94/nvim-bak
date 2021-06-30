@@ -5,7 +5,8 @@ require("eekofo.plugins.sessions")
 require("eekofo.plugins.dashboard")
 require("eekofo.plugins.web-devicons")
 require("eekofo.plugins.autopairs")
-require("eekofo.plugins.lualine")
+-- require("eekofo.plugins.feline")
+require("eekofo.plugins.statusbar")
 require("eekofo.plugins.top-bufferline")
 require("eekofo.plugins.gitsigns")
 require("eekofo.plugins.nvimtree")
@@ -19,7 +20,6 @@ require("colorizer").setup()
 require("FTerm").setup()
 require("surround").setup({})
 require("todo-comments").setup({})
-
 -- nvim-comment
 require("nvim_comment").setup()
 
