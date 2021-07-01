@@ -18,6 +18,25 @@ local conditions = {
 	end,
 }
 
+local icons = {
+	linux = " ",
+	macos = " ",
+	windows = " ",
+}
+
+local function file_osinfo()
+	local os = vim.loop.os_uname().sysname
+	local icon
+	if os == "Linux" then
+		icon = icons.linux
+	elseif os == "Darwin" then
+		icon = icons.macos
+	else
+		icon = icons.windows
+	end
+	return icon
+end
+
 local colors = {
 	bg = gruvbox_colors.bg2,
 	black = gruvbox_colors.bg2,
@@ -112,14 +131,16 @@ require("feline").setup({
 					left_sep = " ",
 					right_sep = { str = "", hl = { fg = "black", bg = gruvbox_colors.bg4 } },
 				},
-				{ provider = "", hl = { fg = "bg", bg = "black" } },
+				{
+					provider = "position",
+					hl = { fg = "violet", bg = "black" },
+				},
+				{ provider = "", hl = { fg = "black", bg = "bg" } },
 				{
 					provider = "git_branch",
 					icon = "  ",
 					right_sep = " ",
-					enabled = function()
-						return vim.b.gitsigns_status_dict ~= nil
-					end,
+					enabled = conditions.get_git_diff,
 				},
 				{ provider = "git_diff_added", hl = { fg = "green" } },
 				{ provider = "git_diff_changed", hl = { fg = "yellow" } },
@@ -128,14 +149,14 @@ require("feline").setup({
 			},
 			inactive = {
 				{ provider = vi_mode_provider, hl = vi_mode_hl, right_sep = " " },
-				-- {
-				-- 	provider = "git_branch",
-				-- 	icon = " ",
-				-- 	right_sep = "  ",
-				-- 	enabled = function()
-				-- 		return vim.b.gitsigns_status_dict ~= nil
-				-- 	end,
-				-- },
+				{
+					provider = "git_branch",
+					icon = " ",
+					right_sep = "  ",
+					enabled = function()
+						return vim.b.gitsigns_status_dict ~= nil
+					end,
+				},
 				{ provider = "file_info" },
 				{ provider = "", hl = { fg = "bg", bg = "black" } },
 			},
@@ -183,12 +204,19 @@ require("feline").setup({
 					hl = { fg = "bg", bg = "oceanblue", style = "bold" },
 					right_sep = { str = "", hl = { fg = "bg", bg = "oceanblue" } },
 				},
+				{ provider = "file_type", left_sep = " ", enabled = conditions.hide_in_width },
 				{
 					provider = "file_encoding",
 					left_sep = " ",
 					enabled = conditions.hide_in_width,
 				},
-				{ provider = "position", left_sep = " ", right_sep = " " },
+				{
+					provider = file_osinfo,
+					left_sep = " ",
+					hl = {
+						style = "bold",
+					},
+				},
 				{ provider = percentage_provider, hl = vi_mode_hl },
 			},
 			inactive = {},
