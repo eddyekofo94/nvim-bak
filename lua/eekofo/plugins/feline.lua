@@ -19,8 +19,8 @@ local conditions = {
 }
 
 local colors = {
-	bg = "#282828",
-	black = "#282828",
+	bg = gruvbox_colors.bg2,
+	black = gruvbox_colors.bg2,
 	yellow = "#d8a657",
 	cyan = "#89b482",
 	oceanblue = "#45707a",
@@ -144,9 +144,9 @@ require("feline").setup({
 			active = {
 				{
 					provider = "lsp_client_names",
-					hl = { fg = "fg", bg = gruvbox_colors.none },
-					left_sep = { str = " ", hl = { fg = gruvbox_colors.bg4, bg = "black" } },
-					right_sep = { str = " ", hl = { fg = gruvbox_colors.bg4, bg = "black" } },
+					hl = { fg = "fg", bg = gruvbox_colors.bg4 },
+					left_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
+					right_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
 					enabled = conditions.hide_in_width,
 				},
 			},
@@ -159,7 +159,7 @@ require("feline").setup({
 						return get_diag("Error")
 					end,
 					hl = { fg = "bg", bg = "red", style = "bold" },
-					left_sep = { str = " ", hl = { fg = "red", bg = "NONE" } },
+					left_sep = { str = " ", hl = { fg = "red", bg = gruvbox_colors.bg2 } },
 					right_sep = { str = "", hl = { fg = "yellow", bg = "red" } },
 				},
 				{
@@ -205,8 +205,9 @@ require("feline").setup({
 				"dapui_watches",
 				"dapui_repl",
 				"LspTrouble",
+				"dashboard",
 			},
-			buftypes = { "terminal" },
+			buftypes = { "terminal", "dashboard" },
 			bufnames = {},
 		},
 	},
