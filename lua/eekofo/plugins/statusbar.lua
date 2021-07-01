@@ -1,4 +1,22 @@
 local gruvbox_colors = O.gruvbox_colors
+local vi_mode = require("feline.providers.vi_mode")
+
+local conditions = {
+	buffer_not_empty = function()
+		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+	end,
+	hide_in_width = function()
+		return vim.fn.winwidth(0) > 80
+	end,
+	check_git_workspace = function()
+		local filepath = vim.fn.expand("%:p:h")
+		local gitdir = vim.fn.finddir(".git", filepath .. ";")
+		return gitdir and #gitdir > 0 and #gitdir < #filepath
+	end,
+	get_git_diff = function()
+		return vim.b.gitsigns_status_dict ~= nil
+	end,
+}
 
 local colors = {
 	bg = "#282828",
@@ -21,6 +39,10 @@ local get_diag = function(str)
 	return (count > 0) and " " .. count .. " " or ""
 end
 
+-- local get_diff = function(str)
+--     local count = vim.b.gitsigns_status_dict
+-- end
+
 local vi_mode_provider = function()
 	local mode_alias = {
 		n = "NORMAL",
@@ -39,16 +61,16 @@ local vi_mode_provider = function()
 		[""] = "SELECT",
 		t = "TERMINAL",
 	}
-	return " " .. mode_alias[vim.fn.mode()] .. " "
+	-- return " " .. mode_alias[vim.fn.mode()] .. " "
+	return "     "
 end
 
 local percentage_provider = function()
 	local cursor = require("feline.providers.cursor")
-	return " " .. cursor.line_percentage() .. " "
+	return " " .. cursor.line_percentage() .. " "
 end
 
 local vi_mode_hl = function()
-	local vi_mode = require("feline.providers.vi_mode")
 	return {
 		name = vi_mode.get_mode_highlight_name(),
 		fg = "bg",
@@ -80,17 +102,29 @@ require("feline").setup({
 	components = {
 		left = {
 			active = {
-				{ provider = vi_mode_provider, hl = vi_mode_hl, right_sep = " " },
+				{
+					provider = vi_mode_provider,
+					hl = vi_mode_hl,
+				},
+				-- { provider = "", hl = vi_mode_hl },
+				{
+					provider = "file_info",
+					left_sep = " ",
+					right_sep = { str = "", hl = { fg = "black", bg = gruvbox_colors.bg4 } },
+				},
+				{ provider = "", hl = { fg = "bg", bg = "black" } },
 				{
 					provider = "git_branch",
-					icon = " ",
-					right_sep = "  ",
+					icon = "  ",
+					right_sep = " ",
 					enabled = function()
 						return vim.b.gitsigns_status_dict ~= nil
 					end,
 				},
-				{ provider = "file_info" },
-				{ provider = "", hl = { fg = "bg", bg = "black" } },
+				{ provider = "git_diff_added", hl = { fg = "green" } },
+				{ provider = "git_diff_changed", hl = { fg = "yellow" } },
+				{ provider = "git_diff_removed", hl = { fg = "red" } },
+				{ provider = "", hl = { fg = "bg", bg = "black" } },
 			},
 			inactive = {
 				{ provider = vi_mode_provider, hl = vi_mode_hl, right_sep = " " },
@@ -106,20 +140,26 @@ require("feline").setup({
 				{ provider = "", hl = { fg = "bg", bg = "black" } },
 			},
 		},
-		mid = { active = {}, inactive = {} },
-		right = {
+		mid = {
 			active = {
 				{
 					provider = "lsp_client_names",
-					hl = { fg = "fg", bg = gruvbox_colors.bg4 },
-					left_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = "black" } },
+					hl = { fg = "fg", bg = gruvbox_colors.none },
+					left_sep = { str = " ", hl = { fg = gruvbox_colors.bg4, bg = "black" } },
+					right_sep = { str = " ", hl = { fg = gruvbox_colors.bg4, bg = "black" } },
+					enabled = conditions.hide_in_width,
 				},
+			},
+			inactive = {},
+		},
+		right = {
+			active = {
 				{
 					provider = function()
 						return get_diag("Error")
 					end,
 					hl = { fg = "bg", bg = "red", style = "bold" },
-					left_sep = { str = " ", hl = { fg = "red", bg = gruvbox_colors.bg4 } },
+					left_sep = { str = " ", hl = { fg = "red", bg = "NONE" } },
 					right_sep = { str = "", hl = { fg = "yellow", bg = "red" } },
 				},
 				{
@@ -143,9 +183,13 @@ require("feline").setup({
 					hl = { fg = "bg", bg = "oceanblue", style = "bold" },
 					right_sep = { str = "", hl = { fg = "bg", bg = "oceanblue" } },
 				},
-				{ provider = "file_encoding", left_sep = " " },
+				{
+					provider = "file_encoding",
+					left_sep = " ",
+					enabled = conditions.hide_in_width,
+				},
 				{ provider = "position", left_sep = " ", right_sep = " " },
-				{ provider = percentage_provider, hl = { fg = "bg", bg = "skyblue", style = "bold" } },
+				{ provider = percentage_provider, hl = vi_mode_hl },
 			},
 			inactive = {},
 		},
