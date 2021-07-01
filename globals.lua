@@ -80,9 +80,8 @@ O = {
 	},
 	gruvbox_colors = {
 		bg = "#282828",
-		bg1 = "#32302f", -- cursor color
+		bg1 = "#3c3836", -- cursor color
 		bg2 = "#32302f",
-		bg3 = "#45403d",
 		bg4 = "#45403d",
 		bg5 = "#5a524c",
 		fg = "#d4be98",
