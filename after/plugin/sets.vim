@@ -90,7 +90,8 @@ set diffopt+=iwhite " No whitespace in vimdiff
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set synmaxcol=500
-set backspace=indent,eol,start " Backspace over newlines
+" set backspace=indent,eol,start " Backspace over newlines
+
 " set nofoldenable
 set ttyfast
 
