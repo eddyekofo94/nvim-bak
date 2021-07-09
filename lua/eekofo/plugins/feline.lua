@@ -132,8 +132,8 @@ require("feline").setup({
         MORE = "cyan",
         SELECT = "magenta",
         COMMAND = "orange",
-        SHELL = "skyblue",
-        TERM = "skyblue",
+        SHELL = "red",
+        TERM = "red",
         NONE = "orange",
     },
     components = {
