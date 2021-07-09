@@ -29,13 +29,12 @@ telescope.setup({
             },
             width = 0.95,
             preview_cutoff = 120,
-            preview_width = 80
+            preview_width = 80,
         },
         scroll_strategy = "cycle",
         file_sorter = require("telescope.sorters").get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-        shorten_path = true,
         winblend = 4, -- transparency
         color_devicons = true,
         use_less = true,
