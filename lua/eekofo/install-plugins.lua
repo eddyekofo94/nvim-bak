@@ -53,8 +53,8 @@ return require("packer").startup(function(use)
 
     -- Telescope
     use({ "nvim-lua/popup.nvim", opt = true })
-    use({ "nvim-lua/plenary.nvim", opt = true })
-    use({ "nvim-telescope/telescope.nvim", opt = true })
+    use({ "nvim-lua/plenary.nvim" })
+    use({ "nvim-telescope/telescope.nvim" })
     use({ "nvim-telescope/telescope-fzf-writer.nvim", opt = true })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true })
     use({ "nvim-telescope/telescope-project.nvim", opt = true })
@@ -87,7 +87,7 @@ return require("packer").startup(function(use)
     use({ "kevinhwang91/rnvimr", opt = true })
     use({ "airblade/vim-rooter", opt = true })
 
-    use({ "lukas-reineke/indent-blankline.nvim", opt = true, branch = "lua" })
+    use({ "lukas-reineke/indent-blankline.nvim", opt = true })
 
     use({ "lewis6991/gitsigns.nvim", opt = true })
     use({ "kdheepak/lazygit.nvim", opt = true })
@@ -155,8 +155,10 @@ return require("packer").startup(function(use)
 
     -- Color
     -- use {"eddyekofo94/gruvbox-material.nvim"}
-    use({ "yonlu/omni.vim" })
+    -- use({ "yonlu/omni.vim" })
     use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
+    use({ "eddyekofo94/bogster.nvim"})
+    -- use("folke/tokyonight.nvim")
 
     -- Icons
     use({ "kyazdani42/nvim-web-devicons", opt = true })
@@ -197,7 +199,7 @@ return require("packer").startup(function(use)
     require_plugin("tabular")
     require_plugin("popup.nvim")
     require_plugin("plenary.nvim")
-    require_plugin("telescope.nvim")
+    --require_plugin("telescope.nvim")
     require_plugin("telescope-fzf-writer.nvim")
     require_plugin("telescope-fzf-native.nvim")
     require_plugin("telescope-frecency.nvim")
