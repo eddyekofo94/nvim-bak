@@ -19,6 +19,22 @@ local conditions = {
     -- vim.b.gitsigns_status_dict["added"]
 }
 
+local check_lsp_active_client = function()
+    local msg = "No Active Lsp"
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+        return msg
+    end
+    for _, client in ipairs(clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            return " LSP: " .. client.name
+        end
+    end
+    return msg
+end
+
 local icons = {
     linux = " ",
     macos = " ",
@@ -142,7 +158,7 @@ require("feline").setup({
                     provider = "git_branch",
                     icon = "  ",
                     right_sep = " ",
-                    enabled = conditions.get_git_diff,
+                    enabled = conditions.check_git_workspace,
                 },
                 { provider = "git_diff_added", hl = { fg = "green" } },
                 { provider = "git_diff_changed", hl = { fg = "yellow" } },
@@ -155,9 +171,7 @@ require("feline").setup({
                     provider = "git_branch",
                     icon = " ",
                     right_sep = "  ",
-                    enabled = function()
-                        return vim.b.gitsigns_status_dict ~= nil
-                    end,
+                    enabled = conditions.check_git_workspace,
                 },
                 { provider = "file_info" },
                 { provider = "", hl = { fg = "bg", bg = "black" } },
@@ -166,7 +180,7 @@ require("feline").setup({
         mid = {
             active = {
                 {
-                    provider = "lsp_client_names",
+                    provider = check_lsp_active_client,
                     hl = { fg = "fg", bg = gruvbox_colors.bg4 },
                     left_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
                     right_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
