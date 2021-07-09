@@ -83,10 +83,11 @@ local leader_mappings = {
     },
     S = {
         name = "+Session",
-        d = { ":DeleteSession<cr>", "delete session" },
+        d = { ":DisableAutoSave<cr>", "disable session" },
         f = { "<cmd>SearchSession<cr>", "find session" },
         s = { ":SaveSession<cr>", "save session" },
         l = { ":RestoreSession<cr>", "load Session" },
+        x = { ":DeleteSession<cr>", "delete session" },
     },
     ["%"] = { ":w! | so %<cr>", "source file" },
     ["/"] = { ":CommentToggle<CR>", "comment" },
