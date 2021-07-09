@@ -48,7 +48,7 @@ return require("packer").startup(function(use)
     use("RishabhRD/popfix")
     use({ "RishabhRD/nvim-lsputils", opt = true })
 
-    -- " Trying this formatter instead
+    -- " Formatter
     use({ "sbdchd/neoformat", opt = true })
 
     -- Telescope
@@ -154,20 +154,12 @@ return require("packer").startup(function(use)
     use({ "dstein64/vim-startuptime" })
 
     -- Color
-    -- use {"eddyekofo94/gruvbox-material.nvim"}
-    -- use({ "yonlu/omni.vim" })
     use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-    use({ "eddyekofo94/bogster.nvim"})
-    -- use("folke/tokyonight.nvim")
+    use({ "eddyekofo94/bogster.nvim" })
 
     -- Icons
     use({ "kyazdani42/nvim-web-devicons", opt = true })
 
-    -- Status Line and Bufferline
-    -- use({
-    -- 	"hoob3rt/lualine.nvim",
-    -- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    -- })
     use({ "famiu/feline.nvim", opt = true })
     use({ "akinsho/nvim-bufferline.lua", opt = true })
 
@@ -195,11 +187,10 @@ return require("packer").startup(function(use)
     require_plugin("nvim-colorizer.lua")
     require_plugin("astronauta")
     require_plugin("nlua.nvim")
-    require_plugin("indent-blankline.nvim")
+    -- require_plugin("indent-blankline.nvim")
     require_plugin("tabular")
     require_plugin("popup.nvim")
     require_plugin("plenary.nvim")
-    --require_plugin("telescope.nvim")
     require_plugin("telescope-fzf-writer.nvim")
     require_plugin("telescope-fzf-native.nvim")
     require_plugin("telescope-frecency.nvim")
