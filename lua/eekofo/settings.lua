@@ -39,9 +39,8 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 -- vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
--- vim.o.guifont = "Hack\\ Nerd\\ Font\\ Mono"
+-- vim.o.guifont = "Hack Nerd Font Mono:h18"
 -- vim.o.guifont = "SauceCodePro Nerd Font:h17"
--- vim.o.guifont = "FiraCode Nerd Font:h17"
-vim.o.guifont = "UbuntuMono Nerd Font:h17"
-
+-- vim.o.guifont = "FiraCode Nerd Font:h18"
+vim.o.guifont = "UbuntuMono Nerd Font:h18"
 -- vim.o.guifont = "JetBrains\\ Mono\\ Regular\\ Nerd\\ Font\\ Complete"
