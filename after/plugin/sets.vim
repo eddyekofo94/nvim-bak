@@ -75,9 +75,6 @@ set cmdheight=2
 " Shorter update time for good user experience
 set updatetime=300
 
-" Don't pass messages to | ins-completion-menu | .
-set shortmess+=c
-
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
