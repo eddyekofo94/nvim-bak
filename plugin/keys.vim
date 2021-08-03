@@ -21,6 +21,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" nnoremap <leader>= <cmd><C-w> <C-=>
+
 " HARD MODE - Disabled arrows
 noremap <Up> <Nop>
 noremap <Down> <Nop>
