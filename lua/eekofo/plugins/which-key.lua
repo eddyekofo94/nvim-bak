@@ -89,7 +89,6 @@ local leader_mappings = {
         l = { ":RestoreSession<cr>", "load Session" },
         x = { ":DeleteSession<cr>", "delete session" },
     },
-    ["%"] = { ":w! | so %<cr>", "source file" },
     ["/"] = { ":CommentToggle<CR>", "comment" },
     ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
     ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
