@@ -94,6 +94,7 @@ local leader_mappings = {
     ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
     ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
     h = { ':let @/ = ""<cr>', "Clear Highlight" },
+    H = { ':split', "Split bottom" },
     f = { "<cmd>Neoformat<cr>", "Format File" },
     G = { "<cmd>LazyGit<cr>", "Lazygit" },
     e = { "Explorer" },
