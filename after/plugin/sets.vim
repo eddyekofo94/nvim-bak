@@ -189,3 +189,5 @@ noremap <c-right> <c-w><
 nnoremap n nzz
 nnoremap N Nzz
 
+" Update instead of write because update works only on edited buffers
+autocmd CursorHold * update
