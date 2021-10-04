@@ -1,22 +1,25 @@
 local gruvbox_colors = O.gruvbox_colors
-local vi_mode = require("feline.providers.vi_mode")
+local lsp = require("feline.providers.lsp")
+local vi_mode_utils = require("feline.providers.vi_mode")
 
-local conditions = {
-    buffer_not_empty = function()
-        return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-    end,
-    hide_in_width = function()
-        return vim.fn.winwidth(0) > 80
-    end,
-    check_git_workspace = function()
-        local filepath = vim.fn.expand("%:p:h")
-        local gitdir = vim.fn.finddir(".git", filepath .. ";")
-        return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end,
-    get_git_diff = function()
-        return vim.b.gitsigns_status_dict ~= nil
-    end,
-    -- vim.b.gitsigns_status_dict["added"]
+local b = vim.b
+local fn = vim.fn
+
+local colors = {
+    -- bg = gruvbox_colors.bg4,
+    bg = gruvbox_colors.bg2,
+    black = gruvbox_colors.bg2,
+    yellow = "#d8a657",
+    cyan = "#89b482",
+    oceanblue = "#45707a",
+    green = "#a9b665",
+    orange = "#e78a4e",
+    violet = "#d3869b",
+    magenta = "#c14a4a",
+    white = "#d4be98",
+    fg = "#d4be98",
+    skyblue = "#7daea3",
+    red = "#ea6962",
 }
 
 local check_lsp_active_client = function()
@@ -53,207 +56,282 @@ local function file_osinfo()
     end
     return icon
 end
-
-local colors = {
-    bg = gruvbox_colors.bg2,
-    black = gruvbox_colors.bg2,
-    yellow = "#d8a657",
-    cyan = "#89b482",
-    oceanblue = "#45707a",
-    green = "#a9b665",
-    orange = "#e78a4e",
-    violet = "#d3869b",
-    magenta = "#c14a4a",
-    white = "#d4be98",
-    fg = "#d4be98",
-    skyblue = "#7daea3",
-    red = "#ea6962",
-}
+local vi_mode_provider = function()
+    return "    "
+end
 
 local get_diag = function(str)
     local count = vim.lsp.diagnostic.get_count(0, str)
     return (count > 0) and " " .. count .. " " or ""
 end
 
--- local get_diff = function(str)
--- 	local count = vim.b.gitsigns_status_dict[str]
--- 	return (count > 0) and " " .. count .. " " or ""
--- end
-
-local vi_mode_provider = function()
-    local mode_alias = {
-        n = "NORMAL",
-        no = "NORMAL",
-        i = "INSERT",
-        v = "VISUAL",
-        V = "V-LINE",
-        [""] = "V-BLOCK",
-        c = "COMMAND",
-        cv = "COMMAND",
-        ce = "COMMAND",
-        R = "REPLACE",
-        Rv = "REPLACE",
-        s = "SELECT",
-        S = "SELECT",
-        [""] = "SELECT",
-        t = "TERMINAL",
-    }
-    -- return " " .. mode_alias[vim.fn.mode()] .. " "
-    return "     "
-end
-
 local percentage_provider = function()
     local cursor = require("feline.providers.cursor")
-    return " " .. cursor.line_percentage() .. " "
+    return " " .. cursor.line_percentage() .. " "
 end
 
 local vi_mode_hl = function()
     return {
-        name = vi_mode.get_mode_highlight_name(),
+        name = vi_mode_utils.get_mode_highlight_name(),
         fg = "bg",
-        bg = vi_mode.get_mode_color(),
+        bg = vi_mode_utils.get_mode_color(),
         style = "bold",
     }
 end
 
+local conditions = {
+    buffer_not_empty = function()
+        return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+    end,
+    hide_in_width = function()
+        return vim.fn.winwidth(0) > 80
+    end,
+    check_git_workspace = function()
+        local filepath = vim.fn.expand("%:p:h")
+        local gitdir = vim.fn.finddir(".git", filepath .. ";")
+        return gitdir and #gitdir > 0 and #gitdir < #filepath
+    end,
+    get_git_diff = function()
+        return vim.b.gitsigns_status_dict ~= nil
+    end,
+}
+local components = {
+    active = {},
+    inactive = {},
+}
+
+components.active[1] = {
+    {
+        provider = vi_mode_provider,
+        hl = vi_mode_hl,
+        right_sep = { str = "right_filled" },
+    },
+    {
+        provider = "file_info",
+        left_sep = " ",
+        right_sep = { str = "right", hl = { fg = "fg", bg = "bg" } },
+    },
+    {
+        provider = "file_size",
+        enabled = function()
+            return fn.getfsize(fn.expand("%:p")) > 0 and vim.fn.winwidth(0) > 80
+        end,
+        left_sep = " ",
+        right_sep = {
+            " ",
+            {
+                str = "right",
+                hl = {
+                    fg = "fg",
+                    bg = "bg",
+                },
+            },
+        },
+    },
+    {
+        provider = "position",
+        hl = { fg = "violet", bg = "black" },
+        left_sep = " ",
+        right_sep = " ",
+    },
+    {
+        provider = "git_branch",
+        hl = {
+            fg = "white",
+            bg = "black",
+            style = "bold",
+        },
+        right_sep = function()
+            local val = { hl = { fg = "NONE", bg = "black" } }
+            if b.gitsigns_status_dict then
+                val.str = " "
+            else
+                val.str = ""
+            end
+            return val
+        end,
+        enabled = conditions.check_git_workspace,
+    },
+    { provider = "git_diff_added", hl = { fg = "green" } },
+    { provider = "git_diff_changed", hl = { fg = "yellow" } },
+    { provider = "git_diff_removed", hl = { fg = "red" } },
+}
+
+components.active[2] = {
+    {
+        provider = check_lsp_active_client,
+        enabled = conditions.hide_in_width,
+        right_sep = { str = " " },
+    },
+    {
+        provider = function()
+            return get_diag("Error")
+        end,
+        hl = { fg = "bg", bg = "red", style = "bold" },
+        left_sep = { str = " ", hl = { fg = "red", bg = gruvbox_colors.bg2 } },
+        right_sep = { str = "", hl = { fg = "yellow", bg = "red" } },
+    },
+    {
+        provider = function()
+            return get_diag("Warning")
+        end,
+        hl = { fg = "bg", bg = "yellow", style = "bold" },
+        right_sep = { str = "", hl = { fg = "cyan", bg = "yellow" } },
+    },
+    {
+        provider = function()
+            return get_diag("Information")
+        end,
+        hl = { fg = "bg", bg = "cyan", style = "bold" },
+        right_sep = { str = "", hl = { fg = "oceanblue", bg = "cyan" } },
+    },
+    {
+        provider = function()
+            return get_diag("Hint")
+        end,
+        hl = { fg = "bg", bg = "oceanblue", style = "bold" },
+        right_sep = { str = "", hl = { fg = "bg", bg = "oceanblue" } },
+    },
+    { provider = "file_type", left_sep = " ", enabled = conditions.hide_in_width },
+    {
+        provider = "file_encoding",
+        left_sep = " ",
+        enabled = conditions.hide_in_width,
+    },
+    {
+        provider = file_osinfo,
+        left_sep = " ",
+        hl = {
+            style = "bold",
+        },
+        enabled = conditions.hide_in_width,
+    },
+    {
+        provider = "line_percentage",
+        hl = {
+            style = "bold",
+        },
+        left_sep = "  ",
+        right_sep = " ",
+    },
+    {
+        provider = "scroll_bar",
+        hl = {
+            fg = "skyblue",
+            style = "bold",
+        },
+    },
+}
+
+components.inactive[1] = {
+    {
+        provider = "file_type",
+        hl = {
+            fg = "white",
+            bg = "oceanblue",
+            style = "bold",
+        },
+        left_sep = {
+            str = " ",
+            hl = {
+                fg = "NONE",
+                bg = "oceanblue",
+            },
+        },
+        right_sep = {
+            {
+                str = " ",
+                hl = {
+                    fg = "NONE",
+                    bg = "oceanblue",
+                },
+            },
+            "slant_right",
+        },
+    },
+}
+
+-- This table is equal to the default separators table
+local separators = {
+    vertical_bar = "┃",
+    vertical_bar_thin = "│",
+    left = "",
+    right = "",
+    block = "█",
+    left_filled = "",
+    right_filled = "",
+    slant_left = "",
+    slant_left_thin = "",
+    slant_right = "",
+    slant_right_thin = "",
+    slant_left_2 = "",
+    slant_left_2_thin = "",
+    slant_right_2 = "",
+    slant_right_2_thin = "",
+    left_rounded = "",
+    left_rounded_thin = "",
+    right_rounded = "",
+    right_rounded_thin = "",
+    circle = "●",
+}
+
+-- This table is equal to the default vi_mode_colors table
+local vi_mode_colors = {
+    ["NORMAL"] = "green",
+    ["OP"] = "green",
+    ["INSERT"] = "red",
+    ["VISUAL"] = "yellow",
+    ["LINES"] = "skyblue",
+    ["BLOCK"] = "skyblue",
+    ["REPLACE"] = "violet",
+    ["V-REPLACE"] = "violet",
+    ["ENTER"] = "cyan",
+    ["MORE"] = "cyan",
+    ["SELECT"] = "orange",
+    ["COMMAND"] = "green",
+    ["SHELL"] = "green",
+    ["TERM"] = "green",
+    ["NONE"] = "yellow",
+}
+
+-- This table is equal to the default force_inactive table
+local force_inactive = {
+    filetypes = {
+        "NvimTree",
+        "packer",
+        "startify",
+        "fugitive",
+        "fugitiveblame",
+        "qf",
+        "help",
+    },
+    buftypes = {
+        "terminal",
+    },
+    bufnames = {},
+}
+
+-- This table is equal to the default disable table
+local disable = {
+    filetypes = {},
+    buftypes = {},
+    bufnames = {},
+}
+
+-- This table is equal to the default update_triggers table
+local update_triggers = {
+    "VimEnter",
+    "WinEnter",
+    "WinClosed",
+    "FileChangedShellPost",
+}
+
 require("feline").setup({
-    default_fg = gruvbox_colors.fg,
-    default_bg = gruvbox_colors.bg4,
     colors = colors,
-    vi_mode_colors = {
-        NORMAL = "cyan",
-        OP = "cyan",
-        INSERT = "white",
-        VISUAL = "yellow",
-        BLOCK = "green",
-        REPLACE = "yellow",
-        ["V-REPLACE"] = "yellow",
-        ENTER = "cyan",
-        MORE = "cyan",
-        SELECT = "magenta",
-        COMMAND = "orange",
-        SHELL = "red",
-        TERM = "red",
-        NONE = "orange",
-    },
-    components = {
-        left = {
-            active = {
-                {
-                    provider = vi_mode_provider,
-                    hl = vi_mode_hl,
-                },
-                -- { provider = "", hl = vi_mode_hl },
-                {
-                    provider = "file_info",
-                    left_sep = " ",
-                    right_sep = { str = "", hl = { fg = "black", bg = gruvbox_colors.bg4 } },
-                },
-                {
-                    provider = "position",
-                    hl = { fg = "violet", bg = "black" },
-                },
-                { provider = "", hl = { fg = "black", bg = "bg" } },
-                {
-                    provider = "git_branch",
-                    icon = "  ",
-                    right_sep = " ",
-                    enabled = conditions.check_git_workspace,
-                },
-                { provider = "git_diff_added", hl = { fg = "green" } },
-                { provider = "git_diff_changed", hl = { fg = "yellow" } },
-                { provider = "git_diff_removed", hl = { fg = "red" } },
-                { provider = "", hl = { fg = "bg", bg = "black" } },
-            },
-            inactive = {
-                { provider = vi_mode_provider, hl = vi_mode_hl, right_sep = " " },
-                {
-                    provider = "git_branch",
-                    icon = " ",
-                    right_sep = "  ",
-                    enabled = conditions.check_git_workspace,
-                },
-                { provider = "file_info" },
-                { provider = "", hl = { fg = "bg", bg = "black" } },
-            },
-        },
-        mid = {
-            active = {
-                {
-                    provider = check_lsp_active_client,
-                    hl = { fg = "fg", bg = gruvbox_colors.bg4 },
-                    left_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
-                    right_sep = { str = "", hl = { fg = gruvbox_colors.bg4, bg = gruvbox_colors.bg2 } },
-                    enabled = conditions.hide_in_width,
-                },
-            },
-            inactive = {},
-        },
-        right = {
-            active = {
-                {
-                    provider = function()
-                        return get_diag("Error")
-                    end,
-                    hl = { fg = "bg", bg = "red", style = "bold" },
-                    left_sep = { str = " ", hl = { fg = "red", bg = gruvbox_colors.bg2 } },
-                    right_sep = { str = "", hl = { fg = "yellow", bg = "red" } },
-                },
-                {
-                    provider = function()
-                        return get_diag("Warning")
-                    end,
-                    hl = { fg = "bg", bg = "yellow", style = "bold" },
-                    right_sep = { str = "", hl = { fg = "cyan", bg = "yellow" } },
-                },
-                {
-                    provider = function()
-                        return get_diag("Information")
-                    end,
-                    hl = { fg = "bg", bg = "cyan", style = "bold" },
-                    right_sep = { str = "", hl = { fg = "oceanblue", bg = "cyan" } },
-                },
-                {
-                    provider = function()
-                        return get_diag("Hint")
-                    end,
-                    hl = { fg = "bg", bg = "oceanblue", style = "bold" },
-                    right_sep = { str = "", hl = { fg = "bg", bg = "oceanblue" } },
-                },
-                { provider = "file_type", left_sep = " ", enabled = conditions.hide_in_width },
-                {
-                    provider = "file_encoding",
-                    left_sep = " ",
-                    enabled = conditions.hide_in_width,
-                },
-                {
-                    provider = file_osinfo,
-                    left_sep = " ",
-                    hl = {
-                        style = "bold",
-                    },
-                    enabled = conditions.hide_in_width,
-                },
-                { provider = percentage_provider, hl = vi_mode_hl },
-            },
-            inactive = {},
-        },
-    },
-    properties = {
-        force_inactive = {
-            filetypes = {
-                "NvimTree",
-                "packer",
-                "dap-repl",
-                "dapui_scopes",
-                "dapui_stacks",
-                "dapui_watches",
-                "dapui_repl",
-                "LspTrouble",
-                "dashboard",
-            },
-            buftypes = { "terminal", "dashboard" },
-            bufnames = {},
-        },
-    },
+    separators = separators,
+    vi_mode_colors = vi_mode_colors,
+    force_inactive = force_inactive,
+    disable = disable,
+    update_triggers = update_triggers,
+    components = components,
 })
