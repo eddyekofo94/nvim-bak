@@ -195,6 +195,6 @@ require("eekofo.lsp.compe")
 require("eekofo.lsp.lspsaga")
 -- helps the lsp experience
 require("eekofo.lsp.handlers")
-require("eekofo.lsp.status").activate()
+--require("eekofo.lsp.status").activate()
 
 return { on_attach = custom_attach, capabilities = capabilities }
