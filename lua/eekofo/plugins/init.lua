@@ -17,7 +17,7 @@ require("eekofo.plugins.fterm")
 -- require("eekofo.plugins.indent_blankline")
 require("eekofo.plugins.neoscroll")
 require("colorizer").setup()
-require("FTerm").setup()
+require("FTerm")
 require("surround").setup({})
 require("todo-comments").setup({})
 -- nvim-comment
