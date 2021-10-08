@@ -109,7 +109,10 @@ components.active[1] = {
     {
         provider = "file_info",
         left_sep = " ",
-        right_sep = { str = "right", hl = { fg = "fg", bg = "bg" } },
+        right_sep = { str = "vertical_bar", hl = { fg = "fg", bg = "bg" } },
+        -- opts = {
+        type = "relative",
+        -- },
     },
     {
         provider = "file_size",
@@ -120,7 +123,7 @@ components.active[1] = {
         right_sep = {
             " ",
             {
-                str = "right",
+                str = "vertical_bar",
                 hl = {
                     fg = "fg",
                     bg = "bg",
@@ -133,6 +136,9 @@ components.active[1] = {
         hl = { fg = "violet", bg = "black" },
         left_sep = " ",
         right_sep = " ",
+    },
+    {
+        provider = "┃ ",
     },
     {
         provider = "git_branch",
@@ -150,7 +156,7 @@ components.active[1] = {
             end
             return val
         end,
-        enabled = conditions.check_git_workspace,
+        enabled = conditions.hide_in_width,
     },
     { provider = "git_diff_added", hl = { fg = "green" } },
     { provider = "git_diff_changed", hl = { fg = "yellow" } },
@@ -159,38 +165,20 @@ components.active[1] = {
 
 components.active[2] = {
     {
-        provider = check_lsp_active_client,
-        enabled = conditions.hide_in_width,
-        right_sep = { str = " " },
+        provider = "diagnostic_errors",
+        hl = { fg = "red" },
     },
     {
-        provider = function()
-            return get_diag("Error")
-        end,
-        hl = { fg = "bg", bg = "red", style = "bold" },
-        left_sep = { str = " ", hl = { fg = "red", bg = gruvbox_colors.bg2 } },
-        right_sep = { str = "", hl = { fg = "yellow", bg = "red" } },
+        provider = "diagnostic_warnings",
+        hl = { fg = "yellow" },
     },
     {
-        provider = function()
-            return get_diag("Warning")
-        end,
-        hl = { fg = "bg", bg = "yellow", style = "bold" },
-        right_sep = { str = "", hl = { fg = "cyan", bg = "yellow" } },
+        provider = "diagnostic_hints",
+        hl = { fg = "cyan" },
     },
     {
-        provider = function()
-            return get_diag("Information")
-        end,
-        hl = { fg = "bg", bg = "cyan", style = "bold" },
-        right_sep = { str = "", hl = { fg = "oceanblue", bg = "cyan" } },
-    },
-    {
-        provider = function()
-            return get_diag("Hint")
-        end,
-        hl = { fg = "bg", bg = "oceanblue", style = "bold" },
-        right_sep = { str = "", hl = { fg = "bg", bg = "oceanblue" } },
+        provider = "diagnostic_info",
+        hl = { fg = "skyblue" },
     },
     { provider = "file_type", left_sep = " ", enabled = conditions.hide_in_width },
     {
@@ -225,7 +213,7 @@ components.active[2] = {
 
 components.inactive[1] = {
     {
-        provider = "file_type",
+        provider = "file_info",
         hl = {
             fg = "white",
             bg = "oceanblue",
