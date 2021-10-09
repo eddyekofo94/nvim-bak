@@ -196,8 +196,6 @@ require("eekofo.lsp.lsptrouble")
 -- require("eekofo.lsp.compe")
 require"eekofo.lsp.cmp"
 
-require("eekofo.lsp.luasnip")
-
 -- some lsp helps
 require("eekofo.lsp.lspsaga")
 -- helps the lsp experience
