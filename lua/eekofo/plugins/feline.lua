@@ -1,9 +1,12 @@
 local gruvbox_colors = O.gruvbox_colors
+local onedark_colors = O.onedark_colors
 local lsp = require("feline.providers.lsp")
 local vi_mode_utils = require("feline.providers.vi_mode")
 
 local b = vim.b
 local fn = vim.fn
+
+-- onedark_colors.fg =
 
 local colors = {
     -- bg = gruvbox_colors.bg4,
@@ -79,6 +82,19 @@ local vi_mode_hl = function()
     }
 end
 
+local vi_bg = function()
+    return {
+        fg = "bg",
+        style = "bold",
+        bg = vi_mode_utils.get_mode_color(),
+    }
+end
+local vi_fg = function()
+    return {
+        fg = vi_mode_utils.get_mode_color(),
+    }
+end
+
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -104,12 +120,23 @@ components.active[1] = {
     {
         provider = vi_mode_provider,
         hl = vi_mode_hl,
-        right_sep = { str = "right_filled" },
+        -- right_sep = { str = "right_filled" },
     },
     {
-        provider = "file_info",
+        provider = {
+            name = "file_info",
+            opts = {
+                type = "relative",
+                -- file_modified_icon = "M",
+            },
+        },
+        hl = function()
+            return {
+                fg = require("feline.providers.vi_mode").get_mode_color(),
+            }
+        end,
         left_sep = " ",
-        right_sep = { str = "vertical_bar", hl = { fg = "fg", bg = "bg" } },
+        right_sep = { str = "vertical_bar", hl = { fg = "bg_visual", bg = "bg" } },
         -- opts = {
         type = "relative",
         -- },
@@ -125,7 +152,7 @@ components.active[1] = {
             {
                 str = "vertical_bar",
                 hl = {
-                    fg = "fg",
+                    fg = "bg_visual",
                     bg = "bg",
                 },
             },
@@ -133,22 +160,24 @@ components.active[1] = {
     },
     {
         provider = "position",
-        hl = { fg = "violet", bg = "black" },
+        hl = { fg = "violet" },
         left_sep = " ",
         right_sep = " ",
     },
     {
         provider = "┃ ",
+        hl = {
+            fg = "bg_visual",
+            bg = "bg",
+        },
     },
     {
         provider = "git_branch",
         hl = {
-            fg = "white",
-            bg = "black",
             style = "bold",
         },
         right_sep = function()
-            local val = { hl = { fg = "NONE", bg = "black" } }
+            local val = { hl = { fg = "NONE", bg = "NONE" } }
             if b.gitsigns_status_dict then
                 val.str = " "
             else
@@ -166,10 +195,11 @@ components.active[1] = {
 components.active[2] = {
     {
         provider = check_lsp_active_client,
+        hl = vi_fg,
         enabled = conditions.hide_in_width,
-        right_sep = " "
+        right_sep = " ",
     },
-    }
+}
 components.active[3] = {
     {
         provider = "diagnostic_errors",
@@ -187,34 +217,52 @@ components.active[3] = {
         provider = "diagnostic_info",
         hl = { fg = "skyblue" },
     },
-    { provider = "file_type", left_sep = " ", enabled = conditions.hide_in_width },
+    {
+        provider = " ",
+        hl = {
+            bg = "bg",
+        },
+    },
+    { provider = "file_type",
+        hl = vi_bg,
+        left_sep = { str = " ", hl = vi_bg },
+        enabled = conditions.hide_in_width
+    },
     {
         provider = "file_encoding",
-        left_sep = " ",
+        -- left_sep = " ",
+        left_sep = { str = " ", hl = vi_bg },
+        hl = vi_bg,
         enabled = conditions.hide_in_width,
     },
     {
         provider = file_osinfo,
-        left_sep = " ",
-        hl = {
-            style = "bold",
-        },
+        -- left_sep = " ",
+        left_sep = { str = " ", hl = vi_bg },
+        hl = vi_bg,
+        -- hl = {
+        --     style = "bold",
+        -- },
         enabled = conditions.hide_in_width,
     },
     {
         provider = "line_percentage",
-        hl = {
-            style = "bold",
-        },
-        left_sep = "  ",
-        right_sep = " ",
+        hl = vi_bg,
+        -- hl = {
+        --     style = "bold",
+        -- },
+        left_sep = { str = " ", hl = vi_bg },
+        -- left_sep = "  ",
+        right_sep = { str = " ", hl = vi_bg },
+        -- right_sep = " ",
     },
     {
         provider = "scroll_bar",
-        hl = {
-            fg = "skyblue",
-            style = "bold",
-        },
+        hl = vi_fg,
+        -- hl = {
+        --     fg = "skyblue",
+        --     style = "bold",
+        -- },
     },
 }
 
@@ -223,26 +271,28 @@ components.inactive[1] = {
         provider = "file_info",
         hl = {
             fg = "white",
-            bg = "oceanblue",
             style = "bold",
         },
         left_sep = {
             str = " ",
             hl = {
                 fg = "NONE",
-                bg = "oceanblue",
             },
         },
+        type = "relative", -- TODO: not working
         right_sep = {
             {
                 str = " ",
                 hl = {
                     fg = "NONE",
-                    bg = "oceanblue",
+                    bg = "bg_visual",
                 },
             },
             "slant_right",
         },
+    },
+    {
+        provider = "git_branch",
     },
 }
 
@@ -322,7 +372,7 @@ local update_triggers = {
 }
 
 require("feline").setup({
-    colors = colors,
+    colors = onedark_colors,
     separators = separators,
     vi_mode_colors = vi_mode_colors,
     force_inactive = force_inactive,
