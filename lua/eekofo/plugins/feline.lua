@@ -165,6 +165,13 @@ components.active[1] = {
 
 components.active[2] = {
     {
+        provider = check_lsp_active_client,
+        enabled = conditions.hide_in_width,
+        right_sep = " "
+    },
+    }
+components.active[3] = {
+    {
         provider = "diagnostic_errors",
         hl = { fg = "red" },
     },

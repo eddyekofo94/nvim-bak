@@ -68,13 +68,24 @@ return require("packer").startup(function(use)
     use({ "rcarriga/nvim-dap-ui", opt = true })
     use("famiu/nvim-reload") -- TODO: make this plugin useful someday
 
-    -- Autocomplete
-    use({ "hrsh7th/nvim-compe", opt = true })
+    -- use("hrsh7th/cmp-nvim-lsp")
+    use({ "hrsh7th/nvim-compe" })
+    -- use("hrsh7th/cmp-buffer")
+    use("L3MON4D3/LuaSnip")
+    use({
+        "hrsh7th/nvim-cmp",
+        requires = {
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lua",
+        },
+    })
 
-    use({ "hrsh7th/vim-vsnip", opt = true })
     use({ "rafamadriz/friendly-snippets", opt = true })
 
-    use({ "honza/vim-snippets", opt = true })
+    -- use({ "honza/vim-snippets", opt = true })
 
     use({ "blankname/vim-fish", opt = true })
 
@@ -94,7 +105,7 @@ return require("packer").startup(function(use)
     use({ "sindrets/diffview.nvim", opt = true })
     use({ "folke/which-key.nvim", opt = true })
     use({ "ChristianChiarulli/dashboard-nvim", opt = true })
-    use({ "windwp/nvim-autopairs", opt = true })
+    use({ "windwp/nvim-autopairs", after = "nvim-cmp", opt = true })
     use({ "terrortylor/nvim-comment", opt = true })
     use({ "folke/todo-comments.nvim", opt = true })
     use({ "kevinhwang91/nvim-bqf", opt = true })
@@ -156,6 +167,7 @@ return require("packer").startup(function(use)
     -- Color
     use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
     use({ "eddyekofo94/bogster.nvim" })
+    use("monsonjeremy/onedark.nvim")
 
     -- Icons
     use({ "kyazdani42/nvim-web-devicons", opt = true })
@@ -172,7 +184,6 @@ return require("packer").startup(function(use)
     require_plugin("lspsaga.nvim")
     require_plugin("vim-maximizer")
     require_plugin("nvim-lsputils")
-    -- require_plugin("lsp-status.nvim")
     require_plugin("zen-mode.nvim")
     require_plugin("lsp-trouble.nvim")
     require_plugin("symbols-outline.nvim")

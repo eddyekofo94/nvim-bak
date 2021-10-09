@@ -20,6 +20,7 @@ require("colorizer").setup()
 require("FTerm")
 require("surround").setup({})
 require("todo-comments").setup({})
+-- require('feline').setup()
 -- nvim-comment
 require("nvim_comment").setup()
 
