@@ -6,25 +6,6 @@ local vi_mode_utils = require("feline.providers.vi_mode")
 local b = vim.b
 local fn = vim.fn
 
--- onedark_colors.fg =
-
-local colors = {
-    -- bg = gruvbox_colors.bg4,
-    bg = gruvbox_colors.bg2,
-    black = gruvbox_colors.bg2,
-    yellow = "#d8a657",
-    cyan = "#89b482",
-    oceanblue = "#45707a",
-    green = "#a9b665",
-    orange = "#e78a4e",
-    violet = "#d3869b",
-    magenta = "#c14a4a",
-    white = "#d4be98",
-    fg = "#d4be98",
-    skyblue = "#7daea3",
-    red = "#ea6962",
-}
-
 local check_lsp_active_client = function()
     local msg = "No Active Lsp"
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -120,14 +101,12 @@ components.active[1] = {
     {
         provider = vi_mode_provider,
         hl = vi_mode_hl,
-        -- right_sep = { str = "right_filled" },
     },
     {
         provider = {
             name = "file_info",
             opts = {
                 type = "relative",
-                -- file_modified_icon = "M",
             },
         },
         hl = function()
@@ -137,9 +116,7 @@ components.active[1] = {
         end,
         left_sep = " ",
         right_sep = { str = "vertical_bar", hl = { fg = "bg_visual", bg = "bg" } },
-        -- opts = {
         type = "relative",
-        -- },
     },
     {
         provider = "file_size",
@@ -223,46 +200,33 @@ components.active[3] = {
             bg = "bg",
         },
     },
-    { provider = "file_type",
+    {
+        provider = "file_type",
         hl = vi_bg,
         left_sep = { str = " ", hl = vi_bg },
-        enabled = conditions.hide_in_width
+        enabled = conditions.hide_in_width,
     },
     {
         provider = "file_encoding",
-        -- left_sep = " ",
         left_sep = { str = " ", hl = vi_bg },
         hl = vi_bg,
         enabled = conditions.hide_in_width,
     },
     {
         provider = file_osinfo,
-        -- left_sep = " ",
         left_sep = { str = " ", hl = vi_bg },
         hl = vi_bg,
-        -- hl = {
-        --     style = "bold",
-        -- },
         enabled = conditions.hide_in_width,
     },
     {
         provider = "line_percentage",
         hl = vi_bg,
-        -- hl = {
-        --     style = "bold",
-        -- },
         left_sep = { str = " ", hl = vi_bg },
-        -- left_sep = "  ",
         right_sep = { str = " ", hl = vi_bg },
-        -- right_sep = " ",
     },
     {
         provider = "scroll_bar",
         hl = vi_fg,
-        -- hl = {
-        --     fg = "skyblue",
-        --     style = "bold",
-        -- },
     },
 }
 
@@ -270,7 +234,7 @@ components.inactive[1] = {
     {
         provider = "file_info",
         hl = {
-            fg = "white",
+            fg = "fg",
             style = "bold",
         },
         left_sep = {
@@ -279,7 +243,6 @@ components.inactive[1] = {
                 fg = "NONE",
             },
         },
-        type = "relative", -- TODO: not working
         right_sep = {
             {
                 str = " ",
