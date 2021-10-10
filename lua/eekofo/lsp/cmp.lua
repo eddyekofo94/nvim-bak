@@ -1,7 +1,16 @@
 vim.o.completeopt = "menu,menuone,noselect"
 
+local check_backspace = function()
+    local col = vim.fn.col(".") - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
+
+local function T(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 -- Setup nvim-cmp.
 local cmp = require("cmp")
+local luasnip = "luasnip"
 
 local kind_icons = {
     Class = " ",
@@ -35,7 +44,7 @@ cmp.setup({
     snippet = {
         expand = function(args)
             -- For `luasnip` user.
-            require('luasnip').lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
     mapping = {
@@ -43,7 +52,21 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        }),
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<TAB>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<S-TAB>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<Tab>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
     },
     sources = {
         { name = "nvim_lsp" },
@@ -79,5 +102,3 @@ cmp.setup({
         end,
     },
 })
-
-
