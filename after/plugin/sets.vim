@@ -46,7 +46,7 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
-set scrolloff=10                         " start scholling when you're near the bottom by 8
+set scrolloff=7
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option
