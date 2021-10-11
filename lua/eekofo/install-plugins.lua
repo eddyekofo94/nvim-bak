@@ -95,7 +95,6 @@ return require("packer").startup(function(use)
 
     -- Explorer
     use({ "kyazdani42/nvim-tree.lua", opt = true })
-    use({ "kevinhwang91/rnvimr", opt = true })
     use({ "airblade/vim-rooter", opt = true })
 
     use({ "lukas-reineke/indent-blankline.nvim", opt = true })
@@ -167,8 +166,11 @@ return require("packer").startup(function(use)
     -- Color
     use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
     use({ "eddyekofo94/bogster.nvim" })
-    use("monsonjeremy/onedark.nvim")
-
+    -- use("monsonjeremy/onedark.nvim")
+    use({ "ful1e5/onedark.nvim" })
+    -- use({
+    --     "projekt0n/circles.nvim",
+    -- })
     -- Icons
     use({ "kyazdani42/nvim-web-devicons", opt = true })
 
@@ -193,7 +195,6 @@ return require("packer").startup(function(use)
     require_plugin("lspkind-nvim")
     require_plugin("which-key.nvim")
     require_plugin("nvim-lspinstall")
-    require_plugin("rnvimr")
     require_plugin("lsp-colors.nvim")
     require_plugin("nvim-colorizer.lua")
     require_plugin("astronauta")

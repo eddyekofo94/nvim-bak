@@ -118,7 +118,6 @@ local leader_mappings = {
         "Find Project",
     },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-    R = { "<cmd>RnvimrToggle<cr>", "Ranger" },
     t = { "<cmd>rightbelow vsp | terminal<cr>", "terminal" },
     T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
     U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
