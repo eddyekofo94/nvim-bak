@@ -9,8 +9,16 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = 'onedark'
-require('onedark').setup()
+O.colorscheme = "onedark"
+require("onedark").setup({
+    function_style = "italic",
+    comment_style = "italic",
+    keyword_style = "italic",
+    hide_inactive_statusline = true,
+    dark_sidebar = false, -- BUG: not working
+    dark_float = false,
+    highlight_linenumber = true,
+})
 -- O.colorscheme = 'gruvbox-material'
 -- O.colorscheme = 'bogster'
 -- O.colorscheme = "gruvbox-flat"
@@ -52,3 +60,7 @@ O.tsserver.autoformat = true
 O.json.autoformat = true
 
 -- create custom autocommand field (This would be easy with lua)
+-- CmpItemAbbrDeprecatedDefault = { fg = c.fg },
+-- CmpItemAbbrDefault = { fg = util.darken(c.fg, 0.2) },
+-- CmpItemKindDefault = { fg = c.red, style = "italic" },
+-- CmpItemMenuDefault = { fg = util.darken(c.dark5, 0.5), style = "bold" },
