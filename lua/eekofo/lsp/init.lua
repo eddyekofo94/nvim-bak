@@ -192,8 +192,8 @@ require("lsp-colors").setup()
 
 -- mapped to <space>lt -- this shows a list of diagnostics
 require("eekofo.lsp.lsptrouble")
+
 -- for completion
--- require("eekofo.lsp.compe")
 require"eekofo.lsp.cmp"
 
 -- some lsp helps
