@@ -1,9 +1,11 @@
 local gruvbox_colors = O.gruvbox_colors
 local onedark_colors = O.onedark_colors
 local lsp = require("feline.providers.lsp")
+local git = require("feline.providers.git")
 local vi_mode_utils = require("feline.providers.vi_mode")
 
 local b = vim.b
+local g = vim.g
 local fn = vim.fn
 
 local check_lsp_active_client = function()
@@ -39,9 +41,6 @@ local function file_osinfo()
         icon = icons.windows
     end
     return icon
-end
-local vi_mode_provider = function()
-    return "    "
 end
 
 local get_diag = function(str)
@@ -92,6 +91,13 @@ local conditions = {
         return vim.b.gitsigns_status_dict ~= nil
     end,
 }
+
+local vi_mode_provider = function()
+    if conditions.check_git_workspace then
+        return git.git_branch
+    end
+end
+
 local components = {
     active = {},
     inactive = {},
@@ -99,8 +105,55 @@ local components = {
 
 components.active[1] = {
     {
-        provider = vi_mode_provider,
+        -- provider = vi_mode_provider,
+        provider = "  ",
         hl = vi_mode_hl,
+        right_sep = { str = " ", hl = vi_bg },
+        left_sep = { str = " ", hl = vi_bg },
+    },
+    {
+        provider = "git_branch",
+        left_sep = {
+            str = " ",
+
+            hl = {
+
+                fg = "fg",
+                bg = "fg_gutter",
+            },
+        },
+        hl = {
+
+            fg = "fg",
+            bg = "fg_gutter",
+        },
+    },
+    {
+        provider = "file_size",
+        enabled = function()
+            return fn.getfsize(fn.expand("%:p")) > 0 and vim.fn.winwidth(0) > 80
+        end,
+        hl = {
+
+            fg = "fg",
+            bg = "fg_gutter",
+        },
+        left_sep = {
+            {
+                str = " ",
+                hl = {
+                    fg = "bg",
+                    bg = "fg_gutter",
+                },
+            },
+        },
+    },
+    {
+        provider = " ",
+        hl = {
+            fg = "bg",
+            bg = "fg_gutter",
+        },
     },
     {
         provider = {
@@ -115,46 +168,8 @@ components.active[1] = {
             }
         end,
         left_sep = " ",
-        right_sep = { str = "vertical_bar", hl = { fg = "bg_visual", bg = "bg" } },
-        type = "relative",
-    },
-    {
-        provider = "file_size",
-        enabled = function()
-            return fn.getfsize(fn.expand("%:p")) > 0 and vim.fn.winwidth(0) > 80
-        end,
-        left_sep = " ",
-        right_sep = {
-            " ",
-            {
-                str = "vertical_bar",
-                hl = {
-                    fg = "bg_visual",
-                    bg = "bg",
-                },
-            },
-        },
-    },
-    {
-        provider = "position",
-        hl = { fg = "violet" },
-        left_sep = " ",
-        right_sep = " ",
-    },
-    {
-        provider = "┃ ",
-        hl = {
-            fg = "bg_visual",
-            bg = "bg",
-        },
-    },
-    {
-        provider = "git_branch",
-        hl = {
-            style = "bold",
-        },
         right_sep = function()
-            local val = { hl = { fg = "NONE", bg = "NONE" } }
+            local val = { hl = { fg = "bg", bg = "bg" } }
             if b.gitsigns_status_dict then
                 val.str = " "
             else
@@ -162,11 +177,11 @@ components.active[1] = {
             end
             return val
         end,
-        enabled = conditions.hide_in_width,
+        type = "relative",
     },
-    { provider = "git_diff_added", hl = { fg = "green" } },
-    { provider = "git_diff_changed", hl = { fg = "yellow" } },
-    { provider = "git_diff_removed", hl = { fg = "red" } },
+    { provider = "git_diff_added", hl = { fg = "add" } },
+    { provider = "git_diff_changed", hl = { fg = "change" } },
+    { provider = "git_diff_removed", hl = { fg = "delete" } },
 }
 
 components.active[2] = {
@@ -219,6 +234,32 @@ components.active[3] = {
         enabled = conditions.hide_in_width,
     },
     {
+        provider = "position",
+        hl = {
+            fg = "bg",
+            bg = "skyblue",
+            style = "bold",
+        },
+        left_sep = {
+            {
+                str = " ",
+                hl = {
+                    fg = "bg",
+                    bg = "skyblue",
+                },
+            },
+        },
+        right_sep = {
+            {
+                str = " ",
+                hl = {
+                    fg = "bg",
+                    bg = "skyblue",
+                },
+            },
+        },
+    },
+    {
         provider = "line_percentage",
         hl = vi_bg,
         left_sep = { str = " ", hl = vi_bg },
@@ -232,7 +273,12 @@ components.active[3] = {
 
 components.inactive[1] = {
     {
-        provider = "file_info",
+        provider = {
+            name = "file_info",
+            opts = {
+                type = "relative",
+            },
+        },
         hl = {
             fg = "fg",
             style = "bold",
@@ -243,19 +289,6 @@ components.inactive[1] = {
                 fg = "NONE",
             },
         },
-        right_sep = {
-            {
-                str = " ",
-                hl = {
-                    fg = "NONE",
-                    bg = "bg_visual",
-                },
-            },
-            "slant_right",
-        },
-    },
-    {
-        provider = "git_branch",
     },
 }
 
