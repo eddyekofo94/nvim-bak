@@ -1,17 +1,8 @@
 vim.o.completeopt = "menu,menuone,noselect"
+local lspkind = require("lspkind")
 
-local check_backspace = function()
-    local col = vim.fn.col(".") - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
-local function T(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 -- Setup nvim-cmp.
 local cmp = require("cmp")
-local luasnip = "luasnip"
-
 local kind_icons = {
     Class = " ",
     Color = " ",
@@ -77,20 +68,34 @@ cmp.setup({
         { name = "buffer" },
         { name = "calc" },
         { name = "emoji" },
+        { name = "spell" },
         { name = "treesitter" },
         { name = "crates" },
     },
     formatting = {
+        -- format = lspkind.cmp_format({
+        --     with_text = true,
+        --     menu = {
+        --         nvim_lsp = "(LSP)",
+        --         luasnip = "(Snippet)",
+        --         emoji = "(Emoji)",
+        --         path = "(Path)",
+        --         calc = "(Calc)",
+        --         cmp_tabnine = "(Tabnine)",
+        --         vsnip = "(Snippet)",
+        --         buffer = "(Buffer)",
+        --     },
+        -- kind = kind_icons -- TODO: See how to potentially use this option
+        -- }),
         format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind]
+            vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
             vim_item.menu = ({
                 nvim_lsp = "(LSP)",
+                luasnip = "(Snippet)",
                 emoji = "(Emoji)",
                 path = "(Path)",
                 calc = "(Calc)",
                 cmp_tabnine = "(Tabnine)",
-                vsnip = "(Snippet)",
-                luasnip = "(Snippet)",
                 buffer = "(Buffer)",
             })[entry.source.name]
             vim_item.dup = ({
@@ -102,3 +107,5 @@ cmp.setup({
         end,
     },
 })
+
+-- require("luasnip/loaders/from_vscode").lazy_load()
