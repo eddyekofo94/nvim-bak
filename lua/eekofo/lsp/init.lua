@@ -7,7 +7,6 @@ _ = require("lspkind").init()
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", { noremap = true, silent = true })
 end
-
 local custom_init = function(client)
     client.config.flags = client.config.flags or {}
     client.config.flags.allow_incremental_sync = true
