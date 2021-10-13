@@ -1,5 +1,4 @@
 vim.o.completeopt = "menu,menuone,noselect"
-local lspkind = require("lspkind")
 
 -- Setup nvim-cmp.
 local cmp = require("cmp")
