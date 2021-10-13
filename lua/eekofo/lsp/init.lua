@@ -34,8 +34,8 @@ local custom_attach = function(client)
         properties = { "documentation", "detail", "additionalTextEdits" },
     }
 
-  -- Setup lspconfig.
-    capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- Setup lspconfig.
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
     -- NOTE: This enables highlighting, might need to look at removing the popup
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -103,7 +103,6 @@ local custom_attach = function(client)
             { noremap = true, silent = true }
         )
     end
-
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
@@ -186,6 +185,11 @@ lspconfig.yamlls.setup({ on_init = custom_init, on_attach = custom_attach })
 
 lspconfig.vimls.setup({ on_init = custom_init, on_attach = custom_attach })
 
+lspconfig.pyright.setup({
+    on_init = custom_init,
+    on_attach = custom_attach,
+})
+
 -- Helps with the diagnostics error detection
 require("lsp-colors").setup()
 
@@ -193,7 +197,7 @@ require("lsp-colors").setup()
 require("eekofo.lsp.lsptrouble")
 
 -- for completion
-require"eekofo.lsp.cmp"
+require("eekofo.lsp.cmp")
 
 -- some lsp helps
 require("eekofo.lsp.lspsaga")
