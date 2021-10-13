@@ -70,11 +70,11 @@ local leader_mappings = {
             "projects",
         }, -- TODO: learn how to create projects
         q = { ":Telescope frecency<cr>", "frecency" },
-        s = {
+        S = {
             ':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>',
             "string async",
         },
-        S = { ":Telescope live_grep<cr>", "string" },
+        s = { ":Telescope live_grep<cr>", "string" },
         T = { ":TodoTelescope<cr>", "TODO" },
         r = { ":Telescope registers<cr>", "registers" },
         w = { ":Telescope file_browser<cr>", "file browser" },
