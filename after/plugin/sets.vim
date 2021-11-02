@@ -46,7 +46,7 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set nowritebackup                       " This is recommended by coc
 set undodir=~/.config/nvim/undodir  " Need a proper pluggin for it, all for keeping files saved
 set undofile
-set scrolloff=10                         " start scholling when you're near the bottom by 8
+set scrolloff=7
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option
@@ -55,6 +55,8 @@ set virtualedit=block
 set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
 setglobal fileformats=unix,dos,mac
+" Load an indent file for the detected file type.
+filetype indent on
 
 augroup CHAR_BREAK
   au!
@@ -73,9 +75,6 @@ set cmdheight=2
 " Shorter update time for good user experience
 set updatetime=300
 
-" Don't pass messages to | ins-completion-menu | .
-set shortmess+=c
-
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
@@ -88,7 +87,8 @@ set diffopt+=iwhite " No whitespace in vimdiff
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 set synmaxcol=500
-set backspace=indent,eol,start " Backspace over newlines
+" set backspace=indent,eol,start " Backspace over newlines
+
 " set nofoldenable
 set ttyfast
 
@@ -99,9 +99,10 @@ set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set list
+
 " settings for hidden chars
 " what particular chars they are displayed with
-set listchars=eol:↵
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
@@ -155,7 +156,6 @@ cmap w!! w !sudo tee %
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Reconsider this option
 " Jump to start and end of line using the home row keys
 " map H ^
@@ -169,14 +169,27 @@ augroup Terminal
     autocmd FileType term set nonumber
 augroup END
 
-" Override the default Red & white
-" INFO move this to a lua file when ready
-" highlight ErrorMsg guibg=NONE guifg=#fb4934
-" highlight Tooltip guibg=NONE guifg=#83a598
-" highlight WarningMsg guibg=NONE guifg=#fabd2f
+highlight HighlightedyankRegion cterm=reverse gui=reverse
 
-"TODO: finally move these to a lua file
-colorscheme gruvbox-flat
-" hi Visual term=reverse cterm=reverse guibg=Grey guifg=reverse
-let g:gruvbox_material_diagnostic_line_highlight = 1
+" Display cursorline and cursorcolumn ONLY in active window.
+augroup cursor_off
+    autocmd!
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
+augroup END
+
+" Resize split windows using arrow keys by pressing:
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+noremap <c-up> <c-w>+
+noremap <c-down> <c-w>-
+noremap <c-left> <c-w>>
+noremap <c-right> <c-w><
+
+" Center the cursor vertically when moving to the next word during a search.
+nnoremap n nzz
+nnoremap N Nzz
+
+" Update instead of write because update works only on edited buffers
+" autocmd CursorHold * update
+
 

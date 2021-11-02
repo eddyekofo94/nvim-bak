@@ -21,6 +21,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" nnoremap <leader>= <cmd><C-w> <C-=>
+
 " HARD MODE - Disabled arrows
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -46,7 +48,7 @@ inoremap <C-c> <esc>
 " line.
 " I don't really agree with this setup but I will keep it here if I ever
 " find it decesarry one day
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " Change the current word in insertmode.
 "   Auto places you into the spot where you can start typing to change it.
@@ -55,7 +57,4 @@ nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 nnoremap Y  y$ " Thank you TPope
 
-" TODO: move to a lua file, very useful command
-" nnoremap <silent><leader>oo :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-" nnoremap <silent><leader>OO :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
+" highlight HighlightedyankRegion cterm=reverse gui=reverse

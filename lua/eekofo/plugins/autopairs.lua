@@ -1,9 +1,8 @@
-require("nvim-autopairs").setup()
 local npairs = require("nvim-autopairs")
 local remap = vim.api.nvim_set_keymap
 
 local function imap(lhs, rhs, opts)
-    local options = {noremap = false}
+    local options = { noremap = false }
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
@@ -13,16 +12,16 @@ end
 _G.MUtils = {}
 
 vim.g.completion_confirm_key = ""
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"](npairs.esc("<CR>"))
+MUtils.completion_confirm = function()
+    if vim.fn.pumvisible() ~= 0 then
+        if vim.fn.complete_info()["selected"] ~= -1 then
+            return vim.fn["compe#confirm"](npairs.esc("<CR>"))
+        else
+            return npairs.esc("<CR>")
+        end
     else
-      return npairs.esc("<CR>")
+        return npairs.autopairs_cr()
     end
-  else
-    return npairs.autopairs_cr()
-  end
 end
 
 MUtils.tab = function()
@@ -38,7 +37,6 @@ MUtils.tab = function()
     end
 end
 
-
 MUtils.s_tab = function()
     if vim.fn.pumvisible() ~= 0 then
         return npairs.esc("<C-p>")
@@ -53,7 +51,7 @@ MUtils.s_tab = function()
 end
 
 -- Autocompletion and snippets
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", { expr = true, noremap = true })
 -- imap("<CR>", "v:lua.MUtils.completion_confirm()", {expr = true, noremap = true})
-imap("<Tab>", "v:lua.MUtils.tab()", {expr = true, noremap = true})
-imap("<S-Tab>", "v:lua.MUtils.s_tab()", {expr = true, noremap = true})
+imap("<Tab>", "v:lua.MUtils.tab()", { expr = true, noremap = true })
+imap("<S-Tab>", "v:lua.MUtils.s_tab()", { expr = true, noremap = true })

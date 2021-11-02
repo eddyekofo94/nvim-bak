@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors, error_msg = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -46,7 +43,7 @@ local function save_profiles(threshold)
   _G._packer.profile_output = results
 end
 
-time("Luarocks path setup", true)
+time([[Luarocks path setup]], true)
 local package_path_str = "/Users/eddyekofo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/eddyekofo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/eddyekofo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/eddyekofo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/Users/eddyekofo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -57,48 +54,96 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
-time("Luarocks path setup", false)
-time("try_loadstring definition", true)
+time([[Luarocks path setup]], false)
+time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
 
-time("try_loadstring definition", false)
-time("Defining packer_plugins", true)
+time([[try_loadstring definition]], false)
+time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["FTerm.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/FTerm.nvim"
+  },
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   ["astronauta.nvim"] = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
   },
-  ["barbar.nvim"] = {
+  ["auto-session"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/barbar.nvim"
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/auto-session"
+  },
+  ["bogster.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/bogster.nvim"
+  },
+  ["bullets.vim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/bullets.vim"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["dashboard-nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/dashboard-nvim"
   },
+  ["diffview.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/diffview.nvim"
+  },
+  ["feline.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/feline.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/friendly-snippets"
   },
-  ["galaxyline.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+  },
+  ["gruvbox-flat.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/gruvbox-flat.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = false,
@@ -115,11 +160,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-colors.nvim"
   },
-  ["lsp-status.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp-status.nvim"
-  },
   ["lsp-trouble.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -129,6 +169,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lsp_extensions.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = false,
@@ -140,20 +184,26 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    config = { "\27LJ\2\no\0\0\2\0\6\0\r6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0)\1\1\0=\1\4\0006\0\0\0009\0\1\0)\1ˆ\19=\1\5\0K\0\1\0\14mkdp_port\26mkdp_echo_preview_url\5\17mkdp_browser\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim"
+  },
   neoformat = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
+  ["neoscroll.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/neoscroll.nvim"
+  },
   ["nlua.nvim"] = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nlua.nvim"
-  },
-  ["nord.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = false,
@@ -164,6 +214,15 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-bqf"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = false,
@@ -176,10 +235,8 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-comment"
   },
   ["nvim-compe"] = {
-    after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_emoji.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_luasnip.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-compe"
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = false,
@@ -206,6 +263,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-lsputils"
   },
+  ["nvim-reload"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/nvim-reload"
+  },
   ["nvim-tree.lua"] = {
     loaded = false,
     needs_bufread = false,
@@ -225,14 +286,17 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
+  ["onedark.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/onedark.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/plenary.nvim"
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   popfix = {
     loaded = true,
@@ -247,6 +311,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/rnvimr"
+  },
+  ["session-lens"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/session-lens"
   },
   ["sql.nvim"] = {
     loaded = true,
@@ -269,9 +337,9 @@ _G.packer_plugins = {
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tabular"
   },
   ["telescope-frecency.nvim"] = {
-    config = { "\27LJ\2\nM\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\rfrecency\19load_extension\14telescope\frequire\0" },
-    loaded = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-frecency.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = false,
@@ -283,31 +351,29 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-fzf-writer.nvim"
   },
+  ["telescope-media-files.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-media-files.nvim"
+  },
   ["telescope-project.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim"
   },
-  ["telescope.nvim"] = {
+  ["telescope-zoxide"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/telescope-zoxide"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["todo-comments.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/todo-comments.nvim"
-  },
-  ["tokyonight.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/tokyonight.nvim"
-  },
-  ultisnips = {
-    after_files = { "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/ultisnips/after/plugin/UltiSnips_after.vim" },
-    loaded = false,
-    needs_bufread = true,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/ultisnips"
   },
   undotree = {
     loaded = true,
@@ -317,11 +383,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-fish"
-  },
-  ["vim-floaterm"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-floaterm"
   },
   ["vim-maximizer"] = {
     loaded = false,
@@ -333,40 +394,43 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-rooter"
   },
-  ["vim-snippets"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-snippets"
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/start/vim-startuptime"
   },
   ["vim-surround"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-surround"
   },
-  ["vim-vsnip"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
-  },
   ["which-key.nvim"] = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/which-key.nvim"
+  },
+  ["zen-mode.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/eddyekofo/.local/share/nvim/site/pack/packer/opt/zen-mode.nvim"
   }
 }
 
-time("Defining packer_plugins", false)
--- Config for: telescope-frecency.nvim
-time("Config for telescope-frecency.nvim", true)
-try_loadstring("\27LJ\2\nM\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\rfrecency\19load_extension\14telescope\frequire\0", "config", "telescope-frecency.nvim")
-time("Config for telescope-frecency.nvim", false)
+time([[Defining packer_plugins]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'bullets.vim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType text ++once lua require("packer.load")({'bullets.vim'}, { ft = "text" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tex ++once lua require("packer.load")({'bullets.vim'}, { ft = "tex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType latex ++once lua require("packer.load")({'bullets.vim'}, { ft = "latex" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
+end
