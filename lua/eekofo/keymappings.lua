@@ -40,6 +40,9 @@ vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
 vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
 
+-- MAPPINGS
+mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]]) -- new tab
+mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 -- Terminal: exiting the terminal mode
 -- vim.api.nvim_set_keymap("tn", )
 vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")

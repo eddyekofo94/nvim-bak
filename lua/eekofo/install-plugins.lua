@@ -39,6 +39,7 @@ return require("packer").startup(function(use)
     use({ "glepnir/lspsaga.nvim", opt = true })
     use({ "kabouzeid/nvim-lspinstall", opt = true })
     use({ "folke/lsp-trouble.nvim", opt = true })
+    use({ "folke/twilight.nvim", opt = true })
     use({ "simrat39/symbols-outline.nvim", opt = true })
     use({ "tjdevries/nlua.nvim", opt = true })
     use({ "onsails/lspkind-nvim", opt = true })
@@ -55,7 +56,6 @@ return require("packer").startup(function(use)
     use({ "nvim-lua/popup.nvim", opt = true })
     use({ "nvim-lua/plenary.nvim" })
     use({ "nvim-telescope/telescope.nvim" })
-    use({ "nvim-telescope/telescope-fzf-writer.nvim", opt = true })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true })
     use({ "nvim-telescope/telescope-project.nvim", opt = true })
     use({ "nvim-telescope/telescope-frecency.nvim", opt = true })
@@ -91,7 +91,7 @@ return require("packer").startup(function(use)
 
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use({ "windwp/nvim-ts-autotag", opt = true })
+    -- use({ "windwp/nvim-ts-autotag", opt = true })
 
     -- Explorer
     use({ "kyazdani42/nvim-tree.lua", opt = true })
@@ -135,6 +135,7 @@ return require("packer").startup(function(use)
         end,
         opt = true,
     })
+
     -- show lsp hover docs automatically
     use({ "ray-x/lsp_signature.nvim" })
 
@@ -180,6 +181,7 @@ return require("packer").startup(function(use)
     require_plugin("nvim-lspconfig")
     require_plugin("feline.nvim")
     require_plugin("markdown-preview.nvim")
+    require_plugin("twilight.nvim")
     require_plugin("FTerm.nvim")
     require_plugin("auto-session")
     require_plugin("bullets.vim")
@@ -203,7 +205,6 @@ return require("packer").startup(function(use)
     require_plugin("tabular")
     require_plugin("popup.nvim")
     require_plugin("plenary.nvim")
-    require_plugin("telescope-fzf-writer.nvim")
     require_plugin("telescope-fzf-native.nvim")
     require_plugin("telescope-frecency.nvim")
     require_plugin("telescope-project.nvim")
