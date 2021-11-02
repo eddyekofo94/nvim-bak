@@ -24,6 +24,8 @@ local custom_attach = function(client)
     mapper("n", "<space>di", "vim.lsp.buf.implementation()")
     mapper("n", "<c-]>", "vim.lsp.buf.definition()")
     mapper("n", "<space>dR", "vim.lsp.buf.references()")
+    mapper("n", "<space>dR", "vim.lsp.buf.references()")
+    mapper("n", "H", "vim.lsp.buf.code_action()")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
     mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
     mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
@@ -159,7 +161,9 @@ lspconfig.rust_analyzer.setup({
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             signs = true,
-            virtual_text = true,
+            virtual_text = {
+                prefix = "",
+            },
             update_in_insert = true,
         }),
     },
@@ -203,6 +207,5 @@ require("eekofo.lsp.cmp")
 require("eekofo.lsp.lspsaga")
 -- helps the lsp experience
 require("eekofo.lsp.handlers")
---require("eekofo.lsp.status").activate()
 
 return { on_attach = custom_attach, capabilities = capabilities }
