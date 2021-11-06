@@ -30,7 +30,9 @@ local function require_plugin(plugin)
     return ok, err, code
 end
 
-return require("packer").startup(function(use)
+local packer = require("packer")
+packer.startup({
+    function(use)
     -- Packer can manage itself as an optional plugin
     use("wbthomason/packer.nvim")
 
@@ -68,9 +70,6 @@ return require("packer").startup(function(use)
     use({ "rcarriga/nvim-dap-ui", opt = true })
     use("famiu/nvim-reload") -- TODO: make this plugin useful someday
 
-    -- use("hrsh7th/cmp-nvim-lsp")
-    use({ "hrsh7th/nvim-compe" })
-    -- use("hrsh7th/cmp-buffer")
     use("L3MON4D3/LuaSnip")
     use({
         "hrsh7th/nvim-cmp",
@@ -85,13 +84,11 @@ return require("packer").startup(function(use)
 
     use({ "rafamadriz/friendly-snippets", opt = true })
 
-    -- use({ "honza/vim-snippets", opt = true })
-
     use({ "blankname/vim-fish", opt = true })
 
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    -- use({ "windwp/nvim-ts-autotag", opt = true })
+    use({ "windwp/nvim-ts-autotag", opt = true })
 
     -- Explorer
     use({ "kyazdani42/nvim-tree.lua", opt = true })
@@ -108,9 +105,9 @@ return require("packer").startup(function(use)
     use({ "terrortylor/nvim-comment", opt = true })
     use({ "folke/todo-comments.nvim", opt = true })
     use({ "kevinhwang91/nvim-bqf", opt = true })
-    use({ "tjdevries/astronauta.nvim" })
+    use({ "tjdevries/astronauta.nvim", opt = true })
     use({ "godlygeek/tabular", opt = true })
-    use({ "mbbill/undotree" })
+    use({ "mbbill/undotree", opt = true })
 
     -- TODO: not working
     use({ "tpope/vim-surround", opt = true })
@@ -137,7 +134,7 @@ return require("packer").startup(function(use)
     })
 
     -- show lsp hover docs automatically
-    use({ "ray-x/lsp_signature.nvim" })
+    use({ "ray-x/lsp_signature.nvim", opt = true })
 
     use({
         "iamcco/markdown-preview.nvim",
@@ -162,7 +159,8 @@ return require("packer").startup(function(use)
 
     use({ "numtostr/FTerm.nvim", opt = true })
 
-    use({ "dstein64/vim-startuptime" })
+    use({ "dstein64/vim-startuptime", opt = true })
+    use({ "lewis6991/impatient.nvim" })
 
     -- Color
     use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
@@ -180,6 +178,10 @@ return require("packer").startup(function(use)
 
     require_plugin("nvim-lspconfig")
     require_plugin("feline.nvim")
+    require_plugin("astronauta.nvim")
+    require_plugin("vim-startuptime")
+    require_plugin("lsp_signature.nvim")
+    require_plugin("undotree")
     require_plugin("markdown-preview.nvim")
     require_plugin("twilight.nvim")
     require_plugin("FTerm.nvim")
@@ -231,4 +233,9 @@ return require("packer").startup(function(use)
     require_plugin("vim-surround")
     require_plugin("surround.nvim")
     require_plugin("neoscroll.nvim")
-end)
+    end,
+    config = {
+        -- Move to lua dir so impatient.nvim can cache it
+        compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
+    },
+})
