@@ -39,7 +39,6 @@ packer.startup({
         -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
         use({ "glepnir/lspsaga.nvim", opt = true })
-        use({ "kabouzeid/nvim-lspinstall", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         use({ "simrat39/symbols-outline.nvim", opt = true })
@@ -47,14 +46,14 @@ packer.startup({
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
         use({ "nvim-lua/lsp_extensions.nvim", opt = true })
-        -- use({ "wbthomason/lsp-status.nvim", opt = true })
-        use("RishabhRD/popfix")
+
+        use({ "RishabhRD/popfix", opt = true })
         use({ "RishabhRD/nvim-lsputils", opt = true })
 
         -- " Formatter
         use({ "sbdchd/neoformat", opt = true })
 
-        -- Telescope
+        -- Telescope - Fuzzy finder
         use({ "nvim-lua/popup.nvim", opt = true })
         use({ "nvim-lua/plenary.nvim" })
         use({ "nvim-telescope/telescope.nvim" })
@@ -70,6 +69,7 @@ packer.startup({
         use({ "rcarriga/nvim-dap-ui", opt = true })
         use("famiu/nvim-reload") -- TODO: make this plugin useful someday
 
+        -- Auto Completion
         use("L3MON4D3/LuaSnip")
         use({
             "hrsh7th/nvim-cmp",
@@ -94,7 +94,8 @@ packer.startup({
         use({ "kyazdani42/nvim-tree.lua", opt = true })
         use({ "airblade/vim-rooter", opt = true })
 
-        use({ "lukas-reineke/indent-blankline.nvim", opt = true })
+        -- UI stuff
+        -- use({ "lukas-reineke/indent-blankline.nvim", opt = true })
 
         use({ "lewis6991/gitsigns.nvim", opt = true })
         use({ "kdheepak/lazygit.nvim", opt = true })
@@ -104,16 +105,16 @@ packer.startup({
         use({ "windwp/nvim-autopairs", after = "nvim-cmp", opt = true })
         use({ "terrortylor/nvim-comment", opt = true })
         use({ "folke/todo-comments.nvim", opt = true })
-        use({ "kevinhwang91/nvim-bqf", opt = true })
         use({ "tjdevries/astronauta.nvim", opt = true })
         use({ "godlygeek/tabular", opt = true })
         use({ "mbbill/undotree", opt = true })
 
         -- TODO: not working
-        use({ "tpope/vim-surround", opt = true })
+        -- use({ "tpope/vim-surround", opt = true })
         use({ "blackCauldron7/surround.nvim", opt = true }) -- TODO: ensure it works
 
         use({ "norcalli/nvim-colorizer.lua", opt = true })
+
         -- Window Toggle
         use({ "szw/vim-maximizer", opt = true })
 
@@ -157,8 +158,6 @@ packer.startup({
             ft = { "markdown", "text", "latex", "tex" },
         })
 
-        use({ "numtostr/FTerm.nvim", opt = true })
-
         use({ "dstein64/vim-startuptime", opt = true })
         use({ "lewis6991/impatient.nvim" })
         use({
@@ -170,13 +169,11 @@ packer.startup({
         })
 
         -- Color
-        use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-        use({ "eddyekofo94/bogster.nvim" })
+        -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
+        -- use({ "eddyekofo94/bogster.nvim" })
         -- use("monsonjeremy/onedark.nvim")
         use({ "ful1e5/onedark.nvim" })
-        -- use({
-        --     "projekt0n/circles.nvim",
-        -- })
+
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
 
@@ -184,6 +181,7 @@ packer.startup({
         use({ "akinsho/nvim-bufferline.lua", opt = true })
 
         require_plugin("nvim-lspconfig")
+        require_plugin("popfix")
         require_plugin("feline.nvim")
         require_plugin("astronauta.nvim")
         require_plugin("vim-startuptime")
