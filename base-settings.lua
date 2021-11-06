@@ -9,16 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = "onedark"
-require("onedark").setup({
-    function_style = "italic",
-    comment_style = "italic",
-    keyword_style = "italic",
-    hide_inactive_statusline = true,
-    dark_sidebar = false, -- BUG: not working
-    dark_float = false,
-    highlight_linenumber = true,
-})
+--O.colorscheme = "onedark"
 -- O.colorscheme = 'gruvbox-material'
 -- O.colorscheme = 'bogster'
 -- O.colorscheme = "gruvbox-flat"
