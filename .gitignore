@@ -5,3 +5,4 @@ plugged/**
 ~formatting**
 plugin/packer_compiled.vim
 sessions/**
+lua/packer_compiled.lua
