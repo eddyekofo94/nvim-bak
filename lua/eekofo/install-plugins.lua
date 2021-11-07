@@ -160,13 +160,7 @@ packer.startup({
 
         use({ "dstein64/vim-startuptime", opt = true })
         use({ "lewis6991/impatient.nvim" })
-        use({
-            "nathom/filetype.nvim",
-            config = function()
-                -- Do not source the default filetype.vim
-                vim.g.did_load_filetypes = 1
-            end,
-        })
+        use({"nathom/filetype.nvim"})
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
