@@ -9,7 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
---O.colorscheme = "onedark"
+O.colorscheme = "onedark"
 -- O.colorscheme = 'gruvbox-material'
 -- O.colorscheme = 'bogster'
 -- O.colorscheme = "gruvbox-flat"
