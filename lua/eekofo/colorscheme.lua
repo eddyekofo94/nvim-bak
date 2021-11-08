@@ -6,11 +6,11 @@ vim.cmd("set background=dark")
 vim.cmd("colorscheme " .. O.colorscheme)
 
 require("onedark").setup({
-	function_style = "italic",
-	comment_style = "italic",
-	keyword_style = "italic",
-	hide_inactive_statusline = true,
-	dark_sidebar = false, -- BUG: not working
-	dark_float = false,
-	highlight_linenumber = true,
+    function_style = "italic",
+    comment_style = "italic",
+    keyword_style = "italic",
+    hide_inactive_statusline = true,
+    dark_sidebar = false, -- BUG: not working
+    dark_float = false,
+    highlight_linenumber = true,
 })

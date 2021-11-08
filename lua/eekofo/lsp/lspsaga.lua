@@ -1,16 +1,16 @@
 local saga = require("lspsaga")
 
 local mapper = function(mode, key, result)
-	vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
 local opts = {
-	error_sign = "",
-	warn_sign = "",
-	hint_sign = "",
-	infor_sign = "",
-	code_action_icon = " ",
-	rename_prompt_prefix = ">",
+    error_sign = "",
+    warn_sign = "",
+    hint_sign = "",
+    infor_sign = "",
+    code_action_icon = " ",
+    rename_prompt_prefix = ">",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("lspsaga.hover").handler
