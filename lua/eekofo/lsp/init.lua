@@ -169,6 +169,31 @@ lspconfig.rust_analyzer.setup({
 	},
 })
 
+lspconfig.gopls.setup{
+    on_attach = custom_attach,
+    on_init = custom_init,
+    capabilities = capabilities,
+    cmd = {"gopls", "serve"},
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+			linksInHover = false,
+			codelens = {
+				generate = true,
+				gc_details = true,
+				regenerate_cgo = true,
+				tidy = true,
+				upgrade_depdendency = true,
+				vendor = true,
+			},
+			usePlaceholders = true,
+		},
+	},
+}
+
 if 1 == vim.fn.executable("cmake-language-server") then
 	lspconfig.cmake.setup({
 		cmd = { "cmake-language-server" },
