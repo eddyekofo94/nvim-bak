@@ -72,20 +72,6 @@ cmp.setup({
         { name = "crates" },
     },
     formatting = {
-        -- format = lspkind.cmp_format({
-        --     with_text = true,
-        --     menu = {
-        --         nvim_lsp = "(LSP)",
-        --         luasnip = "(Snippet)",
-        --         emoji = "(Emoji)",
-        --         path = "(Path)",
-        --         calc = "(Calc)",
-        --         cmp_tabnine = "(Tabnine)",
-        --         vsnip = "(Snippet)",
-        --         buffer = "(Buffer)",
-        --     },
-        -- kind = kind_icons -- TODO: See how to potentially use this option
-        -- }),
         format = function(entry, vim_item)
             vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
             vim_item.menu = ({
@@ -104,5 +90,5 @@ cmp.setup({
             })[entry.source.name] or 0
             return vim_item
         end,
-    },
+    }
 })
