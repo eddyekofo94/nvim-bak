@@ -128,7 +128,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
