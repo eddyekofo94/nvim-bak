@@ -39,7 +39,8 @@ packer.startup({
 
         -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        use({ "glepnir/lspsaga.nvim", opt = true })
+        -- use({ "glepnir/lspsaga.nvim", opt = true })
+        use({"tami5/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         use({ "simrat39/symbols-outline.nvim", opt = true })
