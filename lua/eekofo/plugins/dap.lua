@@ -1,4 +1,3 @@
-Error: Could not find theme 'one-dark'.
 local dap = require("dap")
 
 dap.adapters.cpp = {

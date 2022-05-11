@@ -111,9 +111,13 @@ packer.startup({
         use({ "godlygeek/tabular", opt = true })
         use({ "mbbill/undotree", opt = true })
 
-        -- TODO: not working
-        -- use({ "tpope/vim-surround", opt = true })
-        use({ "blackCauldron7/surround.nvim", opt = true }) -- TODO: ensure it works
+        use {
+            "ur4ltz/surround.nvim",
+            config = function()
+                require"surround".setup {mappings_style = "surround"}
+            end,
+            opt = true
+        }
 
         use({ "norcalli/nvim-colorizer.lua", opt = true })
 
@@ -232,7 +236,6 @@ packer.startup({
         require_plugin("nvim-bqf")
         require_plugin("nvim-web-devicons")
         require_plugin("nvim-bufferline.lua")
-        require_plugin("vim-surround")
         require_plugin("surround.nvim")
         require_plugin("neoscroll.nvim")
     end,
