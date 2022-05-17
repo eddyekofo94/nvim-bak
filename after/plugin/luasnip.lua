@@ -184,14 +184,6 @@ snippets.lua = make {
 
   test = { "mirrored: ", i(1), " // ", same(1), " | ", i(0)},
 
-  -- test = { "local ", i(1), ' = require("', f(function(args)
-  --   table.insert(RESULT, args[1])
-  --   return { "hi" }
-  -- end, { 1 }), '")', i(0) },
-
-  -- test = { i(1), " // ", d(2, function(args)
-  --   return snippet_from_nodes(nil, { str "hello" })
-  -- end, { 1 }), i(0) },
 }
 
 local go_ret_vals = function(args, old_state)
