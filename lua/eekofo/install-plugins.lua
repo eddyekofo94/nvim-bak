@@ -107,7 +107,6 @@ packer.startup({
         use({ "windwp/nvim-autopairs", after = "nvim-cmp", opt = true })
         use({ "terrortylor/nvim-comment", opt = true })
         use({ "folke/todo-comments.nvim", opt = true })
-        use({ "tjdevries/astronauta.nvim", opt = true })
         use({ "godlygeek/tabular", opt = true })
         use({ "mbbill/undotree", opt = true })
 
@@ -184,7 +183,6 @@ packer.startup({
         require_plugin("nvim-lspconfig")
         require_plugin("popfix")
         require_plugin("feline.nvim")
-        require_plugin("astronauta.nvim")
         require_plugin("vim-startuptime")
         require_plugin("lsp_signature.nvim")
         require_plugin("undotree")
