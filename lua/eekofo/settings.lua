@@ -42,5 +42,5 @@ vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 -- vim.o.guifont = "Hack Nerd Font Mono:h18"
 -- vim.o.guifont = "SauceCodePro Nerd Font:h17"
 -- vim.o.guifont = "FiraCode Nerd Font:h18"
-vim.o.guifont = "UbuntuMono Nerd Font:h18"
+vim.o.guifont = "UbuntuMono Nerd Font:h17"
 -- vim.o.guifont = "JetBrains\\ Mono\\ Regular\\ Nerd\\ Font\\ Complete"
