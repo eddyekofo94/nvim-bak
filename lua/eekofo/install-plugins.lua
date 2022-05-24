@@ -39,7 +39,6 @@ packer.startup({
 
         -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        -- use({ "glepnir/lspsaga.nvim", opt = true })
         use({"tami5/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
@@ -72,7 +71,7 @@ packer.startup({
         use("famiu/nvim-reload") -- TODO: make this plugin useful someday
 
         -- Auto Completion
-        use("L3MON4D3/LuaSnip")
+        use({ "L3MON4D3/LuaSnip", opt = true })
         use({
             "hrsh7th/nvim-cmp",
             requires = {
@@ -90,6 +89,7 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+        use({ 'nvim-treesitter/nvim-treesitter-textobjects'})
         use({ "windwp/nvim-ts-autotag", opt = true })
 
         -- Explorer
@@ -219,8 +219,8 @@ packer.startup({
         require_plugin("nvim-dap")
         require_plugin("nvim-dap-ui")
         require_plugin("vim-rooter")
-        require_plugin("nvim-compe")
         require_plugin("vim-vsnip")
+        require_plugin("LuaSnip")
         require_plugin("friendly-snippets")
         require_plugin("nvim-treesitter")
         require_plugin("nvim-ts-autotag")
