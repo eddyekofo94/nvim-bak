@@ -34,6 +34,13 @@ require("gitsigns").setup({
     },
     numhl = false,
     linehl = false,
+    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+    current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+    },
     keymaps = {
         -- Default keymap options
         noremap = true,
@@ -47,10 +54,11 @@ require("gitsigns").setup({
             "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
         },
     },
-    watch_index = { interval = 1000 },
+    watch_gitdir = {
+        interval = 1000,
+        follow_files = true
+    },
     sign_priority = 6,
     update_debounce = 200,
     status_formatter = nil, -- Use default
-    use_decoration_api = false,
-    use_internal_diff = true, -- If luajit is present
 })
