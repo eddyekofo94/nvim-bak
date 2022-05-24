@@ -23,6 +23,7 @@ local leader_mappings = {
         R = { ":Gitsigns reset_buffer<cr>", "reset buffer" },
         p = { ":Gitsigns preview_hunk<cr>", "preview hunk" },
         b = { ":Gitsigns blame_line<cr>", "blame line" },
+        B = { ":Gitsigns toggle_current_line_blame", "toggle blame line" }
     },
     l = {
         name = "+lsp",
