@@ -179,9 +179,9 @@ components.active[1] = {
         end,
         type = "relative",
     },
-    { provider = "git_diff_added", hl = { fg = "add" } },
-    { provider = "git_diff_changed", hl = { fg = "change" } },
-    { provider = "git_diff_removed", hl = { fg = "delete" } },
+    { provider = "git_diff_added", hl = { fg = onedark_colors.add } },
+    { provider = "git_diff_changed", hl = { fg = onedark_colors.change } },
+    { provider = "git_diff_removed", hl = { fg = onedark_colors.delete } },
 }
 
 components.active[2] = {
