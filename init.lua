@@ -1,6 +1,5 @@
 -- Initialise eveything from here
 
-vim.cmd("luafile ~/.config/nvim/lua/eekofo/install-plugins.lua")
 vim.g.did_load_filetypes = 1
 require("impatient")
 require("packer_compiled")
