@@ -34,7 +34,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" Very magic by default, got this from theRimragen (Don't knoq exactly what it
+" Very magic by default, got this from thePrimragen (Don't know exactly what it
 " does
 nnoremap ? ?\v
 nnoremap / /\v
@@ -55,6 +55,5 @@ inoremap <C-c> <esc>
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
-nnoremap Y  y$ " Thank you TPope
 
 " highlight HighlightedyankRegion cterm=reverse gui=reverse

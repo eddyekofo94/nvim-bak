@@ -5,6 +5,8 @@ vim.cmd("set background=dark")
 -- vim.g.gruvbox_flat_style = "light"
 vim.cmd("colorscheme " .. O.colorscheme)
 
+-- require("palenightfall").setup()
+
 require("onedark").setup({
     function_style = "italic",
     comment_style = "italic",

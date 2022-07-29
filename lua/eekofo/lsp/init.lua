@@ -27,9 +27,9 @@ local custom_attach = function(client)
     mapper("n", "<space>dR", "vim.lsp.buf.references()")
     mapper("n", "H", "vim.lsp.buf.code_action()")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
-    mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
-    mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
-    mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
+    mapper("n", "<space>da", "vim.diagnostic.setloclist()")
+    mapper("n", "[d", "vim.diagnostic.goto_prev()")
+    mapper("n", "]d", "vim.diagnostic.goto_next()")
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -217,6 +217,14 @@ lspconfig.vimls.setup({ on_init = custom_init, on_attach = custom_attach })
 lspconfig.pyright.setup({
     on_init = custom_init,
     on_attach = custom_attach,
+})
+
+-- https://github.com/theia-ide/typescript-language-server
+require("lspconfig").tsserver.setup({
+    server = {
+        on_init = custom_init,
+        on_attach = custom_attach,
+    },
 })
 
 -- Helps with the diagnostics error detection

@@ -39,7 +39,7 @@ packer.startup({
 
         -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        use({"tami5/lspsaga.nvim", opt = true })
+        use({ "tami5/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         use({ "simrat39/symbols-outline.nvim", opt = true })
@@ -47,6 +47,8 @@ packer.startup({
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
         use({ "nvim-lua/lsp_extensions.nvim", opt = true })
+        -- Language based lsp
+        use({ "mfussenegger/nvim-jdtls", opt = true })
 
         use({ "RishabhRD/popfix", opt = true })
         use({ "RishabhRD/nvim-lsputils", opt = true })
@@ -109,13 +111,13 @@ packer.startup({
         use({ "godlygeek/tabular", opt = true })
         use({ "mbbill/undotree", opt = true })
 
-        use {
+        use({
             "ur4ltz/surround.nvim",
             config = function()
-                require"surround".setup {mappings_style = "surround"}
+                require("surround").setup({ mappings_style = "surround" })
             end,
-            opt = true
-        }
+            opt = true,
+        })
 
         use({ "norcalli/nvim-colorizer.lua", opt = true })
 
@@ -171,6 +173,7 @@ packer.startup({
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
         -- use({ "eddyekofo94/bogster.nvim" })
         -- use("monsonjeremy/onedark.nvim")
+        -- use({ "JoosepAlviste/palenightfall.nvim" })
         use({ "ful1e5/onedark.nvim" })
 
         -- Icons
@@ -235,6 +238,7 @@ packer.startup({
         require_plugin("nvim-bufferline.lua")
         require_plugin("surround.nvim")
         require_plugin("neoscroll.nvim")
+        require_plugin("nvim-jdtls")
     end,
     config = {
         -- Move to lua dir so impatient.nvim can cache it
