@@ -44,7 +44,7 @@ local function file_osinfo()
 end
 
 local get_diag = function(str)
-    local count = vim.lsp.diagnostic.get_count(0, str)
+    local count = vim.diagnostic.get(0, str)
     return (count > 0) and " " .. count .. " " or ""
 end
 
