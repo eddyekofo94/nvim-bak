@@ -59,7 +59,7 @@ packer.startup({
         -- Telescope - Fuzzy finder
         use({ "nvim-lua/popup.nvim", opt = true })
         use({ "nvim-lua/plenary.nvim" })
-        use({ "nvim-telescope/telescope.nvim" })
+        use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true })
         use({ "nvim-telescope/telescope-project.nvim", opt = true })
         use({ "nvim-telescope/telescope-frecency.nvim", opt = true })
@@ -91,6 +91,7 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+        use("nvim-treesitter/nvim-treesitter-textobjects")
         use({ "windwp/nvim-ts-autotag", opt = true })
 
         -- Explorer
@@ -174,7 +175,7 @@ packer.startup({
         -- use({ "eddyekofo94/bogster.nvim" })
         -- use("monsonjeremy/onedark.nvim")
         -- use({ "JoosepAlviste/palenightfall.nvim" })
-        use({ "ful1e5/onedark.nvim" })
+        use({ "navarasu/onedark.nvim" })
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
