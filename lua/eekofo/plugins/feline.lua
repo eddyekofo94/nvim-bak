@@ -44,7 +44,7 @@ local function file_osinfo()
 end
 
 local get_diag = function(str)
-    local count = vim.lsp.diagnostic.get_count(0, str)
+    local count = vim.diagnostic.get(0, str)
     return (count > 0) and " " .. count .. " " or ""
 end
 
@@ -179,9 +179,9 @@ components.active[1] = {
         end,
         type = "relative",
     },
-    { provider = "git_diff_added", hl = { fg = "add" } },
-    { provider = "git_diff_changed", hl = { fg = "change" } },
-    { provider = "git_diff_removed", hl = { fg = "delete" } },
+    { provider = "git_diff_added", hl = { fg = onedark_colors.add } },
+    { provider = "git_diff_changed", hl = { fg = onedark_colors.change } },
+    { provider = "git_diff_removed", hl = { fg = onedark_colors.delete } },
 }
 
 components.active[2] = {

@@ -53,8 +53,8 @@ telescope.setup({
                 show_scores = true, -- TODO: remove when satisfied
                 ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
                 workspaces = {
-                    ["nvim"] = "/home/eddyekofo/.config/nvim/",
-                    ["dotfiles"] = "/home/eddyekofo/.files/",
+                    ["nvim"] = "~/.config/nvim/",
+                    ["dotfiles"] = "~/.files/",
                 },
             },
             media_files = {

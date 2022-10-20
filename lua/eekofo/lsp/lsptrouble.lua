@@ -1,7 +1,7 @@
 -- mapped to <space>lt -- this shows a list of diagnostics
 require("trouble").setup({
     height = 15, -- height of the trouble list
-    mode = "lsp_document_diagnostics",
+    mode = "document_diagnostics",
     action_keys = {
         -- key mappings for actions in the trouble list
         close = "q", -- close the list

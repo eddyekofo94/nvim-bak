@@ -69,7 +69,7 @@ set wildmenu
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 set wildoptions=pum
 
-" Gibe more space for displaying
+" Give more space for displaying
 set cmdheight=2
 
 " Shorter update time for good user experience
@@ -128,7 +128,7 @@ endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
@@ -188,8 +188,3 @@ noremap <c-right> <c-w><
 " Center the cursor vertically when moving to the next word during a search.
 nnoremap n nzz
 nnoremap N Nzz
-
-" Update instead of write because update works only on edited buffers
-" autocmd CursorHold * update
-
-

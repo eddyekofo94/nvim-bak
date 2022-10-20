@@ -34,18 +34,21 @@ local packer = require("packer")
 packer.startup({
     function(use)
         -- Packer can manage itself as an optional plugin
+        vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
         use("wbthomason/packer.nvim")
 
-        -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
+        -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        use({ "glepnir/lspsaga.nvim", opt = true })
+        use({ "tami5/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
-        use({ "simrat39/symbols-outline.nvim", opt = true })
+        --use({ "simrat39/symbols-outline.nvim", opt = true })
         use({ "tjdevries/nlua.nvim", opt = true })
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
         use({ "nvim-lua/lsp_extensions.nvim", opt = true })
+        -- Language based lsp
+        use({ "mfussenegger/nvim-jdtls", opt = true })
 
         use({ "RishabhRD/popfix", opt = true })
         use({ "RishabhRD/nvim-lsputils", opt = true })
@@ -56,7 +59,7 @@ packer.startup({
         -- Telescope - Fuzzy finder
         use({ "nvim-lua/popup.nvim", opt = true })
         use({ "nvim-lua/plenary.nvim" })
-        use({ "nvim-telescope/telescope.nvim" })
+        use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true })
         use({ "nvim-telescope/telescope-project.nvim", opt = true })
         use({ "nvim-telescope/telescope-frecency.nvim", opt = true })
@@ -70,7 +73,7 @@ packer.startup({
         use("famiu/nvim-reload") -- TODO: make this plugin useful someday
 
         -- Auto Completion
-        use("L3MON4D3/LuaSnip")
+        use({ "L3MON4D3/LuaSnip", opt = true })
         use({
             "hrsh7th/nvim-cmp",
             requires = {
@@ -88,6 +91,8 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+        use({"nvim-treesitter/nvim-treesitter-textobjects", opt = true})
+
         use({ "windwp/nvim-ts-autotag", opt = true })
 
         -- Explorer
@@ -97,7 +102,7 @@ packer.startup({
         -- UI stuff
         -- use({ "lukas-reineke/indent-blankline.nvim", opt = true })
 
-        use({ "lewis6991/gitsigns.nvim", opt = true })
+        use({ "lewis6991/gitsigns.nvim", opt = true }) -- TODO: bring back after fixing bugs
         use({ "kdheepak/lazygit.nvim", opt = true })
         use({ "sindrets/diffview.nvim", opt = true })
         use({ "folke/which-key.nvim", opt = true })
@@ -105,18 +110,16 @@ packer.startup({
         use({ "windwp/nvim-autopairs", after = "nvim-cmp", opt = true })
         use({ "terrortylor/nvim-comment", opt = true })
         use({ "folke/todo-comments.nvim", opt = true })
-        use({ "tjdevries/astronauta.nvim", opt = true })
         use({ "godlygeek/tabular", opt = true })
         use({ "mbbill/undotree", opt = true })
 
-        -- use({ "tpope/vim-surround", opt = true })
-        use {
+        use({
             "ur4ltz/surround.nvim",
             config = function()
-                require"surround".setup {mappings_style = "surround"}
+                require("surround").setup({ mappings_style = "surround" })
             end,
-            opt = true
-        }
+            opt = true,
+        })
 
         use({ "norcalli/nvim-colorizer.lua", opt = true })
 
@@ -163,32 +166,25 @@ packer.startup({
             ft = { "markdown", "text", "latex", "tex" },
         })
 
+        -- Performance
         use({ "dstein64/vim-startuptime", opt = true })
-        use({ "lewis6991/impatient.nvim" })
-        use({
-            "nathom/filetype.nvim",
-            config = function()
-                -- Do not source the default filetype.vim
-                vim.g.did_load_filetypes = 1
-            end,
-        })
+        use({ "lewis6991/impatient.nvim", rocks = "mpack" })
+        use({ "nathom/filetype.nvim" })
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-        -- use({ "eddyekofo94/bogster.nvim" })
-        -- use("monsonjeremy/onedark.nvim")
-        use({ "ful1e5/onedark.nvim" })
+        -- use({ "ful1e5/onedark.nvim" }) -- TODO: I like the colour of this onedark, maybe adjust this them with these colours?
+        use({ "navarasu/onedark.nvim" })
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
 
-        use({ "famiu/feline.nvim", opt = true })
-        use({ "akinsho/nvim-bufferline.lua", opt = true })
+        use({ "feline-nvim/feline.nvim", opt = true })
+        use({ "akinsho/bufferline.nvim", tag = "v3.*", opt = true })
 
         require_plugin("nvim-lspconfig")
         require_plugin("popfix")
         require_plugin("feline.nvim")
-        require_plugin("astronauta.nvim")
         require_plugin("vim-startuptime")
         require_plugin("lsp_signature.nvim")
         require_plugin("undotree")
@@ -202,7 +198,7 @@ packer.startup({
         require_plugin("nvim-lsputils")
         require_plugin("zen-mode.nvim")
         require_plugin("lsp-trouble.nvim")
-        require_plugin("symbols-outline.nvim")
+        --require_plugin("symbols-outline.nvim")
         require_plugin("todo-comments.nvim")
         require_plugin("neoformat")
         require_plugin("lsp_extensions.nvim")
@@ -225,10 +221,11 @@ packer.startup({
         require_plugin("nvim-dap")
         require_plugin("nvim-dap-ui")
         require_plugin("vim-rooter")
-        require_plugin("nvim-compe")
         require_plugin("vim-vsnip")
+        require_plugin("LuaSnip")
         require_plugin("friendly-snippets")
         require_plugin("nvim-treesitter")
+        require_plugin("nvim-treesitter-textobjects")
         require_plugin("nvim-ts-autotag")
         require_plugin("nvim-tree.lua")
         require_plugin("gitsigns.nvim")
@@ -239,10 +236,10 @@ packer.startup({
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
         require_plugin("nvim-web-devicons")
-        require_plugin("nvim-bufferline.lua")
-        require_plugin("vim-surround")
+        require_plugin("bufferline.nvim")
         require_plugin("surround.nvim")
         require_plugin("neoscroll.nvim")
+        require_plugin("nvim-jdtls")
     end,
     config = {
         -- Move to lua dir so impatient.nvim can cache it

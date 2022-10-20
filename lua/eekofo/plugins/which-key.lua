@@ -23,6 +23,7 @@ local leader_mappings = {
         R = { ":Gitsigns reset_buffer<cr>", "reset buffer" },
         p = { ":Gitsigns preview_hunk<cr>", "preview hunk" },
         b = { ":Gitsigns blame_line<cr>", "blame line" },
+        B = { ":Gitsigns toggle_current_line_blame", "toggle blame line" }
     },
     l = {
         name = "+lsp",
@@ -90,7 +91,7 @@ local leader_mappings = {
     ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
     ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
     h = { ':let @/ = ""<cr>', "Clear Highlight" },
-    H = { ':split', "Split bottom" },
+    H = { ":split", "Split bottom" },
     f = { "<cmd>Neoformat<cr>", "Format File" },
     G = { "<cmd>LazyGit<cr>", "Lazygit" },
     e = { "Explorer" },

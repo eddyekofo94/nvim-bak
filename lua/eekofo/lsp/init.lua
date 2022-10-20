@@ -27,9 +27,9 @@ local custom_attach = function(client)
     mapper("n", "<space>dR", "vim.lsp.buf.references()")
     mapper("n", "H", "vim.lsp.buf.code_action()")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
-    mapper("n", "<space>da", "vim.lsp.diagnostic.set_loclist()")
-    mapper("n", "[d", "vim.lsp.diagnostic.goto_prev()")
-    mapper("n", "]d", "vim.lsp.diagnostic.goto_next()")
+    mapper("n", "<space>da", "vim.diagnostic.setloclist()")
+    mapper("n", "[d", "vim.diagnostic.goto_prev()")
+    mapper("n", "]d", "vim.diagnostic.goto_next()")
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -37,15 +37,16 @@ local custom_attach = function(client)
     }
 
     -- Setup lspconfig.
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     -- NOTE: This enables highlighting, might need to look at removing the popup
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_exec(
             [[
-	    hi LspReferenceRead cterm=bold ctermbg=None guibg=#3c3836 guifg=None
-	    hi LspReferenceText cterm=bold ctermbg=None guibg=#3c3836 guifg=None
-	    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#3c3836 guifg=None
+	    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
+	    hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
+	    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
 	    augroup lsp_document_highlight
 	      autocmd!
 	      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -84,9 +85,9 @@ local custom_attach = function(client)
         )
     end
     -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
-    elseif client.resolved_capabilities.document_range_formatting then
+    elseif client.server_capabilities.document_range_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
     end
     if vim.tbl_contains({ "go", "rust" }, filetype) then
@@ -169,6 +170,31 @@ lspconfig.rust_analyzer.setup({
     },
 })
 
+lspconfig.gopls.setup({
+    on_attach = custom_attach,
+    on_init = custom_init,
+    capabilities = capabilities,
+    cmd = { "gopls", "serve" },
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+            linksInHover = false,
+            codelenses = {
+                generate = true,
+                gc_details = true,
+                regenerate_cgo = true,
+                tidy = true,
+                upgrade_depdendency = true,
+                vendor = true,
+            },
+            usePlaceholders = true,
+        },
+    },
+})
+
 if 1 == vim.fn.executable("cmake-language-server") then
     lspconfig.cmake.setup({
         cmd = { "cmake-language-server" },
@@ -192,6 +218,14 @@ lspconfig.vimls.setup({ on_init = custom_init, on_attach = custom_attach })
 lspconfig.pyright.setup({
     on_init = custom_init,
     on_attach = custom_attach,
+})
+
+-- https://github.com/theia-ide/typescript-language-server
+require("lspconfig").tsserver.setup({
+    server = {
+        on_init = custom_init,
+        on_attach = custom_attach,
+    },
 })
 
 -- Helps with the diagnostics error detection
