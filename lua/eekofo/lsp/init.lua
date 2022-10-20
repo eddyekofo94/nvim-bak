@@ -37,7 +37,8 @@ local custom_attach = function(client)
     }
 
     -- Setup lspconfig.
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     -- NOTE: This enables highlighting, might need to look at removing the popup
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
