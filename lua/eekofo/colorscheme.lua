@@ -4,6 +4,7 @@ vim.cmd("colorscheme " .. O.colorscheme)
 
 
 require("onedark").setup({
+    style = "dark",
     code_style = {
         comments = "italic",
         keywords = "italic",
@@ -12,3 +13,5 @@ require("onedark").setup({
         variables = "none",
     },
 })
+
+require('onedark').load()
