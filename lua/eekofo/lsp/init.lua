@@ -41,7 +41,7 @@ local custom_attach = function(client)
 
     -- NOTE: This enables highlighting, might need to look at removing the popup
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_exec(
             [[
 	    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
@@ -85,9 +85,9 @@ local custom_attach = function(client)
         )
     end
     -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
-    elseif client.resolved_capabilities.document_range_formatting then
+    elseif client.server_capabilities.document_range_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
     end
     if vim.tbl_contains({ "go", "rust" }, filetype) then
