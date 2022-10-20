@@ -9,11 +9,7 @@ an executable
 
 -- general
 O.auto_complete = true
--- O.colorscheme = "palenightfall"
 O.colorscheme = "onedark"
--- O.colorscheme = 'gruvbox-material'
--- O.colorscheme = 'bogster'
--- O.colorscheme = "gruvbox-flat"
 O.auto_close_tree = 1
 O.wrap_lines = false
 

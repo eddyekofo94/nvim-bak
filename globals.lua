@@ -27,9 +27,6 @@ O = {
         isort = false,
         diagnostics = { virtual_text = true, signs = true, underline = true },
     },
-    dart = {
-        sdk_path = "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot",
-    },
     lua = {
         -- @usage can be 'lua-format'
         formatter = "",

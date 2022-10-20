@@ -37,12 +37,12 @@ packer.startup({
         vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
         use("wbthomason/packer.nvim")
 
-        -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
+        -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
         use({ "tami5/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
-        use({ "simrat39/symbols-outline.nvim", opt = true })
+        --use({ "simrat39/symbols-outline.nvim", opt = true })
         use({ "tjdevries/nlua.nvim", opt = true })
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
@@ -91,7 +91,8 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-        use("nvim-treesitter/nvim-treesitter-textobjects")
+        use({"nvim-treesitter/nvim-treesitter-textobjects", opt = true})
+
         use({ "windwp/nvim-ts-autotag", opt = true })
 
         -- Explorer
@@ -101,7 +102,7 @@ packer.startup({
         -- UI stuff
         -- use({ "lukas-reineke/indent-blankline.nvim", opt = true })
 
-        use({ "lewis6991/gitsigns.nvim", opt = true })
+        use({ "lewis6991/gitsigns.nvim", opt = true }) -- TODO: bring back after fixing bugs
         use({ "kdheepak/lazygit.nvim", opt = true })
         use({ "sindrets/diffview.nvim", opt = true })
         use({ "folke/which-key.nvim", opt = true })
@@ -172,16 +173,14 @@ packer.startup({
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-        -- use({ "eddyekofo94/bogster.nvim" })
-        -- use("monsonjeremy/onedark.nvim")
-        -- use({ "JoosepAlviste/palenightfall.nvim" })
+        -- use({ "ful1e5/onedark.nvim" }) -- TODO: I like the colour of this onedark, maybe adjust this them with these colours?
         use({ "navarasu/onedark.nvim" })
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
 
-        use({ "famiu/feline.nvim", opt = true })
-        use({ "akinsho/nvim-bufferline.lua", opt = true })
+        use({ "feline-nvim/feline.nvim", opt = true })
+        use({ "akinsho/bufferline.nvim", tag = "v3.*", opt = true })
 
         require_plugin("nvim-lspconfig")
         require_plugin("popfix")
@@ -199,7 +198,7 @@ packer.startup({
         require_plugin("nvim-lsputils")
         require_plugin("zen-mode.nvim")
         require_plugin("lsp-trouble.nvim")
-        require_plugin("symbols-outline.nvim")
+        --require_plugin("symbols-outline.nvim")
         require_plugin("todo-comments.nvim")
         require_plugin("neoformat")
         require_plugin("lsp_extensions.nvim")
@@ -226,6 +225,7 @@ packer.startup({
         require_plugin("LuaSnip")
         require_plugin("friendly-snippets")
         require_plugin("nvim-treesitter")
+        require_plugin("nvim-treesitter-textobjects")
         require_plugin("nvim-ts-autotag")
         require_plugin("nvim-tree.lua")
         require_plugin("gitsigns.nvim")
@@ -236,7 +236,7 @@ packer.startup({
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
         require_plugin("nvim-web-devicons")
-        require_plugin("nvim-bufferline.lua")
+        require_plugin("bufferline.nvim")
         require_plugin("surround.nvim")
         require_plugin("neoscroll.nvim")
         require_plugin("nvim-jdtls")
