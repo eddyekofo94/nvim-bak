@@ -9,7 +9,8 @@ an executable
 
 -- general
 O.auto_complete = true
-O.colorscheme = "onedark"
+-- O.colorscheme = "onedark"
+O.colorscheme = "everforest"
 O.auto_close_tree = 1
 O.wrap_lines = false
 

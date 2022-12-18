@@ -72,15 +72,6 @@ cmp.setup({
         }),
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        -- ["<TAB>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        -- ["<S-TAB>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        -- ["<Tab>"] = function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_next_item()
-        --     else
-        --         fallback()
-        --     end
-        -- end,
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -91,7 +82,10 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }),
+        end, {
+            "i",
+            "s",
+        }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -101,7 +95,10 @@ cmp.setup({
             else
                 fallback()
             end
-        end, { "i", "s" }),
+        end, {
+            "i",
+            "s",
+        }),
     },
     sources = {
         { name = "luasnip" },
@@ -109,7 +106,7 @@ cmp.setup({
         { name = "path" },
         { name = "cmp_tabnine" }, -- not set-up TODO: set up the tabnine
         { name = "nvim_lua" },
-        { name = "buffer", keyword_length = 5 },
+        { name = "buffer", keyword_length = 4 },
         { name = "calc" },
         { name = "emoji" },
         { name = "spell" },

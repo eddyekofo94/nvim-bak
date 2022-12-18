@@ -1,5 +1,4 @@
-local gruvbox_colors = O.gruvbox_colors
-local onedark_colors = O.onedark_colors
+local colors = O.everforest_colors
 local lsp = require("feline.providers.lsp")
 local git = require("feline.providers.git")
 local vi_mode_utils = require("feline.providers.vi_mode")
@@ -117,7 +116,6 @@ components.active[1] = {
             str = " ",
 
             hl = {
-
                 fg = "fg",
                 bg = "fg_gutter",
             },
@@ -179,9 +177,9 @@ components.active[1] = {
         end,
         type = "relative",
     },
-    { provider = "git_diff_added", hl = { fg = onedark_colors.add } },
-    { provider = "git_diff_changed", hl = { fg = onedark_colors.change } },
-    { provider = "git_diff_removed", hl = { fg = onedark_colors.delete } },
+    { provider = "git_diff_added", hl = { fg = colors.add } },
+    { provider = "git_diff_changed", hl = { fg = colors.change } },
+    { provider = "git_diff_removed", hl = { fg = colors.delete } },
 }
 
 components.active[2] = {
@@ -203,11 +201,11 @@ components.active[3] = {
     },
     {
         provider = "diagnostic_hints",
-        hl = { fg = "cyan" },
+        hl = { fg = "aqua" },
     },
     {
         provider = "diagnostic_info",
-        hl = { fg = "skyblue" },
+        hl = { fg = "blue" },
     },
     {
         provider = " ",
@@ -318,9 +316,9 @@ local separators = {
 
 -- This table is equal to the default vi_mode_colors table
 local vi_mode_colors = {
-    ["NORMAL"] = "green",
+    ["NORMAL"] = colors.green,
     ["OP"] = "green",
-    ["INSERT"] = "red",
+    ["INSERT"] = colors.red,
     ["VISUAL"] = "yellow",
     ["LINES"] = "skyblue",
     ["BLOCK"] = "skyblue",
@@ -368,7 +366,7 @@ local update_triggers = {
 }
 
 require("feline").setup({
-    colors = onedark_colors,
+    colors = colors,
     separators = separators,
     vi_mode_colors = vi_mode_colors,
     force_inactive = force_inactive,

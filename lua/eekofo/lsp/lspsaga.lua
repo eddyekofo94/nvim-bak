@@ -1,7 +1,7 @@
 local saga = require("lspsaga")
 
 local mapper = function(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+    vim.keymap.set(mode, key, result, { noremap = true, silent = true })
 end
 
 local opts = {

@@ -39,7 +39,7 @@ packer.startup({
 
         -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        use({ "tami5/lspsaga.nvim", opt = true })
+        use({ "glepnir/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         --use({ "simrat39/symbols-outline.nvim", opt = true })
@@ -91,7 +91,7 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-        use({"nvim-treesitter/nvim-treesitter-textobjects", opt = true})
+        use({ "nvim-treesitter/nvim-treesitter-textobjects", opt = true })
 
         use({ "windwp/nvim-ts-autotag", opt = true })
 
@@ -173,8 +173,8 @@ packer.startup({
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-        -- use({ "ful1e5/onedark.nvim" }) -- TODO: I like the colour of this onedark, maybe adjust this them with these colours?
-        use({ "navarasu/onedark.nvim" })
+        -- use({ "navarasu/onedark.nvim" })
+        use({ "sainnhe/everforest" })
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
