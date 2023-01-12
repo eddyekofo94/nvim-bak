@@ -25,9 +25,6 @@ O.clang.diagnostics.signs = false
 O.clang.diagnostics.underline = false
 
 -- python
--- add things like O.python.formatter.yapf.exec_path
--- add things like O.python.linter.flake8.exec_path
--- add things like O.python.formatter.isort.exec_path
 O.python.formatter = "yapf"
 -- O.python.linter = 'flake8'
 O.python.isort = true
@@ -49,8 +46,3 @@ O.tsserver.autoformat = true
 -- json
 O.json.autoformat = true
 
--- create custom autocommand field (This would be easy with lua)
--- CmpItemAbbrDeprecatedDefault = { fg = c.fg },
--- CmpItemAbbrDefault = { fg = util.darken(c.fg, 0.2) },
--- CmpItemKindDefault = { fg = c.red, style = "italic" },
--- CmpItemMenuDefault = { fg = util.darken(c.dark5, 0.5), style = "bold" },
