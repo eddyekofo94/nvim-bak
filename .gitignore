@@ -1,0 +1,8 @@
+undodir
+plugged/**
+.netrwhist
+.DS_Store
+~formatting**
+plugin/packer_compiled.vim
+sessions/**
+lua/packer_compiled.lua
