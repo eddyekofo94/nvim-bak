@@ -17,11 +17,13 @@ return {
           vertical = {
             width_padding = 0.05,
             height_padding = 1,
-            preview_height = 0.5,
+            preview_height = 0.7,
           },
-          width = 0.95,
-          preview_cutoff = 90,
-          preview_width = 110,
+          width = 0.98,
+          --preview_cutoff = 90,
+          --preview_width = 110,
+          preview_cutoff = 80,
+          preview_width = 85,
         },
         scroll_strategy = "cycle",
         mappings = {
