@@ -39,7 +39,6 @@ packer.startup({
 
         -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
-        use({ "glepnir/lspsaga.nvim", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         --use({ "simrat39/symbols-outline.nvim", opt = true })
@@ -193,7 +192,6 @@ packer.startup({
         require_plugin("FTerm.nvim")
         require_plugin("auto-session")
         require_plugin("bullets.vim")
-        require_plugin("lspsaga.nvim")
         require_plugin("vim-maximizer")
         require_plugin("nvim-lsputils")
         require_plugin("zen-mode.nvim")
