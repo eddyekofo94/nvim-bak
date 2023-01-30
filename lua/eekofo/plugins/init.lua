@@ -17,7 +17,6 @@ require("surround").setup({})
 require("todo-comments").setup({})
 require("nvim-autopairs").setup()
 require("nvim_comment").setup()
-
 -- Have Neoformat only msg when there is an error
 vim.g.neoformat_only_msg_on_error = 1
 -- Enable tab to spaces conversion
