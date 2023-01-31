@@ -132,6 +132,9 @@ local prev_movement_mappings = {
     ["["] = { name = "prev", c = { "prev git hunk" }, d = { "prev diagnostic" } },
 }
 
+
+      --{ "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" }
+--{ "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" }
 wk.register(leader_mappings, { prefix = "<leader>" })
 wk.register(prev_movement_mappings, { prefix = "" })
 wk.register(next_movement_mappings, { prefix = "" })

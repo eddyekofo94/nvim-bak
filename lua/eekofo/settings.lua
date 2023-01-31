@@ -1,12 +1,9 @@
 vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
 vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
-vim.o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
-vim.o.title = true
 TERMINAL = vim.fn.expand("$TERMINAL")
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim"
-vim.wo.wrap = O.wrap_lines -- Display long lines as just one line
 vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
 vim.cmd("syntax on") -- move to next line with theses keys
 vim.o.pumheight = 10 -- Makes popup menu smaller
@@ -27,8 +24,6 @@ vim.bo.smartindent = true -- Makes indenting smart
 vim.cmd("set backspace=indent,eol,start")
 vim.cmd("set scrolloff=8") -- " start scholling when you're near the bottom by 8
 vim.cmd("set sidescrolloff=6")
-vim.wo.number = O.number -- set numbered lines
-vim.wo.relativenumber = O.relative_number -- set relative number
 vim.wo.cursorline = true -- Enable highlighting of the current line
 vim.o.showtabline = 2 -- Always show tabs
 vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
