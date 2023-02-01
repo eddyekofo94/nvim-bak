@@ -29,6 +29,25 @@ require("mason-lspconfig").setup_handlers({
         require("rust-tools").setup({})
     end,
 
+    ["bashls"] = function()
+        lspconfig.bashls.setup({
+            on_init = lsp_conf.on_init,
+            on_attach = lsp_conf.on_attach,
+            capabilities = lsp_conf.capabilities,
+        })
+    end,
+    ["pyright"] = function()
+        lspconfig.pyright.setup({
+            on_init = lsp_conf.on_init,
+            on_attach = lsp_conf.on_attach,
+        })
+    end,
+    ["yamlls"] = function()
+        lspconfig.yamlls.setup({
+            on_init = lsp_conf.on_init,
+            on_attach = lsp_conf.on_attach,
+        })
+    end,
     ["clangd"] = function()
         lspconfig.clangd.setup({
             cmd = {
@@ -84,7 +103,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
     end,
 })
-
 
 _ = require("lspkind").init()
 

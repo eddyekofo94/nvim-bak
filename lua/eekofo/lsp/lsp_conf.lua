@@ -55,6 +55,7 @@ local custom_attach = function(client)
             false
         )
     end
+    -- INFO: to be removed since I believe I don't use this anymore
     require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = { border = "single" },
@@ -83,6 +84,7 @@ local custom_attach = function(client)
                 .. [[} ]]
         )
     end
+
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.document_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
@@ -109,35 +111,6 @@ local custom_attach = function(client)
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
--- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ",
-    "   (Method)",
-    "   (Function)",
-    "   (Constructor)",
-    " ﴲ  (Field)",
-    "[] (Variable)",
-    "   (Class)",
-    " ﰮ  (Interface)",
-    "   (Module)",
-    " 襁 (Property)",
-    "   (Unit)",
-    "   (Value)",
-    " 練 (Enum)",
-    "   (Keyword)",
-    " ﬌  (Snippet)",
-    "   (Color)",
-    "   (File)",
-    "   (Reference)",
-    "   (Folder)",
-    "   (EnumMember)",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
-    "   (Event)",
-    "   (Operator)",
-    "   (TypeParameter)",
-}
-
 ---
 -- Diagnostics
 ---
@@ -156,7 +129,6 @@ local sign = function(opts)
         numhl = "",
     })
 end
-
 
 sign({ name = "DiagnosticSignError", text = signs_defined.error_sign })
 sign({ name = "DiagnosticSignWarn", text = signs_defined.warn_sign })
@@ -234,11 +206,6 @@ lspconfig.bashls.setup({ on_attach = custom_attach })
 lspconfig.yamlls.setup({ on_init = custom_init, on_attach = custom_attach })
 
 lspconfig.vimls.setup({ on_init = custom_init, on_attach = custom_attach })
-
-lspconfig.pyright.setup({
-    on_init = custom_init,
-    on_attach = custom_attach,
-})
 
 -- https://github.com/theia-ide/typescript-language-server
 require("lspconfig").tsserver.setup({

@@ -17,7 +17,7 @@ local leader_mappings = {
     },
     g = {
         name = "+Git",
-        s = { ":Gitsigns stage_hunk<cr>", "stage hunk" },
+        a = { ":Gitsigns stage_hunk<cr>", "add hunk" },
         u = { ":Gitsigns undo_stage_hunk<cr>", "undo stage hunk" },
         r = { ":Gitsigns reset_hunk<cr>", "reset hunk" },
         R = { ":Gitsigns reset_buffer<cr>", "reset buffer" },

@@ -316,10 +316,10 @@ local separators = {
 
 -- This table is equal to the default vi_mode_colors table
 local vi_mode_colors = {
-    ["NORMAL"] = colors.green,
+    ["NORMAL"] = colors.fg,
     ["OP"] = "green",
-    ["INSERT"] = colors.red,
-    ["VISUAL"] = "yellow",
+    ["INSERT"] = colors.green,
+    ["VISUAL"] = colors.yellow,
     ["LINES"] = "skyblue",
     ["BLOCK"] = "skyblue",
     ["REPLACE"] = "violet",
