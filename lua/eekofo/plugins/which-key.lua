@@ -29,7 +29,7 @@ local leader_mappings = {
         name = "+lsp",
         a = { ":Lspsaga code_action<cr>", "code action" },
         A = { ":Lspsaga range_code_action<cr>", "selected action" },
-        d = { ":Telescope lsp_document_diagnostics<cr>", "document diagnostics" },
+        d = { ":Telescope diagnostics<cr>", "document diagnostics" },
         D = {
             ":Telescope lsp_workspace_diagnostics<cr>",
             "workspace diagnostics",

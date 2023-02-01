@@ -40,10 +40,11 @@ packer.startup({
         -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
         use({ "folke/lsp-trouble.nvim", opt = true })
+        use({ "j-hui/fidget.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
         use({ "folke/neodev.nvim", opt = true })
         use({ "williamboman/mason.nvim", opt = true })
-        use({"williamboman/mason-lspconfig.nvim", opt = true })
+        use({ "williamboman/mason-lspconfig.nvim", opt = true })
         --use({ "simrat39/symbols-outline.nvim", opt = true })
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
@@ -176,7 +177,7 @@ packer.startup({
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
         -- use({ "navarasu/onedark.nvim" })
         use({ "sainnhe/everforest" })
-        use ({'simrat39/rust-tools.nvim', opt = true})
+        use({ "simrat39/rust-tools.nvim", opt = true })
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
@@ -242,6 +243,7 @@ packer.startup({
         require_plugin("nvim-web-devicons")
         require_plugin("bufferline.nvim")
         require_plugin("surround.nvim")
+        require_plugin("fidget.nvim")
         require_plugin("neoscroll.nvim")
         require_plugin("nvim-jdtls")
     end,
