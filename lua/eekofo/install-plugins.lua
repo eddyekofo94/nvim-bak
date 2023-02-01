@@ -170,12 +170,13 @@ packer.startup({
         -- Performance
         use({ "dstein64/vim-startuptime", opt = true })
         use({ "lewis6991/impatient.nvim", rocks = "mpack" })
-        use({ "nathom/filetype.nvim" })
+        -- use({ "nathom/filetype.nvim" })
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
         -- use({ "navarasu/onedark.nvim" })
         use({ "sainnhe/everforest" })
+        use ({'simrat39/rust-tools.nvim', opt = true})
 
         -- Icons
         use({ "kyazdani42/nvim-web-devicons", opt = true })
@@ -184,6 +185,7 @@ packer.startup({
         use({ "akinsho/bufferline.nvim", tag = "v3.*", opt = true })
 
         require_plugin("nvim-lspconfig")
+        require_plugin("rust-tools.nvim")
         require_plugin("neodev.nvim")
         require_plugin("popfix")
         require_plugin("feline.nvim")
