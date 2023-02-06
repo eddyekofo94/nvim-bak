@@ -28,7 +28,6 @@ require("mason-lspconfig").setup_handlers({
     ["rust_analyzer"] = function()
         require("rust-tools").setup({})
     end,
-
     ["bashls"] = function()
         lspconfig.bashls.setup({
             on_init = lsp_conf.on_init,
