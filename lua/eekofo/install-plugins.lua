@@ -171,7 +171,6 @@ packer.startup({
         -- Performance
         use({ "dstein64/vim-startuptime", opt = true })
         use({ "lewis6991/impatient.nvim", rocks = "mpack" })
-        -- use({ "nathom/filetype.nvim" })
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
