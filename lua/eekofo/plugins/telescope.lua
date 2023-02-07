@@ -85,10 +85,3 @@ require("telescope").load_extension("project")
 require("telescope").load_extension("frecency")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("media_files") -- TODO: install a previewer eg: pip install ueberzug
-local opt = { noremap = true, silent = true }
-vim.api.nvim_set_keymap(
-    "n",
-    "<Leader>si",
-    [[<Cmd>lua require('telescope').extensions.media_files.media_files()<CR>]],
-    opt
-)

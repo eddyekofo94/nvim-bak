@@ -147,20 +147,6 @@ packer.startup({
         -- show lsp hover docs automatically
         use({ "ray-x/lsp_signature.nvim", opt = true })
 
-        use({
-            "iamcco/markdown-preview.nvim",
-            run = "cd app && yarn install",
-            config = function()
-                -- Set default browser to open in
-                vim.g.mkdp_browser = ""
-                -- Print the preview url in the command line output
-                vim.g.mkdp_echo_preview_url = 1
-                -- Start markdown preview server on port 5000
-                vim.g.mkdp_port = 5000
-            end,
-            opt = true,
-        })
-
         -- for automatic list bulleting when writing markdown or plaintext
         use({
             "dkarter/bullets.vim",
@@ -192,7 +178,6 @@ packer.startup({
         require_plugin("vim-startuptime")
         require_plugin("lsp_signature.nvim")
         require_plugin("undotree")
-        require_plugin("markdown-preview.nvim")
         require_plugin("twilight.nvim")
         require_plugin("FTerm.nvim")
         require_plugin("auto-session")
