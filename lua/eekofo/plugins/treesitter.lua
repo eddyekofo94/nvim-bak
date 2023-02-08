@@ -1,5 +1,6 @@
 require("nvim-treesitter.configs").setup({
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = {"bash", "lua", "cpp", "python", "cpp", "java"},
     ignore_install = { "haskell" },
     highlight = {
         -- disable = { "cpp" }, -- list of language that will be disabled
