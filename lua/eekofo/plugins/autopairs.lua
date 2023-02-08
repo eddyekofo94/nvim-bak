@@ -1,3 +1,8 @@
+return {
+    {
+      "windwp/nvim-autopairs",
+    event = "VeryLazy",
+      config = function()
 local npairs = require("nvim-autopairs")
 local remap = vim.api.nvim_set_keymap
 
@@ -55,3 +60,4 @@ remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", { expr = true, noremap =
 -- imap("<CR>", "v:lua.MUtils.completion_confirm()", {expr = true, noremap = true})
 imap("<Tab>", "v:lua.MUtils.tab()", { expr = true, noremap = true })
 imap("<S-Tab>", "v:lua.MUtils.s_tab()", { expr = true, noremap = true })
+end}}

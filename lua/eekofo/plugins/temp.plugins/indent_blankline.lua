@@ -50,4 +50,4 @@ vim.g.indent_blankline_context_patterns = {
     "object",
     "dictionary",
 }
-vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
+--vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")

@@ -1,0 +1,12 @@
+{
+  "lazy.nvim": { "branch": "main", "commit": "0e4017152d90cff89232713a5baca24e8411dbaa" },
+  "nvim-autopairs": { "branch": "master", "commit": "28f57e6a6f0b37ec52c257230990b81afa1863e4" },
+  "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
+  "sql.nvim": { "branch": "master", "commit": "93ff5824682ecc874200e338fd8ca9ccd08508f8" },
+  "telescope-frecency.nvim": { "branch": "master", "commit": "62cbd4e7f55fb6de2b8081087ce97026022ffcd2" },
+  "telescope-fzf-native.nvim": { "branch": "main", "commit": "580b6c48651cabb63455e97d7e131ed557b8c7e2" },
+  "telescope-project.nvim": { "branch": "master", "commit": "8e8ee37b7210761502cdf2c3a82b5ba8fb5b2972" },
+  "telescope-zoxide": { "branch": "main", "commit": "856af0d83d2e167b5efa080567456c1578647abe" },
+  "telescope.nvim": { "branch": "master", "commit": "203bf5609137600d73e8ed82703d6b0e320a5f36" },
+  "which-key.nvim": { "branch": "main", "commit": "684e96c5e8477f1ee9b3f2e9a12d802fd12c5531" }
+}

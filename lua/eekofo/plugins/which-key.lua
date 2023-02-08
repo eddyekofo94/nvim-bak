@@ -1,3 +1,8 @@
+return {
+    {
+      "folke/which-key.nvim",
+    event = "VeryLazy",
+      config = function()
 require("which-key").setup({ plugins = { presets = { operators = false } } })
 
 local wk = require("which-key")
@@ -135,3 +140,5 @@ local prev_movement_mappings = {
 wk.register(leader_mappings, { prefix = "<leader>" })
 wk.register(prev_movement_mappings, { prefix = "" })
 wk.register(next_movement_mappings, { prefix = "" })
+
+end}}

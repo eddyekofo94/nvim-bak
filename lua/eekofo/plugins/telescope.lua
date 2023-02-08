@@ -1,6 +1,23 @@
+return {
+    {
+      "nvim-telescope/telescope.nvim",
+    dependencies = {
+    "nvim-lua/plenary.nvim",
+--    "nvim-telescope/telescope-fzf-native.nvim",
+    "nvim-telescope/telescope-project.nvim",
+    "nvim-telescope/telescope-frecency.nvim",
+    "jvgrootveld/telescope-zoxide",
+    "tami5/sql.nvim"
+    },
+    event = "VeryLazy",
+      cmd = "Telescope",
+      keys = {
+    "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find files",
+    },
+      --priority = 100,
+      config = function()
 local telescope = require("telescope")
 local actions = require("telescope.actions")
-
 telescope.setup({
     defaults = {
         vimgrep_arguments = {
@@ -57,10 +74,6 @@ telescope.setup({
                     ["dotfiles"] = "~/.files/",
                 },
             },
-            media_files = {
-                filetypes = { "png", "webp", "jpg", "jpeg" },
-                find_cmd = "rg", -- find command (defaults to `fd`)
-            },
         },
         mappings = {
             i = {
@@ -80,8 +93,11 @@ telescope.setup({
     },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
-require("telescope").load_extension("frecency")
-require("telescope").load_extension("zoxide")
-require("telescope").load_extension("media_files") -- TODO: install a previewer eg: pip install ueberzug
+_ = require("telescope").load_extension("project")
+_ = require("telescope").load_extension("frecency")
+_ = require("telescope").load_extension("zoxide")
+_ = require("telescope").load_extension("fzf")
+      end,
+    },
+    {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+}
