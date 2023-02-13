@@ -87,6 +87,7 @@ local leader_mappings = {
         x = { ":DeleteSession<cr>", "delete session" },
     },
     ["/"] = { ":CommentToggle<CR>", "comment" },
+    ["-"] = { ":split<CR>", "split horizontally" },
     ["="] = { "<C-w>=", "balance windows" },
     ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
     ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
