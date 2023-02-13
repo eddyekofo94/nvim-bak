@@ -45,7 +45,6 @@ packer.startup({
         use({ "folke/neodev.nvim", opt = true })
         use({ "williamboman/mason.nvim", opt = true })
         use({ "williamboman/mason-lspconfig.nvim", opt = true })
-        --use({ "simrat39/symbols-outline.nvim", opt = true })
         use({ "onsails/lspkind-nvim", opt = true })
         use({ "folke/lsp-colors.nvim", opt = true }) -- improves the lsp warning colours TODO: ensure it works
         use({ "nvim-lua/lsp_extensions.nvim", opt = true })
@@ -162,6 +161,7 @@ packer.startup({
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
         -- use({ "navarasu/onedark.nvim" })
         use({ "sainnhe/everforest" })
+        use({ "catppuccin/nvim", as = "catppuccin" })
         use({ "simrat39/rust-tools.nvim", opt = true })
 
         -- Icons
@@ -186,7 +186,6 @@ packer.startup({
         require_plugin("nvim-lsputils")
         require_plugin("zen-mode.nvim")
         require_plugin("lsp-trouble.nvim")
-        --require_plugin("symbols-outline.nvim")
         require_plugin("todo-comments.nvim")
         require_plugin("neoformat")
         require_plugin("lsp_extensions.nvim")
