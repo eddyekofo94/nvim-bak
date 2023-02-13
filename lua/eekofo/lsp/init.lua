@@ -5,6 +5,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "sumneko_lua",
+        "vim-language-server",
         "rust_analyzer",
         "yamlls",
         "pyright",
@@ -27,6 +28,13 @@ require("mason-lspconfig").setup_handlers({
     -- For example, a handler override for the `rust_analyzer`:
     ["rust_analyzer"] = function()
         require("rust-tools").setup({})
+    end,
+    ["vim-language-server"] = function()
+        lspconfig.vimls.setup({
+            on_init = lsp_conf.on_init,
+            on_attach = lsp_conf.on_attach,
+            capabilities = lsp_conf.capabilities,
+        })
     end,
     ["bashls"] = function()
         lspconfig.bashls.setup({
