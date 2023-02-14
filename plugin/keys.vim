@@ -21,8 +21,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" nnoremap <leader>= <cmd><C-w> <C-=>
-
 " HARD MODE - Disabled arrows
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -43,17 +41,9 @@ cnoremap %s/ %sm/
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <C-c> <esc>
 
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-" I don't really agree with this setup but I will keep it here if I ever
-" find it decesarry one day
-" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
 " Change the current word in insertmode.
 "   Auto places you into the spot where you can start typing to change it.
 nnoremap <c-r>w :%s/<c-r><c-w>//g<left><left>
 
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 
-" highlight HighlightedyankRegion cterm=reverse gui=reverse

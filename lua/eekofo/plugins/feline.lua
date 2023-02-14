@@ -1,4 +1,4 @@
-local colors = require("catppuccin.palettes").get_palette "mocha"
+local colors = require("catppuccin.palettes").get_palette("mocha") -- BUG: the colors seems to not be working
 local lsp = require("feline.providers.lsp")
 local git = require("feline.providers.git")
 local vi_mode_utils = require("feline.providers.vi_mode")
@@ -73,6 +73,13 @@ local vi_fg = function()
         fg = vi_mode_utils.get_mode_color(),
     }
 end
+
+-- TODO: get this feature working
+local navic = {
+    get_location = function()
+        return require("nvim-navic").get_location()
+    end,
+}
 
 local conditions = {
     buffer_not_empty = function()

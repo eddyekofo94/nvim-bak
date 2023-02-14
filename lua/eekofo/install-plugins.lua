@@ -39,6 +39,10 @@ packer.startup({
 
         -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use({ "neovim/nvim-lspconfig", opt = true })
+        use({
+            "SmiteshP/nvim-navic",
+            opt = true,
+        })
         use({ "folke/lsp-trouble.nvim", opt = true })
         use({ "j-hui/fidget.nvim", opt = true })
         use({ "folke/twilight.nvim", opt = true })
@@ -55,7 +59,8 @@ packer.startup({
         use({ "RishabhRD/nvim-lsputils", opt = true })
 
         -- " Formatter
-        use({ "sbdchd/neoformat", opt = true })
+        use({ "mhartington/formatter.nvim", opt = true })
+        -- use({ "sbdchd/neoformat", opt = true })
 
         -- Telescope - Fuzzy finder
         use({ "nvim-lua/popup.nvim", opt = true })
@@ -92,6 +97,7 @@ packer.startup({
 
         -- Treesitter
         use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+        use({ "nvim-treesitter/nvim-treesitter-context", opt = true })
         use({ "nvim-treesitter/nvim-treesitter-textobjects", opt = true })
 
         use({ "windwp/nvim-ts-autotag", opt = true })
@@ -171,6 +177,7 @@ packer.startup({
         use({ "akinsho/bufferline.nvim", tag = "v3.*", opt = true })
 
         require_plugin("nvim-lspconfig")
+        require_plugin("nvim-treesitter-context")
         require_plugin("rust-tools.nvim")
         require_plugin("neodev.nvim")
         require_plugin("popfix")
@@ -187,7 +194,8 @@ packer.startup({
         require_plugin("zen-mode.nvim")
         require_plugin("lsp-trouble.nvim")
         require_plugin("todo-comments.nvim")
-        require_plugin("neoformat")
+        -- require_plugin("neoformat")
+        require_plugin("formatter.nvim")
         require_plugin("lsp_extensions.nvim")
         require_plugin("lspkind-nvim")
         require_plugin("which-key.nvim")
@@ -223,6 +231,7 @@ packer.startup({
         require_plugin("nvim-autopairs")
         require_plugin("nvim-comment")
         require_plugin("nvim-bqf")
+        require_plugin("nvim-navic")
         require_plugin("nvim-web-devicons")
         require_plugin("bufferline.nvim")
         require_plugin("surround.nvim")

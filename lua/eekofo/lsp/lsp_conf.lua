@@ -1,6 +1,6 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require("lspconfig")
-
+local navic = require("nvim-navic")
 _ = require("lspkind").init()
 
 local mapper = function(mode, key, result)
@@ -13,7 +13,7 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local custom_attach = function(client)
+local custom_attach = function(client, bufnr)
     if client.config.flags then
         client.config.flags.allow_incremental_sync = true
     end
@@ -74,6 +74,10 @@ local custom_attach = function(client)
         update_in_insert = true,
     })
 
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
+
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
     -- Rust is currently the only thing w/ inlay hints
@@ -87,7 +91,7 @@ local custom_attach = function(client)
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.document_formatting then
-        mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>")
+        mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>")
     elseif client.server_capabilities.document_range_formatting then
         mapper("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
     end
@@ -229,5 +233,4 @@ require("eekofo.lsp.cmp")
 -- helps the lsp experience
 require("eekofo.lsp.handlers")
 
-return { on_attach = custom_attach, capabilities = capabilities , on_init = custom_init }
-
+return { on_attach = custom_attach, capabilities = capabilities, on_init = custom_init }

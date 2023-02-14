@@ -12,13 +12,12 @@ require("eekofo.plugins.treesitter")
 require("eekofo.plugins.which-key")
 require("eekofo.plugins.dap")
 require("eekofo.plugins.neoscroll")
+require("eekofo.plugins.formatter")
+
+-- DEFAULT configs
 require("colorizer").setup()
 require("surround").setup({})
 require("todo-comments").setup({})
 require("nvim-autopairs").setup()
 require("nvim_comment").setup()
 require("fidget").setup({})
--- Have Neoformat only msg when there is an error
-vim.g.neoformat_only_msg_on_error = 1
--- Enable tab to spaces conversion
-vim.g.neoformat_basic_format_retab = 1

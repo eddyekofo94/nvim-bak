@@ -4,7 +4,7 @@ local lsp_conf = require("eekofo.lsp.lsp_conf")
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "lua_ls",
+        "lua-language-server",
         "vimls",
         "rust_analyzer",
         "yamlls",
