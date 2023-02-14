@@ -4,11 +4,12 @@ local lsp_conf = require("eekofo.lsp.lsp_conf")
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "lua-language-server",
+        "lua_ls",
         "vimls",
         "rust_analyzer",
         "yamlls",
-        "pyright",
+        -- "pyright",
+        "pylsp",
         "dockerls",
         "clangd",
         "bashls",
@@ -43,11 +44,26 @@ require("mason-lspconfig").setup_handlers({
             capabilities = lsp_conf.capabilities,
         })
     end,
-    ["pyright"] = function()
-        lspconfig.pyright.setup({
+    ["pylsp"] = function()
+        lspconfig.pylsp.setup({
             on_init = lsp_conf.on_init,
             on_attach = lsp_conf.on_attach,
+            capabilities = lsp_conf.capabilities,
+            settings = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            ignore = { "W391" },
+                            maxLineLength = 100,
+                        },
+                    },
+                },
+            },
         })
+        -- lspconfig.pyright.setup({
+        --     on_init = lsp_conf.on_init,
+        --     on_attach = lsp_conf.on_attach,
+        -- })
     end,
     ["yamlls"] = function()
         lspconfig.yamlls.setup({
