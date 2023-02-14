@@ -4,8 +4,8 @@ local lsp_conf = require("eekofo.lsp.lsp_conf")
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "sumneko_lua",
-        "vim-language-server",
+        "lua_ls",
+        "vimls",
         "rust_analyzer",
         "yamlls",
         "pyright",
@@ -29,7 +29,7 @@ require("mason-lspconfig").setup_handlers({
     ["rust_analyzer"] = function()
         require("rust-tools").setup({})
     end,
-    ["vim-language-server"] = function()
+    ["vimls"] = function()
         lspconfig.vimls.setup({
             on_init = lsp_conf.on_init,
             on_attach = lsp_conf.on_attach,
@@ -71,8 +71,8 @@ require("mason-lspconfig").setup_handlers({
             capabilities = lsp_conf.capabilities,
         })
     end,
-    ["sumneko_lua"] = function()
-        lspconfig.sumneko_lua.setup({
+    ["lua_ls"] = function()
+        lspconfig.lua_ls.setup({
             on_init = lsp_conf.on_init,
             on_attach = lsp_conf.on_attach,
             capabilities = lsp_conf.capabilities,
@@ -80,6 +80,10 @@ require("mason-lspconfig").setup_handlers({
                 Lua = {
                     diagnostics = {
                         globals = { "vim" },
+                    },
+                    workspace = {
+                        -- Make the server aware of Neovim runtime files
+                        library = vim.api.nvim_get_runtime_file("", true),
                     },
                 },
             },

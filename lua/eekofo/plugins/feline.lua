@@ -1,4 +1,4 @@
-local colors = O.everforest_colors
+local colors = require("catppuccin.palettes").get_palette "mocha"
 local lsp = require("feline.providers.lsp")
 local git = require("feline.providers.git")
 local vi_mode_utils = require("feline.providers.vi_mode")
@@ -177,9 +177,9 @@ components.active[1] = {
         end,
         type = "relative",
     },
-    { provider = "git_diff_added", hl = { fg = colors.add } },
-    { provider = "git_diff_changed", hl = { fg = colors.change } },
-    { provider = "git_diff_removed", hl = { fg = colors.delete } },
+    { provider = "git_diff_added", hl = { fg = colors.git_diff_added } },
+    { provider = "git_diff_changed", hl = { fg = colors.git_diff_changed } },
+    { provider = "git_diff_removed", hl = { fg = colors.git_diff_removed } },
 }
 
 components.active[2] = {
@@ -316,9 +316,9 @@ local separators = {
 
 -- This table is equal to the default vi_mode_colors table
 local vi_mode_colors = {
-    ["NORMAL"] = colors.fg,
+    ["NORMAL"] = colors.blue,
     ["OP"] = "green",
-    ["INSERT"] = colors.green,
+    ["INSERT"] = colors.red,
     ["VISUAL"] = colors.yellow,
     ["LINES"] = "skyblue",
     ["BLOCK"] = "skyblue",
@@ -327,7 +327,7 @@ local vi_mode_colors = {
     ["ENTER"] = "cyan",
     ["MORE"] = "cyan",
     ["SELECT"] = "orange",
-    ["COMMAND"] = "green",
+    ["COMMAND"] = colors.green,
     ["SHELL"] = "green",
     ["TERM"] = "green",
     ["NONE"] = "yellow",

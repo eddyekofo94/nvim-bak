@@ -225,7 +225,7 @@ require("eekofo.lsp.lsptrouble")
 require("eekofo.lsp.cmp")
 
 -- some lsp helps
-require("eekofo.lsp.lspsaga")
+--require("eekofo.lsp.lspsaga")
 -- helps the lsp experience
 require("eekofo.lsp.handlers")
 
