@@ -1,8 +1,12 @@
 require("bufferline").setup({
     options = {
         offsets = {
-            { filetype = "NvimTree", text = "File Explorer", padding = 1 },
-            { filetype = "Outline", text = "Symbols", padding = 1 },
+          {
+            filetype = "neo-tree",
+            text = "File Explorer",
+            highlight = "Directory",
+            text_align = "left",
+          },
         },
         buffer_close_icon = "",
         modified_icon = "",

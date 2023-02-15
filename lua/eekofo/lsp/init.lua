@@ -8,7 +8,6 @@ require("mason-lspconfig").setup({
         "vimls",
         "rust_analyzer",
         "yamlls",
-        -- "pyright",
         "pylsp",
         "dockerls",
         "clangd",
@@ -99,7 +98,13 @@ require("mason-lspconfig").setup_handlers({
                     },
                     workspace = {
                         -- Make the server aware of Neovim runtime files
-                        library = vim.api.nvim_get_runtime_file("", true),
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
+                        },
+                    },
+                    telemetry = {
+                        enable = false,
                     },
                 },
             },

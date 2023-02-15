@@ -60,7 +60,6 @@ packer.startup({
 
         -- " Formatter
         use({ "mhartington/formatter.nvim", opt = true })
-        -- use({ "sbdchd/neoformat", opt = true })
 
         -- Telescope - Fuzzy finder
         use({ "nvim-lua/popup.nvim", opt = true })
@@ -103,7 +102,34 @@ packer.startup({
         use({ "windwp/nvim-ts-autotag", opt = true })
 
         -- Explorer
-        use({ "kyazdani42/nvim-tree.lua", opt = true })
+        -- use({ "kyazdani42/nvim-tree.lua", opt = true })
+        use({
+            "nvim-neo-tree/neo-tree.nvim",
+            branch = "v2.x",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            },
+            opt = true,
+        })
+        use("MunifTanjim/nui.nvim")
+        use({
+            "folke/noice.nvim",
+            config = function()
+                require("noice").setup({
+                    -- add any options here
+                })
+            end,
+            requires = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify",
+            },
+        })
+        use({ "s1n7ax/nvim-window-picker", tag = "v1.*", opt = true })
         use({ "airblade/vim-rooter", opt = true })
 
         -- UI stuff
@@ -165,8 +191,7 @@ packer.startup({
 
         -- Color
         -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-        -- use({ "navarasu/onedark.nvim" })
-        use({ "sainnhe/everforest" })
+        --use({ "sainnhe/everforest" })
         use({ "catppuccin/nvim", as = "catppuccin" })
         use({ "simrat39/rust-tools.nvim", opt = true })
 
@@ -177,6 +202,8 @@ packer.startup({
         use({ "akinsho/bufferline.nvim", tag = "v3.*", opt = true })
 
         require_plugin("nvim-lspconfig")
+        require_plugin("neo-tree.nvim")
+        require_plugin("nvim-window-picker")
         require_plugin("nvim-treesitter-context")
         require_plugin("rust-tools.nvim")
         require_plugin("neodev.nvim")
@@ -194,7 +221,6 @@ packer.startup({
         require_plugin("zen-mode.nvim")
         require_plugin("lsp-trouble.nvim")
         require_plugin("todo-comments.nvim")
-        -- require_plugin("neoformat")
         require_plugin("formatter.nvim")
         require_plugin("lsp_extensions.nvim")
         require_plugin("lspkind-nvim")
