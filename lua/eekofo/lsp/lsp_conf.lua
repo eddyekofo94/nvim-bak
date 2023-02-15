@@ -75,9 +75,10 @@ local custom_attach = function(client, bufnr)
         update_in_insert = true,
     })
 
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
+    -- TODO: look into fixing this maybe
+    -- if client.server_capabilities.documentSymbolProvider then
+    --     navic.attach(client, bufnr)
+    -- end
 
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
