@@ -94,6 +94,7 @@ local leader_mappings = {
     ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
     h = { ':let @/ = ""<cr>', "Clear Highlight" },
     H = { ":split", "Split bottom" },
+    M = { ":Mason<cr>", "Mason" },
     f = { "<cmd>Format<cr>", "Format File" },
     F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
     G = { "<cmd>LazyGit<cr>", "Lazygit" },
