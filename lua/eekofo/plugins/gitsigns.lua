@@ -1,30 +1,20 @@
 require("gitsigns").setup({
     signs = {
-        -- TODO add hl to colorscheme..
-        add = {
-            hl = "GitSignsAdd",
-            text = "▎",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
-        },
-        change = {
-            hl = "GitSignsChange",
-            text = "▎",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-        },
-        delete = {
-            hl = "GitSignsDelete",
-            text = "契",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
-        },
+        add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+        change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+        delete = { hl = "GitSignsDelete", text = "▎", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
         topdelete = {
             hl = "GitSignsDelete",
             text = "契",
             numhl = "GitSignsDeleteNr",
             linehl = "GitSignsDeleteLn",
         },
+        -- topdelete = {
+        --     hl = "GitSignsDelete",
+        --     text = "契",
+        --     numhl = "GitSignsDeleteNr",
+        --     linehl = "GitSignsDeleteLn",
+        -- },
         changedelete = {
             hl = "GitSignsChange",
             text = "▎",
@@ -33,11 +23,13 @@ require("gitsigns").setup({
         },
     },
     numhl = false,
+    signcolumn = true,
     linehl = false,
-    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+    current_line_blame = false,
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     current_line_blame_opts = {
         virt_text = true,
-        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
         delay = 1000,
         ignore_whitespace = false,
     },
@@ -56,7 +48,14 @@ require("gitsigns").setup({
     },
     watch_gitdir = {
         interval = 1000,
-        follow_files = true
+        follow_files = true,
+    },
+    preview_config = {
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
     },
     sign_priority = 6,
     update_debounce = 200,

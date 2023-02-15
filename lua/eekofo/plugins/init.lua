@@ -11,8 +11,7 @@ require("eekofo.plugins.gitsigns")
 require("eekofo.plugins.tree_explorer")
 require("eekofo.plugins.treesitter")
 require("eekofo.plugins.which-key")
-require("eekofo.plugins.dap")
--- require("eekofo.plugins.noice")
+require("eekofo.plugins.noice")
 require("eekofo.plugins.neoscroll")
 require("eekofo.plugins.formatter")
 
@@ -20,6 +19,9 @@ require("eekofo.plugins.formatter")
 require("colorizer").setup()
 require("surround").setup({})
 require("todo-comments").setup({})
-require("nvim-autopairs").setup()
 require("nvim_comment").setup()
-require("fidget").setup({})
+require("fidget").setup({
+    window = {
+        blend = 0,
+    },
+})

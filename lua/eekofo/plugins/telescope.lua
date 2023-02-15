@@ -12,31 +12,32 @@ telescope.setup({
             "--smart-case",
         },
         -- prompt_prefix = " ",
-        prompt_prefix = " ",
+        prompt_prefix = " ",
         selection_caret = "契",
+        path_display = { "truncate" },
         selection_strategy = "reset",
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
             prompt_position = "top",
             horizontal = {
-                mirror = false,
+                prompt_position = "top",
+                preview_width = 0.55,
+                results_width = 0.8,
             },
             vertical = {
-                width_padding = 0.05,
-                height_padding = 1,
-                preview_height = 0.5,
+                mirror = false,
             },
             width = 0.95,
             preview_cutoff = 120,
-            preview_width = 80,
+            height = 80,
         },
         scroll_strategy = "cycle",
         file_sorter = require("telescope.sorters").get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-        winblend = 4, -- transparency
-        color_devicons = true,
+        winblend = 0, -- transparency
+        -- color_devicons = false,
         use_less = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
         file_previewer = require("telescope.previewers").vim_buffer_cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
@@ -84,4 +85,3 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
 require("telescope").load_extension("frecency")
 require("telescope").load_extension("zoxide")
-require("telescope").load_extension("media_files") -- TODO: install a previewer eg: pip install ueberzug

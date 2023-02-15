@@ -2,14 +2,31 @@ require("nvim-treesitter.configs").setup({
     --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = { "bash", "fish", "lua", "cpp", "python", "cpp", "java" },
     ignore_install = { "haskell" },
+    sync_install = false,
     highlight = {
         -- disable = { "cpp" }, -- list of language that will be disabled
         enable = true, -- false will disable the whole extension
         use_languagetree = true,
     },
+    autopairs = {
+        enable = true,
+    },
+    incremental_selection = {
+        enable = true,
+    },
+    rainbow = {
+        enable = true,
+        disable = { "html" },
+        extended_mode = false,
+        max_file_lines = nil,
+    },
+    autotag = {
+        enable = true,
+    },
     indent = { enable = true },
     context_commentstring = {
         enable = true,
+        enable_autocmd = false,
         config = { c = "// %s", lua = "-- %s", vim = '" %s' },
     },
     refactor = {
