@@ -5,7 +5,7 @@ require("mason").setup()
 
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "lua-language-server",
+        "lua_ls",
         "vimls",
         "rust_analyzer",
         "yamlls",
@@ -60,10 +60,6 @@ require("mason-lspconfig").setup_handlers({
                 },
             },
         })
-        -- lspconfig.pyright.setup({
-        --     on_init = lsp_conf.on_init,
-        --     on_attach = lsp_conf.on_attach,
-        -- })
     end,
     ["yamlls"] = function()
         lspconfig.yamlls.setup({
