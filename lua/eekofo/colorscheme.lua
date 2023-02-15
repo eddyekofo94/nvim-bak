@@ -1,5 +1,4 @@
 vim.cmd("set background=dark")
--- local colors = require("catppuccin.palettes.mocha")
 local editor = require("catppuccin.groups.editor")
 
 require("catppuccin").setup({

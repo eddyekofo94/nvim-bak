@@ -31,8 +31,8 @@ require("diffview").setup({
             ["R"] = cb("refresh_files"), -- Update stats and entries in the file list.
             ["<tab>"] = cb("select_next_entry"),
             ["<s-tab>"] = cb("select_prev_entry"),
-            ["<leader>e"] = cb("focus_files"),
-            ["<leader>b"] = cb("toggle_files"),
+            ["<leader>ge"] = cb("focus_files"),
+            ["<leader>gd"] = cb("toggle_files"),
         },
     },
 })

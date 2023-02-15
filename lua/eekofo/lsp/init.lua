@@ -44,6 +44,14 @@ require("mason-lspconfig").setup_handlers({
             capabilities = lsp_conf.capabilities,
         })
     end,
+    -- BUG: this seems to not be working
+    ["cucumber_language_server"] = function()
+        lspconfig.cucumber_language_server.setup({
+            on_init = lsp_conf.on_init,
+            on_attach = lsp_conf.on_attach,
+            capabilities = lsp_conf.capabilities,
+        })
+    end,
     ["pylsp"] = function()
         lspconfig.pylsp.setup({
             on_init = lsp_conf.on_init,
@@ -140,8 +148,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-_ = require("lspkind").init()
-
 vim.diagnostic.config({
     virtual_text = false,
     severity_sort = true,
@@ -153,9 +159,9 @@ vim.diagnostic.config({
     },
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+--vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+--vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 -- Helps with the diagnostics error detection
 require("lsp-colors").setup()
