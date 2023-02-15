@@ -1,6 +1,7 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
 local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
+
 _ = require("lspkind").init()
 
 local mapper = function(mode, key, result)
@@ -84,8 +85,8 @@ local custom_attach = function(client, bufnr)
     if filetype == "rust" then
         vim.cmd(
             [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]]
-            .. [[aligned = true, prefix = " » " ]]
-            .. [[} ]]
+                .. [[aligned = true, prefix = " » " ]]
+                .. [[} ]]
         )
     end
 
@@ -133,6 +134,10 @@ local sign = function(opts)
         numhl = "",
     })
 end
+
+navic.setup({
+    highlight = true,
+})
 
 sign({ name = "DiagnosticSignError", text = signs_defined.error_sign })
 sign({ name = "DiagnosticSignWarn", text = signs_defined.warn_sign })

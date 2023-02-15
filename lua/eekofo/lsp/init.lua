@@ -1,10 +1,11 @@
 local lspconfig = require("lspconfig")
 local lsp_conf = require("eekofo.lsp.lsp_conf")
-
+require("neodev").setup({})
 require("mason").setup()
+
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "lua_ls",
+        "lua-language-server",
         "vimls",
         "rust_analyzer",
         "yamlls",
@@ -93,6 +94,13 @@ require("mason-lspconfig").setup_handlers({
             capabilities = lsp_conf.capabilities,
             settings = {
                 Lua = {
+                    completion = {
+                        callSnippet = "Replace",
+                    },
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                        version = "LuaJIT",
+                    },
                     diagnostics = {
                         globals = { "vim" },
                     },
