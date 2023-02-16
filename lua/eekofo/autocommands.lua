@@ -1,5 +1,6 @@
 vim.cmd("set termguicolors")
 local utils = require("eekofo.utils")
+local fn = vim.fn
 
 local auto_formatters = {}
 
@@ -24,12 +25,43 @@ if O.json.autoformat then
     table.insert(auto_formatters, json_format)
 end
 
+local get_size = function()
+    return fn.getfsize(fn.expand("%")) > 512 * 1024
+end
+
+-- TODO: work on detecting large files
+-- vim.api.nvim_create_autocmd({"BufWritePre", "FileReadPre"}, )
+
+local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
+    callback = function()
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+        if ok and stats and (stats.size > 1000000) then
+            vim.b.large_buf = true
+            vim.opt_local.syntax = "off"
+            vim.opt_local.syntax = "clear"
+            vim.opt_local.filetype = "off"
+            vim.opt_local.foldmethod = "manual"
+            vim.opt_local.spell = false
+        else
+            vim.b.large_buf = false
+        end
+    end,
+    group = aug,
+    pattern = "*",
+})
+
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
 })
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
