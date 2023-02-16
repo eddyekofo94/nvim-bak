@@ -46,10 +46,10 @@ telescope.setup({
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
         extensions = {
             fzf = {
-                override_generic_sorter = false, -- override the generic sorter
+                fuzzy = true,
+                override_generic_sorter = true, -- override the generic sorter
                 override_file_sorter = true, -- override the file sorter
                 case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-                -- the default case_mode is "smart_case"
             },
             frecency = {
                 show_scores = true, -- TODO: remove when satisfied
@@ -68,6 +68,8 @@ telescope.setup({
                 ["<esc>"] = actions.close,
                 ["<C-x>"] = actions.select_horizontal,
                 ["<C-v>"] = actions.select_vertical,
+                ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+                ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
                 ["<C-t>"] = actions.select_tab,
                 ["<C-f>"] = actions.preview_scrolling_down,
                 ["<C-b>"] = actions.preview_scrolling_up,

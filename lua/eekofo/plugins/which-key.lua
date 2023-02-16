@@ -87,6 +87,7 @@ local leader_mappings = {
         x = { ":DeleteSession<cr>", "delete session" },
     },
     ["/"] = { ":CommentToggle<CR>", "comment" },
+    ["\\"] = { "<cmd>Telescope pickers<cr>", "Searched History" },
     [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
     [" "] = { Util.telescope("files"), "Find File" },
     ["-"] = { ":split<CR>", "split horizontally" },
