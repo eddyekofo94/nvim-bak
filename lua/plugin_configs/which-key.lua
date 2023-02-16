@@ -1,5 +1,5 @@
 require("which-key").setup({ plugins = { presets = { operators = false } } })
-local Util = require("eekofo.utils")
+local Util = require("plugins.utils")
 
 local wk = require("which-key")
 

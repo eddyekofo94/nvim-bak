@@ -1,8 +1,8 @@
-local telescope = require("telescope")
+local cfg_telescope = require("telescope")
 local actions = require("telescope.actions")
 local Util = require("eekofo.utils")
 
-telescope.setup({
+cfg_telescope.setup({
     defaults = {
         vimgrep_arguments = {
             "rg",
