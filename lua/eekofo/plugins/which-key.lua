@@ -1,4 +1,5 @@
 require("which-key").setup({ plugins = { presets = { operators = false } } })
+local Util = require("eekofo.utils")
 
 local wk = require("which-key")
 
@@ -60,7 +61,7 @@ local leader_mappings = {
             ":Telescope lsp_workspace_diagnostics<cr>",
             "workspace_diagnostics",
         },
-        f = { ":Telescope find_files<cr>", "files" },
+        f = { ":Telescope frecency<cr>", "frecency" },
         h = { ":Telescope command_history<cr>", "history" },
         -- i = {":Telescope media_files<cr>", "media files"},
         m = { ":Telescope marks<cr>", "marks" },
@@ -70,8 +71,7 @@ local leader_mappings = {
             ":lua require'telescope'.extensions.project.project{}<cr>",
             "projects",
         }, -- TODO: learn how to create projects
-        q = { ":Telescope frecency<cr>", "frecency" },
-        s = { ":Telescope live_grep<cr>", "string" },
+        s = { Util.telescope("live_grep"), "string" },
         T = { ":TodoTelescope<cr>", "TODO" },
         r = { ":Telescope registers<cr>", "registers" },
         w = { ":Telescope file_browser<cr>", "file browser" },
@@ -87,7 +87,8 @@ local leader_mappings = {
         x = { ":DeleteSession<cr>", "delete session" },
     },
     ["/"] = { ":CommentToggle<CR>", "comment" },
-    [" "] = { "<cmd>Telescope find_files<cr>", "Find File" },
+    [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
+    [" "] = { Util.telescope("files"), "Find File" },
     ["-"] = { ":split<CR>", "split horizontally" },
     ["="] = { "<C-w>=", "balance windows" },
     ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
@@ -113,7 +114,7 @@ local leader_mappings = {
             "inset line",
         },
     },
-    p = { "<cmd>Telescope find_files<cr>", "Find File" },
+    p = { Util.telescope("files", { cwd = false }), "Find File" },
     P = {
         "<cmd>:lua require'telescope'.extensions.project.project{}<cr>",
         "Find Project",

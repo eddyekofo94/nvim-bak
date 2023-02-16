@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local Util = require("eekofo.utils")
 
 telescope.setup({
     defaults = {
@@ -35,14 +36,15 @@ telescope.setup({
         scroll_strategy = "cycle",
         file_sorter = require("telescope.sorters").get_fuzzy_file, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
-        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        generic_sorter = require("telescope.sorters").fuzzy_with_index_bias,
         winblend = 0, -- transparency
         -- color_devicons = false,
         use_less = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
         file_previewer = require("telescope.previewers").vim_buffer_cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
-        grep_previewer = require("telescope.previewers").vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
-        qflist_previewer = require("telescope.previewers").qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
+        -- grep_previewer = require("telescope.previewers").vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
         extensions = {
             fzf = {
                 override_generic_sorter = false, -- override the generic sorter
@@ -55,12 +57,8 @@ telescope.setup({
                 ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
                 workspaces = {
                     ["nvim"] = "~/.config/nvim/",
-                    ["dotfiles"] = "~/.files/",
+                    ["dotfiles"] = "~/.dotfiles/",
                 },
-            },
-            media_files = {
-                filetypes = { "png", "webp", "jpg", "jpeg" },
-                find_cmd = "rg", -- find command (defaults to `fd`)
             },
         },
         mappings = {
@@ -69,19 +67,36 @@ telescope.setup({
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 ["<esc>"] = actions.close,
+                ["<C-x>"] = actions.select_horizontal,
+                ["<C-v>"] = actions.select_vertical,
+                ["<C-t>"] = actions.select_tab,
+                ["<C-f>"] = actions.preview_scrolling_down,
+                ["<C-b>"] = actions.preview_scrolling_up,
                 -- Add up multiple actions
                 ["<CR>"] = actions.select_default + actions.center,
+                ["<a-i>"] = function()
+                    Util.telescope("find_files", { no_ignore = true })()
+                end,
+                ["<a-h>"] = function()
+                    Util.telescope("find_files", { hidden = true })()
+                end,
             },
             n = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                ["H"] = actions.move_to_top,
+                ["M"] = actions.move_to_middle,
+                ["L"] = actions.move_to_bottom,
+                ["gg"] = actions.move_to_top,
+                ["G"] = actions.move_to_bottom,
+                ["q"] = actions.close,
             },
         },
     },
 })
 
-require("telescope").load_extension("fzf")
+-- require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
 require("telescope").load_extension("frecency")
 require("telescope").load_extension("zoxide")
