@@ -57,6 +57,6 @@ require("catppuccin").setup({
         },
     },
 })
-local colors = require("catppuccin.palettes.mocha")
-vim.cmd.highlight({ "Tabline", "guifg=" .. colors.green, "guibg=" .. colors.mantle })
+local mocha = require("catppuccin.palettes.mocha")
+vim.cmd.highlight({ "Tabline", "guifg=" .. mocha.green, "guibg=" .. mocha.mantle })
 vim.cmd.colorscheme("catppuccin")

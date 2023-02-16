@@ -11,7 +11,7 @@ require("window-picker").setup({
             buftype = { "terminal", "quickfix" },
         },
     },
-    other_win_hl_color = "#e35e4f",
+    other_win_hl_color = O.catppuccin_colors.peach,
 })
 
 require("neo-tree").setup({})

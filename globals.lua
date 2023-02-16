@@ -1,3 +1,4 @@
+local mocha = require("catppuccin.palettes.mocha")
 O = {
     auto_close_tree = 0,
     auto_complete = true,
@@ -73,6 +74,7 @@ O = {
         diagnostics = { virtualtext = true, signs = true, underline = true },
         filetypes = { "rb", "erb", "rakefile" },
     },
+    catppuccin_colors = mocha,
     everforest_colors = {
         none = "NONE",
         bg2 = "#2b3339",
