@@ -20,7 +20,9 @@ require("nvim-treesitter.configs").setup({
     ignore_install = { "haskell" },
     sync_install = false,
     highlight = {
-        -- disable = { "cpp" }, -- list of language that will be disabled
+        disable = function ()
+            return vim.b.large_buf
+        end,
         enable = true, -- false will disable the whole extension
         use_languagetree = true,
     },
@@ -38,6 +40,9 @@ require("nvim-treesitter.configs").setup({
     },
     autotag = {
         enable = true,
+        disable = function ()
+            return vim.b.large_buf
+        end,
     },
     indent = { enable = true },
     context_commentstring = {
