@@ -1,8 +1,9 @@
 local mocha = require("catppuccin.palettes.mocha")
+local fn = vim.fn
+
 O = {
     auto_close_tree = 0,
     auto_complete = true,
-    -- colorscheme = 'gruvbox',
     colorscheme = "gruvbox-material",
     hidden_files = true,
     wrap_lines = false,
@@ -73,6 +74,11 @@ O = {
     ruby = {
         diagnostics = { virtualtext = true, signs = true, underline = true },
         filetypes = { "rb", "erb", "rakefile" },
+    },
+    large_file = {
+        get_file_size = function()
+            return fn.getfsize(fn.expand("%")) > 512 * 1024
+        end,
     },
     catppuccin_colors = mocha,
     everforest_colors = {
@@ -158,8 +164,6 @@ O = {
         cursor = "#ddc7a1",
     },
 }
--- css = {formatter = '', autoformat = false, virtual_text = true},
--- json = {formatter = '', autoformat = false, virtual_text = true}
 
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")

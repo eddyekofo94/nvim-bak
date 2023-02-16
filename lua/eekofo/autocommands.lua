@@ -24,6 +24,31 @@ if O.json.autoformat then
     table.insert(auto_formatters, json_format)
 end
 
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+    callback = function()
+        vim.cmd("tabdo wincmd =")
+    end,
+})
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {
+        "qf",
+        "help",
+        "man",
+        "notify",
+        "lspinfo",
+        "spectre_panel",
+        "startuptime",
+        "tsplayground",
+        "PlenaryTestPopup",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    end,
+})
+
 utils.define_augroups({
     _general_settings = {
         { "TextYankPost", "*", "lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 500})" },
@@ -33,7 +58,6 @@ utils.define_augroups({
         { "VimLeavePre", "*", "set title set titleold=" },
     },
     _dashboard = {
-        -- seems to be nobuflisted that makes my stuff disapear will do more testing
         {
             "FileType",
             "dashboard",
@@ -42,16 +66,6 @@ utils.define_augroups({
         { "FileType", "dashboard", "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2" },
     },
     _markdown = { { "FileType", "markdown", "setlocal wrap" }, { "FileType", "markdown", "setlocal spell" } },
-    _solidity = {
-        { "BufWinEnter", ".sol", "setlocal filetype=solidity" },
-        { "BufRead", "*.sol", "setlocal filetype=solidity" },
-        { "BufNewFile", "*.sol", "setlocal filetype=solidity" },
-    },
-    _gemini = {
-        { "BufWinEnter", ".gmi", "setlocal filetype=markdown" },
-        { "BufRead", "*.gmi", "setlocal filetype=markdown" },
-        { "BufNewFile", "*.gmi", "setlocal filetype=markdown" },
-    },
     _buffer_bindings = {
         { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>" },
