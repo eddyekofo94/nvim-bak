@@ -9,12 +9,6 @@ require("gitsigns").setup({
             numhl = "GitSignsDeleteNr",
             linehl = "GitSignsDeleteLn",
         },
-        -- topdelete = {
-        --     hl = "GitSignsDelete",
-        --     text = "契",
-        --     numhl = "GitSignsDeleteNr",
-        --     linehl = "GitSignsDeleteLn",
-        -- },
         changedelete = {
             hl = "GitSignsChange",
             text = "▎",

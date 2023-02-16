@@ -215,8 +215,6 @@ lspconfig.bashls.setup({ on_attach = custom_attach })
 -- yaml TODO: ensure that it works
 lspconfig.yamlls.setup({ on_init = custom_init, on_attach = custom_attach })
 
--- lspconfig.vimls.setup({ on_init = custom_init, on_attach = custom_attach })
-
 -- https://github.com/theia-ide/typescript-language-server
 require("lspconfig").tsserver.setup({
     server = {
