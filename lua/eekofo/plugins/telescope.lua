@@ -34,7 +34,7 @@ telescope.setup({
             height = 80,
         },
         scroll_strategy = "cycle",
-        file_sorter = require("telescope.sorters").get_fuzzy_file, -- TODO: find a better file sorter (if possible)
+        file_sorter = require("telescope.sorters").get_fzy_sorter, -- TODO: find a better file sorter (if possible)
         file_ignore_patterns = {},
         generic_sorter = require("telescope.sorters").fuzzy_with_index_bias,
         winblend = 0, -- transparency
@@ -96,7 +96,7 @@ telescope.setup({
     },
 })
 
--- require("telescope").load_extension("fzf")
+require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
 require("telescope").load_extension("frecency")
 require("telescope").load_extension("zoxide")
