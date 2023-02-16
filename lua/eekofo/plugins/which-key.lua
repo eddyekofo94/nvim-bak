@@ -119,7 +119,9 @@ local leader_mappings = {
         "<cmd>:lua require'telescope'.extensions.project.project{}<cr>",
         "Find Project",
     },
-    r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+    -- Telescope resume
+    r = { "<cmd>Telescope resume<cr>", "Resume search" },
+    R = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     t = { "<cmd>rightbelow vsp | terminal<cr>", "terminal" },
     T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
     U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
