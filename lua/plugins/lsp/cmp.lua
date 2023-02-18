@@ -141,3 +141,5 @@ cmp.setup({
         ghost_text = false,
     },
 })
+
+return cmp

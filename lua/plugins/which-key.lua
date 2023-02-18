@@ -1,5 +1,5 @@
 require("which-key").setup({ plugins = { presets = { operators = false } } })
-local Util = require("plugins.utils")
+local Util = require("utils")
 
 local wk = require("which-key")
 
@@ -101,6 +101,7 @@ local leader_mappings = {
     F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
     G = { "<cmd>LazyGit<cr>", "Lazygit" },
     e = { "Explorer" },
+    L = {":Lazy<cr>", "Lazy"},
     o = {
         name = "Add line below",
         o = {

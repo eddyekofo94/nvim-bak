@@ -1,6 +1,6 @@
 local cfg_telescope = require("telescope")
 local actions = require("telescope.actions")
-local Util = require("eekofo.utils")
+local Util = require("utils")
 
 cfg_telescope.setup({
     defaults = {

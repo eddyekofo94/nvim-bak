@@ -227,14 +227,12 @@ require("lspconfig").tsserver.setup({
 require("lsp-colors").setup()
 
 -- mapped to <space>lt -- this shows a list of diagnostics
-require("eekofo.lsp.lsptrouble")
+require("plugins.lsp.lsptrouble")
 
--- for completion
-require("eekofo.lsp.cmp")
 
 -- some lsp helps
---require("eekofo.lsp.lspsaga")
+--require("plugins.lsp.lspsaga")
 -- helps the lsp experience
-require("eekofo.lsp.handlers")
+require("plugins.lsp.handlers")
 
 return { on_attach = custom_attach, capabilities = capabilities, on_init = custom_init }
