@@ -36,6 +36,11 @@ vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silen
 vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", { noremap = true, silent = true })
+
+vim.keymap.set('v', '/', "\"fy/\\V<C-R>f<CR>" )
+vim.keymap.set('v', '*', "\"fy/\\V<C-R>f<CR>" )
+
+vim.keymap.set('v', '<c-r>w', ":%s/<c-r><c-w>//g<left><left>" )
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
 vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
