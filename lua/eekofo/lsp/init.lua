@@ -6,6 +6,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
+        "marksman",
         "vimls",
         "rust_analyzer",
         "yamlls",
@@ -44,14 +45,29 @@ require("mason-lspconfig").setup_handlers({
             capabilities = lsp_conf.capabilities,
         })
     end,
-    -- BUG: this seems to not be working
-    ["cucumber_language_server"] = function()
-        lspconfig.cucumber_language_server.setup({
+    ["marksman"] = function()
+        lspconfig.marksman.setup({
             on_init = lsp_conf.on_init,
             on_attach = lsp_conf.on_attach,
             capabilities = lsp_conf.capabilities,
         })
     end,
+    -- BUG: this seems to not be working
+    -- ["cucumber_language_server"] = function()
+    --     lspconfig.cucumber_language_server.setup({
+    --         cmd = {
+    --             "cucumber-language-server",
+    --             "--stdio",
+    --         },
+    --         filetypes = {
+    --             "cucumber", "feature"
+    --         },
+    --         root_dir = require("lspconfig").util.find_git_ancestor,
+    --         on_init = lsp_conf.on_init,
+    --         on_attach = lsp_conf.on_attach,
+    --         capabilities = lsp_conf.capabilities,
+    --     })
+    -- end,
     ["pylsp"] = function()
         lspconfig.pylsp.setup({
             on_init = lsp_conf.on_init,
@@ -124,6 +140,9 @@ require("mason-lspconfig").setup_handlers({
     end,
 })
 
+-- TODO: see if it is possible to move this back to my own custom attach...
+-- or if this is the better way of doing it,
+
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function()
@@ -135,7 +154,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
         bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
         bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
-        bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
+        bufmap("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
         bufmap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
         bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
         bufmap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")

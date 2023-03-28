@@ -155,8 +155,6 @@ lspconfig.clangd.setup({
     },
     on_init = custom_init,
     on_attach = custom_attach,
-    -- Required for lsp-status
-    init_options = { clangdFileStatus = true },
     capabilities = capabilities,
 })
 
