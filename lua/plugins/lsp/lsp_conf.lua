@@ -1,8 +1,6 @@
 -- EDDY: Based to TJ's config -- reffer to that in the future
-local lspconfig = require("lspconfig")
-local navic = require("nvim-navic")
-
-_ = require("lspkind").init()
+--local lspconfig = require("nvim-lspconfig")
+local lspconfig = pcall(require, "nvim-lspconfig")
 
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", { noremap = true, silent = true })
@@ -136,10 +134,6 @@ local sign = function(opts)
     })
 end
 
-navic.setup({
-    highlight = true,
-})
-
 sign({ name = "DiagnosticSignError", text = signs_defined.error_sign })
 sign({ name = "DiagnosticSignWarn", text = signs_defined.warn_sign })
 sign({ name = "DiagnosticSignHint", text = "⚑" })
@@ -223,16 +217,8 @@ require("lspconfig").tsserver.setup({
     },
 })
 
--- Helps with the diagnostics error detection
-require("lsp-colors").setup()
-
 -- mapped to <space>lt -- this shows a list of diagnostics
 require("plugins.lsp.lsptrouble")
 
-
--- some lsp helps
---require("plugins.lsp.lspsaga")
--- helps the lsp experience
-require("plugins.lsp.handlers")
 
 return { on_attach = custom_attach, capabilities = capabilities, on_init = custom_init }

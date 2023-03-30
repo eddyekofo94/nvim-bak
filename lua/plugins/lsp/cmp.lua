@@ -142,4 +142,3 @@ cmp.setup({
     },
 })
 
-return cmp

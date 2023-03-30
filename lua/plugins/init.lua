@@ -1,3 +1,4 @@
+M = {}
 -- Various plugins which I installed
 -- -- Initialize plugins
 -- require("eekofo.plugins.telescope")
@@ -26,7 +27,10 @@
 --     },
 -- })
 
-M = {}
+--local lsp = require("plugins.lsp")
+M.lsp_config = function()
+    require("plugins.lsp")
+end
 M.telescope = function()
     require("plugins.telescope")
 end
@@ -40,4 +44,13 @@ end
 M.treesitter = function()
     require("plugins.treesitter")
 end
+
+M.mason_lspconfig = function ()
+    require("plugins.lsp").mason_lspconfig()
+end
+
+M.cmp = function ()
+   require("plugins.lsp.cmp")
+end
+
 return M
