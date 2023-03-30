@@ -73,6 +73,7 @@ function M.telescope(builtin, opts)
     require("telescope.builtin")[builtin](opts)
   end
 end
+
 function M.define_augroups(definitions) -- {{{1
     -- Create autocommand groups based on the passed definitions
     --

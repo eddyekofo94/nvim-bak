@@ -1,27 +1,12 @@
 M = {}
 -- Various plugins which I installed
 -- -- Initialize plugins
--- require("eekofo.plugins.telescope")
--- require("eekofo.plugins.sessions")
--- require("eekofo.plugins.dashboard")
--- require("eekofo.plugins.web-devicons")
--- require("eekofo.plugins.feline")
--- require("eekofo.plugins.top-bufferline")
--- require("eekofo.plugins.gitsigns")
--- -- require("eekofo.plugins.nvimtree")
--- require("eekofo.plugins.tree_explorer")
--- require("eekofo.plugins.treesitter")
--- require("eekofo.plugins.which-key")
--- require("eekofo.plugins.noice")
--- require("eekofo.plugins.neoscroll")
--- require("eekofo.plugins.formatter")
+-- require("plugins.dashboard") [NOT SURE]
+-- require("plugins.top-bufferline")
 --
 -- -- DEFAULT configs
--- require("colorizer").setup()
 -- require("surround").setup({})
--- require("todo-comments").setup({})
--- require("nvim_comment").setup()
--- require("fidget").setup({
+-- require("fidget").setup({ [BUG:]
 --     window = {
 --         blend = 0,
 --     },
@@ -45,12 +30,11 @@ M.treesitter = function()
     require("plugins.treesitter")
 end
 
-M.mason_lspconfig = function ()
-    require("plugins.lsp").mason_lspconfig()
-end
-
 M.cmp = function ()
    require("plugins.lsp.cmp")
+end
+M.gitsigns = function ()
+   require("plugins.gitsigns")
 end
 
 return M

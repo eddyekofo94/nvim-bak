@@ -12,4 +12,3 @@ require("session-lens").setup({
     winblend = 4,
 })
 
-require("telescope").load_extension("session-lens")

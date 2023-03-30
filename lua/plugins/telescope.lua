@@ -45,12 +45,6 @@ cfg_telescope.setup({
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
         extensions = {
-            fzf = {
-                fuzzy = true,
-                override_generic_sorter = true, -- override the generic sorter
-                override_file_sorter = true, -- override the file sorter
-                case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            },
             frecency = {
                 show_scores = true, -- TODO: remove when satisfied
                 ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
@@ -97,7 +91,3 @@ cfg_telescope.setup({
     },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
-require("telescope").load_extension("frecency")
-require("telescope").load_extension("zoxide")

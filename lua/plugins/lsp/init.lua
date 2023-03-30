@@ -12,8 +12,16 @@ return {
                 "folke/neodev.nvim",
                 opts = { experimental = { pathStrict = true } },
             },
+            "simrat39/rust-tools.nvim",
             {
-                "simrat39/rust-tools.nvim",
+                "j-hui/fidget.nvim",
+                config = function()
+                    require("fidget").setup({
+                        window = {
+                            blend = 0,
+                        },
+                    })
+                end,
             },
             {
                 "williamboman/mason.nvim",
@@ -107,8 +115,9 @@ return {
                         hint_enable = false, -- virtual hint enable
                     })
 
-                    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                        vim.lsp.diagnostic.on_publish_diagnostics,
+                        {
                             underline = true,
                             -- Hide/Show virtual text
                             virtual_text = {
@@ -118,7 +127,8 @@ return {
                             -- Increase diagnostic signs priority
                             signs = { priority = 9999 },
                             update_in_insert = true,
-                        })
+                        }
+                    )
 
                     -- TODO: look into fixing this maybe
                     -- if client.server_capabilities.documentSymbolProvider then

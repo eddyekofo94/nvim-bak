@@ -81,7 +81,7 @@ set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines INFO: not sure about this
-set lazyredraw
+" set lazyredraw -- this breaks Noice
 set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
@@ -189,6 +189,7 @@ noremap <c-right> <c-w><
 nnoremap n nzz
 nnoremap N Nzz
 
+" TODO: Fix this some day
 " disable syntax highlighting in big files
 " function DisableSyntaxTreesitter()
 "     echo("Big file, disabling syntax, treesitter and folding")
