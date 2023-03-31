@@ -20,14 +20,45 @@ mapper("n", "<C-j>", "<C-w>j")
 mapper("n", "<C-k>", "<C-w>k")
 mapper("n", "<C-l>", "<C-w>l")
 
+-- " HARD MODE - Disabled arrows
+mapper("n", "<Up>", "<Nop>")
+mapper("n", "<Down>", "<Nop>")
+mapper("n", "<Left>", "<Nop>")
+mapper("n", "<Right>", "<Nop>")
+
+mapper("i", "<up>", "<nop>")
+mapper("i", "<down>", "<nop>")
+mapper("i", "<left>", "<nop>")
+mapper("i", "<right>", "<nop>")
+-- " Move selected line / block of text in visual mode
+-- " shift + k to move up
+-- " shift + j to move down
+mapper("x", "K", ":move '<-2<CR>gv-gv")
+mapper("x", "J", ":move '>+1<CR>gv-gv")
+
 -- better indenting
 mapper("v", "<", "<gv")
 mapper("v", ">", ">gv")
+
+-- CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+mapper("i", "<C-c>", "<esc>")
+
+mapper("n", "<M-CR>", ":let v:hlsearch=!v:hlsearch<CR>")
+
+-- " Change the current word in insertmode.
+-- "   Auto places you into the spot where you can start typing to change it.
+mapper("n", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- I hate escape
 mapper("i", "jk", "<ESC>")
 mapper("i", "kj", "<ESC>")
 mapper("i", "jj", "<ESC>")
+
+-- Very magic by default, got this from thePrimragen (Don't know exactly what it
+--- does
+mapper("n", "?", "?\v")
+mapper("n", "/", "/\v")
+mapper("c", "%s/", "%sm/")
 
 -- Move selected line / block of text in visual mode
 mapper("x", "K", ":move '<-2<CR>gv-gv")
