@@ -1,8 +1,190 @@
 local cfg = require("plugins")
 require("autocommands")
-require("keymappings")
+require("keymaps")
+require("plugins")
+require("globals")
+
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 return {
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v1.x",
+        dependencies = {
+            -- LSP Support
+            { "neovim/nvim-lspconfig" }, -- Required
+            { "williamboman/mason.nvim" }, -- Optional
+            { "williamboman/mason-lspconfig.nvim" }, -- Optional
+            -- Autocompletion
+            { "hrsh7th/nvim-cmp" }, -- Required
+            { "hrsh7th/cmp-nvim-lsp" }, -- Required
+            { "hrsh7th/cmp-buffer" }, -- Optional
+            { "hrsh7th/cmp-path" }, -- Optional
+            { "saadparwaiz1/cmp_luasnip" }, -- Optional
+            { "hrsh7th/cmp-nvim-lua" }, -- Optional
+            {
+                "onsails/lspkind-nvim",
+                event = "VeryLazy",
+                config = function()
+                    _ = require("lspkind").init()
+                end,
+            },
+
+            -- Snippets
+            {
+                "L3MON4D3/LuaSnip",
+                dependencies = {
+                    "rafamadriz/friendly-snippets",
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load()
+                    end,
+                },
+                opts = {
+                    history = true,
+                    delete_check_events = "TextChanged",
+                },
+            }, -- Required
+            { "rafamadriz/friendly-snippets" }, -- Optional
+        },
+        config = function()
+            local cmp = require("cmp")
+            local luasnip = require("luasnip")
+            local kind_icons = {
+                Class = " ",
+                Color = " ",
+                Constant = "ﲀ ",
+                Constructor = " ",
+                Enum = "練",
+                EnumMember = " ",
+                Event = " ",
+                Field = " ",
+                File = "",
+                Folder = " ",
+                Function = " ",
+                Interface = "ﰮ ",
+                Keyword = " ",
+                Method = " ",
+                Module = " ",
+                Operator = "",
+                Property = " ",
+                Reference = " ",
+                Snippet = " ",
+                Struct = " ",
+                Text = " ",
+                TypeParameter = " ",
+                Unit = "塞",
+                Value = " ",
+                Variable = " ",
+            }
+
+            local cmp_setup = {
+                mapping = require("lsp-zero.nvim-cmp-setup").default_mappings(),
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                    { name = "nvim_lua" },
+                    { name = "buffer" },
+                    { name = "spell" },
+                    { name = "treesitter" },
+                    { name = "neorg" },
+                    { name = "path" },
+                },
+                formatting = {
+                    format = function(entry, vim_item)
+                        vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
+                        vim_item.menu = ({
+                            nvim_lsp = "(LSP)",
+                            luasnip = "(Snippet)",
+                            emoji = "(Emoji)",
+                            path = "(Path)",
+                            calc = "(Calc)",
+                            cmp_tabnine = "(Tabnine)",
+                            buffer = "(Buffer)",
+                        })[entry.source.name]
+                        vim_item.dup = ({
+                            buffer = 1,
+                            path = 1,
+                            nvim_lsp = 0,
+                        })[entry.source.name] or 0
+                        return vim_item
+                    end,
+                },
+            }
+
+            cmp_setup.mapping["<C-k>"] = cmp.mapping.select_prev_item()
+            cmp_setup.mapping["<C-j>"] = cmp.mapping.select_next_item()
+
+            cmp_setup.mapping["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            })
+
+            cmp_setup.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            })
+
+            local lsp = require("lsp-zero")
+            lsp.preset("recommended")
+
+            -- NOTE: Given that we want lspsaga to handle this, we omit those keymaps
+            lsp.set_preferences({
+                set_lsp_keymaps = { omit = { "gd", "K" } },
+            })
+            lsp.ensure_installed({
+                "lua_ls",
+                "vimls",
+                "rust_analyzer",
+                "yamlls",
+                "pylsp",
+                "dockerls",
+                "clangd",
+                "bashls",
+                "sqlls",
+                "cmake",
+                "dockerls",
+            })
+            -- (Optional) Configure lua language server for neovim
+
+            lsp.setup_nvim_cmp({
+                mapping = cmp_setup.mapping,
+                sources = cmp_setup.sources,
+            })
+            lsp.nvim_workspace()
+            lsp.setup()
+
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                callback = function()
+                    local client = vim.lsp.get_active_clients()[1]
+                    if not client then
+                        return
+                    end
+                    vim.cmd([[LspZeroFormat]])
+                end,
+            })
+        end,
+    },
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -54,6 +236,9 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         event = "VeryLazy",
+        config = function()
+            require("plugins.neo-tree")
+        end,
         dependencies = {
 
             { "s1n7ax/nvim-window-picker", version = "v1.*" },
@@ -92,7 +277,6 @@ return {
         end,
     },
     {
-
         "mbbill/undotree",
     },
     {
@@ -186,6 +370,68 @@ return {
             "MunifTanjim/nui.nvim",
         },
     },
+    { "tpope/vim-surround", event = "InsertEnter" },
+    { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
+    {
+        "windwp/nvim-autopairs",
+        event = "BufReadPre",
+        config = function()
+            require("nvim-autopairs").setup({})
+        end,
+    },
+    {
+        "glepnir/lspsaga.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("lspsaga").setup({})
+        end,
+        dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    },
+    {
+        "nvim-neorg/neorg",
+        event = "VeryLazy",
+        build = ":Neorg sync-parsers",
+        opts = {
+            load = {
+                ["core.defaults"] = {}, -- Loads default behaviour
+                ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+                ["core.presenter"] = {
+                    config = {
+                        zen_mode = "truezen",
+                    },
+                }, -- Adds pretty icons to your documents
+                ["core.norg.completion"] = {
+                    config = {
+                        engine = "nvim-cmp",
+                        name = "[Neorg]",
+                    },
+                },
+                ["core.export.markdown"] = {},
+                ["core.export"] = {
+                    config = {
+                        export_dir = "~/notes/exports",
+                    },
+                },
+                ["core.norg.dirman"] = { -- Manages Neorg workspaces
+                    config = {
+                        workspaces = {
+                            notes = "~/notes",
+                        },
+                    },
+                },
+            },
+        },
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        event = "VeryLazy",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    },
     {
         "mhartington/formatter.nvim",
         event = "VeryLazy",
@@ -195,73 +441,19 @@ return {
         end,
     },
     {
-        "hrsh7th/nvim-cmp",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         config = function()
-            cfg.cmp()
+            require("plugins.web-devicons")
         end,
-        -- load cmp on InsertEnter
-        event = "InsertEnter",
-        -- these dependencies will only be loaded when cmp loads
-        -- dependencies are always lazy-loaded unless specified otherwise
-        dependencies = {
-            "ray-x/lsp_signature.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-
-            -- TODO: Find a way to fix this autopair { "windwp/nvim-autopairs",
-            --     config = function()
-            --         require("plugins.autopairs")
-            --     end,
-            -- },
-            "saadparwaiz1/cmp_luasnip",
-            {
-                "onsails/lspkind-nvim",
-                event = "VeryLazy",
-                config = function()
-                    _ = require("lspkind").init()
-                end,
-            },
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-nvim-lua",
-            {
-                "L3MON4D3/LuaSnip",
-                dependencies = {
-                    "rafamadriz/friendly-snippets",
-                    config = function()
-                        require("luasnip.loaders.from_vscode").lazy_load()
-                    end,
+    },
+    {
+        "Pocco81/true-zen.nvim",
+        config = function()
+            require("true-zen").setup({
+                integrations = {
+                    lualine = true, -- hide nvim-lualine (ataraxis)
                 },
-                opts = {
-                    history = true,
-                    delete_check_events = "TextChanged",
-                },
-                -- stylua: ignore
-                keys = {
-                    {
-                        "<tab>",
-                        function()
-                            return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-                        end,
-                        expr = true,
-                        silent = true,
-                        mode = "i",
-                    },
-                    {
-                        "<tab>",
-                        function()
-                            require("luasnip").jump(1)
-                        end,
-                        mode = "s",
-                    },
-                    {
-                        "<s-tab>",
-                        function()
-                            require("luasnip").jump(-1)
-                        end,
-                        mode = { "i", "s" },
-                    },
-                },
-            },
-        },
+            })
+        end,
     },
 }
