@@ -11,6 +11,21 @@ mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE
 mapper("n", "<C-s>", ":w!<CR>")
 
+-- Navigate buffers
+mapper("n", "<S-l>", ":bnext<CR>")
+mapper("n", "<S-h>", ":bprevious<CR>")
+
+mapper("n", "gd", "<cmd>Lspsaga lsp_finder<CR>")
+mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+
+-- Search always center
+mapper("n", "n", "nzzzv")
+mapper("n", "N", "Nzzzv")
+mapper("n", "{", "{zzzv")
+mapper("n", "}", "}zzzv")
+mapper("n", "<C-d>", "<C-d>zzzv")
+mapper("n", "<C-u>", "<C-u>zzzv")
+
 -- explorer
 mapper("n", "<Leader>e", ":Neotree source=filesystem reveal=true position=right toggle=true<CR>")
 
@@ -56,9 +71,9 @@ mapper("i", "jj", "<ESC>")
 
 -- Very magic by default, got this from thePrimragen (Don't know exactly what it
 --- does
-mapper("n", "?", "?\v")
-mapper("n", "/", "/\v")
-mapper("c", "%s/", "%sm/")
+-- vim.cmd("nnoremap ? ?\v")
+-- vim.cmd("nnoremap / /\v")
+-- vim.cmd("cnoremap %s/  %sm/")
 
 -- Move selected line / block of text in visual mode
 mapper("x", "K", ":move '<-2<CR>gv-gv")
@@ -67,9 +82,10 @@ mapper("x", "J", ":move '>+1<CR>gv-gv")
 mapper("n", "<leader>/", ":CommentToggle<CR>")
 
 mapper("v", "<leader>/", ":CommentToggle<CR>")
--- Better nav for omnicomplete
-vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
-vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
+
+-- move between tabs
+mapper("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]])
+mapper("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]])
 
 -- MAPPINGS
 mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]]) -- new tab
