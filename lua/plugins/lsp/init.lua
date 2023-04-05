@@ -1,3 +1,4 @@
+local utils = require("utils")
 local kind_icons = O.kind_icons
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -41,6 +42,7 @@ return {
                 },
             }, -- Required
             { "rafamadriz/friendly-snippets" }, -- Optional
+            -- "hrsh7th/cmp-nvim-lsp-signature-help",
         },
 
         config = function()
@@ -52,8 +54,9 @@ return {
             local cmp_setup = {
                 -- mapping = require("lsp-zero.nvim-cmp-setup").default_mappings(),
                 sources = {
-                    { name = "nvim_lsp" },
                     { name = "luasnip", keyword_length = 2 },
+                    -- { name = "nvim_lsp_signature_help" },
+                    { name = "nvim_lsp" },
                     { name = "nvim_lua" },
                     { name = "buffer", keyword_length = 3 },
                     { name = "spell" },
@@ -61,23 +64,34 @@ return {
                     { name = "path" },
                 },
                 formatting = {
-                    format = function(entry, vim_item)
-                        vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
-                        vim_item.menu = ({
-                            nvim_lsp = "(LSP)",
-                            luasnip = "(LuaSnip)",
-                            emoji = "(Emoji)",
-                            path = "(Path)",
-                            calc = "(Calc)",
-                            buffer = "(Buffer)",
-                        })[entry.source.name]
-                        vim_item.dup = ({
-                            buffer = 1,
-                            path = 1,
-                            nvim_lsp = 0,
-                        })[entry.source.name] or 0
-                        return vim_item
-                    end,
+                    format = require("lspkind").cmp_format({
+                        with_text = true,
+                        menu = {
+                            luasnip = "[LuaSnip]",
+                            nvim_lua = "[nvim]",
+                            nvim_lsp = "[LSP]",
+                            path = "[path]",
+                            buffer = "[buffer]",
+                            -- nvim_lsp_signature_help = "[param]",
+                        },
+                    }),
+                    -- format = function(entry, vim_item)
+                    --     vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
+                    --     vim_item.menu = ({
+                    --         nvim_lsp = "(LSP)",
+                    --         luasnip = "(LuaSnip)",
+                    --         emoji = "(Emoji)",
+                    --         path = "(Path)",
+                    --         calc = "(Calc)",
+                    --         buffer = "(Buffer)",
+                    --     })[entry.source.name]
+                    --     vim_item.dup = ({
+                    --         buffer = 1,
+                    --         path = 1,
+                    --         nvim_lsp = 0,
+                    --     })[entry.source.name] or 0
+                    --     return vim_item
+                    -- end,
                 },
                 mapping = {
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),
@@ -225,38 +239,28 @@ return {
             lsp.nvim_workspace()
             lsp.setup()
 
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                callback = function()
-                    local client = vim.lsp.get_active_clients()[1]
-                    if not client then
-                        return
-                    end
-                    vim.cmd([[LspZeroFormat]])
-                end,
-            })
-
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                callback = function()
-                    local client = vim.lsp.get_active_clients()[1]
-                    if not client then
-                        return
-                    end
-                    vim.api.nvim_exec(
-                        [[
-                            hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
-                            hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                            hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                            augroup lsp_document_highlight
-                            autocmd!
-                            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                            augroup END
-                        ]],
-                        false
-                    )
-                    -- The code goes in here
-                end,
-            })
+            utils.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
+            utils.lsp_autocmd(
+                "BufEnter",
+                [[
+                    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
+                    hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                    augroup lsp_document_highlight
+                    autocmd!
+                    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                    augroup END
+                ]]
+            )
+            -- local hl = vim.api.nvim_set_hl
+            -- local opts = {ctermbg = 240, bg = '#393f4a'}
+            -- hl(0, 'LspReferenceRead', opts)
+            -- hl(0, 'LspReferenceText', opts)
+            -- hl(0, 'LspReferenceWrite', opts)
+            --             vim.api.nvim_buf_add_highlight()
+            --             local buffer = vim.api.nvim_get_current_buf()
+            -- vim.api.nvim_buf_add_highlight({buffer}, {ns_id}, {hl_group}, {line}, {col_start}, {col_end})
         end,
     },
 }

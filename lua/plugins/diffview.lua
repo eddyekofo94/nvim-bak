@@ -1,5 +1,6 @@
 return {
     "sindrets/diffview.nvim",
+    event = "VeryLazy",
     config = function()
         -- Lua
         local cb = require("diffview.config").diffview_callback

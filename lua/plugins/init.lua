@@ -2,17 +2,8 @@ require("autocommands")
 require("keymaps")
 require("globals")
 
+vim.cmd("set background=dark")
 return {
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            vim.cmd.colorscheme("catppuccin")
-            require("catppucin_mocha")
-        end,
-    },
     {
         "kdheepak/lazygit.nvim",
         event = "VeryLazy",
@@ -48,12 +39,12 @@ return {
     },
     {
         "mbbill/undotree",
+        event = "VeryLazy",
     },
     {
         "airblade/vim-rooter",
     },
     {
-
         "terrortylor/nvim-comment",
         event = "VeryLazy",
         config = function()
@@ -120,13 +111,16 @@ return {
         end,
         ft = { "markdown" },
     },
+
+    -- json schema provider
+    { "b0o/schemastore.nvim", event = "VeryLazy" },
     {
         "Pocco81/true-zen.nvim",
         event = "VeryLazy",
         config = function()
             require("true-zen").setup({
                 integrations = {
-                    lualine = true, -- hide nvim-lualine (ataraxis)
+                    feline = true, -- hide nvim-lualine (ataraxis)
                 },
             })
         end,

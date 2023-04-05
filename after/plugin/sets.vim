@@ -150,12 +150,14 @@ if has("autocmd")
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Improve the search
+" nnoremap ? ?\v
+" nnoremap / /\v
+" cnoremap %s/ %sm/
+
 " You can't stop me
 cmap w!! w !sudo tee %
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Reconsider this option
 " Jump to start and end of line using the home row keys
 " map H ^
@@ -180,14 +182,14 @@ augroup END
 
 " Resize split windows using arrow keys by pressing:
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
-noremap <c-up> <c-w>+
-noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
+noremap <up> <c-w>+
+noremap <down> <c-w>-
+noremap <left> <c-w>>
+noremap <right> <c-w><
 
 " Center the cursor vertically when moving to the next word during a search.
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap n nzz
+" nnoremap N Nzz
 
 " TODO: Fix this some day
 " disable syntax highlighting in big files

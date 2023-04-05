@@ -1,5 +1,8 @@
 return {
     "feline-nvim/feline.nvim",
+    dependencies = {
+        "catppuccin/nvim",
+    },
     lazy = false,
     config = function()
         local catpuccin = require("catppuccin.groups.integrations.feline")

@@ -77,7 +77,24 @@ return {
                         preview_cutoff = 120,
                         height = 80,
                     },
+                    pickers = {
+                        buffers = {
+                            sort_mru = true,
+                            ignore_current_buffer = true,
+                            mappings = {
+                                i = {
+                                    ["<c-d>"] = "delete_buffer", -- this overrides the built in preview scroller
+                                    ["<c-b>"] = "preview_scrolling_down",
+                                },
+                                n = {
+                                    ["<c-d>"] = "delete_buffer", -- this overrides the built in preview scroller
+                                    ["<c-b>"] = "preview_scrolling_down",
+                                },
+                            },
+                        },
+                    },
                     scroll_strategy = "cycle",
+                    dynamic_preview_title = true,
                     file_sorter = require("telescope.sorters").get_fzy_sorter, -- TODO: find a better file sorter (if possible)
                     file_ignore_patterns = {},
                     generic_sorter = require("telescope.sorters").fuzzy_with_index_bias,
@@ -90,6 +107,12 @@ return {
                     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
                     extensions = {
+                        fzf = {
+                            fuzzy = true, -- let me make typos in file names please
+                            override_generic_sorter = true, -- override the generic sorter
+                            override_file_sorter = true, -- override the file sorter
+                            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                        },
                         frecency = {
                             show_scores = true, -- TODO: remove when satisfied
                             ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },

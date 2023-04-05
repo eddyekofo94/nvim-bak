@@ -1,4 +1,4 @@
-local editor = require("catppuccin.groups.editor")
+local editor = require("catppuccin.palettes").get_palette() -- fetch colors from palette
 local catppucin = require("catppuccin")
 
 catppucin.setup({
@@ -58,5 +58,4 @@ catppucin.setup({
     },
 })
 
-local mocha = O.catppuccin_colors
-vim.cmd.highlight({ "Tabline", "guifg=" .. mocha.green, "guibg=" .. mocha.mantle })
+return catppucin
