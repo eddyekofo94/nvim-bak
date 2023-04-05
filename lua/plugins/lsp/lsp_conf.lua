@@ -50,7 +50,7 @@ local custom_attach = function(client, bufnr)
 	      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
 	      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 	    augroup END
-	  ]],
+	  ]]        ,
             false
         )
     end
@@ -84,8 +84,8 @@ local custom_attach = function(client, bufnr)
     if filetype == "rust" then
         vim.cmd(
             [[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]]
-                .. [[aligned = true, prefix = " » " ]]
-                .. [[} ]]
+            .. [[aligned = true, prefix = " » " ]]
+            .. [[} ]]
         )
     end
 
@@ -218,7 +218,5 @@ require("lspconfig").tsserver.setup({
 })
 
 -- mapped to <space>lt -- this shows a list of diagnostics
-require("plugins.lsp.lsptrouble")
-
 
 return { on_attach = custom_attach, capabilities = capabilities, on_init = custom_init }
