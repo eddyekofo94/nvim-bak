@@ -2,8 +2,8 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     config = function()
-        -- local editor = require("catppuccin.groups.editor")
-        vim.cmd.colorscheme("catppuccin")
+        vim.cmd([[colorscheme catppuccin]])
+        -- vim.cmd.colorscheme("catppuccin")
         local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
         local normal = colors.text
         local fg, bg = normal.fg, normal.bg
@@ -25,8 +25,8 @@ return {
             TelescopeResultsTitle = { fg = bg, bg = bg },
         })
         if vim.g.colors_name == "catppuccin" then
-            vim.g.catppuccin_flavour = "mocha"
             require("catppuccin").setup({
+                flavour = "mocha", -- mocha, macchiato, frappe, latte
                 term_colors = true,
                 styles = {
                     comments = { "italic" },
@@ -35,8 +35,17 @@ return {
                 integrations = {
                     gitsigns = true,
                     telescope = true,
+                    neotree = true,
+                    which_key = true,
                     treesitter = true,
+                    fidget = true,
                     cmp = true,
+                    ts_rainbow = true,
+                    treesitter_context = true,
+                    indent_blankline = {
+                        enabled = false,
+                        colored_indent_levels = false,
+                    },
                     navic = {
                         enabled = true,
                         custom_bg = "NONE",
@@ -63,12 +72,6 @@ return {
                             warnings = { "underline" },
                             information = { "underline" },
                         },
-                    },
-                    ts_rainbow = true,
-                    treesitter_context = true,
-                    indent_blankline = {
-                        enabled = false,
-                        colored_indent_levels = false,
                     },
                 },
             })
