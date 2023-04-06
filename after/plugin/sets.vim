@@ -158,10 +158,6 @@ endif
 " You can't stop me
 cmap w!! w !sudo tee %
 
-" Reconsider this option
-" Jump to start and end of line using the home row keys
-" map H ^
-" map L $
 
 autocmd FileType * setlocal nolinebreak
 
