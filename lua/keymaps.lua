@@ -2,7 +2,9 @@
 local mapper = function(mode, key, result)
     vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
+
 local bind = vim.keymap.set
+local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
 
 mapper("n", "<Space>", "<NOP>")
 mapper("n", "I", "0I")
@@ -12,6 +14,13 @@ vim.g.mapleader = " "
 mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE
 mapper("n", "<C-s>", ":w!<CR>")
+
+-- don't yank on paste
+mapper("x", "p", '"_dP')
+
+-- cycle through command history without arrow keys
+mapper("c", "<c-j>", "<down>")
+mapper("c", "<c-k>", "<up>")
 
 -- Navigate buffers
 mapper("n", "<S-l>", ":bnext<CR>")
@@ -97,13 +106,11 @@ mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 
 -- Whatever you delete, make it go away
-bind({ 'n', 'x' }, 'c', '"_c')
-bind({ 'n', 'x' }, 'C', '"_C')
+bind({ "n", "x" }, "c", '"_c')
+bind(nxo, "%", "gg0vG$")
+bind({ "n", "x" }, "C", '"_C')
 
-bind({ 'n', 'x' }, 'x', '"_x')
-bind('x', 'X', '"_c')
-
--- Add word to search then replace
--- bind('n', '<leader>j', [[<cmd>let @/='\<'.expand('<cword>').'\>'<cr>"_ciw]])
+bind({ "n", "x" }, "x", '"_x')
+bind("x", "X", '"_c')
 
 return mapper

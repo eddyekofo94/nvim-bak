@@ -70,14 +70,15 @@ return {
                 },
                 f = { ":Telescope frecency<cr>", "frecency" },
                 h = { ":Telescope command_history<cr>", "history" },
-                -- i = {":Telescope media_files<cr>", "media files"},
+                n = { ":NoiceTelescope<cr>", "noice" },
                 m = { ":Telescope marks<cr>", "marks" },
                 M = { ":Telescope man_pages<cr>", "man_pages" },
                 o = { ":Telescope vim_options<cr>", "vim_options" },
                 p = {
+                    -- TODO: learn how to create projects
                     ":lua require'telescope'.extensions.project.project{}<cr>",
                     "projects",
-                }, -- TODO: learn how to create projects
+                },
                 s = { Util.telescope("live_grep"), "string" },
                 T = { ":TodoTelescope<cr>", "TODO" },
                 r = { ":Telescope registers<cr>", "registers" },
@@ -104,6 +105,7 @@ return {
             h = { ':let @/ = ""<cr>', "Clear Highlight" },
             H = { ":split", "Split bottom" },
             M = { ":Mason<cr>", "Mason" },
+            N = { ":Noice<cr>", "Noice" },
             f = { "<cmd>Format<cr>", "Format File" },
             F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
             G = { "<cmd>LazyGit<cr>", "Lazygit" },
