@@ -1,4 +1,3 @@
-require("autocommands")
 require("keymaps")
 require("globals")
 
