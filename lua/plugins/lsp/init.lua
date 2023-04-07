@@ -13,7 +13,6 @@ return {
             { "neovim/nvim-lspconfig" }, -- Required
             { "williamboman/mason.nvim" }, -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
-            -- Autocompletion
             { "hrsh7th/nvim-cmp" }, -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
             { "hrsh7th/cmp-buffer" }, -- Optional
@@ -21,11 +20,9 @@ return {
             { "saadparwaiz1/cmp_luasnip" }, -- Optional
             { "hrsh7th/cmp-nvim-lua" }, -- Optional
             { "hrsh7th/cmp-cmdline" },
+            { "onsails/lspkind-nvim" },
             {
-                "onsails/lspkind-nvim",
-            },
-            -- Snippets
-            {
+                -- Snippets
                 "L3MON4D3/LuaSnip",
                 dependencies = {
                     "rafamadriz/friendly-snippets",
@@ -53,6 +50,8 @@ return {
             lspkind.init({
                 symbol_map = O.kind_icons,
             })
+
+            cmp.PreselectMode = true
 
             local cmp_setup = {
                 sources = {
@@ -153,14 +152,16 @@ return {
                 },
             }
 
-            local lsp = require("lsp-zero")
-            lsp.preset("recommended")
+            local lsp_zero = require("lsp-zero")
+            local api = vim.api
+            local lsp = vim.lsp
+            lsp_zero.preset("recommended")
 
             -- NOTE: Given that we want lspsaga to handle this, we omit those keymaps
-            lsp.set_preferences({
+            lsp_zero.set_preferences({
                 set_lsp_keymaps = { omit = { "gd", "K" } },
             })
-            lsp.ensure_installed({
+            lsp_zero.ensure_installed({
                 "lua_ls",
                 "vimls",
                 "rust_analyzer",
@@ -174,27 +175,39 @@ return {
                 "dockerls",
             })
             -- (Optional) Configure lua language server for neovim
-            lsp.on_attach(function(client, bufnr)
-                lsp.default_keymaps({ buffer = bufnr }) -- add lsp-zero defaults
+            lsp_zero.on_attach(function(client, bufnr)
+                lsp_zero.default_keymaps({ buffer = bufnr }) -- add lsp-zero defaults
 
                 local filetype = vim.api.nvim_buf_get_option(0, "filetype")
                 if vim.tbl_contains({ "go", "rust" }, filetype) then
                     vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
                 end
 
-                utils.lsp_autocmd(
-                    "BufEnter",
-                    [[
-                        hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
-                        hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                        hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                        augroup lsp_document_highlight
-                        autocmd!
-                        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                        augroup END
-                    ]]
-                )
+                -- Only highlight if compatible with the language
+                if client.server_capabilities.documentHighlightProvider then
+                    vim.cmd([[
+                    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
+                    hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                    ]])
+
+                    local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+                    api.nvim_create_autocmd("CursorHold", {
+                        group = gid,
+                        buffer = bufnr,
+                        callback = function()
+                            lsp.buf.document_highlight()
+                        end,
+                    })
+
+                    api.nvim_create_autocmd("CursorMoved", {
+                        group = gid,
+                        buffer = bufnr,
+                        callback = function()
+                            lsp.buf.clear_references()
+                        end,
+                    })
+                end
 
                 if filetype == "cpp" then
                     vim.api.nvim_buf_set_keymap(
@@ -213,7 +226,7 @@ return {
                 vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
             end)
 
-            lsp.setup_nvim_cmp({
+            lsp_zero.setup_nvim_cmp({
                 mapping = cmp_setup.mapping,
                 sources = cmp_setup.sources,
                 formatting = cmp_setup.formatting,
@@ -236,7 +249,7 @@ return {
                 }),
             })
 
-            lsp.set_server_config({
+            lsp_zero.set_server_config({
                 single_file_support = false,
                 capabilities = {
                     textDocument = {
@@ -248,15 +261,15 @@ return {
                 },
             })
 
-            lsp.set_sign_icons({
+            lsp_zero.set_sign_icons({
                 error = "✘",
                 warn = "▲",
                 hint = "⚑",
                 info = "»",
             })
 
-            lsp.nvim_workspace()
-            lsp.setup()
+            lsp_zero.nvim_workspace()
+            lsp_zero.setup()
         end,
     },
 }
