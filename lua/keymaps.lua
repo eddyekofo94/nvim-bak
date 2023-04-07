@@ -1,8 +1,8 @@
 -- Mapping helper
 local mapper = require("utils").mapper
+local set = require("utils").set
 
 vim.g.mapleader = " "
-local set = vim.keymap.set
 local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
 
 mapper("n", "<Space>", "<NOP>")
