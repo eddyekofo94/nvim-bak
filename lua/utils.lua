@@ -78,18 +78,34 @@ function M.telescope(builtin, opts)
     end
 end
 
+local function lsp_server_has_references()
+    for _, client in pairs(vim.lsp.get_active_clients()) do
+        if client.server_capabilities then
+            return true
+        end
+    end
+    return false
+end
+
 function M.lsp_autocmd(type, command)
     -- code
     vim.api.nvim_create_autocmd(type, {
         callback = function()
-            local client = vim.lsp.get_active_clients()[1]
-            if not client then
+            -- local client = vim.lsp.get_active_clients()[1]
+            if not lsp_server_has_references then
                 return
             end
             vim.api.nvim_exec(command, false)
         end,
     })
 end
+
+--- Gets the buffer number of every visible buffer
+--- @return integer[]
+M.visible_buffers = function()
+    return vim.tbl_map(vim.api.nvim_win_get_buf, vim.api.nvim_list_wins())
+end
+
 
 function M.define_augroups(definitions) -- {{{1
     -- Create autocommand groups based on the passed definitions

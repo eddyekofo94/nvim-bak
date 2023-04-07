@@ -15,13 +15,6 @@ return {
                 end,
             },
             {
-
-                "rmagatti/session-lens",
-                config = function()
-                    require("telescope").load_extension("session-lens")
-                end,
-            },
-            {
                 "nvim-telescope/telescope-project.nvim",
                 config = function()
                     require("telescope").load_extension("project")

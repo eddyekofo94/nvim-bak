@@ -1,9 +1,9 @@
 local utils = require("utils")
-local kind_icons = O.kind_icons
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
 return {
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -23,9 +23,6 @@ return {
             { "hrsh7th/cmp-cmdline" },
             {
                 "onsails/lspkind-nvim",
-                config = function()
-                    require("lspkind").init()
-                end,
             },
             -- Snippets
             {
@@ -42,7 +39,7 @@ return {
                 },
             }, -- Required
             { "rafamadriz/friendly-snippets" }, -- Optional
-            -- "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
         },
 
         config = function()
@@ -50,20 +47,42 @@ return {
             local cmp = require("cmp")
             local cmp_action = require("lsp-zero").cmp_action()
             local luasnip = require("luasnip")
+            local visible_buffers = require("utils").visible_buffers
+            local lspkind = require("lspkind")
+
+            lspkind.init({
+                symbol_map = O.kind_icons,
+            })
 
             local cmp_setup = {
-                -- mapping = require("lsp-zero.nvim-cmp-setup").default_mappings(),
                 sources = {
                     { name = "luasnip", keyword_length = 2 },
-                    -- { name = "nvim_lsp_signature_help" },
+                    { name = "nvim_lsp_signature_help" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
-                    { name = "buffer", keyword_length = 3 },
+                    {
+                        name = "buffer",
+                        max_item_count = 3,
+                        keyword_length = 3,
+                        option = {
+                            get_bufnrs = visible_buffers, -- Suggest words from all visible buffers
+                        },
+                    },
                     { name = "spell" },
                     { name = "treesitter" },
                     { name = "path" },
                 },
+                window = {
+                    completion = {
+                        col_offset = -2, -- To fit lspkind icon
+                        side_padding = 1, -- One character margin
+                    },
+                },
                 formatting = {
+                    fields = { "kind", "abbr", "menu" },
+                    completion = {
+                        completeopt = "menu,menuone,noinsert",
+                    },
                     format = require("lspkind").cmp_format({
                         with_text = true,
                         menu = {
@@ -72,26 +91,9 @@ return {
                             nvim_lsp = "[LSP]",
                             path = "[path]",
                             buffer = "[buffer]",
-                            -- nvim_lsp_signature_help = "[param]",
+                            nvim_lsp_signature_help = "[param]",
                         },
                     }),
-                    -- format = function(entry, vim_item)
-                    --     vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
-                    --     vim_item.menu = ({
-                    --         nvim_lsp = "(LSP)",
-                    --         luasnip = "(LuaSnip)",
-                    --         emoji = "(Emoji)",
-                    --         path = "(Path)",
-                    --         calc = "(Calc)",
-                    --         buffer = "(Buffer)",
-                    --     })[entry.source.name]
-                    --     vim_item.dup = ({
-                    --         buffer = 1,
-                    --         path = 1,
-                    --         nvim_lsp = 0,
-                    --     })[entry.source.name] or 0
-                    --     return vim_item
-                    -- end,
                 },
                 mapping = {
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),
@@ -180,6 +182,20 @@ return {
                     vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
                 end
 
+                utils.lsp_autocmd(
+                    "BufEnter",
+                    [[
+                        hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
+                        hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                        hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                        augroup lsp_document_highlight
+                        autocmd!
+                        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                        augroup END
+                    ]]
+                )
+
                 if filetype == "cpp" then
                     vim.api.nvim_buf_set_keymap(
                         0,
@@ -188,6 +204,10 @@ return {
                         "<cmd>ClangdSwitchSourceHeader<CR>",
                         { noremap = true, silent = true }
                     )
+                end
+
+                if client.supports_method("textDocument/formatting") then
+                    utils.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
                 end
 
                 vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -212,7 +232,6 @@ return {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
                     { name = "path" },
-                }, {
                     { name = "cmdline" },
                 }),
             })
@@ -238,29 +257,6 @@ return {
 
             lsp.nvim_workspace()
             lsp.setup()
-
-            utils.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
-            utils.lsp_autocmd(
-                "BufEnter",
-                [[
-                    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
-                    hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                    augroup lsp_document_highlight
-                    autocmd!
-                    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                    augroup END
-                ]]
-            )
-            -- local hl = vim.api.nvim_set_hl
-            -- local opts = {ctermbg = 240, bg = '#393f4a'}
-            -- hl(0, 'LspReferenceRead', opts)
-            -- hl(0, 'LspReferenceText', opts)
-            -- hl(0, 'LspReferenceWrite', opts)
-            --             vim.api.nvim_buf_add_highlight()
-            --             local buffer = vim.api.nvim_get_current_buf()
-            -- vim.api.nvim_buf_add_highlight({buffer}, {ns_id}, {hl_group}, {line}, {col_start}, {col_end})
         end,
     },
 }

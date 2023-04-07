@@ -3,7 +3,6 @@ return {
     name = "catppuccin",
     config = function()
         vim.cmd([[colorscheme catppuccin]])
-        -- vim.cmd.colorscheme("catppuccin")
         local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
         local normal = colors.text
         local fg, bg = normal.fg, normal.bg

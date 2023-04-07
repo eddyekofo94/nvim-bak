@@ -88,11 +88,18 @@ return {
             },
             S = {
                 name = "+Session",
-                d = { ":DisableAutoSave<cr>", "disable session" },
-                f = { "<cmd>SearchSession<cr>", "find session" },
-                s = { ":SaveSession<cr>", "save session" },
-                l = { ":RestoreSession<cr>", "load Session" },
-                x = { ":DeleteSession<cr>", "delete session" },
+                r = {
+                    ':lua require("persistence").load()<cr>',
+                    "Restore Session",
+                },
+                l = {
+                    ':lua require("persistence").load({ last = true })<cr>',
+                    "Restore Last Session",
+                },
+                x = {
+                    ':lua require("persistence").stop()<cr>',
+                    "Don't Save Current Session",
+                },
             },
             ["/"] = { ":CommentToggle<CR>", "comment" },
             ["\\"] = { "<cmd>Telescope pickers<cr>", "Searched History" },

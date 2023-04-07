@@ -3,8 +3,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "BufReadPre",
     keys = {
-        { "<S-l>", "[[<Cmd>BufferLineCycleNext<CR>]]", desc = "Move to next buffer" },
-        { "<S-h>", "[[<Cmd>BufferLineCyclePrev<CR>]]", desc = "Move to previous buffer" },
+        { "<TAB>", "[[<Cmd>BufferLineCycleNext<CR>]]", desc = "Move to next buffer" },
+        { "<S-TAB>", "[[<Cmd>BufferLineCyclePrev<CR>]]", desc = "Move to previous buffer" },
     },
     opts = {
         options = {
