@@ -1,21 +1,76 @@
 return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
+    dependencies = "nvim-lua/plenary.nvim",
+    cmd = {
+        "DiffviewOpen",
+        "DiffviewClose",
+        "DiffviewFocusFiles",
+        "DiffviewToggleFiles",
+        "DiffviewFileHistory",
+        "DiffviewFileRefresh",
+        "DiffviewLog",
+    },
+    init = function()
+        local map = require("utils").mapper
+        map("n", "<leader>gD", "<cmd>DiffviewOpen --untracked-files=no<CR>")
+        map("n", "<leader>gH", "<cmd>DiffviewFileHistory %<CR>")
+    end,
     config = function()
-        -- Lua
-        local cb = require("diffview.config").diffview_callback
+        local actions = require("diffview.config").actions
 
         require("diffview").setup({
-            diff_binaries = false, -- Show diffs for binaries
+            enhanced_diff_hl = false,
+            file_panel = {
+                win_config = {
+                    width = 40,
+                },
+            },
+            file_history_panel = {
+                win_config = {
+                    height = 15,
+                },
+            },
             key_bindings = {
-                disable_defaults = false, -- Disable the default key bindings
-                -- The `view` bindings are active in the diff buffers, only when the current
-                -- tabpage is a Diffview.
                 view = {
-                    ["<tab>"] = cb("select_next_entry"), -- Open the diff for the next file
-                    ["<s-tab>"] = cb("select_prev_entry"), -- Open the diff for the previous file
-                    ["<leader>e"] = cb("focus_files"), -- Bring focus to the files panel
-                    ["<leader>b"] = cb("toggle_files"), -- Toggle the files panel.
+                    ["<C-j>"] = actions.select_next_entry,
+                    ["<C-k>"] = actions.select_prev_entry,
+                    ["<tab>"] = actions.select_next_entry, -- Open the diff for the next file
+                    ["<s-tab>"] = actions.select_prev_entry, -- Open the diff for the previous file
+                    ["<C-s>"] = actions.goto_file_split,
+                    ["<C-t>"] = actions.goto_file_tab,
+                    ["~"] = actions.focus_files,
+                    ["`"] = actions.toggle_files,
+                    ["gb"] = actions.open_commit_log,
+                },
+                file_panel = {
+                    ["<Space>"] = actions.select_entry,
+                    ["<CR>"] = actions.focus_entry,
+                    ["gf"] = actions.goto_file_edit,
+                    ["<C-j>"] = actions.select_next_entry,
+                    ["<C-k>"] = actions.select_prev_entry,
+                    ["<C-t>"] = actions.goto_file_tab,
+                    ["<Esc>"] = actions.toggle_files,
+                    ["`"] = actions.toggle_files,
+                    ["<space>e"] = false,
+                    ["<space>b"] = false,
+                },
+                file_history_panel = {
+                    ["!"] = actions.options,
+                    ["<CR>"] = actions.open_in_diffview,
+                    ["<Space>"] = actions.select_entry,
+                    ["<C-j>"] = actions.select_next_entry,
+                    ["<C-k>"] = actions.select_prev_entry,
+                    ["gf"] = actions.goto_file,
+                    ["<C-s>"] = actions.goto_file_split,
+                    ["<C-t>"] = actions.goto_file_tab,
+                    ["~"] = actions.focus_files,
+                    ["`"] = actions.toggle_files,
+                    ["<space>e"] = false,
+                    ["<space>b"] = false,
+                },
+                option_panel = {
+                    ["<CR>"] = actions.select_entry,
                 },
             },
         })
