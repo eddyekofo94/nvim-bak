@@ -4,10 +4,6 @@ require("globals")
 vim.cmd("set background=dark")
 return {
     {
-        "kdheepak/lazygit.nvim",
-        event = "VeryLazy",
-    },
-    {
         "folke/twilight.nvim",
         event = "VeryLazy",
         config = function()
@@ -17,7 +13,7 @@ return {
     {
 
         "norcalli/nvim-colorizer.lua",
-        event = { "VeryLazy" },
+        event = { "BufReadPre" },
         config = function()
             require("colorizer").setup()
         end,
@@ -47,7 +43,9 @@ return {
         "terrortylor/nvim-comment",
         event = "VeryLazy",
         config = function()
-            require("nvim_comment").setup()
+            require("nvim_comment").setup({
+                comment_empty = false,
+            })
         end,
     },
     {

@@ -34,7 +34,7 @@ return {
                     history = true,
                     delete_check_events = "TextChanged",
                 },
-            }, -- Required
+            },
             { "rafamadriz/friendly-snippets" }, -- Optional
             "hrsh7th/cmp-nvim-lsp-signature-help",
         },
@@ -153,8 +153,6 @@ return {
             }
 
             local lsp_zero = require("lsp-zero")
-            local api = vim.api
-            local lsp = vim.lsp
             lsp_zero.preset("recommended")
 
             -- NOTE: Given that we want lspsaga to handle this, we omit those keymaps
@@ -179,19 +177,24 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr }) -- add lsp-zero defaults
 
                 local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-                if vim.tbl_contains({ "go", "rust" }, filetype) then
-                    vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
-                end
+                -- if vim.tbl_contains({ "go", "rust" }, filetype) then
+                --     vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
+                -- end
 
+                -- INFO: Use different ways to auto_format
+                utils.auto_format()
                 -- Only highlight if compatible with the language
                 if client.server_capabilities.documentHighlightProvider then
                     vim.cmd([[
-                    hi LspReferenceRead cterm=bold ctermbg=None guibg=#393f4a  guifg=None
-                    hi LspReferenceText cterm=bold ctermbg=None guibg=#393f4a guifg=None
-                    hi LspReferenceWrite cterm=bold ctermbg=None guibg=#393f4a guifg=None
+                        hi! LspReferenceRead cterm=bold ctermbg=None guibg=#585B70 guifg=None
+                        hi! LspReferenceText cterm=bold ctermbg=None guibg=#585B70 guifg=None
+                        hi! LspReferenceWrite cterm=bold ctermbg=None guibg=#6C7086 guifg=None
                     ]])
 
+                    local api = vim.api
+                    local lsp = vim.lsp
                     local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+
                     api.nvim_create_autocmd("CursorHold", {
                         group = gid,
                         buffer = bufnr,
@@ -217,10 +220,6 @@ return {
                         "<cmd>ClangdSwitchSourceHeader<CR>",
                         { noremap = true, silent = true }
                     )
-                end
-
-                if client.supports_method("textDocument/formatting") then
-                    utils.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
                 end
 
                 vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"

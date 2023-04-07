@@ -12,6 +12,20 @@ end
 
 M.root_patterns = { ".git", "lua" }
 
+function M.auto_format()
+    local client = vim.lsp.get_active_clients()[1]
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
+    if client.supports_method("textDocument/formatting") then
+        M.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
+    elseif vim.tbl_contains({ "go", "rust" }, filetype) then
+        vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
+    else
+        M.lsp_autocmd("BufWritePre", "<cmd>Format<cr>")
+        -- vim.api.nvim_exec("<cmd>Format<cr>", false)
+    end
+end
+
 -- returns the root directory based on:
 -- * lsp workspace folders
 -- * lsp root_dir
@@ -91,7 +105,6 @@ function M.lsp_autocmd(type, command)
     -- code
     vim.api.nvim_create_autocmd(type, {
         callback = function()
-            -- local client = vim.lsp.get_active_clients()[1]
             if not lsp_server_has_references then
                 return
             end
@@ -131,6 +144,13 @@ end
 -- Mapping helper
 function M.mapper(mode, key, result)
     vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+end
+
+function M.set(modes, lhs, rhs, opts)
+    if type(opts) == "string" then
+        opts = { desc = opts }
+    end
+    vim.keymap.set(modes, lhs, rhs, opts)
 end
 
 return M
