@@ -1,14 +1,11 @@
 -- Mapping helper
-local mapper = function(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
-end
+local mapper = require("utils").mapper
 
 vim.g.mapleader = " "
 local set = vim.keymap.set
 local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
 
 mapper("n", "<Space>", "<NOP>")
-mapper("n", "I", "0I")
 
 -- Reconsider this option
 -- Jump to start and end of line using the home row keys
@@ -107,6 +104,10 @@ mapper("v", "<leader>/", ":CommentToggle<CR>")
 -- MAPPINGS
 mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]]) -- new tab
 mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
+
+-- Diffview
+mapper("n", "<leader>gD", "<cmd>DiffviewOpen --untracked-files=no<CR>")
+mapper("n", "<leader>gH", "<cmd>DiffviewFileHistory %<CR>")
 
 vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 

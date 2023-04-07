@@ -106,7 +106,6 @@ M.visible_buffers = function()
     return vim.tbl_map(vim.api.nvim_win_get_buf, vim.api.nvim_list_wins())
 end
 
-
 function M.define_augroups(definitions) -- {{{1
     -- Create autocommand groups based on the passed definitions
     --
@@ -127,6 +126,11 @@ function M.define_augroups(definitions) -- {{{1
 
         vim.cmd("augroup END")
     end
+end
+
+-- Mapping helper
+function M.mapper(mode, key, result)
+    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
 return M
