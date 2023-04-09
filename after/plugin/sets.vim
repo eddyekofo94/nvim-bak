@@ -132,23 +132,12 @@ augroup MAX_CHARS_COLUMN
     autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
-" Remove whitespace
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup THE_ED_CLEAN
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup end
 
 " Jump to last edit position on opening file
-if has("autocmd")
-  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" if has("autocmd")
+"   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+"   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" endif
 
 " Improve the search
 " nnoremap ? ?\v

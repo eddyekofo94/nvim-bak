@@ -24,6 +24,14 @@ mapper("x", "p", '"_dP')
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
+-- Don't know what this is doing exactly!
+set("x", "v", "$h")
+
+-- This might not be working
+set(nxo, "/", "ms/")
+
+set('n', '*', 'ms*')
+
 -- buffers
 set("n", "[b", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
