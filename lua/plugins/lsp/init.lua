@@ -83,7 +83,7 @@ return {
                         completeopt = "menu,menuone,noinsert",
                     },
                     format = require("lspkind").cmp_format({
-                        with_text = true,
+                        with_text = false,
                         menu = {
                             luasnip = "[LuaSnip]",
                             nvim_lua = "[nvim]",
