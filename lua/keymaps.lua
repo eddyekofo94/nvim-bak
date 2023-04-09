@@ -27,16 +27,16 @@ set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- Don't know what this is doing exactly!
 set("x", "v", "$h")
 
--- This might not be working
-set(nxo, "/", "ms/")
-
-set('n', '*', 'ms*')
-
 -- buffers
 set("n", "[b", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<c-p>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "<c-n>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
+set("v", "/", '"fy/\\V<C-R>f<CR>')
+set("v", "*", '"fy/\\V<C-R>f<CR>')
+
+set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- cycle through command history without arrow keys
 mapper("c", "<c-j>", "<down>")
