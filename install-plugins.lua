@@ -139,7 +139,6 @@
 --         use({ "kdheepak/lazygit.nvim", opt = true })
 --         use({ "sindrets/diffview.nvim", opt = true })
 --         use({ "folke/which-key.nvim", opt = true })
---         use({ "ChristianChiarulli/dashboard-nvim", opt = true })
 --         use({ "windwp/nvim-autopairs", after = "nvim-cmp", opt = true })
 --         use({ "terrortylor/nvim-comment", opt = true })
 --         use({ "folke/todo-comments.nvim", opt = true })

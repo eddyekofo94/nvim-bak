@@ -18,7 +18,7 @@ return {
                         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                         return col ~= 0
                             and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s")
-                                == nil
+                            == nil
                     end
 
                     local luasnip = require("luasnip")
@@ -323,17 +323,17 @@ return {
                 end
 
                 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                        underline = true,
-                        -- Hide/Show virtual text
-                        virtual_text = {
-                            prefix = "",
-                            severity_limit = "Warning",
-                        },
-                        -- Increase diagnostic signs priority
-                        signs = { priority = 9999 },
-                        update_in_insert = true,
-                    })
+                vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                    underline = true,
+                    -- Hide/Show virtual text
+                    virtual_text = {
+                        prefix = "",
+                        severity_limit = "Warning",
+                    },
+                    -- Increase diagnostic signs priority
+                    signs = { priority = 9999 },
+                    update_in_insert = true,
+                })
 
                 -- TODO: look into fixing this maybe
                 -- if client.server_capabilities.documentSymbolProvider then

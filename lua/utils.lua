@@ -21,7 +21,7 @@ function M.auto_format()
     elseif vim.tbl_contains({ "go", "rust" }, filetype) then
         vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
     else
-        M.lsp_autocmd("BufWritePre", "<cmd>Format<cr>")
+        M.lsp_autocmd("BufWritePre", ":Format<cr>")
         -- vim.api.nvim_exec("<cmd>Format<cr>", false)
     end
 end

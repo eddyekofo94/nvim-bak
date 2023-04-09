@@ -21,6 +21,8 @@ return {
             { "hrsh7th/cmp-nvim-lua" }, -- Optional
             { "hrsh7th/cmp-cmdline" },
             { "onsails/lspkind-nvim" },
+            -- TODO: maybe look into this
+            -- { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
             {
                 -- Snippets
                 "L3MON4D3/LuaSnip",
@@ -177,9 +179,6 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr }) -- add lsp-zero defaults
 
                 local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-                -- if vim.tbl_contains({ "go", "rust" }, filetype) then
-                --     vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
-                -- end
 
                 -- INFO: Use different ways to auto_format
                 utils.auto_format()

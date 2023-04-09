@@ -20,7 +20,7 @@ return {
                 description = { "  Recently Used Files" },
                 command = "Telescope oldfiles",
             },
-            c = { description = { "  Load Last Session  " }, command = "SessionLoad" },
+            -- c = { description = { "  Load Last Session  " }, command = "SessionLoad" },
             d = {
                 description = { "  Find Word          " },
                 command = "Telescope live_grep",
