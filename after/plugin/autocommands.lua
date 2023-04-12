@@ -29,6 +29,22 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
     pattern = "*",
 })
 
+-- TODO: look into converting this to lua
+-- function! MaxLineChars()
+--     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+-- endfunction
+-- augroup MAX_CHARS_COLUMN
+--     autocmd!
+--     autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+--     autocmd BufLeave,BufDelete * :call clearmatches()
+-- augroup end
+
+-- vim.api.nvim_create_autocmd({ "BufWinEnter", "FileReadPre" }, {
+--     callback = function()
+--         return fn.
+--     end,
+-- })
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
@@ -65,6 +81,11 @@ utils.define_augroups({
         { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "VimLeavePre", "*", "set title set titleold=" },
+        -- {
+        -- "FileType,BufWinEnter",
+        -- "cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript",
+        -- ":call MaxLineChars()",
+        -- },
     },
     _dashboard = {
         {

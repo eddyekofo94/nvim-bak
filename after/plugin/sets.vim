@@ -69,11 +69,7 @@ set wildmenu
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 set wildoptions=pum
 
-" Give more space for displaying
-set cmdheight=2
-
 " Shorter update time for good user experience
-set updatetime=300
 
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
@@ -98,11 +94,11 @@ set gdefault
 set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-set list
+" set list
 
 " settings for hidden chars
 " what particular chars they are displayed with
-set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
+" set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
@@ -120,15 +116,9 @@ function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
 
-" TODO: look into this
-" augroup Clear_Max_Chars
-"     autocmd!
-"     autocmd FileType vim,dashboard,toggleterm,terminal :call clearmatches()
-" augroup end
-
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
     autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
@@ -146,7 +136,6 @@ augroup end
 
 " You can't stop me
 cmap w!! w !sudo tee %
-
 
 autocmd FileType * setlocal nolinebreak
 

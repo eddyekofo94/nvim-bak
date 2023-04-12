@@ -159,7 +159,7 @@ return {
 
             -- NOTE: Given that we want lspsaga to handle this, we omit those keymaps
             lsp_zero.set_preferences({
-                set_lsp_keymaps = { omit = { "gd", "K" } },
+                set_lsp_keymaps = { omit = { "gd", "K", "gi" } },
             })
             lsp_zero.ensure_installed({
                 "lua_ls",

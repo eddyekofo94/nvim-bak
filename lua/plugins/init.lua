@@ -1,4 +1,5 @@
 require("keymaps")
+require("settings")
 require("globals")
 
 vim.cmd("set background=dark")

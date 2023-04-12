@@ -17,10 +17,12 @@ function M.auto_format()
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
     if client.supports_method("textDocument/formatting") then
+        print("Using LspZeroFormat")
         M.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
     elseif vim.tbl_contains({ "go", "rust" }, filetype) then
         vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
     else
+        print("Using Formatter")
         M.lsp_autocmd("BufWritePre", ":Format<cr>")
         -- vim.api.nvim_exec("<cmd>Format<cr>", false)
     end
