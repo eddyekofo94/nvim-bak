@@ -81,7 +81,7 @@ set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines INFO: not sure about this
-set lazyredraw
+" set lazyredraw -- this breaks Noice
 set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
@@ -132,34 +132,21 @@ augroup MAX_CHARS_COLUMN
     autocmd BufLeave,BufDelete * :call clearmatches()
 augroup end
 
-" Remove whitespace
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup THE_ED_CLEAN
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup end
 
 " Jump to last edit position on opening file
-if has("autocmd")
-  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" if has("autocmd")
+"   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+"   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" endif
+
+" Improve the search
+" nnoremap ? ?\v
+" nnoremap / /\v
+" cnoremap %s/ %sm/
 
 " You can't stop me
 cmap w!! w !sudo tee %
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Reconsider this option
-" Jump to start and end of line using the home row keys
-" map H ^
-" map L $
 
 autocmd FileType * setlocal nolinebreak
 
@@ -180,15 +167,16 @@ augroup END
 
 " Resize split windows using arrow keys by pressing:
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
-noremap <c-up> <c-w>+
-noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
+noremap <up> <c-w>+
+noremap <down> <c-w>-
+noremap <left> <c-w>>
+noremap <right> <c-w><
 
 " Center the cursor vertically when moving to the next word during a search.
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap n nzz
+" nnoremap N Nzz
 
+" TODO: Fix this some day
 " disable syntax highlighting in big files
 " function DisableSyntaxTreesitter()
 "     echo("Big file, disabling syntax, treesitter and folding")
