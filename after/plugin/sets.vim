@@ -66,10 +66,10 @@ augroup end
 " Decent wildmenu
 set wildmode=longest:full,full
 set wildmenu
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 set wildoptions=pum
 
 " Shorter update time for good user experience
+set updatetime=300
 
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
@@ -94,11 +94,11 @@ set gdefault
 set path+=**
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" set list
+set list
 
 " settings for hidden chars
 " what particular chars they are displayed with
-" set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
 set guicursor+=i:block-Cursor
