@@ -46,7 +46,9 @@ return {
                 python = {
                     require("formatter.filetypes.python").autopep8,
                 },
-
+                sh = {
+                    require("formatter.filetypes.sh").shfmt
+                },
                 -- Use the special "*" filetype for defining formatter configurations on
                 -- any filetype
                 ["*"] = {

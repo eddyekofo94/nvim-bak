@@ -132,12 +132,11 @@ return {
                     "inset line",
                 },
             },
-            p = { Util.telescope("files", { cwd = false }), "Find File" },
+            p = { ":Telescope find_files<cr>", "Find File" },
             P = {
                 "<cmd>:lua require'telescope'.extensions.project.project{}<cr>",
                 "Find Project",
             },
-            -- Telescope resume
             r = { "<cmd>Telescope resume<cr>", "Resume search" },
             R = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
             t = { "<cmd>rightbelow vsp | terminal<cr>", "terminal" },

@@ -16,15 +16,19 @@ function M.auto_format()
     local client = vim.lsp.get_active_clients()[1]
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
+    -- Set some keybinds conditional on server capabilities
     if client.supports_method("textDocument/formatting") then
-        print("Using LspZeroFormat")
-        M.lsp_autocmd("BufWritePre", [[LspZeroFormat]])
+        print("Using Lsp Format")
+        M.lsp_autocmd("BufWritePre", ":lua vim.lsp.buf.format()")
+    elseif client.supports_method("textDocument/rangeFormatting") then
+        print("Using Lsp Range Format")
+        M.lsp_autocmd("BufWritePre", "<cmd>lua vim.lsp.buf.range_formatting()")
     elseif vim.tbl_contains({ "go", "rust" }, filetype) then
+        print("Using Lsp Go/Rust Format")
         vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
     else
         print("Using Formatter")
-        M.lsp_autocmd("BufWritePre", ":Format<cr>")
-        -- vim.api.nvim_exec("<cmd>Format<cr>", false)
+        M.lsp_autocmd("BufWritePre", ":Format")
     end
 end
 
