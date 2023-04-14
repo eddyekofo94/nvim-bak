@@ -1,6 +1,14 @@
 local M = {}
 -- local mapper = require("keymaps").mapper
-
+M.termcodes = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+M.map = function(modes, lhs, rhs, opts)
+    if type(opts) == 'string' then
+        opts = { desc = opts }
+    end
+    vim.keymap.set(modes, lhs, rhs, opts)
+end
 function M.is_buffer_empty()
     -- Check whether the current buffer is empty
     return vim.fn.empty(vim.fn.expand("%:t")) == 1
@@ -153,6 +161,11 @@ end
 -- Mapping helper
 function M.mapper(mode, key, result)
     vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+end
+
+M.feedkeys = function(keys, mode)
+    if mode == nil then mode = 'in' end
+    return vim.api.nvim_feedkeys(M.termcodes(keys), mode, true)
 end
 
 function M.set(modes, lhs, rhs, opts)
