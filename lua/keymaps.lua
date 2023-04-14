@@ -84,6 +84,7 @@ mapper("v", ">", ">gv")
 
 -- CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 mapper("i", "<C-c>", "<esc>")
+mapper("t", "<C-c>", "<esc>")
 
 mapper("n", "<M-CR>", ":let v:hlsearch=!v:hlsearch<CR>")
 
@@ -110,7 +111,7 @@ mapper("n", "<leader>/", ":CommentToggle<CR>")
 mapper("v", "<leader>/", ":CommentToggle<CR>")
 
 -- MAPPINGS
-mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]]) -- new tab
+mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]])   -- new tab
 mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 
 -- Diffview

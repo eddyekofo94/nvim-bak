@@ -1,4 +1,4 @@
-local colors = O.gruvbox_colors
+local colors = O.catppuccin_colors
 return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     config = function()

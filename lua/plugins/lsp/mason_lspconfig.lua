@@ -1,6 +1,7 @@
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 local utils = require("utils")
+local wk = require("which-key")
 
 mason_lspconfig.setup({
     ensure_installed = {
@@ -21,7 +22,8 @@ mason_lspconfig.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local mapper = function(mode, key, result)
-    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>",
+        { noremap = true, silent = true })
 end
 local custom_init = function(client)
     client.config.flags = client.config.flags or {}
@@ -66,6 +68,22 @@ local custom_attach = function(client, bufnr)
 
     -- INFO: Use different ways to auto_format
     utils.auto_format()
+
+    local format_code
+    if client.supports_method("textDocument/formatting") then
+        format_code = "<cmd>lua vim.lsp.buf.format()<CR>"
+    elseif client.supports_method("textDocument/rangeFormatting") then
+        format_code = "<cmd>lua vim.lsp.buf.range_formatting()<CR>"
+    elseif vim.tbl_contains({ "go", "rust" }, filetype) then
+        format_code = "<cmd>lua vim.lsp.buf.formatting_sync()<CR>"
+    else
+        format_code = "<cmd>Format<CR>"
+    end
+
+    wk.register({
+        f = { format_code, "Format code" }, -- create a binding with label
+    }, { prefix = "<leader>" })
+
     -- Only highlight if compatible with the language
     if client.server_capabilities.documentHighlightProvider then
         vim.cmd([[
@@ -108,27 +126,24 @@ local custom_attach = function(client, bufnr)
     -- Setup lspconfig.
     capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        -- Hide/Show virtual text
-        virtual_text = {
-            prefix = "",
-            -- prefix = "»",
-            severity_limit = "Warning",
-        },
-        signs = vim.b[bufnr].show_signs == true,
-        -- Increase diagnostic signs priority
-        update_in_insert = true,
-    })
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            underline = true,
+            -- Hide/Show virtual text
+            virtual_text = {
+                prefix = "",
+                -- prefix = "»",
+                severity_limit = "Warning",
+            },
+            signs = vim.b[bufnr].show_signs == true,
+            -- Increase diagnostic signs priority
+            update_in_insert = true,
+        })
 
     -- TODO: look into fixing this maybe
     -- if client.server_capabilities.documentSymbolProvider then
     --     navic.attach(client, bufnr)
     -- end
-
-    if vim.tbl_contains({ "go", "rust" }, filetype) then
-        vim.cmd([[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]])
-    end
 
     if filetype ~= "lua" then
         mapper("n", "K", "vim.lsp.buf.hover()")
@@ -174,14 +189,13 @@ mason_lspconfig.setup_handlers({
             capabilities = capabilities,
         })
     end,
-    -- TODO: Add cmake
     ["cmake-language-server"] = function()
-        lspconfig.cmake.setup({
-            cmd = { "cmake-language-server" },
-            filetypes = { "cmake" },
-            on_attach = custom_attach,
-            init_options = { buildDirectory = "build" },
-        })
+        if 1 == vim.fn.executable("cmake-language-server") then
+            lspconfig.cmake.setup({
+                on_attach = custom_attach,
+                init_options = { buildDirectory = "build" },
+            })
+        end
     end,
     ["bashls"] = function()
         lspconfig.bashls.setup({
@@ -217,6 +231,10 @@ mason_lspconfig.setup_handlers({
     end,
     ["yamlls"] = function()
         lspconfig.yamlls.setup({
+            schemaStore = {
+                url = 'https://www.schemastore.org/api/json/catalog.json',
+                enable = true,
+            },
             on_init = custom_init,
             on_attach = custom_attach,
         })
@@ -232,8 +250,6 @@ mason_lspconfig.setup_handlers({
             },
             on_init = custom_init,
             on_attach = custom_attach,
-            -- Required for lsp-status
-            init_options = { clangdFileStatus = true },
             capabilities = capabilities,
         })
     end,
@@ -245,7 +261,17 @@ mason_lspconfig.setup_handlers({
             settings = {
                 Lua = {
                     completion = {
+                        autoRequire = true,
                         callSnippet = "Replace",
+                    },
+                    format = {
+                        enable = true,
+                        defaultConfig = {
+                            indent_style = 'space',
+                            indent_size = '2',
+                            max_line_length = '100',
+                            trailing_table_separator = 'smart',
+                        },
                     },
                     runtime = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)

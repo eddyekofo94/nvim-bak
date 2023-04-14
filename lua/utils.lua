@@ -1,4 +1,5 @@
 local M = {}
+-- local mapper = require("keymaps").mapper
 
 function M.is_buffer_empty()
     -- Check whether the current buffer is empty
@@ -12,7 +13,9 @@ end
 
 M.root_patterns = { ".git", "lua" }
 
+
 function M.auto_format()
+    -- lua print(vim.inspect(vim.lsp.get_active_clients()))
     local client = vim.lsp.get_active_clients()[1]
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 

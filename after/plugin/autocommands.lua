@@ -13,7 +13,8 @@ local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
     callback = function()
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+        local ok, stats = pcall(vim.loop.fs_stat,
+            vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
         if ok and stats and (stats.size > 1000000) then
             vim.b.large_buf = true
             vim.opt_local.syntax = "off"
@@ -76,10 +77,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
 utils.define_augroups({
     _general_settings = {
-        { "TextYankPost", "*", "lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 500})" },
+        { "TextYankPost", "*",
+            "lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 500})", },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-        { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-        { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+        { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+        { "BufNewFile",  "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "VimLeavePre", "*", "set title set titleold=" },
         -- {
         -- "FileType,BufWinEnter",
@@ -95,9 +97,10 @@ utils.define_augroups({
         },
         { "FileType", "dashboard", "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2" },
     },
-    _markdown = { { "FileType", "markdown", "setlocal wrap" }, { "FileType", "markdown", "setlocal spell" } },
+    _markdown = { { "FileType", "markdown", "setlocal wrap" },
+        { "FileType", "markdown", "setlocal spell" }, },
     _buffer_bindings = {
         { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
-        { "FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "lspinfo",   "nnoremap <silent> <buffer> q :q<CR>" },
     },
 })

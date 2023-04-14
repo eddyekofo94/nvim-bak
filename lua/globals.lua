@@ -10,7 +10,6 @@ O = {
     number = true,
     relative_number = true,
     shell = "fish",
-
     -- @usage pass a table with your desired languages
 
     treesitter = {
@@ -20,7 +19,6 @@ O = {
         playground = { enabled = false },
         rainbow = { enabled = false },
     },
-
     python = {
         linter = "",
         -- @usage can be 'yapf', 'black'
@@ -107,6 +105,15 @@ O = {
         Unit = "塞",
         Value = " ",
         Variable = " ",
+    },
+    signs = {
+        error = "",
+        warn = "",
+        hint = "⚑",
+        info = "",
+        code_action_icon = " ",
+        rename_prompt_prefix = ">",
+        priority = 9999,
     },
     everforest_colors = {
         none = "NONE",
