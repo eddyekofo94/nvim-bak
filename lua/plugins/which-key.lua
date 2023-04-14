@@ -79,6 +79,7 @@ return {
                     ":lua require'telescope'.extensions.project.project{}<cr>",
                     "projects",
                 },
+                R = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
                 s = { Util.telescope("live_grep"), "string" },
                 T = { ":TodoTelescope<cr>", "TODO" },
                 r = { ":Telescope registers<cr>", "registers" },
@@ -137,7 +138,9 @@ return {
                 "Find Project",
             },
             r = { "<cmd>Telescope resume<cr>", "Resume search" },
-            R = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+            R = {
+                name = "Refactor",
+            },
             t = { "<cmd>rightbelow vsp | terminal<cr>", "terminal" },
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
