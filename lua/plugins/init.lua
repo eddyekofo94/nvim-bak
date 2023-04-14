@@ -1,5 +1,4 @@
 require("keymaps")
--- require("settings")
 require("globals")
 
 vim.cmd("set background=dark")
@@ -12,11 +11,15 @@ return {
         end,
     },
     {
-
         "norcalli/nvim-colorizer.lua",
         event = { "BufReadPre" },
         config = function()
-            require("colorizer").setup()
+            require("colorizer").setup({
+                filetypes = { '*', '!lazy' },
+                user_default_options = {
+                    names = false,
+                },
+            })
         end,
     },
     {
@@ -54,7 +57,7 @@ return {
         "szw/vim-maximizer",
         event = "VeryLazy",
     },
-    { "tpope/vim-surround", event = "InsertEnter" },
+    { "tpope/vim-surround",   event = "InsertEnter" },
     { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
     {
         "glepnir/lspsaga.nvim",
@@ -70,7 +73,7 @@ return {
         build = ":Neorg sync-parsers",
         opts = {
             load = {
-                ["core.defaults"] = {}, -- Loads default behaviour
+                ["core.defaults"] = {},       -- Loads default behaviour
                 ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
                 ["core.presenter"] = {
                     config = {
