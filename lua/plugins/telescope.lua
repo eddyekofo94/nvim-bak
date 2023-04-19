@@ -94,17 +94,17 @@ return {
                     winblend = 0, -- transparency
                     -- color_devicons = false,
                     use_less = true,
-                    set_env = { ["COLORTERM"] = "truecolor" }, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
-                    file_previewer = require("telescope.previewers").vim_buffer_cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
+                    set_env = { ["COLORTERM"] = "truecolor" },                                -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
+                    file_previewer = require("telescope.previewers").vim_buffer_cat.new,      -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
                     -- grep_previewer = require("telescope.previewers").vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
-                    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
+                    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,  -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
                     extensions = {
                         fzf = {
-                            fuzzy = true, -- let me make typos in file names please
+                            fuzzy = true,                   -- let me make typos in file names please
                             override_generic_sorter = true, -- override the generic sorter
-                            override_file_sorter = true, -- override the file sorter
-                            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                            override_file_sorter = true,    -- override the file sorter
+                            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                         },
                         frecency = {
                             show_scores = true, -- TODO: remove when satisfied
@@ -152,5 +152,6 @@ return {
                 },
             })
         end,
+        -- require("telescope").load_extension('find_template'),
     },
 }
