@@ -231,6 +231,7 @@ mason_lspconfig.setup_handlers({
     end,
     ["yamlls"] = function()
         lspconfig.yamlls.setup({
+            keyOrdering = false,
             schemaStore = {
                 url = 'https://www.schemastore.org/api/json/catalog.json',
                 enable = true,

@@ -4,13 +4,19 @@ vim.o.completeopt = "menu,menuone,noselect"
 -- Setup nvim-cmp.
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    return col ~= 0 and
+        vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 local kind_icons = O.kind_icons
+local lspkind = require("lspkind")
 local visible_buffers = require("utils").visible_buffers
+
+lspkind.init({
+    symbol_map = O.kind_icons,
+})
 
 cmp.setup({
     snippet = {
@@ -76,8 +82,8 @@ cmp.setup({
         }),
     },
     sources = {
-        { name = "nvim_lsp" },
         { name = "luasnip", keyword_length = 2 },
+        { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "neorg" },
         { name = "path" },
@@ -101,23 +107,37 @@ cmp.setup({
         },
     },
     formatting = {
-        format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
-            vim_item.menu = ({
+        format = lspkind.cmp_format({
+            with_text = false,
+            maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            mode = 'symbol_text', -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+            menu = {
                 nvim_lsp = "(LSP)",
-                luasnip = "(Snippet)",
+                luasnip = "(LuaSnip)",
                 emoji = "(Emoji)",
                 path = "(Path)",
                 calc = "(Calc)",
                 buffer = "(Buffer)",
-            })[entry.source.name]
-            vim_item.dup = ({
-                    buffer = 1,
-                    path = 1,
-                    nvim_lsp = 0,
-                })[entry.source.name] or 0
-            return vim_item
-        end,
+            },
+        }),
+        -- format = function(entry, vim_item)
+        --     vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
+        --     vim_item.menu = ({
+        --         nvim_lsp = "(LSP)",
+        --         luasnip = "(LuaSnip)",
+        --         emoji = "(Emoji)",
+        --         path = "(Path)",
+        --         calc = "(Calc)",
+        --         buffer = "(Buffer)",
+        --     })[entry.source.name]
+        --     vim_item.maxwidth = 50 -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        --     vim_item.dup = ({
+        --             buffer = 1,
+        --             path = 1,
+        --             nvim_lsp = 0,
+        --         })[entry.source.name] or 0
+        --     return vim_item
+        -- end,
     },
 })
 
