@@ -22,6 +22,15 @@ return {
             })
         end,
     },
+    {
+        "glepnir/template.nvim",
+        cmd = { 'Template', 'TemProject' },
+        config = function()
+            require('template').setup({
+                temp_dir = "~/.config/nvim/template",
+            })
+        end,
+    },
     -- {
     --     "ur4ltz/surround.nvim",
     --     event = { "VeryLazy" },
