@@ -18,6 +18,12 @@ return {
                 p = { ":BufferLinePick<cr>", "Pick Buffer" },
                 x = { ":%bd|e#|bd#<cr>", "close all but current" },
             },
+            c = {
+                name = "+code",
+                b = { ":Build<cr>", "Build code" },
+                r = { ":Run<cr>", "Run code" },
+                R = { ":RunAll<cr>", "Build&Run" },
+            },
             d = {
                 name = "+diagnostics",
                 n = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "diagnostics next" },
@@ -84,6 +90,7 @@ return {
                 T = { ":TodoTelescope<cr>", "TODO" },
                 r = { ":Telescope registers<cr>", "registers" },
                 w = { ":Telescope file_browser<cr>", "file browser" },
+                -- t = { ":Template ", "Create template" },
                 u = { ":Telescope colorscheme<cr>", "colorschemes" },
                 z = { ":Telescope zoxide list<cr>", "zoxide" },
             },
