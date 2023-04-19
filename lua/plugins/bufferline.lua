@@ -2,8 +2,9 @@ return {
     "akinsho/nvim-bufferline.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "BufReadPre",
+    after = "catppuccin",
     keys = {
-        { "<TAB>", "[[<Cmd>BufferLineCycleNext<CR>]]", desc = "Move to next buffer" },
+        { "<TAB>",   "[[<Cmd>BufferLineCycleNext<CR>]]", desc = "Move to next buffer" },
         { "<S-TAB>", "[[<Cmd>BufferLineCyclePrev<CR>]]", desc = "Move to previous buffer" },
     },
     opts = {
@@ -23,4 +24,9 @@ return {
             },
         },
     },
+    config = function()
+        require("bufferline").setup {
+            highlights = require("catppuccin.groups.integrations.bufferline").get(),
+        }
+    end,
 }
