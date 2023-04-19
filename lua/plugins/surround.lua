@@ -12,7 +12,7 @@ return {
         local map = require('utils').map
         local augroup = 'Surround'
 
-        map('n', 'S', 's$', { remap = true, desc = 'Surround until end of line' })
+        -- map('n', 'S', 's$', { remap = true, desc = 'Surround until end of line' })
 
         local function filetype_surround(filetype, surrounds)
             vim.api.nvim_create_autocmd('FileType', {
