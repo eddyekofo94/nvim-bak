@@ -28,6 +28,7 @@ return {
         config = function()
             require('template').setup({
                 temp_dir = "~/.config/nvim/template",
+                author = "Eddy Ekofo",
             })
         end,
     },
