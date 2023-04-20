@@ -44,6 +44,7 @@ return {
     },
     {
         "airblade/vim-rooter",
+        lazy = false,
     },
     {
         "terrortylor/nvim-comment",
@@ -55,7 +56,7 @@ return {
         end,
     },
     {
-        --         -- Window Toggle
+        -- Window Toggle
         "szw/vim-maximizer",
         event = "VeryLazy",
     },
@@ -70,42 +71,6 @@ return {
         dependencies = { { "nvim-tree/nvim-web-devicons" } },
     },
     {
-        "nvim-neorg/neorg",
-        event = "VeryLazy",
-        build = ":Neorg sync-parsers",
-        opts = {
-            load = {
-                ["core.defaults"] = {},       -- Loads default behaviour
-                ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-                ["core.presenter"] = {
-                    config = {
-                        zen_mode = "truezen",
-                    },
-                }, -- Adds pretty icons to your documents
-                ["core.norg.completion"] = {
-                    config = {
-                        engine = "nvim-cmp",
-                        name = "[Neorg]",
-                    },
-                },
-                ["core.export.markdown"] = {},
-                ["core.export"] = {
-                    config = {
-                        export_dir = "~/notes/exports",
-                    },
-                },
-                ["core.norg.dirman"] = { -- Manages Neorg workspaces
-                    config = {
-                        workspaces = {
-                            notes = "~/notes",
-                        },
-                    },
-                },
-            },
-        },
-        dependencies = { { "nvim-lua/plenary.nvim" } },
-    },
-    {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         event = "VeryLazy",
@@ -114,7 +79,6 @@ return {
         end,
         ft = { "markdown" },
     },
-
     -- json schema provider
     { "b0o/schemastore.nvim", event = "VeryLazy" },
     {

@@ -152,7 +152,7 @@ return {
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
             v = { "<C-W>v", "Split Right" },
-            w = { "<cmd>MaximizerToggle<CR>", "Max Window" },
+            w = { "<cmd>MaximizerToggle!<CR>", "Max Window" },
             W = { "<C-W>q", "Close Window" },
             x = {
                 name = "Debugger",

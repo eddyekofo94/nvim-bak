@@ -15,7 +15,7 @@ local lspkind = require("lspkind")
 local visible_buffers = require("utils").visible_buffers
 
 lspkind.init({
-    symbol_map = O.kind_icons,
+    symbol_map = kind_icons,
 })
 
 cmp.setup({
