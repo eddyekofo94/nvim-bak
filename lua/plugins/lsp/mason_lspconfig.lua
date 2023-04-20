@@ -67,7 +67,7 @@ local custom_attach = function(client, bufnr)
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
     -- INFO: Use different ways to auto_format
-    utils.auto_format()
+    -- utils.auto_format()
 
     local format_code
     if client.supports_method("textDocument/formatting") then
