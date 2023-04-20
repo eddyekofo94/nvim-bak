@@ -31,13 +31,6 @@ return {
             })
         end,
     },
-    -- {
-    --     "ur4ltz/surround.nvim",
-    --     event = { "VeryLazy" },
-    --     config = function()
-    --         require("surround").setup({ mappings_style = "surround" })
-    --     end,
-    -- },
     {
         "folke/todo-comments.nvim",
         event = { "BufReadPre", "BufNewFile" },
