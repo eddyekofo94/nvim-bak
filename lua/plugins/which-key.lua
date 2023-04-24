@@ -68,6 +68,7 @@ return {
                 name = "search", -- optional group name
                 ["."] = { ":Telescope filetypes<cr>", "filetypes" },
                 b = { ":Telescope buffers<cr>", "buffers" },
+                c = { ":Telescope current_buffer_fuzzy_find<cr>" , "search current buffer"},
                 B = { ":Telescope git_branches<cr>", "git branches" },
                 d = { ":Telescope lsp_document_diagnostics<cr>", "document_diagnostics" },
                 D = {
@@ -120,6 +121,7 @@ return {
             ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
             h = { ':let @/ = ""<cr>', "Clear Highlight" },
             -- H = { ":split", "Split bottom" },
+            m = { ":FocusSplitCycle<cr>", "Move to next buffer" },
             M = { ":Mason<cr>", "Mason" },
             N = { ":Noice<cr>", "Noice" },
             F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
