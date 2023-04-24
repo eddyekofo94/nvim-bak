@@ -9,7 +9,6 @@ return {
                 bo = {
                     -- if the file type is one of following, the window will be ignored
                     filetype = { "neo-tree", "neo-tree-popup", "notify" },
-
                     -- if the buffer type is one of following, the window will be ignored
                     buftype = { "terminal", "quickfix" },
                 },
@@ -17,7 +16,37 @@ return {
             other_win_hl_color = O.catppuccin_colors.peach,
         })
 
-        require("neo-tree").setup({})
+        require("neo-tree").setup({
+            window = {
+                width = 40,
+                auto_expand_width = true,
+                mappings = {
+                    ["<space>"] = { "toggle_node", nowait = false },
+                    ["<2-LeftMouse>"] = "open",
+                    ["<cr>"] = "open",
+                    ["l"] = "open",
+                    ["s"] = "open_split",
+                    ["v"] = "open_vsplit",
+                    ["t"] = "open_tabnew",
+                    ["C"] = "close_node",
+                    ["h"] = "close_node",
+                    ["z"] = "close_all_nodes",
+                    ["R"] = "refresh",
+                    ["P"] = { "toggle_preview", config = { use_float = true } },
+                    ["a"] = { "add", config = { show_path = "relative" } },
+                    ["A"] = "add_directory",
+                    ["d"] = "delete",
+                    ["r"] = "rename",
+                    ["y"] = "copy_to_clipboard",
+                    ["x"] = "cut_to_clipboard",
+                    ["p"] = "paste_from_clipboard",
+                    ["c"] = "copy",
+                    ["m"] = "move",
+                    ["q"] = "close_window",
+                    ["?"] = "show_help",
+                },
+            },
+        })
     end,
     dependencies = {
         { "s1n7ax/nvim-window-picker", version = "v1.*" },
