@@ -30,6 +30,18 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
     pattern = "*",
 })
 
+vim.api.nvim_create_augroup("AutoReload", { clear = true })
+
+vim.api.nvim_create_autocmd(
+    { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+    {
+        pattern = "*",
+        command = "if mode() != 'c' | checktime | endif",
+        group = "AutoReload",
+    }
+)
+
+
 -- TODO: look into converting this to lua
 -- function! MaxLineChars()
 --     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
