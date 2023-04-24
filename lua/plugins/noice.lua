@@ -16,6 +16,22 @@ return {
                     auto_open = { enabled = false },
                 },
             },
+            routes = {
+                -- prevent notification when writing a file
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "written",
+                    },
+                    opts = { skip = true },
+                },
+                -- notify when starting to record a macro
+                {
+                    view = "notify",
+                    filter = { event = "msg_showmode" },
+                },
+            },
             -- you can enable a preset for easier configuration
             presets = {
                 bottom_search = true,         -- use a classic bottom cmdline for search
