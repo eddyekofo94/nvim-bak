@@ -7,36 +7,22 @@ return {
             { "williamboman/mason.nvim" },           -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
             {
-                "hrsh7th/nvim-cmp",
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
                 config = function()
-                    require("plugins.lsp.completion")
+                    require("mason-tool-installer").setup {
+                        auto_update = true,
+                        debounce_hours = 24,
+                        ensure_installed = {
+                            "black",
+                            "isort",
+                        },
+                    }
                 end,
-            },                              -- Required
-            { "hrsh7th/cmp-nvim-lsp" },     -- Required
-            { "hrsh7th/cmp-buffer" },       -- Optional
-            { "hrsh7th/cmp-path" },         -- Optional
-            { "saadparwaiz1/cmp_luasnip" }, -- Optional
-            { "hrsh7th/cmp-nvim-lua" },     -- Optional
-            { "hrsh7th/cmp-cmdline" },
-            { "onsails/lspkind-nvim" },
-            -- Snippets
-            {
-                "L3MON4D3/LuaSnip",
-                dependencies = {
-                    "rafamadriz/friendly-snippets",
-                    config = function()
-                        require("luasnip.loaders.from_vscode").lazy_load()
-                    end,
-                },
-                opts = {
-                    history = true,
-                    delete_check_events = "TextChanged",
-                },
-            },                                  -- Required
-            { "rafamadriz/friendly-snippets" }, -- Optional
-            { "folke/neoconf.nvim",          cmd = "Neoconf", config = true },
-            "hrsh7th/cmp-nvim-lsp",
+            },
+            { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+            "simrat39/inlay-hints.nvim",
             "simrat39/rust-tools.nvim",
+            "scalameta/nvim-metals", -- Java
             {
                 "j-hui/fidget.nvim",
                 config = function()
@@ -83,7 +69,6 @@ return {
             },
         },
         config = function()
-            local lspconfig = require("lspconfig")
             require("plugins.lsp.mason_lspconfig")
         end,
     },

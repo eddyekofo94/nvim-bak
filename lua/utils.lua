@@ -9,6 +9,11 @@ M.map = function(modes, lhs, rhs, opts)
     end
     vim.keymap.set(modes, lhs, rhs, opts)
 end
+
+M.nmap = function(tbl)
+  vim.keymap.set("n", tbl[1], tbl[2], tbl[3])
+end
+
 function M.is_buffer_empty()
     -- Check whether the current buffer is empty
     return vim.fn.empty(vim.fn.expand("%:t")) == 1

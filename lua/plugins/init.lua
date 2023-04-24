@@ -4,25 +4,6 @@ require("globals")
 vim.cmd("set background=dark")
 return {
     {
-        "folke/twilight.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("twilight").setup({})
-        end,
-    },
-    {
-        "norcalli/nvim-colorizer.lua",
-        event = { "BufReadPre" },
-        config = function()
-            require("colorizer").setup({
-                filetypes = { '*', '!lazy' },
-                user_default_options = {
-                    names = false,
-                },
-            })
-        end,
-    },
-    {
         "glepnir/template.nvim",
         cmd = { 'Template', 'TemProject' },
         config = function()
@@ -44,8 +25,17 @@ return {
         event = "VeryLazy",
     },
     {
-        "airblade/vim-rooter",
+        'notjedi/nvim-rooter.lua',
         lazy = false,
+        config = function()
+            require("neo-tree").setup({
+                update_cwd = true,
+                update_focused_file = {
+                    enable = true,
+                    update_cwd = true,
+                },
+            })
+        end,
     },
     {
         "terrortylor/nvim-comment",
@@ -56,16 +46,11 @@ return {
             })
         end,
     },
-    {
-        -- Window Toggle
-        "szw/vim-maximizer",
-        event = "VeryLazy",
-    },
-    { "tpope/vim-surround",   event = "InsertEnter" },
+    -- { "tpope/vim-surround",   event = "InsertEnter" },
     { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
     {
         "glepnir/lspsaga.nvim",
-        event = "VeryLazy",
+        event = "LspAttach",
         config = function()
             require("lspsaga").setup({})
         end,
@@ -82,15 +67,4 @@ return {
     },
     -- json schema provider
     { "b0o/schemastore.nvim", event = "VeryLazy" },
-    {
-        "Pocco81/true-zen.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("true-zen").setup({
-                integrations = {
-                    feline = true, -- hide nvim-lualine (ataraxis)
-                },
-            })
-        end,
-    },
 }

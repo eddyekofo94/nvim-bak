@@ -44,17 +44,6 @@ return {
                 end,
             },
         })
-        filetype_surround('tex', {
-            c = {
-                -- LaTeX command
-                add = function()
-                    return {
-                        { '\\' .. vim.fn.input({ prompt = 'LaTex command: ' }) .. '{' },
-                        { '}' },
-                    }
-                end,
-            },
-        })
         filetype_surround({ 'rust', 'typescript' }, {
             T = {
                 -- Type
@@ -84,8 +73,8 @@ return {
                 visual_line = 'S',
             },
             aliases = {
-                q = "'",
-                Q = '"',
+                q = "\"",
+                Q = '\'',
                 A = '`',
             },
         })

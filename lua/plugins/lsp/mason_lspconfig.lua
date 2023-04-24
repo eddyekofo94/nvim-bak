@@ -25,6 +25,7 @@ local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>",
         { noremap = true, silent = true })
 end
+
 local custom_init = function(client)
     client.config.flags = client.config.flags or {}
     client.config.flags.allow_incremental_sync = true
@@ -61,9 +62,6 @@ local custom_attach = function(client, bufnr)
     sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    }
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
     -- INFO: Use different ways to auto_format
@@ -123,9 +121,6 @@ local custom_attach = function(client, bufnr)
         )
     end
 
-    -- Setup lspconfig.
-    capabilities = require("cmp_nvim_lsp").default_capabilities()
-
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
@@ -140,6 +135,13 @@ local custom_attach = function(client, bufnr)
             update_in_insert = true,
         })
 
+    vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
+        local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
+        local bufnr = vim.api.nvim_get_current_buf()
+        vim.diagnostic.reset(ns, bufnr)
+        return true
+    end
+
     -- TODO: look into fixing this maybe
     -- if client.server_capabilities.documentSymbolProvider then
     --     navic.attach(client, bufnr)
@@ -151,6 +153,14 @@ local custom_attach = function(client, bufnr)
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
+
+local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- Completion configuration
+vim.tbl_deep_extend("force", updated_capabilities, require("cmp_nvim_lsp").default_capabilities())
+updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+
+updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 
 mason_lspconfig.setup_handlers({
     -- The first entry (without a key) will be the default handler
@@ -170,7 +180,7 @@ mason_lspconfig.setup_handlers({
             cmd = { "rust-analyzer" },
             filetypes = { "rust" },
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
             handlers = {
                 ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
                     signs = true,
@@ -186,10 +196,10 @@ mason_lspconfig.setup_handlers({
         lspconfig.vimls.setup({
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
         })
     end,
-    ["cmake-language-server"] = function()
+    ["cmake"] = function()
         if 1 == vim.fn.executable("cmake-language-server") then
             lspconfig.cmake.setup({
                 on_attach = custom_attach,
@@ -201,7 +211,7 @@ mason_lspconfig.setup_handlers({
         lspconfig.bashls.setup({
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
         })
     end,
     -- BUG: this seems to not be working
@@ -209,14 +219,14 @@ mason_lspconfig.setup_handlers({
         lspconfig.cucumber_language_server.setup({
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
         })
     end,
     ["pylsp"] = function()
         lspconfig.pylsp.setup({
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
             settings = {
                 pylsp = {
                     plugins = {
@@ -246,19 +256,24 @@ mason_lspconfig.setup_handlers({
                 "clangd",
                 "--background-index",
                 "--suggest-missing-includes",
+                "--all-scopes-completion",
+                "--completion-style=detailed",
                 "--clang-tidy",
                 "--header-insertion=iwyu",
             },
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
+            init_options = {
+                clangdFileStatus = true,
+            },
         })
     end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup({
             on_init = custom_init,
             on_attach = custom_attach,
-            capabilities = capabilities,
+            capabilities = updated_capabilities,
             settings = {
                 Lua = {
                     completion = {
@@ -306,3 +321,28 @@ mason_lspconfig.setup_handlers({
         },
     }),
 })
+
+local has_metals = pcall(require, "metals")
+if has_metals then
+    local metals_config = require("metals").bare_config()
+    metals_config.on_attach = custom_attach
+
+    -- Example of settings
+    metals_config.settings = {
+        showImplicitArguments = true,
+        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+    }
+
+    -- Autocmd that will actually be in charging of starting the whole thing
+    local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+        -- NOTE: You may or may not want java included here. You will need it if you
+        -- want basic Java support but it may also conflict if you are using
+        -- something like nvim-jdtls which also works on a java filetype autocmd.
+        pattern = { "scala", "sbt", "java" },
+        callback = function()
+            require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+    })
+end

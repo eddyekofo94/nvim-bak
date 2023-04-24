@@ -56,6 +56,16 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        local lcount = vim.api.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= lcount then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        end
+    end,
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
@@ -83,6 +93,7 @@ utils.define_augroups({
         { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile",  "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "VimLeavePre", "*", "set title set titleold=" },
+        -- { "VimEnter",    "*", '<cmd>require("persistence").load()<cr>' },
         -- {
         -- "FileType,BufWinEnter",
         -- "cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript",

@@ -12,15 +12,15 @@ return {
             "     ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
         }
         vim.g.dashboard_custom_section = {
-            a = {
-                description = { "  Find File          " },
-                command = "Telescope find_files",
-            },
+            a = { description = { "  Load Last Session  " }, command = 'lua require("persistence").load()' },
             b = {
                 description = { "  Recently Used Files" },
                 command = "Telescope oldfiles",
             },
-            -- c = { description = { "  Load Last Session  " }, command = "SessionLoad" },
+            c = {
+                description = { "  Find File          " },
+                command = "Telescope find_files",
+            },
             d = {
                 description = { "  Find Word          " },
                 command = "Telescope live_grep",

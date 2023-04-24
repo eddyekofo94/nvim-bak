@@ -11,6 +11,7 @@ return {
             force_inactive = {
                 filetypes = {
                     "packer",
+                    "dashboard",
                     "neo-tree",
                     "dap-repl",
                     "dapui_scopes",

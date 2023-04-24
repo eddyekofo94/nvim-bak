@@ -1,7 +1,8 @@
 local utils = require("utils")
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    return col ~= 0 and
+        vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 return {
@@ -10,15 +11,15 @@ return {
         branch = "v2.x",
         dependencies = {
             -- LSP Support
-            { "neovim/nvim-lspconfig" }, -- Required
-            { "williamboman/mason.nvim" }, -- Optional
+            { "neovim/nvim-lspconfig" },             -- Required
+            { "williamboman/mason.nvim" },           -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
-            { "hrsh7th/nvim-cmp" }, -- Required
-            { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "hrsh7th/cmp-buffer" }, -- Optional
-            { "hrsh7th/cmp-path" }, -- Optional
-            { "saadparwaiz1/cmp_luasnip" }, -- Optional
-            { "hrsh7th/cmp-nvim-lua" }, -- Optional
+            { "hrsh7th/nvim-cmp" },                  -- Required
+            { "hrsh7th/cmp-nvim-lsp" },              -- Required
+            { "hrsh7th/cmp-buffer" },                -- Optional
+            { "hrsh7th/cmp-path" },                  -- Optional
+            { "saadparwaiz1/cmp_luasnip" },          -- Optional
+            { "hrsh7th/cmp-nvim-lua" },              -- Optional
             { "hrsh7th/cmp-cmdline" },
             { "onsails/lspkind-nvim" },
             -- TODO: maybe look into this
@@ -40,7 +41,6 @@ return {
             { "rafamadriz/friendly-snippets" }, -- Optional
             "hrsh7th/cmp-nvim-lsp-signature-help",
         },
-
         config = function()
             vim.o.completeopt = "menu,menuone,noselect"
             local cmp = require("cmp")
@@ -57,7 +57,7 @@ return {
 
             local cmp_setup = {
                 sources = {
-                    { name = "luasnip", keyword_length = 2 },
+                    { name = "luasnip",                keyword_length = 2 },
                     { name = "nvim_lsp_signature_help" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lua" },
@@ -75,7 +75,7 @@ return {
                 },
                 window = {
                     completion = {
-                        col_offset = -2, -- To fit lspkind icon
+                        col_offset = -2,  -- To fit lspkind icon
                         side_padding = 1, -- One character margin
                     },
                 },
@@ -86,6 +86,7 @@ return {
                     },
                     format = require("lspkind").cmp_format({
                         with_text = false,
+                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         menu = {
                             luasnip = "[LuaSnip]",
                             nvim_lua = "[nvim]",

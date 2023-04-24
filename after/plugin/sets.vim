@@ -25,7 +25,7 @@ set tabstop=4          " Insert 4 spaces for a tab
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set cindent        " C based indenting :h cindent to read more"
+" set cindent        " C based indenting :h cindent to read more"
 set inccommand=split                  " previow %s commands in a split window as I typeet expandtab
 set autoread    " When a file has been detected to have been changed load it
 set smartindent
@@ -148,11 +148,11 @@ augroup END
 highlight HighlightedyankRegion cterm=reverse gui=reverse
 
 " Display cursorline and cursorcolumn ONLY in active window.
-augroup cursor_off
-    autocmd!
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
-augroup END
+" augroup cursor_off
+"     autocmd!
+"     autocmd WinLeave * set nocursorline nocursorcolumn
+"     autocmd WinEnter * set cursorline cursorcolumn
+" augroup END
 
 " Resize split windows using arrow keys by pressing:
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
