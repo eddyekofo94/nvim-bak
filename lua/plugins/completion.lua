@@ -25,8 +25,8 @@ return {
                 history = true,
                 delete_check_events = "TextChanged",
             },
-        },                                  -- Required
-        { "rafamadriz/friendly-snippets" }, -- Optional
+        },
+        { "rafamadriz/friendly-snippets" },
     },
     config = function()
         -- for completion
@@ -46,6 +46,21 @@ return {
         local lspkind = require("lspkind")
         local visible_buffers = require("utils").visible_buffers
         local compare = require('cmp.config.compare')
+        local types = require("cmp.types")
+
+
+        ---@type table<integer, integer>
+        local modified_priority = {
+            [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
+            [types.lsp.CompletionItemKind.Snippet] = 0, -- top
+            [types.lsp.CompletionItemKind.Keyword] = 0, -- top
+            [types.lsp.CompletionItemKind.Text] = 100,  -- bottom
+        }
+
+        ---@param kind integer: kind of completion entry
+        local function modified_kind(kind)
+            return modified_priority[kind] or kind
+        end
 
 
         lspkind.init({
@@ -56,7 +71,6 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    -- For `luasnip` user.
                     require("luasnip").lsp_expand(args.body)
                 end,
             },
@@ -152,12 +166,35 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
-                    compare.score,
+                    compare.offset,
                     compare.exact,
                     compare.recently_used,
-                    compare.length,
+                    function(entry1, entry2) -- sort by length ignoring "=~"
+                        local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
+                            ""))
+                        local len2 = string.len(string.gsub(entry2.completion_item.label, "[=~()]",
+                            ""))
+                        if len1 ~= len2 then
+                            return len1 - len2 < 0
+                        end
+                    end,
+                    function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+                        local kind1 = modified_kind(entry1:get_kind())
+                        local kind2 = modified_kind(entry2:get_kind())
+                        if kind1 ~= kind2 then
+                            return kind1 - kind2 < 0
+                        end
+                    end,
+                    function(entry1, entry2) -- score by lsp, if available
+                        local t1 = entry1.completion_item.sortText
+                        local t2 = entry2.completion_item.sortText
+                        if t1 ~= nil and t2 ~= nil and t1 ~= t2 then
+                            return t1 < t2
+                        end
+                    end,
+
                     compare.scopes,
-                    compare.locality,
+                    compare.order,
                 },
             },
             experimental = {
