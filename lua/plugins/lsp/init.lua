@@ -19,8 +19,19 @@ return {
                     }
                 end,
             },
-            { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-            "simrat39/inlay-hints.nvim",
+            { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
+            {
+                "simrat39/inlay-hints.nvim",
+                config = function()
+                    -- code
+                    require("inlay-hints").setup({
+                        only_current_line = true,
+                        eol = {
+                            right_align = true,
+                        },
+                    })
+                end,
+            },
             "simrat39/rust-tools.nvim",
             "scalameta/nvim-metals", -- Java
             {
@@ -69,7 +80,11 @@ return {
             },
         },
         config = function()
-            require("plugins.lsp.mason_lspconfig")
+            -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+            require("neodev").setup({
+                -- add any options here, or leave empty to use the default settings
+            })
+            require("plugins.lsp.nvim-lspconfig")
         end,
     },
 }

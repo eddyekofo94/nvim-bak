@@ -68,7 +68,7 @@ return {
                 name = "search", -- optional group name
                 ["."] = { ":Telescope filetypes<cr>", "filetypes" },
                 b = { ":Telescope buffers<cr>", "buffers" },
-                c = { ":Telescope current_buffer_fuzzy_find<cr>" , "search current buffer"},
+                c = { ":Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
                 B = { ":Telescope git_branches<cr>", "git branches" },
                 d = { ":Telescope lsp_document_diagnostics<cr>", "document_diagnostics" },
                 D = {
@@ -87,11 +87,11 @@ return {
                     "projects",
                 },
                 R = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-                s = { Util.telescope("live_grep"), "string" },
+                s = { Util.telescope("live_grep"), "String" },
+                S = { ":Telescope persisted<cr>", "Sessions" },
                 T = { ":TodoTelescope<cr>", "TODO" },
                 r = { ":Telescope registers<cr>", "registers" },
                 w = { ":Telescope file_browser<cr>", "file browser" },
-                -- t = { ":Template ", "Create template" },
                 u = { ":Telescope colorscheme<cr>", "colorschemes" },
                 z = { ":Telescope zoxide list<cr>", "zoxide" },
             },

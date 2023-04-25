@@ -153,8 +153,7 @@ return {
             },
             window = {
                 completion = {
-                    -- BUG: seems to break the highlight when selecting an item from the menu
-                    -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                    -- winhighlight = "CmpItemMenu:CmpItemKind",
                     col_offset = -3,
                     side_padding = 0,
                 },
@@ -166,9 +165,11 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
-                    compare.offset,
+                    compare.score,
+                    compare.length,
                     compare.exact,
                     compare.recently_used,
+                    compare.offset,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -192,7 +193,6 @@ return {
                             return t1 < t2
                         end
                     end,
-
                     compare.scopes,
                     compare.order,
                 },

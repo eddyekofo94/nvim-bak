@@ -12,7 +12,8 @@ return {
             "     ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
         }
         vim.g.dashboard_custom_section = {
-            a = { description = { "  Load Last Session  " }, command = 'lua require("persistence").load()' },
+            -- a = { description = { "  Load Last Session  " }, command = 'lua require("persistence").load()' },
+            a = { description = { "  Load Last Session  " }, command = 'SessionLoad' },
             b = {
                 description = { "  Recently Used Files" },
                 command = "Telescope oldfiles",

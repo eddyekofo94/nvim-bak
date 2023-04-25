@@ -88,15 +88,18 @@ return {
                     },
                     scroll_strategy = "cycle",
                     dynamic_preview_title = true,
-                    file_sorter = require("telescope.sorters").get_fzy_sorter, -- TODO: find a better file sorter (if possible)
+                    file_sorter = require("telescope.sorters").get_fzy_sorter,                -- TODO: find a better file sorter (if possible)
                     generic_sorter = require("telescope.sorters").fuzzy_with_index_bias,
-                    winblend = 0, -- transparency
+                    winblend = 0,                                                             -- transparency
                     use_less = true,
                     set_env = { ["COLORTERM"] = "truecolor" },                                -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
                     file_previewer = require("telescope.previewers").vim_buffer_cat.new,      -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
                     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,  -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
                     extensions = {
+                        -- persisted = {
+                        --     layout_config = { width = 0.55, height = 0.55 },
+                        -- },
                         fzf = {
                             fuzzy = true,                   -- let me make typos in file names please
                             override_generic_sorter = true, -- override the generic sorter

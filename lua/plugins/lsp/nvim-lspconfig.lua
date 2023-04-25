@@ -61,7 +61,6 @@ local custom_attach = function(client, bufnr)
     sign({ name = "DiagnosticSignHint", text = signs_defined.hint })
     sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
 
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
     -- INFO: Use different ways to auto_format
@@ -158,6 +157,7 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Completion configuration
 vim.tbl_deep_extend("force", updated_capabilities, require("cmp_nvim_lsp").default_capabilities())
+updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
 updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
@@ -259,6 +259,8 @@ mason_lspconfig.setup_handlers({
                 "--all-scopes-completion",
                 "--completion-style=detailed",
                 "--clang-tidy",
+                "--cross-file-rename",
+                "--fallback-style=Google",
                 "--header-insertion=iwyu",
             },
             on_init = custom_init,
