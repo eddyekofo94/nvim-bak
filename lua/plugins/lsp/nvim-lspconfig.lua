@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
-local utils = require("utils")
 local wk = require("which-key")
 
 mason_lspconfig.setup({
