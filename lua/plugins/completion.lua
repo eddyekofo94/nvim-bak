@@ -99,13 +99,13 @@ return {
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
-                    select = true,
+                    select = false,
                 }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
                     elseif luasnip.expand_or_jumpable() then
                         luasnip.expand_or_jump()
                     elseif has_words_before() then
@@ -119,7 +119,7 @@ return {
                 }),
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
                     elseif luasnip.jumpable(-1) then
                         luasnip.jump(-1)
                     else
