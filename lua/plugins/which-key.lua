@@ -117,6 +117,7 @@ return {
             ["-"] = { ":FocusSplitDown<CR>", "split horizontally" },
             -- ["="] = { "<C-w>=", "balance windows" },
             ["="] = { ":FocusEqualise<cr>", "balance windows" },
+            ["|"] = { ":FocusSplitNicely<cr>", "Split Right" },
             ["?"] = { ":NvimTreeFindFile<cr>", "find current file" },
             ["~"] = { ":NvimTreeRefresh<cr>", "refresh tree" },
             h = { ':let @/ = ""<cr>', "Clear Highlight" },
@@ -144,7 +145,7 @@ return {
             },
             -- p = { ":Telescope find_files<cr>", "Find File" },
             P = {
-                "<cmd>:lua require'telescope'.extensions.project.project{}<cr>",
+                "<cmd>lua require'telescope'.extensions.project.project{}<cr>",
                 "Find Project",
             },
             r = { "<cmd>Telescope resume<cr>", "Resume search" },
@@ -155,7 +156,27 @@ return {
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
             -- v = { "<C-W>v", "Split Right" },
-            v = { ":FocusSplitNicely<cr>", "Split Right" },
+            v = {
+                name = "Split",
+                d = {
+                    ":FocusSplitDown<cr>", "Split Right",
+                },
+                e = {
+                    ":FocusEnable<cr>", "Focus Enable",
+                },
+                l = {
+                    ":FocusSplitLeft<cr>", "Split Left",
+                },
+                r = {
+                    ":FocusSplitRight<cr>", "Split Right",
+                },
+                u = {
+                    ":FocusSplitUp<cr>", "Split Right",
+                },
+                v = {
+                    ":FocusSplitNicely<cr>", "Split Nicely",
+                },
+            },
             w = { ":FocusMaxOrEqual<cr>", "Max Window" },
             W = { "<C-W>q", "Close Window" },
             x = {
