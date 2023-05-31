@@ -2,9 +2,10 @@ vim.cmd("set termguicolors")
 local utils = require("utils")
 local fn = vim.fn
 
-local get_size = function()
-    return fn.getfsize(fn.expand("%")) > 512 * 1024
-end
+-- NOTE: this is to get a big file size
+-- local get_size = function()
+--     return fn.getfsize(fn.expand("%")) > 512 * 1024
+-- end
 
 -- TODO: work on detecting large files
 -- vim.api.nvim_create_autocmd({"BufWritePre", "FileReadPre"}, )
@@ -67,6 +68,13 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
         vim.cmd("tabdo wincmd =")
     end,
 })
+
+ -- Jump to last edit position on opening file
+
+-- if has("autocmd")
+--   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+--   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+-- endif
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
