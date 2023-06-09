@@ -33,6 +33,9 @@ set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<c-p>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "<c-n>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
+set("n", "<TAB>",   "<cmd>bprev<cr>", { desc = "Prev buffer" })
+set("n", "<S-TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
 set("v", "/", '"fy/\\V<C-R>f<CR>')
 set("v", "*", '"fy/\\V<C-R>f<CR>')
 
@@ -84,7 +87,6 @@ mapper("v", ">", ">gv")
 
 -- CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 mapper("i", "<C-c>", "<esc>")
--- mapper("t", "<C-c>", "<esc>")
 
 mapper("n", "<M-CR>", ":let v:hlsearch=!v:hlsearch<CR>")
 

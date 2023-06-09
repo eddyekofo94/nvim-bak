@@ -13,9 +13,9 @@ return {
         local leader_mappings = {
             b = {
                 name = "+buffer",
-                d = { ":BufferDelete<cr>", "Buffer delete" },
-                e = { ":BufferLineSortByExtension<cr>", "sort by lang" },
-                p = { ":BufferLinePick<cr>", "Pick Buffer" },
+                -- d = { ":BufferDelete<cr>", "Buffer delete" },
+                -- e = { ":BufferLineSortByExtension<cr>", "sort by lang" },
+                -- p = { ":BufferLinePick<cr>", "Pick Buffer" },
                 x = { ":%bd|e#|bd#<cr>", "close all but current" },
             },
             c = {
@@ -43,13 +43,14 @@ return {
                 name = "+lsp",
                 a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
                 A = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "selected action" },
-                d = { ":Telescope diagnostics<cr>", "document diagnostics" },
-                D = {
-                    ":Telescope lsp_workspace_diagnostics<cr>",
-                    "workspace diagnostics",
+                d = {
+                    ":Glance definitions<cr>",
+                    "definitions",
                 },
+                D = { ":Glance type_definitions<cr>", "type definitions" },
                 f = { "<cmd>lua vim.lsp.buf.format()<CR>", "format" },
                 h = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature help" },
+                i = { ":Glance implementations<cr>", "implementations" },
                 I = { ":LspInfo<cr>", "lsp info" },
                 v = { ":LspVirtualTextToggle<cr>", "lsp toggle virtual text" },
                 --l = { ":Lspsaga lsp_finder<cr>", "lsp finder" },
@@ -58,14 +59,14 @@ return {
                 p = { "<cmd>lua vim.diagnostic.open_float()<cr>", "preview definition" },
                 q = { ":Telescope quickfix<cr>", "quickfix" },
                 r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
+                R = { ":Glance references<cr>", "References" },
                 t = { ":TroubleToggle<cr>", "trouble" },
-                T = { ":LspTypeDefinition<cr>", "type defintion" }, -- TODO: fix this in the future
-                x = { ":cclose<cr>", "close quickfix" },
+                T = { ":LspTypeDefinition<cr>", "type definition" }, -- TODO: fix this in the future
                 s = { ":Telescope lsp_document_symbols<cr>", "document symbols" },
                 S = { ":Telescope lsp_workspace_symbols<cr>", "workspace symbols" },
             },
             s = {
-                name = "search", -- optional group name
+                name = "search", -- normally using Telescope
                 ["."] = { ":Telescope filetypes<cr>", "filetypes" },
                 b = { ":Telescope buffers<cr>", "buffers" },
                 c = { ":Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
@@ -156,6 +157,7 @@ return {
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
             -- v = { "<C-W>v", "Split Right" },
+            Q = { ":cclose<cr>", "close quickfix" },
             v = {
                 name = "Split",
                 d = {

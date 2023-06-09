@@ -12,6 +12,7 @@ local fn = vim.fn
 
 local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
 
+-- Check the size of a file
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
     callback = function()
         local ok, stats = pcall(vim.loop.fs_stat,
@@ -33,14 +34,14 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
 
 vim.api.nvim_create_augroup("AutoReload", { clear = true })
 
-vim.api.nvim_create_autocmd(
-    { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
-    {
-        pattern = "*",
-        command = "if mode() != 'c' | checktime | endif",
-        group = "AutoReload",
-    }
-)
+-- vim.api.nvim_create_autocmd(
+--     { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+--     {
+--         pattern = "*",
+--         command = "if mode() != 'c' | checktime | endif",
+--         group = "AutoReload",
+--     }
+-- )
 
 
 -- TODO: look into converting this to lua
@@ -76,6 +77,8 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 --   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 -- endif
 
+-- NOTE: should restore cursor position on the last one
+-- BUG: seems not always work. don't know the mains reason for this.
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
