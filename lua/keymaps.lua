@@ -33,8 +33,8 @@ set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<c-p>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "<c-n>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
-set("n", "<TAB>",   "<cmd>bprev<cr>", { desc = "Prev buffer" })
-set("n", "<S-TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+set("n", "<TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+set("n", "<S-TAB>",   "<cmd>bprev<cr>", { desc = "Prev buffer" })
 
 set("v", "/", '"fy/\\V<C-R>f<CR>')
 set("v", "*", '"fy/\\V<C-R>f<CR>')
