@@ -33,13 +33,13 @@ return {
         'notjedi/nvim-rooter.lua',
         lazy = false,
         config = function()
-            require("neo-tree").setup({
-                update_cwd = true,
-                update_focused_file = {
-                    enable = true,
-                    update_cwd = true,
-                },
-            })
+            -- require("neo-tree").setup({
+            --     update_cwd = true,
+            --     update_focused_file = {
+            --         enable = true,
+            --         update_cwd = true,
+            --     },
+            -- })
         end,
     },
     {
@@ -52,7 +52,17 @@ return {
         end,
     },
     -- { "tpope/vim-surround",   event = "InsertEnter" },
-    { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
+    {
+        "j-hui/fidget.nvim",
+        version = "legacy",
+        config = function()
+            require("fidget").setup({
+                window = {
+                    blend = 0,
+                },
+            })
+        end,
+    },
     {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",

@@ -128,7 +128,7 @@ return {
             N = { ":Noice<cr>", "Noice" },
             F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
             G = { "<cmd>LazyGit<cr>", "Lazygit" },
-            e = { "Explorer" },
+            -- e = { "Explorer" },
             L = { ":Lazy<cr>", "Lazy" },
             o = {
                 name = "Add line below",

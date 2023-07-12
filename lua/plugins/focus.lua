@@ -6,7 +6,7 @@ return
         enable = true,
         signcolumn = false,
         excluded_filetypes = { "toggleterm" },
-        compatible_filetrees = { "neo-tree" },
+        -- compatible_filetrees = { "neo-tree" },
     },
     config = function(_, opts)
         require("focus").setup(opts)
