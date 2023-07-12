@@ -13,11 +13,11 @@ return {
         require("nvim-treesitter.configs").setup({
             --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
             ensure_installed = {
-                "html",
                 "javascript",
                 "markdown",
                 "yaml",
                 "vim",
+                "go",
                 "regex",
                 "vimdoc",
                 "json",
