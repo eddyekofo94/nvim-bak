@@ -2,6 +2,9 @@ return {
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
+        opts = {
+            inlay_hints = { enabled = true },
+        },
         dependencies = {
             { "neovim/nvim-lspconfig" },             -- Required
             { "williamboman/mason.nvim" },           -- Optional
@@ -35,16 +38,6 @@ return {
             },
             "simrat39/rust-tools.nvim",
             "scalameta/nvim-metals", -- Java
-            {
-                "j-hui/fidget.nvim",
-                config = function()
-                    require("fidget").setup({
-                        window = {
-                            blend = 0,
-                        },
-                    })
-                end,
-            },
             {
                 "williamboman/mason.nvim",
                 config = function()

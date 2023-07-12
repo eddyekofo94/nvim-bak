@@ -29,7 +29,15 @@ local custom_init = function(client)
     client.config.flags = client.config.flags or {}
     client.config.flags.allow_incremental_sync = true
 end
-local signs_defined = O.signs
+local signs_defined = {
+        error = "",
+        warn = "",
+        hint = "⚑",
+        info = "",
+        code_action_icon = " ",
+        rename_prompt_prefix = ">",
+        priority = 9999,
+    }
 
 local sign = function(opts)
     vim.fn.sign_define(opts.name, {
