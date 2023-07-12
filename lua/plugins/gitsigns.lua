@@ -4,8 +4,31 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         require("gitsigns").setup({
+            on_attach = function(bufnr)
+                local gs = package.loaded.gitsigns
+
+                local function map(mode, l, r, opts)
+                    opts = opts or {}
+                    opts.buffer = bufnr
+                    vim.keymap.set(mode, l, r, opts)
+                end
+
+                -- Navigation
+                map('n', ']c', function()
+                    if vim.wo.diff then return ']c' end
+                    vim.schedule(function() gs.next_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true })
+
+                map('n', '[c', function()
+                    if vim.wo.diff then return '[c' end
+                    vim.schedule(function() gs.prev_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true })
+            end,
             signs = {
-                add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+                add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr",
+                    linehl = "GitSignsAddLn" },
                 change = {
                     hl = "GitSignsChange",
                     text = "▎",
@@ -41,19 +64,6 @@ return {
                 virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
                 delay = 1000,
                 ignore_whitespace = false,
-            },
-            keymaps = {
-                -- Default keymap options
-                noremap = true,
-                buffer = true,
-                ["n ]c"] = {
-                    expr = true,
-                    "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
-                },
-                ["n [c"] = {
-                    expr = true,
-                    "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
-                },
             },
             watch_gitdir = {
                 interval = 1000,
