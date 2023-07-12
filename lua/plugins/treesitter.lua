@@ -1,33 +1,7 @@
-local ensure_installed = {
-    "html",
-    "javascript",
-    "markdown",
-    "yaml",
-    "vim",
-    "regex",
-    "help",
-    "json",
-    "bash",
-    "fish",
-    "lua",
-    "cpp",
-    "python",
-    "cpp",
-    "java",
-}
-
 return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     build = ":TSUpdate",
-    opts = function(_, opts)
-        opts.ignore_install = { 'help' }
-
-        if type(opts.ensure_installed) == 'table' then
-            vim.list_extend(opts.ensure_installed, ensure_installed
-            )
-        end
-    end,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -38,6 +12,23 @@ return {
         -- code
         require("nvim-treesitter.configs").setup({
             --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+            ensure_installed = {
+                "html",
+                "javascript",
+                "markdown",
+                "yaml",
+                "vim",
+                "regex",
+                "vimdoc",
+                "json",
+                "bash",
+                "fish",
+                "lua",
+                "cpp",
+                "python",
+                "cpp",
+                "java",
+            },
             ignore_install = { "haskell" },
             sync_install = false,
             highlight = {
