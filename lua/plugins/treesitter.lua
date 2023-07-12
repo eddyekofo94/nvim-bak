@@ -5,7 +5,6 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "p00f/nvim-ts-rainbow",
         "windwp/nvim-ts-autotag",
     },
     config = function()
@@ -25,6 +24,7 @@ return {
                 "fish",
                 "lua",
                 "cpp",
+                "dockerfile",
                 "python",
                 "cpp",
                 "java",
@@ -43,12 +43,6 @@ return {
             },
             incremental_selection = {
                 enable = true,
-            },
-            rainbow = {
-                enable = true,
-                disable = { "html" },
-                extended_mode = false,
-                max_file_lines = nil,
             },
             autotag = {
                 enable = true,
