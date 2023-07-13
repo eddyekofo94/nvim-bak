@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     end,
 })
 
- -- Jump to last edit position on opening file
+-- Jump to last edit position on opening file
 
 -- if has("autocmd")
 --   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
@@ -110,8 +110,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 utils.define_augroups({
     _general_settings = {
-        { "TextYankPost", "*",
-            "lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 500})", },
+        -- BUG: this is not working
+--        { "TextYankPost", "*",
+ --           "lua vim.highlight.on_yank{higroup = 'Search', timeout = 500}", },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile",  "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
