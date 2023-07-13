@@ -56,10 +56,6 @@ mapper("n", "}", "}zzzv")
 mapper("n", "<C-d>", "<C-d>zzzv")
 mapper("n", "<C-u>", "<C-u>zzzv")
 
--- explorer
--- mapper("n", "<Leader>e", ":Neotree source=filesystem reveal=true position=right toggle=true<CR>")
--- mapper("n", "<Leader>e", ":NvimTreeToggle<CR>")
-
 -- better window movement
 mapper("n", "<C-h>", "<C-w>h")
 mapper("n", "<C-j>", "<C-w>j")
