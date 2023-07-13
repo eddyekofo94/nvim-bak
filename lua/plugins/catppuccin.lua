@@ -62,24 +62,17 @@ return {
                 },
                 integrations = {
                     gitsigns = true,
-                    neotree = true,
                     notify = true,
-                    ts_rainbow2 = true,
                     which_key = true,
                     treesitter = true,
-                    fidget = true,
+                    -- fidget = true,
                     cmp = true,
-                    ts_rainbow = true,
                     treesitter_context = true,
                     mason = true,
                     harpoon = true,
                     navic = {
                         enabled = true,
                         custom_bg = "NONE",
-                    },
-                    nvimtree = {
-                        enabled = true,
-                        show_root = false,
                     },
                     dap = {
                         enabled = true,

@@ -1,5 +1,6 @@
 require("keymaps")
 require("globals")
+-- require("statusline")
 
 vim.cmd("set background=dark")
 return {
@@ -79,6 +80,12 @@ return {
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" },
+    },
+    {
+        "norcalli/nvim-terminal.lua",
+        config = function()
+            require("terminal").setup()
+        end,
     },
     -- json schema provider
     { "b0o/schemastore.nvim", event = "VeryLazy" },

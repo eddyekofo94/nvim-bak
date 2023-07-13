@@ -6,15 +6,9 @@ return {
             require("colorizer").setup({
                 filetypes = { '*', '!lazy' },
                 user_default_options = {
-                    names = false,
+                    -- names = false,
                 },
             })
-        end,
-    },
-    {
-        "norcalli/nvim-terminal.lua",
-        config = function()
-            require("terminal").setup()
         end,
     },
 }

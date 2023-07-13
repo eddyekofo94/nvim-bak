@@ -13,9 +13,6 @@ return {
         local leader_mappings = {
             b = {
                 name = "+buffer",
-                -- d = { ":BufferDelete<cr>", "Buffer delete" },
-                -- e = { ":BufferLineSortByExtension<cr>", "sort by lang" },
-                -- p = { ":BufferLinePick<cr>", "Pick Buffer" },
                 x = { ":%bd|e#|bd#<cr>", "close all but current" },
             },
             c = {
