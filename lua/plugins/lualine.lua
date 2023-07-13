@@ -54,7 +54,7 @@ return {
           { "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
         },
         lualine_x = { "encoding" },
-        lualine_y = {},
+        lualine_y = { "location"},
         lualine_z = {
           -- function()
           --   return " " .. os.date("%R")
