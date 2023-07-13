@@ -111,6 +111,11 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode INFO: I don't get this fully
 autocmd InsertLeave * set nopaste
 
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=500 }
+augroup END
+
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
@@ -189,3 +194,4 @@ noremap <right> <c-w><
 "     autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
 "
 " augroup END
+
