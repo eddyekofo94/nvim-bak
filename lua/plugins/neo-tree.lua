@@ -1,56 +1,101 @@
-return {
-    -- "nvim-neo-tree/neo-tree.nvim",
-    -- config = function()
-    --     require("window-picker").setup({
-    --         autoselect_one = true,
-    --         include_current = false,
-    --         filter_rules = {
-    --             -- filter using buffer options
-    --             bo = {
-    --                 -- if the file type is one of following, the window will be ignored
-    --                 filetype = { "neo-tree", "neo-tree-popup", "notify" },
-    --                 -- if the buffer type is one of following, the window will be ignored
-    --                 buftype = { "terminal", "quickfix" },
-    --             },
-    --         },
-    --         -- other_win_hl_color = O.catppuccin_colors.peach,
-    --     })
+-- TODO
 
-    --     require("neo-tree").setup({
-    --         window = {
-    --             width = 40,
-    --             auto_expand_width = true,
-    --             mappings = {
-    --                 ["<space>"] = { "toggle_node", nowait = false },
-    --                 ["<2-LeftMouse>"] = "open",
-    --                 ["<cr>"] = "open",
-    --                 ["l"] = "open",
-    --                 ["s"] = "open_split",
-    --                 ["v"] = "open_vsplit",
-    --                 ["t"] = "open_tabnew",
-    --                 ["C"] = "close_node",
-    --                 ["h"] = "close_node",
-    --                 ["z"] = "close_all_nodes",
-    --                 ["R"] = "refresh",
-    --                 ["P"] = { "toggle_preview", config = { use_float = true } },
-    --                 ["a"] = { "add", config = { show_path = "relative" } },
-    --                 ["A"] = "add_directory",
-    --                 ["d"] = "delete",
-    --                 ["r"] = "rename",
-    --                 ["y"] = "copy_to_clipboard",
-    --                 ["x"] = "cut_to_clipboard",
-    --                 ["p"] = "paste_from_clipboard",
-    --                 ["c"] = "copy",
-    --                 ["m"] = "move",
-    --                 ["q"] = "close_window",
-    --                 ["?"] = "show_help",
-    --             },
-    --         },
-    --     })
-    -- end,
-    -- dependencies = {
-    --     { "s1n7ax/nvim-window-picker", version = "v1.*" },
-    --     "nvim-lua/plenary.nvim",
-    --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-    -- },
+-- references:
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+-- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons",
+    "MunifTanjim/nui.nvim",
+  },
+  event = "VeryLazy",
+  keys = {
+    { "<leader>e", ":Neotree source=filesystem reveal=true position=right toggle=true<CR>", silent = true, desc = "File Explorer" },
+  },
+  config = function()
+    require("neo-tree").setup({
+      close_if_last_window = true,
+      popup_border_style = "single",
+      enable_git_status = true,
+      enable_modified_markers = true,
+      enable_diagnostics = false,
+      sort_case_insensitive = true,
+      default_component_configs = {
+        indent = {
+          with_markers = false,
+          with_expanders = true,
+        },
+        modified = {
+          symbol = " ",
+          highlight = "NeoTreeModified",
+        },
+        icon = {
+          folder_closed = "",
+          folder_open = "",
+          folder_empty = "",
+          folder_empty_open = "",
+        },
+        git_status = {
+          symbols = {
+            -- Change type
+            added = "",
+            deleted = "",
+            modified = "",
+            renamed = "",
+            -- Status type
+            untracked = "",
+            ignored = "",
+            unstaged = "",
+            staged = "",
+            conflict = "",
+          },
+        },
+      },
+      window = {
+        position = "left",
+        width = 35,
+      },
+      filesystem = {
+        use_libuv_file_watcher = true,
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            "node_modules",
+          },
+          never_show = {
+            ".DS_Store",
+            "thumbs.db",
+          },
+        },
+      },
+      event_handlers = {
+        -- {
+        --     event = "file_opened",
+        --     handler = function()
+        --         --auto close
+        --         require("neo-tree").close_all()
+        --     end,
+        -- },
+        {
+          event = "neo_tree_window_after_open",
+          handler = function(args)
+            if args.position == "left" or args.position == "right" then
+              vim.cmd("wincmd =")
+            end
+          end,
+        },
+        {
+          event = "neo_tree_window_after_close",
+          handler = function(args)
+            if args.position == "left" or args.position == "right" then
+              vim.cmd("wincmd =")
+            end
+          end,
+        },
+      },
+    })
+  end,
 }
