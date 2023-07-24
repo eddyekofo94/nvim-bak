@@ -88,5 +88,6 @@ return {
         end,
     },
     -- json schema provider
-    { "b0o/schemastore.nvim", event = "VeryLazy" },
+    { "b0o/schemastore.nvim",       event = "VeryLazy" },
+    { "MTDL9/vim-log-highlighting", event = "VeryLazy" },
 }
