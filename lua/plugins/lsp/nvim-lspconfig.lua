@@ -278,6 +278,13 @@ mason_lspconfig.setup_handlers({
             },
         })
     end,
+    ["gopls"] = function()
+        lspconfig.gopls.setup {
+            on_init = custom_init,
+            on_attach = custom_attach,
+            capabilities = updated_capabilities,
+        }
+    end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup({
             on_init = custom_init,
@@ -355,3 +362,11 @@ if has_metals then
         group = nvim_metals_group,
     })
 end
+
+-- golang config
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
