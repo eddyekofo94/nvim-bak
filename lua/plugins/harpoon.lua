@@ -12,7 +12,8 @@ return {
 
             wk.register({
                 a = { require("harpoon.mark").add_file, "Harpoon add file" },
-                H = { require("harpoon.ui").toggle_quick_menu, "Harpoon menu" },
+                H = { ":Telescope harpoon marks<cr>", "Harpoon menu" },
+                -- H = { require("harpoon.ui").toggle_quick_menu, "Harpoon menu" },
             }, { prefix = "<leader>" })
 
             nmap { "<c-p>", require("harpoon.ui").nav_prev }
