@@ -30,8 +30,6 @@ set("x", "v", "$h")
 -- buffers
 set("n", "[b", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-set("n", "<c-p>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
-set("n", "<c-n>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 set("n", "<TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<S-TAB>",   "<cmd>bprev<cr>", { desc = "Prev buffer" })
