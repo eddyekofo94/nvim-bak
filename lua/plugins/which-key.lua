@@ -75,7 +75,7 @@ return {
                 },
                 f = { ":Telescope find_files<cr>", "files" },
                 F = { ":Telescope frecency<cr>", "frecency" },
-                h = { ":Telescope command_history<cr>", "history" },
+                h = { ":Telescope harpoon marks<cr>", "Harpoon menu" },
                 n = { ":NoiceTelescope<cr>", "noice" },
                 m = { ":Telescope marks<cr>", "marks" },
                 M = { ":Telescope man_pages<cr>", "man_pages" },
