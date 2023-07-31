@@ -1,4 +1,4 @@
-" Sets: - general configssets
+" Sets: - general configs sets
 " TODO: slowly move to lua if possible
 
 set nocompatible
