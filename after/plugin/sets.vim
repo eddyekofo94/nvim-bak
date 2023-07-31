@@ -111,9 +111,12 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Leave paste mode when leaving insert mode INFO: I don't get this fully
 autocmd InsertLeave * set nopaste
 
+highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse
+highlight IncSearch cterm=reverse gui=reverse guifg=reverse guibg=reverse 
+
 augroup highlight_yank
     autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=500 }
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
 augroup END
 
 function! MaxLineChars()
@@ -149,7 +152,6 @@ augroup Terminal
     autocmd FileType term set nonumber
 augroup END
 
-highlight HighlightedyankRegion cterm=reverse gui=reverse
 
 " Display cursorline and cursorcolumn ONLY in active window.
 " augroup cursor_off
