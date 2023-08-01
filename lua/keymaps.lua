@@ -43,8 +43,6 @@ set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 mapper("c", "<c-j>", "<down>")
 mapper("c", "<c-k>", "<up>")
 
-mapper("n", "gd", "<cmd>Lspsaga lsp_finder<CR>")
-mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
 -- Search always center
 mapper("n", "n", "nzzzv")

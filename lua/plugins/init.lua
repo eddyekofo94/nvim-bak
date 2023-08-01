@@ -65,14 +65,6 @@ return {
         end,
     },
     {
-        "glepnir/lspsaga.nvim",
-        event = "LspAttach",
-        config = function()
-            require("lspsaga").setup({})
-        end,
-        dependencies = { { "nvim-tree/nvim-web-devicons" } },
-    },
-    {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         event = "VeryLazy",
