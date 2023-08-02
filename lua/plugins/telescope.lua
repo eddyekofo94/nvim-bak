@@ -8,10 +8,9 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
             {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build = "make",
+                "nvim-telescope/telescope-fzy-native.nvim",
                 config = function()
-                    require("telescope").load_extension("fzf")
+                    require('telescope').load_extension('fzy_native')
                 end,
             },
             {
@@ -97,14 +96,9 @@ return {
                     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,  -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
                     extensions = {
-                        -- persisted = {
-                        --     layout_config = { width = 0.55, height = 0.55 },
-                        -- },
-                        fzf = {
-                            fuzzy = true,                   -- let me make typos in file names please
-                            override_generic_sorter = true, -- override the generic sorter
-                            override_file_sorter = true,    -- override the file sorter
-                            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                        fzy_native = {
+                            override_generic_sorter = false,
+                            override_file_sorter = true,
                         },
                         frecency = {
                             show_scores = true, -- TODO: remove when satisfied
