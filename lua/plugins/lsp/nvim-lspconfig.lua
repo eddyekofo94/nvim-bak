@@ -283,6 +283,10 @@ mason_lspconfig.setup_handlers({
             on_init = custom_init,
             on_attach = custom_attach,
             capabilities = updated_capabilities,
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
         }
     end,
     ["lua_ls"] = function()
@@ -365,8 +369,8 @@ end
 
 -- golang config
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
-  end
+    pattern = '*.go',
+    callback = function()
+        vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+    end,
 })
