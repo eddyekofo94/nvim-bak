@@ -91,9 +91,9 @@ local custom_attach = function(client, bufnr)
     -- Only highlight if compatible with the language
     if client.server_capabilities.documentHighlightProvider then
         vim.cmd([[
-            hi! LspReferenceRead cterm=bold ctermbg=None guibg=#585B70 guifg=None
-            hi! LspReferenceText cterm=bold ctermbg=None guibg=#585B70 guifg=None
-            hi! LspReferenceWrite cterm=bold ctermbg=None guibg=#6C7086 guifg=None
+            hi! LspReferenceRead cterm=bold ctermbg=None guibg=#45475a guifg=None
+            hi! LspReferenceText cterm=bold ctermbg=None guibg=#45475a guifg=None
+            hi! LspReferenceWrite cterm=bold ctermbg=None guibg=#45475a guifg=None
         ]])
 
         local api = vim.api
