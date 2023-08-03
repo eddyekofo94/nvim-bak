@@ -1,5 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
+    event = { "CmdlineEnter", "InsertEnter" },
     dependencies = {
         { "lukas-reineke/cmp-rg" },
         { "hrsh7th/cmp-buffer" },       -- Optional
@@ -131,7 +132,13 @@ return {
                 }),
             },
             sources = {
-                { name = "luasnip",                keyword_length = 2 },
+                -- { name = "luasnip",                keyword_length = 2 },
+                {
+                    name = "luasnip",
+                    keyword_length = 2,
+                    option = {
+                        show_autosnippets = true },
+                },
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "nvim_lsp_signature_help" },
@@ -214,10 +221,10 @@ return {
                     kind.kind = " " .. (strings[1] or "") .. " "
                     kind.menu = "    (" .. (strings[2] or "") .. ")"
                     vim_item.dup = ({
-                            buffer = 1,
-                            path = 1,
-                            nvim_lsp = 0,
-                        })[entry.source.name] or 0
+                        buffer = 1,
+                        path = 1,
+                        nvim_lsp = 0,
+                    })[entry.source.name] or 0
                     return kind
                 end,
                 -- format = lspkind.cmp_format({

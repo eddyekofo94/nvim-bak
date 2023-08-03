@@ -1,7 +1,52 @@
+local Util = require("utils")
 return {
     {
         "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
+        lazy = false,
+        keys = {
+            {
+                "<leader><space>",
+                Util.telescope("files", { cwd = "%:p:h" }),
+                desc = "Find Files (current)",
+            },
+            {
+                "<leader>sf",
+                Util.telescope("files"),
+                desc =
+                "Find Files (root dir)",
+            },
+            { "<leader>sF", Util.telescope("files", { cwd = false }),     desc = "Find Files (cwd)" },
+            {
+                "<leader>ss",
+                Util.telescope("live_grep"),
+                desc =
+                "Live Grep (root dir)",
+            },
+            { "<leader>sH", Util.telescope("live_grep", { cwd = false }), desc = "Live Grep (cwd)" },
+            {
+                "<leader>sg",
+                Util.telescope("grep_string"),
+                desc =
+                "Grep String (root dir)",
+                mode = {
+                    "n", "x" },
+            },
+            {
+                "<leader>sG",
+                Util.telescope("grep_string", { cwd = false }),
+                desc = "Grep String",
+                mode = {
+                    "n", "x" },
+            },
+            {
+                "<leader>sh",  ":Telescope harpoon marks<cr>", desc = "Harpoon menu" ,
+            },
+            {
+
+                "<leader>sR",  "<cmd>Telescope oldfiles<cr>", desc = "Recent File" ,
+            },
+            { "<leader>sS",  ":Telescope persisted<cr>", desc = "Sessions"  },
+        },
         dependencies = {
 
             "nvim-lua/popup.nvim",

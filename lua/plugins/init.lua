@@ -34,13 +34,13 @@ return {
         'notjedi/nvim-rooter.lua',
         lazy = false,
         config = function()
-            -- require("neo-tree").setup({
-            --     update_cwd = true,
-            --     update_focused_file = {
-            --         enable = true,
-            --         update_cwd = true,
-            --     },
-            -- })
+            require("neo-tree").setup({
+                update_cwd = true,
+                update_focused_file = {
+                    enable = true,
+                    update_cwd = true,
+                },
+            })
         end,
     },
     {
@@ -52,7 +52,12 @@ return {
             })
         end,
     },
-    -- { "tpope/vim-surround",   event = "InsertEnter" },
+    {
+        -- search in many files and replace
+        "windwp/nvim-spectre",
+        cmd = { "Spectre" },
+        opts = { open_cmd = "noswapfile vnew" },
+    },
     {
         "j-hui/fidget.nvim",
         version = "legacy",
