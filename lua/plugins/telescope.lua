@@ -10,6 +10,10 @@ return {
                 desc = "Find Files (current)",
             },
             {
+
+            "<leader>:" ,  "<cmd>Telescope command_history<cr>", desc = "Command History" ,
+            },
+            {
                 "<leader>sf",
                 Util.telescope("files"),
                 desc =
