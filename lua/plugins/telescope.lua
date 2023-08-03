@@ -10,8 +10,7 @@ return {
                 desc = "Find Files (current)",
             },
             {
-
-            "<leader>:" ,  "<cmd>Telescope command_history<cr>", desc = "Command History" ,
+                "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History",
             },
             {
                 "<leader>sf",
@@ -43,13 +42,13 @@ return {
                     "n", "x" },
             },
             {
-                "<leader>sh",  ":Telescope harpoon marks<cr>", desc = "Harpoon menu" ,
+                "<leader>sh", ":Telescope harpoon marks<cr>", desc = "Harpoon menu",
             },
             {
 
-                "<leader>sR",  "<cmd>Telescope oldfiles<cr>", desc = "Recent File" ,
+                "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent File",
             },
-            { "<leader>sS",  ":Telescope persisted<cr>", desc = "Sessions"  },
+            { "<leader>sS", ":Telescope persisted<cr>", desc = "Sessions" },
         },
         dependencies = {
 

@@ -309,6 +309,11 @@ mason_lspconfig.setup_handlers({
                             trailing_table_separator = 'smart',
                         },
                     },
+                    hint = {
+                        enable = true,
+                        arrayIndex = "enable",
+                        setType = true,
+                    },
                     runtime = {
                         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                         version = "LuaJIT",

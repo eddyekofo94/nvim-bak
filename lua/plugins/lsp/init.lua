@@ -24,18 +24,6 @@ return {
             },
             -- NOTE: not working as expected
             -- { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
-            {
-                "simrat39/inlay-hints.nvim",
-                config = function()
-                    -- code
-                    require("inlay-hints").setup({
-                        only_current_line = true,
-                        eol = {
-                            right_align = true,
-                        },
-                    })
-                end,
-            },
             "simrat39/rust-tools.nvim",
             "scalameta/nvim-metals", -- Java
             {
@@ -79,6 +67,7 @@ return {
             --     -- add any options here, or leave empty to use the default settings
             -- })
             require("plugins.lsp.nvim-lspconfig")
+            require("plugins.lsp.lspsaga")
         end,
     },
     {

@@ -113,6 +113,8 @@ autocmd InsertLeave * set nopaste
 
 highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse
 highlight IncSearch cterm=reverse gui=reverse guifg=reverse guibg=reverse 
+" hi Visual  cterm=reverse gui=reverse guibg=reverse guifg=reverse " INFO: not sure about this!
+
 
 augroup highlight_yank
     autocmd!
