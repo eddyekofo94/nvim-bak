@@ -165,10 +165,10 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
+                    compare.recently_used,
                     compare.score,
                     compare.length,
                     compare.exact,
-                    compare.recently_used,
                     compare.offset,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
