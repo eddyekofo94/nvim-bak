@@ -1,13 +1,11 @@
 return {
     {
         "norcalli/nvim-colorizer.lua",
-        event = { "BufReadPre" },
+        event = { "BufReadPost", "BufNewFile" },
         config = function()
             require("colorizer").setup({
                 filetypes = { '*', '!lazy' },
-                user_default_options = {
-                    -- names = false,
-                },
+                lua = { names = false },
             })
         end,
     },

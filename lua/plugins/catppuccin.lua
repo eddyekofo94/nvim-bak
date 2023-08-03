@@ -10,8 +10,6 @@ return {
         local green = colors.green
         local red = colors.red
         require("catppuccin.lib.highlighter").syntax({
-            IncSearch                = { fg = "reverse", bg = "reverse" },
-            HighlightedyankRegion    = { fg = "reverse", bg = "reverse" },
             TelescopeBorder          = { fg = bg_alt, bg = bg },
             TelescopeNormal          = { bg = bg },
             TelescopePreviewBorder   = { fg = bg, bg = bg },
