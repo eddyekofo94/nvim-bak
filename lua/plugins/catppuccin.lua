@@ -63,9 +63,12 @@ return {
                 integrations = {
                     gitsigns = true,
                     notify = true,
+                    noice = true,
+                    neogit = true,
+                    dashboard = true,
                     which_key = true,
                     treesitter = true,
-                    -- fidget = true,
+                    fidget = true,
                     cmp = true,
                     lualine = true,
                     treesitter_context = true,
@@ -81,6 +84,15 @@ return {
                     },
                     native_lsp = {
                         enabled = true,
+                        inlay_hints = {
+                            background = true,
+                        },
+                        virtual_text = {
+                            errors = { "italic" },
+                            hints = { "italic" },
+                            warnings = { "italic" },
+                            information = { "italic" },
+                        },
                         underlines = {
                             errors = { "undercurl" },
                             hints = { "underline" },
