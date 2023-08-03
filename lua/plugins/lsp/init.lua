@@ -10,6 +10,16 @@ return {
             { "williamboman/mason.nvim" },           -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
             {
+                "SmiteshP/nvim-navic",
+                event = "LspAttach",
+                config = function()
+                    require("nvim-navic").setup {
+                        highlight = true,
+                    }
+                end,
+
+            },
+            {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 config = function()
                     require("mason-tool-installer").setup {
@@ -83,6 +93,6 @@ return {
         event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
         build =
-        ':lua require("go.install").update_all_sync()',  -- if you need to install/update all binaries
+        ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     },
 }

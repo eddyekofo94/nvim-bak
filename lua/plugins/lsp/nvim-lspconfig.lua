@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
+local navic = require("nvim-navic")
 local wk = require("which-key")
 
 mason_lspconfig.setup({
@@ -50,6 +51,9 @@ end
 local custom_attach = function(client, bufnr)
     if client.config.flags then
         client.config.flags.allow_incremental_sync = true
+    end
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
     end
 
     -- set up mappings (only apply when LSP client attached)
