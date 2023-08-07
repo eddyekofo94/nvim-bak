@@ -19,8 +19,6 @@ mason_lspconfig.setup({
     },
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>",
         { noremap = true, silent = true })
@@ -51,9 +49,6 @@ end
 local custom_attach = function(client, bufnr)
     if client.config.flags then
         client.config.flags.allow_incremental_sync = true
-    end
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
     end
 
     -- set up mappings (only apply when LSP client attached)
@@ -153,9 +148,9 @@ local custom_attach = function(client, bufnr)
     end
 
     -- TODO: look into fixing this maybe
-    -- if client.server_capabilities.documentSymbolProvider then
-    --     navic.attach(client, bufnr)
-    -- end
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
     if filetype ~= "lua" then
         mapper("n", "K", "vim.lsp.buf.hover()")
@@ -323,7 +318,8 @@ mason_lspconfig.setup_handlers({
                         version = "LuaJIT",
                     },
                     diagnostics = {
-                        globals = { "vim" },
+                        globals = { "vim", "use" },
+
                     },
                     workspace = {
                         -- Make the server aware of Neovim runtime files

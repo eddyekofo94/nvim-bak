@@ -1,7 +1,10 @@
--- local colors = O.catppuccin_colors
 return {
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    -- dependencies = {
+    --     "catpuccin/nvim",
+    -- },
     config = function()
+        local colors = O.catppuccin_colors
         require("nvim-web-devicons").setup({
             -- your personnal icons can go here (to override)
             -- DevIcon will be appended to `name`
@@ -13,7 +16,7 @@ return {
                 },
                 fish = {
                     icon = "",
-                    -- color = colors.orange,
+                    color = colors.peach.hex,
                     name = "Fish",
                 },
             },

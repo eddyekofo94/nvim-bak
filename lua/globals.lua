@@ -1,4 +1,4 @@
---local mocha = require("catppuccin.palettes.mocha")
+local mocha = require("mocha")
 local fn = vim.fn
 
 O = {
@@ -78,7 +78,7 @@ O = {
             return fn.getfsize(fn.expand("%")) > 512 * 1024
         end,
     },
-    -- catppuccin_colors = mocha,
+    catppuccin_colors = mocha,
     kind_icons = {
         Class = " ",
         Color = " ",

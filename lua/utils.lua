@@ -180,4 +180,15 @@ function M.set(modes, lhs, rhs, opts)
     vim.keymap.set(modes, lhs, rhs, opts)
 end
 
+local enabled = true
+function M.toggle_diagnostics()
+	enabled = not enabled
+	if enabled then
+		vim.diagnostic.enable()
+		Util.info("Enabled diagnostics", { title = "Diagnostics" })
+	else
+		vim.diagnostic.disable()
+		Util.warn("Disabled diagnostics", { title = "Diagnostics" })
+	end
+end
 return M

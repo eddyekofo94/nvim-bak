@@ -3,6 +3,8 @@ return {
     name = "catppuccin",
     config = function()
         vim.cmd([[colorscheme catppuccin]])
+        vim.cmd.highlight('DiagnosticUnderlineError gui=undercurl') -- use undercurl for error, if supported by terminal
+
         local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
         local normal = colors.text
         local fg, bg = normal.fg, normal.bg
@@ -70,7 +72,6 @@ return {
                     treesitter = true,
                     fidget = true,
                     cmp = true,
-                    lualine = true,
                     treesitter_context = true,
                     mason = true,
                     harpoon = true,

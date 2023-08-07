@@ -13,7 +13,7 @@ return {
                 "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History",
             },
             {
-                "<leader>sf",
+                "<leader>p",
                 Util.telescope("files"),
                 desc =
                 "Find Files (root dir)",
@@ -51,7 +51,6 @@ return {
             { "<leader>sS", ":Telescope persisted<cr>", desc = "Sessions" },
         },
         dependencies = {
-
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",

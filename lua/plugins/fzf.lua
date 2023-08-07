@@ -5,7 +5,7 @@ return {
     'ibhagwan/fzf-lua',
     event = 'VeryLazy',
     keys = {
-        { '<leader>p', function() require('fzf-lua').files({}) end , desc = "Fzf"},
+        { '<leader>f', function() require('fzf-lua').files({}) end , desc = "Fzf"},
     },
     opts = {
         winopts = {

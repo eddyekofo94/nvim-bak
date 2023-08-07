@@ -32,7 +32,7 @@ return {
             },
         })
 
-        require("feline").winbar.setup()
+        -- require("feline").winbar.setup()
         require("feline").setup({
             components = catpuccin.get(),
         })

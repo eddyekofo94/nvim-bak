@@ -32,11 +32,23 @@ return {
             ignore_install = { "haskell" },
             sync_install = false,
             highlight = {
-                disable = function()
-                    return vim.b.large_buf
-                end,
                 enable = true, -- false will disable the whole extension
+                disable = function(_, bufnr)
+                    if vim.api.nvim_buf_line_count(bufnr) > 50000 then
+                        -- Disable in large number of line
+                        return true
+                    end
+
+                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+                    if ok and stats and stats.size > 100 * 1024 then
+                        -- Disable in large buffer size
+                        return true
+                    end
+                end,
                 use_languagetree = true,
+            },
+            matchup = {
+                enable = true,
             },
             autopairs = {
                 enable = true,
@@ -107,6 +119,10 @@ return {
                 },
             },
         })
+
+        -- Overwrite fold method using treesitter expression
+        vim.opt.foldmethod = 'expr'
+        vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
         require("treesitter-context").setup({
             enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)

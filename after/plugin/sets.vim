@@ -32,6 +32,7 @@ set smartindent
 set relativenumber
 set number
 
+set laststatus=3
 set hlsearch
 set ignorecase " All your searches will be case insensitive
 set smartcase  " Your search will be case sensitive if it contains an uppercase letter

@@ -10,16 +10,6 @@ return {
             { "williamboman/mason.nvim" },           -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
             {
-                "SmiteshP/nvim-navic",
-                event = "LspAttach",
-                config = function()
-                    require("nvim-navic").setup {
-                        highlight = true,
-                    }
-                end,
-
-            },
-            {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 config = function()
                     require("mason-tool-installer").setup {
@@ -79,6 +69,33 @@ return {
             require("plugins.lsp.nvim-lspconfig")
             require("plugins.lsp.lspsaga")
         end,
+    },
+    {
+        "SmiteshP/nvim-navic",
+        -- event = "LspAttach",
+        config = function()
+            require("nvim-navic").setup {
+                highlight = true,
+                click = true,
+                lsp = {
+                    auto_attach = true,
+                    preference = nil,
+                },
+            }
+            -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        end,
+    },
+    -- Winbar setup that uses navic
+    {
+        'utilyre/barbecue.nvim',
+        name = 'barbecue',
+        version = '*',
+        dependencies = {
+            'SmiteshP/nvim-navic',
+            'nvim-tree/nvim-web-devicons', -- optional dependency
+        },
+        opts = {
+        },
     },
     {
         "ray-x/go.nvim",
