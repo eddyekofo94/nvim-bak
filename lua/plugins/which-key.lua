@@ -38,7 +38,7 @@ return {
             },
             l = {
                 name = "+lsp",
-                -- a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
+                a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
                 A = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "selected action" },
                 d = {
                     "<cmd>Glance definitions<cr>",
