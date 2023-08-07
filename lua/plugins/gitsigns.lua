@@ -72,9 +72,6 @@ return {
             preview_config = {
                 border = "single",
                 style = "minimal",
-                relative = "cursor",
-                row = 0,
-                col = 1,
             },
             sign_priority = 6,
             update_debounce = 200,

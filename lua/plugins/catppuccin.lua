@@ -72,6 +72,7 @@ return {
                     treesitter = true,
                     fidget = true,
                     cmp = true,
+                    flash = true,
                     treesitter_context = true,
                     mason = true,
                     harpoon = true,
