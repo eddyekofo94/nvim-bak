@@ -42,13 +42,13 @@ return {
                     "n", "x" },
             },
             {
-                "<leader>sh", ":Telescope harpoon marks<cr>", desc = "Harpoon menu",
+                "<leader>sh", "<cmd>Telescope harpoon marks<cr>", desc = "Harpoon menu",
             },
             {
 
                 "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent File",
             },
-            { "<leader>sS", ":Telescope persisted<cr>", desc = "Sessions" },
+            { "<leader>sS", "<cmd>Telescope persisted<cr>", desc = "Sessions" },
         },
         dependencies = {
             "nvim-lua/popup.nvim",
