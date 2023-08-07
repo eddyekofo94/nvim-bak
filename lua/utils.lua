@@ -180,6 +180,7 @@ function M.set(modes, lhs, rhs, opts)
     vim.keymap.set(modes, lhs, rhs, opts)
 end
 
+-- TODO: try yo get this fixed
 local enabled = true
 function M.toggle_diagnostics()
 	enabled = not enabled
