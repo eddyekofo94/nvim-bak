@@ -23,7 +23,7 @@ return {
                 end,
             },
             -- NOTE: not working as expected
-            -- { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
+            { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
             "simrat39/rust-tools.nvim",
             "scalameta/nvim-metals", -- Java
             {
