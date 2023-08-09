@@ -58,6 +58,7 @@ return {
                 border = "single",
                 style = "minimal",
             },
+            signcolumn = false, -- INFO: come back to this if you're not happy with the numberhl
             sign_priority = 6,
             update_debounce = 200,
             status_formatter = nil, -- Use default

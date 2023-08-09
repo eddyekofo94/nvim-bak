@@ -147,9 +147,6 @@ return {
                 "Find Project",
             },
             r = { "<cmd>Telescope resume<cr>", "Resume search" },
-            R = {
-                name = "Refactor",
-            },
             t = { "<cmd>FocusSplitNicely cmd term<cr>", "terminal" },
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
