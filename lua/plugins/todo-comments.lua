@@ -18,7 +18,7 @@ return {
             PERF     = { icon = '󰅒 ', alt = { 'REFACTOR', 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
             NOTE     = { icon = '󰆈 ', color = 'hint', alt = { 'INFO' } },
             EXAMPLE  = { icon = '󰄛 ', color = 'hint', alt = { 'E.G.' } },
-            CLEAN_UP = { icon = "", color = 'warning', alt = "CLEAN" },
+            CLEAN_UP = { icon = " ", color = 'error', alt = { "CLEAN" } },
             DEBUG    = { icon = ' ', color = 'error' },
             TEST     = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
         },

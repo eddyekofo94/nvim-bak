@@ -3,30 +3,28 @@
 ----------------------
 return {
     'ThePrimeagen/refactoring.nvim',
-    event = "VeryLazy",
-    keys = {
-        { '<leader>R', mode = 'x' },
-        { 'gRe',       mode = 'x' },
-        { 'gRf',       mode = 'x' },
+    dependencies = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-treesitter/nvim-treesitter" },
     },
-    config = function()
-        local map, feedkeys = require('utils').map, require('utils').feedkeys
-
-        local refactoring = require('refactoring')
-        refactoring.setup {}
-        vim.api.nvim_set_keymap(
-            "v",
+    event = "BufEnter",
+    keys = {
+        { '<leader>r',  mode = 'x' , desc = "Refactor"},
+        { "<leader>rf", "<cmd>Refactor extract_to_file<cr>", mode = "x" },
+        { "<leader>rv", "<cmd>Refactor extract_var ",     mode = "x" },
+        {
+            "<leader>ri", "<cmd>Refactor inline_var<cr>", mode = { "n", "x" },
+        },
+        { "<leader>rb",  "<cmd>Refactor extract_block<cr>",         mode = "n" },
+        { "<leader>rbf", "<cmd>Refactor extract_block_to_file<cr>", mode = "n" },
+        {
             "<leader>rr",
             ":lua require('refactoring').select_refactor()<CR>",
-            { noremap = true, silent = true, expr = false }
-        )
-        map('x', 'gRe', function() return refactoring.refactor('Extract Function') end)
-        map('x', 'gRf', function() return refactoring.refactor('Extract Function To File') end)
-        map('x', '<leader>R', function()
-            feedkeys('<Esc>', 'n')
-            require('telescope').extensions.refactoring.refactors()
-        end, 'Select refactor')
-
+            mode = "v",
+        },
+    },
+    config = function()
+        require('refactoring').setup()
         require('telescope').load_extension('refactoring')
     end,
 }

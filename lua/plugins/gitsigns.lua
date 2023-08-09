@@ -36,7 +36,7 @@ return {
             },
 
             -- Highlights just the number part of the number column
-            numhl = true,
+            numhl = false,
 
             -- Highlights the _whole_ line.
             --    Instead, use gitsigns.toggle_linehl()
@@ -58,7 +58,7 @@ return {
                 border = "single",
                 style = "minimal",
             },
-            signcolumn = false, -- INFO: come back to this if you're not happy with the numberhl
+            signcolumn = true, -- INFO: come back to this if you're not happy with the numberhl
             sign_priority = 6,
             update_debounce = 200,
             status_formatter = nil, -- Use default
