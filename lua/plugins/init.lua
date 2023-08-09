@@ -52,17 +52,6 @@ return {
         opts = { open_cmd = "noswapfile vnew" },
     },
     {
-        "j-hui/fidget.nvim",
-        version = "legacy",
-        config = function()
-            require("fidget").setup({
-                window = {
-                    blend = 0,
-                },
-            })
-        end,
-    },
-    {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         event = "VeryLazy",

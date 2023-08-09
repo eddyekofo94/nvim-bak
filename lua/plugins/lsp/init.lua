@@ -87,6 +87,18 @@ return {
     },
     -- Winbar setup that uses navic
     {
+        "j-hui/fidget.nvim",
+        version = "legacy",
+        event = "LspAttach",
+        config = function()
+            require("fidget").setup({
+                window = {
+                    blend = 0,
+                },
+            })
+        end,
+    },
+    {
         'utilyre/barbecue.nvim',
         name = 'barbecue',
         version = '*',
