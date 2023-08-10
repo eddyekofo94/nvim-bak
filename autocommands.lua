@@ -1,5 +1,11 @@
 vim.cmd("set termguicolors")
 local utils = require("utils")
+local fn = vim.fn
+
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+-- General Settings
+local general = augroup("General Settings", { clear = true })
 
 -- NOTE: this is to get a big file size
 -- local get_size = function()
@@ -67,6 +73,25 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
+})
+
+autocmd("FileType", {
+  pattern = { "c", "cpp", "py", "java", "cs" },
+  callback = function()
+    vim.bo.shiftwidth = 4
+  end,
+  group = general,
+  desc = "Set shiftwidth to 4 in these filetypes",
+
+})
+
+autocmd("FileType", {
+  pattern = { "c", "cpp", "py", "java", "cs" },
+  callback = function()
+    vim.bo.shiftwidth = 4
+  end,
+  group = general,
+  desc = "Set shiftwidth to 4 in these filetypes",
 })
 
 -- NOTE: should restore cursor position on the last one

@@ -71,7 +71,7 @@ return {
 
         cmp.setup({
             enabled = function()
-                local buftype = vim.api.nvim_buf_get_option(0,"buftype")
+                local buftype = vim.api.nvim_buf_get_option(0, "buftype")
                 if buftype == "prompt" then return false end
                 -- disable completion in comments
                 local context = require 'cmp.config.context'
