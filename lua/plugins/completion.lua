@@ -71,9 +71,11 @@ return {
 
         cmp.setup({
             enabled = function()
+                local buftype = vim.api.nvim_buf_get_option(0,"buftype")
+                if buftype == "prompt" then return false end
                 -- disable completion in comments
                 local context = require 'cmp.config.context'
-                -- keep command mode completion enabled when cursor is in a comment
+                -- keep command mode completion enabled when cursor is in a comment.
                 if vim.api.nvim_get_mode().mode == 'c' then
                     return true
                 else
@@ -206,10 +208,10 @@ return {
                             return t1 < t2
                         end
                     end,
-                    compare.offset,
-                    compare.exact,
-                    compare.score,
                     compare.order,
+                    compare.exact,
+                    compare.offset,
+                    compare.score,
                 },
             },
             experimental = {
