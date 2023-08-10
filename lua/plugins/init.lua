@@ -1,6 +1,5 @@
 require("keymaps")
 require("globals")
--- require("statusline")
 
 vim.cmd("set background=dark")
 return {

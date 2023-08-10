@@ -72,7 +72,6 @@ return {
     },
     {
         "SmiteshP/nvim-navic",
-        -- event = "LspAttach",
         config = function()
             require("nvim-navic").setup {
                 highlight = true,
@@ -82,6 +81,8 @@ return {
                     preference = nil,
                 },
             }
+            -- This is where I have navic all setup
+            require("winbar")
             -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end,
     },
@@ -98,17 +99,17 @@ return {
             })
         end,
     },
-    {
-        'utilyre/barbecue.nvim',
-        name = 'barbecue',
-        version = '*',
-        dependencies = {
-            'SmiteshP/nvim-navic',
-            'nvim-tree/nvim-web-devicons', -- optional dependency
-        },
-        opts = {
-        },
-    },
+    -- {
+    --     'utilyre/barbecue.nvim',
+    --     name = 'barbecue',
+    --     version = '*',
+    --     dependencies = {
+    --         'SmiteshP/nvim-navic',
+    --         'nvim-tree/nvim-web-devicons', -- optional dependency
+    --     },
+    --     opts = {
+    --     },
+    -- },
     {
         "ray-x/go.nvim",
         dependencies = { -- optional packages
