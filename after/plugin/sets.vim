@@ -155,24 +155,12 @@ augroup Terminal
     autocmd FileType term set nonumber
 augroup END
 
-
-" Display cursorline and cursorcolumn ONLY in active window.
-" augroup cursor_off
-"     autocmd!
-"     autocmd WinLeave * set nocursorline nocursorcolumn
-"     autocmd WinEnter * set cursorline cursorcolumn
-" augroup END
-
 " Resize split windows using arrow keys by pressing:
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 noremap <up> <c-w>+
 noremap <down> <c-w>-
 noremap <left> <c-w>>
 noremap <right> <c-w><
-
-" Center the cursor vertically when moving to the next word during a search.
-" nnoremap n nzz
-" nnoremap N Nzz
 
 " TODO: Fix this some day
 " disable syntax highlighting in big files

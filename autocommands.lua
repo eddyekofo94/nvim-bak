@@ -1,6 +1,5 @@
 vim.cmd("set termguicolors")
 local utils = require("utils")
-local fn = vim.fn
 
 -- NOTE: this is to get a big file size
 -- local get_size = function()
@@ -70,13 +69,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     end,
 })
 
--- Jump to last edit position on opening file
-
--- if has("autocmd")
---   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
---   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
--- endif
-
 -- NOTE: should restore cursor position on the last one
 -- BUG: seems not always work. don't know the mains reason for this.
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -111,18 +103,12 @@ vim.api.nvim_create_autocmd("FileType", {
 utils.define_augroups({
     _general_settings = {
         -- BUG: this is not working
---        { "TextYankPost", "*",
- --           "lua vim.highlight.on_yank{higroup = 'Search', timeout = 500}", },
+        --        { "TextYankPost", "*",
+        --           "lua vim.highlight.on_yank{higroup = 'Search', timeout = 500}", },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile",  "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "VimLeavePre", "*", "set title set titleold=" },
-        -- { "VimEnter",    "*", '<cmd>require("persistence").load()<cr>' },
-        -- {
-        -- "FileType,BufWinEnter",
-        -- "cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript",
-        -- ":call MaxLineChars()",
-        -- },
     },
     _dashboard = {
         {
