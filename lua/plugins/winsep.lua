@@ -1,16 +1,16 @@
 return {}
 -- return {
 --     "nvim-zh/colorful-winsep.nvim",
---     enable = false,
---     event = { "WinEnter" },
---     commit = "9a474934a27203d1c2e9943c94a29165dd81823d",
+--     enable = true,
+--     event = { "WinNew" },
 --     opts = {
 --         highlight = {
---             guibg = vim.api.nvim_get_hl_by_name("Normal", true)["background"],
---             guifg = "#c099ff",
+--             bg = vim.api.nvim_get_hl_by_name("Normal", true)["background"],
+--             fg = "#c099ff",
 --         },
---         interval = 50,
---         no_exec_files = { "packer", "TelescopePrompt" },
+--         -- interval = 50,
+--         no_exec_files = { "neo-tree", "TelescopePrompt" },
+--
 --         -- disable if I only have 2 files open
 --         create_event = function()
 --             local winsep = require("colorful-winsep")

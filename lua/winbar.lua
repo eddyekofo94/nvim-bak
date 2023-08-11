@@ -36,6 +36,7 @@ local disabled_filetypes = {
 M.winbar = function()
     local logo = ' '
     local delimiter = '  '
+    -- local delimiter = ' 契 '
     local ellipsis = '…'
 
     local contents = logo
@@ -49,7 +50,7 @@ M.winbar = function()
         end
     end
 
-    contents = contents .. ' %<'
+    contents = contents .. ' %<...'
 
     -- File path
     local path = fn.expand('%:~:.:h')

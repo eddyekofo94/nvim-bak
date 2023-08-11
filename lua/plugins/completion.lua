@@ -88,6 +88,11 @@ return {
                     require("luasnip").lsp_expand(args.body)
                 end,
             },
+            matching = {
+                disallow_fuzzy_matching = false,
+                disallow_fullfuzzy_matching = false,
+                disallow_partial_fuzzy_matching = false,
+            },
             mapping = {
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -185,6 +190,12 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -208,10 +219,6 @@ return {
                             return t1 < t2
                         end
                     end,
-                    compare.order,
-                    compare.exact,
-                    compare.offset,
-                    compare.score,
                 },
             },
             experimental = {
