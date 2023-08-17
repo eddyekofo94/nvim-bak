@@ -177,15 +177,17 @@ return {
                 { name = "crates" },
             },
             window = {
-                completion = {
-                    -- winhighlight = "CmpItemMenu:CmpItemKind",
-                    winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                completion = cmp.config.window.bordered({
+                    -- winhighlight =
+                    -- "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+                    winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual",
                     col_offset = -3,
-                    side_padding = 0,
-                },
+                    side_padding = 1,
+                }),
                 documentation = cmp.config.window.bordered({
                     winhighlight =
-                    "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+                    "Normal:Normal,FloatBorder:CmpBorder,CursorLine:Visual,Search:None",
+                    side_padding = 1,
                 }),
             },
             sorting = {
@@ -230,7 +232,7 @@ return {
                 fields = { "kind", "abbr", "menu" },
                 format = function(entry, vim_item)
                     local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(
-                    entry, vim_item)
+                        entry, vim_item)
                     local strings = vim.split(kind.kind, "%s", { trimempty = true })
                     kind.kind = " " .. (strings[1] or "") .. " "
                     kind.menu = "    (" .. (strings[2] or "") .. ")"

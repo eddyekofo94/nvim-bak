@@ -7,17 +7,21 @@ return {
             compile = { enabled = true, path = vim.fn.stdpath("cache") .. "/catppuccin" },
             custom_highlights = function(colors)
                 return {
+                    -- General
                     MatchParenCur            = { fg = colors.yellow, style = { "bold" } },
-                    CmpBorder                = { fg = colors.surface0 },
                     FloatBorder              = { fg = colors.surface0 }, -- TODO: this seems to not be working
                     WinSeparator             = { fg = colors.surface2 },
                     LspInlayHint             = { link = "Comment" },
-                    NoiceCmdlinePopupBorder  = { fg = colors.surface0 },
+                    TelescopeBorder          = { fg = colors.surface0 },
+                    -- noice
+                    NoiceCmdlinePopupBorder  = { fg = colors.surface1 },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },
+                    -- navic
                     NavicText                = { fg = colors.subtext1 },
-                    -- NavicText                = { fg = colors.flamingo },
                     NavicSeparator           = { fg = colors.overlay0 },
+                    -- cmp
                     CmpItemMenu              = { fg = colors.mauve },
+                    CmpBorder                = { fg = colors.surface1 },
                     CmpItemKindSnippet       = { fg = colors.base, bg = colors.mauve },
                     CmpItemKindKeyword       = { fg = colors.base, bg = colors.red },
                     CmpItemKindText          = { fg = colors.base, bg = colors.teal },
