@@ -50,7 +50,8 @@ set scrolloff=7
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option
-set pumblend=17 ""Enables pseudo-transparency for the popup-menu
+" set pumblend=17 
+set pumblend=2 ""Enables pseudo-transparency for the popup-menu
 set virtualedit=block
 set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
 syntax enable                           " Enabling syntax highlight
