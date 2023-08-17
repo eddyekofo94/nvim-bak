@@ -7,7 +7,7 @@ return {
         dependencies = "rktjmp/lush.nvim",
         lazy = false,
         config = function()
-            vim.cmd('colorscheme zenbones')
+            -- vim.cmd('colorscheme zenbones')
         end,
     },
     {

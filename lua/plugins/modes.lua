@@ -1,4 +1,4 @@
-local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
+-- local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
 -- INFO: not sure about this
 return {
     -- 'mvllow/modes.nvim',
