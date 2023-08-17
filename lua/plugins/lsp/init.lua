@@ -89,7 +89,7 @@ return {
     -- Winbar setup that uses navic
     {
         "j-hui/fidget.nvim",
-        version = "legacy",
+        tag = "legacy",
         event = "LspAttach",
         config = function()
             require("fidget").setup({
