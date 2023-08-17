@@ -38,7 +38,7 @@ return {
                 config = function()
                     -- mapped to <space>lt -- this shows a list of diagnostics
                     require("trouble").setup({
-                        height = 15, -- height of the trouble list
+                        height = 12, -- height of the trouble list
                         mode = "document_diagnostics",
                         action_keys = {
                             -- key mappings for actions in the trouble list

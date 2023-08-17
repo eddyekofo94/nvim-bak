@@ -23,8 +23,10 @@ return {
             },
             d = {
                 name = "+diagnostics",
+                d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
                 n = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "diagnostics next" },
                 p = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "diagnostics prev" },
+                t = { "<cmd>TroubleToggle<cr>", "trouble" },
             },
             g = {
                 name = "+Git",
@@ -57,7 +59,6 @@ return {
                 q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
                 r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
                 R = { "<cmd>Glance references<cr>", "References" },
-                t = { "<cmd>TroubleToggle<cr>", "trouble" },
                 T = { "<cmd>LspTypeDefinition<cr>", "type definition" }, -- TODO: fix this in the future
                 s = { "<cmd>Telescope lsp_document_symbols<cr>", "document symbols" },
                 S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "workspace symbols" },
@@ -68,11 +69,7 @@ return {
                 b = { "<cmd>Telescope buffers<cr>", "buffers" },
                 c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
                 B = { "<cmd>Telescope git_branches<cr>", "git branches" },
-                d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "document_diagnostics" },
-                D = {
-                    "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-                    "workspace_diagnostics",
-                },
+                d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
                 -- f = { "<cmd>Telescope find_files<cr>", "files" },
                 F = { "<cmd>Telescope frecency<cr>", "frecency" },
                 -- h = { "<cmd>Telescope harpoon marks<cr>", "Harpoon menu" },

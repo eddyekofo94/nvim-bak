@@ -18,7 +18,7 @@ return {
         end
 
         require('symbols-outline').setup({
-            relative_width = false,
+            relative_width = true,
             width = width_with_min(0.15, 50),
             autofold_depth = 1,
         })
