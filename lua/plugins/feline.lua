@@ -1,5 +1,6 @@
 return {
-    "feline-nvim/feline.nvim",
+    -- "feline-nvim/feline.nvim", -- INFO: changed the source of feline for now
+   "freddiehaddad/feline.nvim",
     dependencies = {
         "catppuccin/nvim",
     },
