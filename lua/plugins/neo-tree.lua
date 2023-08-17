@@ -5,102 +5,45 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
 return {
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
+        {
+            -- only needed if you want to use the commands with "_with_window_picker" suffix
+            's1n7ax/nvim-window-picker',
+            tag = "v1.*",
+            config = function()
+                require 'window-picker'.setup({
+                    autoselect_one = true,
+                    include_current = false,
+                    filter_rules = {
+                        -- filter using buffer options
+                        bo = {
+                            -- if the file type is one of following, the window will be ignored
+                            filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+
+                            -- if the buffer type is one of following, the window will be ignored
+                            buftype = { 'terminal', "quickfix" },
+                        },
+                    },
+                    other_win_hl_color = 'MatchParenCur',
+                })
+            end,
+        },
     },
     event = "VeryLazy",
     keys = {
-        { "<leader>e", ":Neotree source=filesystem reveal=true position=right toggle=true<CR>",
-            silent = true, desc = "File Explorer" },
+        {
+            "<leader>e",
+            ":Neotree source=filesystem reveal=true position=right toggle=true<CR>",
+            silent = true,
+            desc = "File Explorer",
+        },
     },
     config = function()
         require("neo-tree").setup({
-            close_if_last_window = true,
-            popup_border_style = "single",
-            enable_git_status = true,
-            enable_modified_markers = true,
-            source_selector = {
-                winbar = true,
-                statusline = false,
-            },
-            enable_diagnostics = false,
-            sort_case_insensitive = true,
-            default_component_configs = {
-                indent = {
-                    with_markers = false,
-                    with_expanders = true,
-                },
-                modified = {
-                    symbol = " ",
-                    highlight = "NeoTreeModified",
-                },
-                icon = {
-                    folder_closed = "",
-                    folder_open = "",
-                    folder_empty = "",
-                    folder_empty_open = "",
-                },
-                git_status = {
-                    symbols = {
-                        -- Change type
-                        added = "",
-                        deleted = "",
-                        modified = "",
-                        renamed = "",
-                        -- Status type
-                        untracked = "",
-                        ignored = "",
-                        unstaged = "",
-                        staged = "",
-                        conflict = "",
-                    },
-                },
-            },
-            window = {
-                position = "right",
-                width = 30,
-            },
-            filesystem = {
-                use_libuv_file_watcher = true,
-                filtered_items = {
-                    hide_dotfiles = false,
-                    hide_gitignored = false,
-                    hide_by_name = {
-                        "node_modules",
-                    },
-                    never_show = {
-                        ".DS_Store",
-                        "thumbs.db",
-                    },
-                },
-            },
-            event_handlers = {
-                -- {
-                --     event = "file_opened",
-                --     handler = function()
-                --         --auto close
-                --         require("neo-tree").close_all()
-                --     end,
-                -- },
-                {
-                    event = "neo_tree_window_after_open",
-                    handler = function(args)
-                        if args.position == "left" or args.position == "right" then
-                            vim.cmd("wincmd =")
-                        end
-                    end,
-                },
-                {
-                    event = "neo_tree_window_after_close",
-                    handler = function(args)
-                        if args.position == "left" or args.position == "right" then
-                            vim.cmd("wincmd =")
-                        end
-                    end,
-                },
-            },
         })
     end,
 }
