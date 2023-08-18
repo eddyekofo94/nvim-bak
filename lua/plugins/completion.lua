@@ -96,10 +96,9 @@ return {
             mapping = {
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                -- Testing
                 ["<c-q>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
+                    select = false,
                 }),
                 ["<C-Space>"] = cmp.mapping({
                     i = cmp.mapping.complete(),
@@ -118,7 +117,7 @@ return {
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
-                    select = false,
+                    select = true,
                 }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -191,10 +190,10 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
+                    cmp.config.compare.exact,
                     cmp.config.compare.score,
                     cmp.config.compare.recently_used,
                     cmp.config.compare.offset,
-                    cmp.config.compare.exact,
                     cmp.config.compare.kind,
                     cmp.config.compare.sort_text,
                     function(entry1, entry2) -- sort by length ignoring "=~"
