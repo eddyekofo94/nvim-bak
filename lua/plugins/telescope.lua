@@ -113,8 +113,8 @@ return {
                             mirror = false,
                         },
                         width = 0.95,
-                        preview_cutoff = 120,
                         height = 80,
+                        preview_cutoff = 120,
                     },
                     pickers = {
                         buffers = {
