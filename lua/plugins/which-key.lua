@@ -54,7 +54,6 @@ return {
                 v = { "<cmd>LspVirtualTextToggle<cr>", "lsp toggle virtual text" },
                 --l = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
                 -- L = { "<cmd>Lspsaga show_line_diagnostics<cr>", "line_diagnostics" },
-                -- O = { "<cmd>SymbolsOutline<cr>", "symbol outline" },
                 p = { "<cmd>lua vim.diagnostic.open_float()<cr>", "preview definition" },
                 q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
                 r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
