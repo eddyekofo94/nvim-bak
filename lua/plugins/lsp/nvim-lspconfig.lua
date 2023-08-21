@@ -132,7 +132,6 @@ local custom_attach = function(client, bufnr)
             -- Hide/Show virtual text
             virtual_text = {
                 prefix = "",
-                -- prefix = "»",
                 severity_limit = "Warning",
             },
             signs = vim.b[bufnr].show_signs == true,
