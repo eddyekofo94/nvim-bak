@@ -30,9 +30,6 @@ return {
         { "rafamadriz/friendly-snippets" },
     },
     config = function()
-        -- for completion
-        vim.o.completeopt = "menu,menuone,noselect"
-
         -- Setup nvim-cmp.
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -43,7 +40,6 @@ return {
 
         local luasnip = require("luasnip")
         local cmp = require("cmp")
-        -- local kind_icons = O.kind_icons
         local lspkind = require("lspkind")
         local visible_buffers = require("utils").visible_buffers
         local compare = require('cmp.config.compare')
@@ -53,8 +49,8 @@ return {
         ---@type table<integer, integer>
         local modified_priority = {
             [types.lsp.CompletionItemKind.Snippet] = 0, -- top
-            [types.lsp.CompletionItemKind.Keyword] = 0, -- top
             [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Variable,
+            [types.lsp.CompletionItemKind.Keyword] = 1, -- top
             [types.lsp.CompletionItemKind.Text] = 100,  -- bottom
         }
 
@@ -81,6 +77,9 @@ return {
                         and not context.in_syntax_group("Comment")
                 end
             end,
+            completion = {
+                completeopt = 'menu,menuone,noinsert',
+            },
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
@@ -147,7 +146,6 @@ return {
                 }),
             },
             sources = {
-                -- { name = "luasnip",                keyword_length = 2 },
                 {
                     name = "luasnip",
                     keyword_length = 2,
@@ -188,8 +186,7 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
-                    compare.recently_used,
-                    compare.exact,
+                    compare.locality,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -199,16 +196,8 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
-                    -- cmp.config.compare.score,
-                    function(entry1, entry2) -- score by lsp, if available
-                        local t1 = entry1.completion_item.sortText
-                        local t2 = entry2.completion_item.sortText
-                        if t1 ~= nil and t2 ~= nil and t1 ~= t2 then
-                            return t1 < t2
-                        end
-                    end,
-                    compare.offset,
-                    -- cmp.config.compare.kind,
+                    compare.recently_used,
+                    compare.exact,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
@@ -216,7 +205,15 @@ return {
                             return kind1 - kind2 < 0
                         end
                     end,
-                    compare.sort_text,
+                    function(entry1, entry2) -- score by lsp, if available
+                        local t1 = entry1.completion_item.sortText
+                        local t2 = entry2.completion_item.sortText
+                        if t1 ~= nil and t2 ~= nil and t1 ~= t2 then
+                            return t1 < t2
+                        end
+                    end,
+                    compare.order,
+                    compare.offset,
                 },
             },
             experimental = {
