@@ -52,9 +52,9 @@ return {
 
         ---@type table<integer, integer>
         local modified_priority = {
-            [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
             [types.lsp.CompletionItemKind.Snippet] = 0, -- top
             [types.lsp.CompletionItemKind.Keyword] = 0, -- top
+            [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Variable,
             [types.lsp.CompletionItemKind.Text] = 100,  -- bottom
         }
 
@@ -63,16 +63,14 @@ return {
             return modified_priority[kind] or kind
         end
 
-
         lspkind.init({
-            -- symbol_map = kind_icons,
             preset = 'codicons',
         })
 
         cmp.setup({
             enabled = function()
                 local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-                if buftype == "prompt" then return false end
+                if buftype == "prompt" then return false end -- no suggestions on promt: Telescope
                 -- disable completion in comments
                 local context = require 'cmp.config.context'
                 -- keep command mode completion enabled when cursor is in a comment.
@@ -190,12 +188,8 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
-                    cmp.config.compare.exact,
-                    cmp.config.compare.score,
-                    cmp.config.compare.recently_used,
-                    cmp.config.compare.offset,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.sort_text,
+                    compare.recently_used,
+                    compare.exact,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -205,13 +199,7 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
-                    function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
-                        local kind1 = modified_kind(entry1:get_kind())
-                        local kind2 = modified_kind(entry2:get_kind())
-                        if kind1 ~= kind2 then
-                            return kind1 - kind2 < 0
-                        end
-                    end,
+                    -- cmp.config.compare.score,
                     function(entry1, entry2) -- score by lsp, if available
                         local t1 = entry1.completion_item.sortText
                         local t2 = entry2.completion_item.sortText
@@ -219,6 +207,16 @@ return {
                             return t1 < t2
                         end
                     end,
+                    compare.offset,
+                    -- cmp.config.compare.kind,
+                    function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+                        local kind1 = modified_kind(entry1:get_kind())
+                        local kind2 = modified_kind(entry2:get_kind())
+                        if kind1 ~= kind2 then
+                            return kind1 - kind2 < 0
+                        end
+                    end,
+                    compare.sort_text,
                 },
             },
             experimental = {
