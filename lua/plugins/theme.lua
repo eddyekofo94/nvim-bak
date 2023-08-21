@@ -11,6 +11,14 @@ return {
         end,
     },
     {
+        'Verf/deepwhite.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            -- vim.cmd [[colorscheme deepwhite]]
+        end,
+    },
+    {
         "rose-pine/neovim",
         config = function()
             require("rose-pine").setup({
