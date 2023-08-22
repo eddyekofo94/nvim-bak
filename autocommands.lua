@@ -76,22 +76,22 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 autocmd("FileType", {
-  pattern = { "c", "cpp", "py", "java", "cs" },
-  callback = function()
-    vim.bo.shiftwidth = 4
-  end,
-  group = general,
-  desc = "Set shiftwidth to 4 in these filetypes",
+    pattern = { "c", "cpp", "py", "java", "cs" },
+    callback = function()
+        vim.bo.shiftwidth = 4
+    end,
+    group = general,
+    desc = "Set shiftwidth to 4 in these filetypes",
 
 })
 
 autocmd("FileType", {
-  pattern = { "c", "cpp", "py", "java", "cs" },
-  callback = function()
-    vim.bo.shiftwidth = 4
-  end,
-  group = general,
-  desc = "Set shiftwidth to 4 in these filetypes",
+    pattern = { "c", "cpp", "py", "java", "cs" },
+    callback = function()
+        vim.bo.shiftwidth = 4
+    end,
+    group = general,
+    desc = "Set shiftwidth to 4 in these filetypes",
 })
 
 -- NOTE: should restore cursor position on the last one
@@ -123,6 +123,37 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo[event.buf].buflisted = false
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
     end,
+})
+
+local ignore_filetypes = { 'neo-tree' }
+local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
+
+local augroup =
+    vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+
+vim.api.nvim_create_autocmd('WinEnter', {
+    group = augroup,
+    callback = function(_)
+        if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
+        then
+            vim.w.focus_disable = true
+        else
+            vim.w.focus_disable = false
+        end
+    end,
+    desc = 'Disable focus autoresize for BufType',
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = augroup,
+    callback = function(_)
+        if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+            vim.w.focus_disable = true
+        else
+            vim.w.focus_disable = false
+        end
+    end,
+    desc = 'Disable focus autoresize for FileType',
 })
 
 utils.define_augroups({

@@ -114,7 +114,7 @@ return {
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
-                    select = true,
+                    select = false,
                 }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
