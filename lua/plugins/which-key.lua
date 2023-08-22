@@ -89,7 +89,7 @@ return {
                 r = { "<cmd>Telescope registers<cr>", "registers" },
                 u = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
                 z = { "<cmd>Telescope zoxide list<cr>", "zoxide" },
-            },         
+            },
             S = {
                 name = "+Session",
                 r = {
@@ -115,7 +115,6 @@ return {
             ["?"] = { "<cmd>NvimTreeFindFile<cr>", "find current file" },
             ["~"] = { "<cmd>NvimTreeRefresh<cr>", "refresh tree" },
             h = { ':let @/ = ""<cr>', "Clear Highlight" },
-            -- H = { ":split", "Split bottom" },
             m = { "<cmd>FocusSplitCycle<cr>", "Move to next buffer" },
             M = { "<cmd>Mason<cr>", "Mason" },
             N = { "<cmd>Noice<cr>", "Noice" },
@@ -158,6 +157,9 @@ return {
                 },
                 l = {
                     "<cmd>FocusSplitLeft<cr>", "Split Left",
+                },
+                t = {
+                    "<cmd>FocusToggle<cr>", "Focus Toggle",
                 },
                 r = {
                     "<cmd>FocusSplitRight<cr>", "Split Right",
