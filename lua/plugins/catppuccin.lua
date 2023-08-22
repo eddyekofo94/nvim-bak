@@ -16,7 +16,7 @@ return {
                     -- TScontext
                     TreesitterContextBottom  = { fg = colors.surface0 },
                     -- noice
-                    NoiceCmdlinePopupBorder  = { fg = colors.surface1 },
+                    NoiceCmdlinePopupBorder  = { fg = colors.overlay2 },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },
                     -- navic
                     NavicText                = { fg = colors.subtext1 },
