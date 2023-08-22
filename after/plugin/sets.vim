@@ -102,13 +102,14 @@ set list
 set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
-set guicursor+=i:block-Cursor
+" set guicursor+=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150
 set guicursor+=n-v-c:blinkon10
-set guicursor+=a:blinkon20
+" set guicursor+=a:blinkon20
 
-set foldmethod=expr
+" set foldmethod=expr
 set foldlevelstart=99
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldexpr=nvim_treesitter#foldexpr()
 
 " Leave paste mode when leaving insert mode INFO: I don't get this fully
 autocmd InsertLeave * set nopaste
