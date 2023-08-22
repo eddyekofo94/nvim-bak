@@ -13,6 +13,8 @@ return {
                     WinSeparator             = { fg = colors.surface2 },
                     LspInlayHint             = { link = "Comment" },
                     TelescopeBorder          = { fg = colors.surface0 },
+                    -- TScontext
+                    TreesitterContextBottom  = { fg = colors.surface0 },
                     -- noice
                     NoiceCmdlinePopupBorder  = { fg = colors.surface1 },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },
@@ -70,6 +72,7 @@ return {
                 treesitter_context = true,
                 mason = true,
                 harpoon = true,
+                lsp_saga = true,
                 navic = {
                     enabled = true,
                     custom_bg = "NONE",

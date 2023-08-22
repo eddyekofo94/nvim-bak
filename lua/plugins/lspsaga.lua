@@ -10,16 +10,20 @@ return {
         {
             "]d",
             "<cmd>Lspsaga diagnostic_jump_next<cr>",
-            desc = "diagnostic jump next"
+            desc = "diagnostic jump next",
         },
         {
             "[d",
             "<cmd>Lspsaga diagnostic_jump_prev<cr>",
-            desc = "diagnostic jump prev"
-        }
+            desc = "diagnostic jump prev",
+        },
     },
     config = function()
-        require("lspsaga").setup({})
+        require("lspsaga").setup({
+            ui = {
+                kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+            },
+        })
         -- local mapper = require("utils").mapper
 
         -- mapper("n", "gd", "<cmd>Lspsaga finder<CR>")

@@ -6,15 +6,15 @@ return {
             {
                 enable = true,
                 signcolumn = false,
-                excluded_filetypes = { "toggleterm" },
+                excluded_filetypes = { "neo-tree", "telescope", "toggleterm" },
                 compatible_filetrees = { "neo-tree" },
                 ui = {
-                    number = true, -- Display line numbers in the focussed window only
+                    number = true,         -- Display line numbers in the focussed window only
                     relativenumber = true, -- Display relative line numbers in the focussed window only
-                    hybridnumber = true, -- Display hybrid line numbers in the focussed window only
-                    winhighlight = true, -- Auto highlighting for focussed/unfocussed windows
+                    hybridnumber = true,   -- Display hybrid line numbers in the focussed window only
+                    winhighlight = true,  -- Auto highlighting for focussed/unfocussed windows
                     -- BUG: this seems broken
-                    cursorline = true, -- Display a cursorline in the focussed window only
+                    cursorline = true,     -- Display a cursorline in the focussed window only
                 },
             }
         )

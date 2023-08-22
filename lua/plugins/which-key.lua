@@ -65,7 +65,12 @@ return {
             s = {
                 name = "search", -- normally using Telescope
                 ["."] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
-                b = { "<cmd>Telescope buffers<cr>", "buffers" },
+                b = {
+                    function()
+                        require('telescope.builtin').buffers({ sort_lastused = true })
+                    end,
+                    "buffers"
+                },
                 c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
                 B = { "<cmd>Telescope git_branches<cr>", "git branches" },
                 d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },

@@ -114,7 +114,7 @@ return {
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
-                    select = false,
+                    select = true,
                 }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -173,9 +173,9 @@ return {
             },
             window = {
                 completion = cmp.config.window.bordered({
-                    winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual",
+                    winhighlight = "FloatBorder:FloatBorder,CursorLine:Visual",
                     col_offset = -3,
-                    side_padding = 1,
+                    side_padding = 0,
                 }),
                 documentation = cmp.config.window.bordered({
                     winhighlight =
@@ -220,7 +220,6 @@ return {
                 ghost_text = true,
             },
             formatting = {
-                -- fields = { "abbr", "kind", "menu" },
                 fields = { "kind", "abbr", "menu" },
                 format = function(entry, vim_item)
                     local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(
@@ -262,6 +261,17 @@ return {
         -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
         cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline(),
+            enabled = function()
+                -- Set of commands where cmp will be disabled
+                local disabled = {
+                    IncRename = true,
+                }
+                -- Get first word of cmdline
+                local cmd = vim.fn.getcmdline():match("%S+")
+                -- Return true if cmd isn't disabled
+                -- else call/return cmp.close(), which returns false
+                return not disabled[cmd] or cmp.close()
+            end,
             sources = cmp.config.sources({
                 { name = "cmdline" },
                 { name = "cmdline_history" },
