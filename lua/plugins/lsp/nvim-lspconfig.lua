@@ -130,6 +130,10 @@ local custom_attach = function(client, bufnr)
         )
     end
 
+    if filetype == "go" then
+        
+    end
+
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
