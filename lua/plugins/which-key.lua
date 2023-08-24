@@ -113,14 +113,10 @@ return {
             ["/"] = { "<cmd>CommentToggle<CR>", "comment" },
             -- ["\\"] = { "<cmd>Telescope pickers<cr>", "Searched History" },
             -- [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
-            ["-"] = { "<cmd>FocusSplitDown<CR>", "split horizontally" },
             -- ["="] = { "<C-w>=", "balance windows" },
-            ["="] = { "<cmd>FocusEqualise<cr>", "balance windows" },
-            ["|"] = { "<cmd>FocusSplitNicely<cr>", "Split Right" },
             ["?"] = { "<cmd>NvimTreeFindFile<cr>", "find current file" },
             ["~"] = { "<cmd>NvimTreeRefresh<cr>", "refresh tree" },
             h = { ':let @/ = ""<cr>', "Clear Highlight" },
-            m = { "<cmd>FocusSplitCycle<cr>", "Move to next buffer" },
             M = { "<cmd>Mason<cr>", "Mason" },
             N = { "<cmd>Noice<cr>", "Noice" },
             F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
@@ -147,36 +143,10 @@ return {
                 "Find Project",
             },
             r = { "<cmd>Telescope resume<cr>", "Resume search" },
-            t = { "<cmd>FocusSplitNicely cmd term<cr>", "terminal" },
             T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
             -- v = { "<C-W>v", "Split Right" },
             Q = { ":cclose<cr>", "close quickfix" },
-            v = {
-                name = "Split",
-                d = {
-                    "<cmd>FocusSplitDown<cr>", "Split Right",
-                },
-                e = {
-                    "<cmd>FocusEnable<cr>", "Focus Enable",
-                },
-                l = {
-                    "<cmd>FocusSplitLeft<cr>", "Split Left",
-                },
-                t = {
-                    "<cmd>FocusToggle<cr>", "Focus Toggle",
-                },
-                r = {
-                    "<cmd>FocusSplitRight<cr>", "Split Right",
-                },
-                u = {
-                    "<cmd>FocusSplitUp<cr>", "Split Right",
-                },
-                v = {
-                    "<cmd>FocusSplitNicely<cr>", "Split Nicely",
-                },
-            },
-            w = { "<cmd>FocusMaxOrEqual<cr>", "Max Window" },
             W = { "<C-W>q", "Close Window" },
             x = {
                 name = "Debugger",

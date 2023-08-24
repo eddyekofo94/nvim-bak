@@ -2,5 +2,10 @@
     "diagnostics.disable": [
         "redefined-local"
     ],
-    "workspace.checkThirdParty": false
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "vim",
+        "use",
+        "Util"
+    ]
 }

@@ -1,53 +1,10 @@
 vim.cmd("set termguicolors")
 local utils = require("utils")
-local fn = vim.fn
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
-
--- NOTE: this is to get a big file size
--- local get_size = function()
---     return fn.getfsize(fn.expand("%")) > 512 * 1024
--- end
-
--- TODO: work on detecting large files
--- vim.api.nvim_create_autocmd({"BufWritePre", "FileReadPre"}, )
-
-local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
-
--- Check the size of a file
-vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
-    callback = function()
-        local ok, stats = pcall(vim.loop.fs_stat,
-            vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
-        if ok and stats and (stats.size > 1000000) then
-            vim.b.large_buf = true
-            vim.opt_local.syntax = "off"
-            vim.opt_local.syntax = "clear"
-            vim.opt_local.filetype = "off"
-            vim.opt_local.foldmethod = "manual"
-            vim.opt_local.spell = false
-        else
-            vim.b.large_buf = false
-        end
-    end,
-    group = aug,
-    pattern = "*",
-})
-
-vim.api.nvim_create_augroup("AutoReload", { clear = true })
-
--- vim.api.nvim_create_autocmd(
---     { "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
---     {
---         pattern = "*",
---         command = "if mode() != 'c' | checktime | endif",
---         group = "AutoReload",
---     }
--- )
-
 
 -- TODO: look into converting this to lua
 -- function! MaxLineChars()
@@ -68,23 +25,6 @@ vim.api.nvim_create_augroup("AutoReload", { clear = true })
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
--- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
-    callback = function()
-        vim.cmd("tabdo wincmd =")
-    end,
-})
-
-autocmd("FileType", {
-    pattern = { "c", "cpp", "py", "java", "cs" },
-    callback = function()
-        vim.bo.shiftwidth = 4
-    end,
-    group = general,
-    desc = "Set shiftwidth to 4 in these filetypes",
-
-})
-
 autocmd("FileType", {
     pattern = { "c", "cpp", "py", "java", "cs" },
     callback = function()
@@ -95,7 +35,6 @@ autocmd("FileType", {
 })
 
 -- NOTE: should restore cursor position on the last one
--- BUG: seems not always work. don't know the mains reason for this.
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -110,6 +49,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
         "qf",
+        "QF",
         "help",
         "man",
         "notify",
@@ -179,5 +119,6 @@ utils.define_augroups({
     _buffer_bindings = {
         { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "lspinfo",   "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "qf",   "nnoremap <silent> <buffer> q :q<CR>" },
     },
 })

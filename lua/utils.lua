@@ -28,9 +28,8 @@ M.root_patterns = { ".git", "lua" }
 
 
 function M.auto_format()
-    -- lua print(vim.inspect(vim.lsp.get_active_clients()))
-    local client = vim.lsp.get_active_clients()[1]
-    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+    local client = vim.lsp.get_clients()[1]
+    local filetype = vim.api.nvim_get_option_value("filetype")
 
     -- Set some keybinds conditional on server capabilities
     if client.supports_method("textDocument/formatting") then
@@ -61,7 +60,7 @@ function M.get_root()
     ---@type string[]
     local roots = {}
     if path then
-        for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+        for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
             local workspace = client.config.workspace_folders
             local paths = workspace
                 and vim.tbl_map(function(ws)
@@ -115,7 +114,7 @@ function M.telescope(builtin, opts)
 end
 
 local function lsp_server_has_references()
-    for _, client in pairs(vim.lsp.get_active_clients()) do
+    for _, client in pairs(vim.lsp.get_clients()) do
         if client.server_capabilities then
             return true
         end
