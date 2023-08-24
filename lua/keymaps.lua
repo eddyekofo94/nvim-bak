@@ -1,6 +1,6 @@
 -- Mapping helper
 local mapper = require("utils").mapper
-local set = require("utils").set
+local set = require("utils").keymap_set
 
 vim.g.mapleader = " "
 local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)

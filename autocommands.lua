@@ -5,6 +5,20 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
+-- local file_types = { "cpp","h","hpp","cxx",cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript" }
+-- local file_types = { "go", "lua" }
+
+-- Check if we need to reload the file when it changed
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+
+autocmd("FileType", {
+    pattern = { "c", "cpp", "py", "java", "cs" },
+    callback = function()
+        vim.bo.shiftwidth = 4
+    end,
+    group = general,
+    desc = "Set shiftwidth to 4 in these filetypes",
+})
 
 -- TODO: look into converting this to lua
 -- function! MaxLineChars()
@@ -16,26 +30,26 @@ local general = augroup("General Settings", { clear = true })
 --     autocmd BufLeave,BufDelete * :call clearmatches()
 -- augroup end
 
--- vim.api.nvim_create_autocmd({ "BufWinEnter", "FileReadPre" }, {
---     callback = function()
---         return fn.
---     end,
--- })
-
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
-
-autocmd("FileType", {
-    pattern = { "c", "cpp", "py", "java", "cs" },
-    callback = function()
-        vim.bo.shiftwidth = 4
-    end,
-    group = general,
-    desc = "Set shiftwidth to 4 in these filetypes",
-})
+-- REFACTOR: this needs to be worked on and improved upon.
+-- autocmd(
+--     "BufWinEnter", {
+--         group = general,
+--         pattern = { "lua", "go" },
+--         callback = function(_)
+--             -- vim.cmd([[let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)]])
+--             vim.cmd([[
+--                 function! MaxLineChars()
+--                     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+--                 endfunction
+--             ]])
+--             vim.api.nvim_call_function("MaxLineChars", _)
+--         end,
+--         desc = "Error hl >80",
+--     }
+-- )
 
 -- NOTE: should restore cursor position on the last one
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
         local lcount = vim.api.nvim_buf_line_count(0)
@@ -46,7 +60,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
     pattern = {
         "qf",
         "QF",
@@ -71,7 +85,7 @@ local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
 local augroup =
     vim.api.nvim_create_augroup('FocusDisable', { clear = true })
 
-vim.api.nvim_create_autocmd('WinEnter', {
+autocmd('WinEnter', {
     group = augroup,
     callback = function(_)
         if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
@@ -84,7 +98,7 @@ vim.api.nvim_create_autocmd('WinEnter', {
     desc = 'Disable focus autoresize for BufType',
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
     group = augroup,
     callback = function(_)
         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
@@ -96,11 +110,15 @@ vim.api.nvim_create_autocmd('FileType', {
     desc = 'Disable focus autoresize for FileType',
 })
 
+
+
 utils.define_augroups({
     _general_settings = {
         -- BUG: this is not working
         --        { "TextYankPost", "*",
         --           "lua vim.highlight.on_yank{higroup = 'Search', timeout = 500}", },
+
+        -- { "BufWinEnter", file_types, "" },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile",  "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
@@ -119,6 +137,6 @@ utils.define_augroups({
     _buffer_bindings = {
         { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "lspinfo",   "nnoremap <silent> <buffer> q :q<CR>" },
-        { "FileType", "qf",   "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "qf",        "nnoremap <silent> <buffer> q :q<CR>" },
     },
 })

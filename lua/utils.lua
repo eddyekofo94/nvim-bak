@@ -172,7 +172,7 @@ M.feedkeys = function(keys, mode)
     return vim.api.nvim_feedkeys(M.termcodes(keys), mode, true)
 end
 
-function M.set(modes, lhs, rhs, opts)
+function M.keymap_set(modes, lhs, rhs, opts)
     if type(opts) == "string" then
         opts = { desc = opts }
     end

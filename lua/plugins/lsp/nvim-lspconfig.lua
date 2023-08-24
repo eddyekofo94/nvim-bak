@@ -19,15 +19,17 @@ mason_lspconfig.setup({
     },
 })
 
-local mapper = function(mode, key, result)
-    vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd>lua " .. result .. "<CR>",
-        { noremap = true, silent = true })
+local mapper = function(mode, key, result, desc)
+    vim.api.nvim_set_keymap(mode, key, "<cmd>lua " .. result .. "<CR>",
+        { noremap = true, silent = true, desc = desc })
 end
+-- local mapper = require("utils")
 
 local custom_init = function(client)
     client.config.flags = client.config.flags or {}
     client.config.flags.allow_incremental_sync = true
 end
+
 local signs_defined = {
     error = "",
     warn = "",
@@ -52,15 +54,15 @@ local custom_attach = function(client, bufnr)
     end
 
     -- set up mappings (only apply when LSP client attached)
-    mapper("n", "<space>dD", "vim.lsp.buf.declaration()")
-    mapper("n", "<space>di", "vim.lsp.buf.implementation()")
+    mapper("n", "<space>dD", "vim.lsp.buf.declaration()", "declaration")
+    mapper("n", "<space>di", "vim.lsp.buf.implementation()", "implementation")
     -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    mapper("n", "<c-]>", "vim.lsp.buf.definition()")
-    mapper('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-    mapper("n", "<space>dR", "vim.lsp.buf.references()")
-    mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()")
-    mapper("n", "<space>da", "vim.diagnostic.setloclist()")
-    mapper('n', '<leader>dl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+    mapper("n", "<c-]>", "vim.lsp.buf.definition()", "definition")
+    mapper('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', "signature help")
+    mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
+    mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
+    mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
+    mapper('n', '<leader>dl', '<cmd>lua vim.diagnostic.open_float()<cr>', "open float")
 
     -- INFO: this is set on Lspsaga
     -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
@@ -71,7 +73,7 @@ local custom_attach = function(client, bufnr)
     sign({ name = "DiagnosticSignHint", text = signs_defined.hint })
     sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
 
-    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+    local filetype = vim.api.nvim_buf_get_name(0)
 
     -- INFO: Use different ways to auto_format
     -- utils.auto_format()
@@ -130,10 +132,6 @@ local custom_attach = function(client, bufnr)
         )
     end
 
-    if filetype == "go" then
-        
-    end
-
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
@@ -148,7 +146,7 @@ local custom_attach = function(client, bufnr)
         })
 
     vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
-        local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
+        local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id,_)
         local bufnr = vim.api.nvim_get_current_buf()
         vim.diagnostic.reset(ns, bufnr)
         return true
@@ -381,7 +379,7 @@ end
 
 -- golang config
 vim.api.nvim_create_autocmd('BufWritePre', {
-    pattern = '*.go',
+    pattern = 'go',
     callback = function()
         vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
     end,

@@ -6,7 +6,7 @@ return {
     version = "*", -- `main` is unstable
     event = "VeryLazy",
     config = function()
-        local map = require("utils").set
+        local map = require("utils").keymap_set
 
         require("git-conflict").setup({
             default_mappings = false,
