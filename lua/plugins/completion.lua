@@ -187,9 +187,6 @@ return {
             sorting = {
                 priority_weight = 1.0,
                 comparators = {
-                    compare.exact,
-                    compare.locality,
-                    compare.recently_used,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -199,6 +196,9 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
+                    compare.exact,
+                    compare.recently_used,
+                    compare.locality,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
