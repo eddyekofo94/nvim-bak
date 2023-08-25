@@ -49,11 +49,6 @@ return {
             "<cmd>FocusSplitNicely cmd term<cr>",
             desc = "Terminal",
         },
-        -- {
-        --     "<leader>|",
-        --     "<cmd>FocusSplitNicely<cr>",
-        --     desc = "Split Nicely",
-        -- },
         {
             "<leader>vv",
             "<cmd>FocusSplitNicely<cr>",
