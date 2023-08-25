@@ -73,7 +73,7 @@ local custom_attach = function(client, bufnr)
     sign({ name = "DiagnosticSignHint", text = signs_defined.hint })
     sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
 
-    local filetype = vim.api.nvim_buf_get_name(0)
+    local filetype = vim.api.nvim_buf_get_name(bufnr)
 
     -- INFO: Use different ways to auto_format
     -- utils.auto_format()
@@ -146,7 +146,7 @@ local custom_attach = function(client, bufnr)
         })
 
     vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
-        local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id,_)
+        local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id, _)
         local bufnr = vim.api.nvim_get_current_buf()
         vim.diagnostic.reset(ns, bufnr)
         return true
@@ -155,6 +155,10 @@ local custom_attach = function(client, bufnr)
     -- TODO: look into fixing this maybe
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
+    end
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint(bufnr, true)
     end
 
     if filetype ~= "lua" then

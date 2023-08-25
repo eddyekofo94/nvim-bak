@@ -2,9 +2,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
-        opts = {
-            inlay_hints = { enabled = true },
-        },
         dependencies = {
             { "neovim/nvim-lspconfig" },             -- Required
             { "williamboman/mason.nvim" },           -- Optional
