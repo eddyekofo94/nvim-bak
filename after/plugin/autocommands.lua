@@ -6,7 +6,7 @@ local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 -- local file_types = { "cpp","h","hpp","cxx",cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript" }
--- local file_types = { "go", "lua" }
+local file_types = { "go", "lua" }
 
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
@@ -32,21 +32,38 @@ autocmd("FileType", {
 
 -- REFACTOR: this needs to be worked on and improved upon.
 -- autocmd(
---     "BufWinEnter", {
+--     "WinEnter", {
 --         group = general,
 --         pattern = { "lua", "go" },
 --         callback = function(_)
 --             -- vim.cmd([[let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)]])
 --             vim.cmd([[
---                 function! MaxLineChars()
+--                 function MaxLineChars()
 --                     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 --                 endfunction
 --             ]])
---             vim.api.nvim_call_function("MaxLineChars", _)
+--             vim.cmd("MaxLineChars()")
 --         end,
 --         desc = "Error hl >80",
 --     }
 -- )
+
+autocmd(
+    { "BufLeave", "BufWinLeave", "BufDelete" },
+    { pattern = file_types, command = "call clearmatches()", group = general }
+)
+
+-- Enable spell checking for certain file types
+autocmd(
+    { "BufRead", "BufNewFile" },
+    {
+        pattern = { "*.txt", "*.md", "*.tex" },
+        callback = function()
+            vim.opt.spell = true
+            vim.opt.spelllang = "en,fr"
+        end,
+    }
+)
 
 -- NOTE: should restore cursor position on the last one
 autocmd("BufReadPost", {

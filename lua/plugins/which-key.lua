@@ -12,8 +12,13 @@ return {
 
         local leader_mappings = {
             b = {
-                name = "+buffer",
-                x = { ":%bd|e#|bd#<cr>", "close all but current" },
+                name = "+Buffers",
+                b = {
+                    function()
+                        require('telescope.builtin').buffers({ sort_lastused = true })
+                    end,
+                    "list buffers"
+                },
             },
             c = {
                 name = "+code",
@@ -65,18 +70,10 @@ return {
             s = {
                 name = "search", -- normally using Telescope
                 ["."] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
-                b = {
-                    function()
-                        require('telescope.builtin').buffers({ sort_lastused = true })
-                    end,
-                    "buffers"
-                },
                 c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
                 B = { "<cmd>Telescope git_branches<cr>", "git branches" },
                 d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
-                -- f = { "<cmd>Telescope find_files<cr>", "files" },
                 F = { "<cmd>Telescope frecency<cr>", "frecency" },
-                -- h = { "<cmd>Telescope harpoon marks<cr>", "Harpoon menu" },
                 n = { "<cmd>NoiceTelescope<cr>", "noice" },
                 m = { "<cmd>Telescope marks<cr>", "marks" },
                 M = { "<cmd>Telescope man_pages<cr>", "man_pages" },
@@ -142,11 +139,10 @@ return {
                 "<cmd>lua require'telescope'.extensions.project.project{}<cr>",
                 "Find Project",
             },
-            r = { "<cmd>Telescope resume<cr>", "Resume search" },
-            T = { "<cmd>TodoQuickFix<cr>", "Search TODO" },
+            -- r = { "<cmd>Telescope resume<cr>", "Resume search" },
             U = { "<cmd>UndotreeShow<cr>", "Undotree show" },
             -- v = { "<C-W>v", "Split Right" },
-            Q = { ":cclose<cr>", "close quickfix" },
+            -- Q = { ":cclose<cr>", "close quickfix" },
             W = { "<C-W>q", "Close Window" },
             x = {
                 name = "Debugger",

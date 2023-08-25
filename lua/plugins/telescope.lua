@@ -48,6 +48,9 @@ return {
 
                 "<leader>sR", "<cmd>Telescope oldfiles<cr>", desc = "Recent File",
             },
+            {
+                "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Recent File",
+            },
             { "<leader>sS", "<cmd>Telescope persisted<cr>", desc = "Sessions" },
         },
         dependencies = {

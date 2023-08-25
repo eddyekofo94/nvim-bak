@@ -1,4 +1,4 @@
-local mocha = require("mocha")
+local mocha = require("utils.mocha")
 local fn = vim.fn
 
 O = {

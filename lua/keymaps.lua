@@ -1,9 +1,12 @@
 -- Mapping helper
 local mapper = require("utils").mapper
 local set = require("utils").keymap_set
+local utils = require("utils.functions")
 
 vim.g.mapleader = " "
 local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
+
+vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 
 mapper("n", "<Space>", "<NOP>")
 
@@ -38,6 +41,12 @@ set("v", "/", '"fy/\\V<C-R>f<CR>')
 set("v", "*", '"fy/\\V<C-R>f<CR>')
 
 set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
+
+-- move over a closing element in insert mode
+set("i", "<C-l>", function()
+  return require("utils.functions").escapePair()
+end, { desc = "move over a closing element in insert mode"})
+
 
 -- cycle through command history without arrow keys
 mapper("c", "<c-j>", "<down>")
@@ -112,8 +121,6 @@ mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 -- Diffview
 mapper("n", "<leader>gD", "<cmd>DiffviewOpen --untracked-files=no<CR>")
 mapper("n", "<leader>gH", "<cmd>DiffviewFileHistory %<CR>")
-
-vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 
 -- Whatever you delete, make it go away
 set({ "n", "x" }, "c", '"_c')

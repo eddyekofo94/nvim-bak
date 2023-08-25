@@ -1,6 +1,9 @@
 return {
     "folke/todo-comments.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    keys = {
+        { "<leader>T", "<cmd>TodoQuickFix<cr>", desc = "Search TODO" },
+    },
     opts = {
         -- your configuration comes here
         -- or leave it empty to use the default settings
