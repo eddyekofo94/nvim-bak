@@ -117,14 +117,15 @@ autocmd InsertLeave * set nopaste
 highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse
 " hi Visual  cterm=reverse gui=reverse guibg=reverse guifg=reverse " INFO: not sure about this!
 
-function! MaxLineChars()
+function MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endfunction
 
 augroup MAX_CHARS_COLUMN
     autocmd!
-    autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
-    autocmd BufLeave,BufDelete * :call clearmatches()
+    autocmd FileType,WinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
+    " INFO: moved to lua
+    " autocmd WinLeave * :call clearmatches()
 augroup end
 
 
