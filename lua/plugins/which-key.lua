@@ -31,12 +31,12 @@ return {
             g = {
                 name = "+Git",
                 a = { "<cmd>Gitsigns stage_hunk<cr>", "add hunk" },
+                b = { "<cmd>Gitsigns blame_line<cr>", "blame line" },
+                B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "toggle blame line" },
+                p = { "<cmd>Gitsigns preview_hunk<cr>", "preview hunk" },
                 u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "undo stage hunk" },
                 r = { "<cmd>Gitsigns reset_hunk<cr>", "reset hunk" },
                 R = { "<cmd>Gitsigns reset_buffer<cr>", "reset buffer" },
-                p = { "<cmd>Gitsigns preview_hunk<cr>", "preview hunk" },
-                b = { "<cmd>Gitsigns blame_line<cr>", "blame line" },
-                B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "toggle blame line" },
             },
             l = {
                 name = "+lsp",
