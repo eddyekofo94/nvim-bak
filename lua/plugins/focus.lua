@@ -34,6 +34,12 @@ return {
             desc = "Move next buffer",
         },
         {
+            '<leader>\\',
+            "<cmd>FocusAutoresize<cr>",
+            desc = "Activate autoresise",
+
+        },
+        {
             "<leader>vk",
             "<cmd>FocusSplitUp<cr>",
             desc = "Split Right",
@@ -43,11 +49,11 @@ return {
             "<cmd>FocusSplitNicely cmd term<cr>",
             desc = "Terminal",
         },
-        {
-            "<leader>|",
-            "<cmd>FocusSplitNicely<cr>",
-            desc = "Split Nicely",
-        },
+        -- {
+        --     "<leader>|",
+        --     "<cmd>FocusSplitNicely<cr>",
+        --     desc = "Split Nicely",
+        -- },
         {
             "<leader>vv",
             "<cmd>FocusSplitNicely<cr>",
@@ -76,7 +82,7 @@ return {
                     number = true,         -- Display line numbers in the focussed window only
                     relativenumber = true, -- Display relative line numbers in the focussed window only
                     hybridnumber = true,   -- Display hybrid line numbers in the focussed window only
-                    -- BUG: This seems to not be working 
+                    -- BUG: This seems to not be working
                     winhighlight = true,   -- Auto highlighting for focussed/unfocussed windows
                     cursorline = true,     -- Display a cursorline in the focussed window only
                 },
