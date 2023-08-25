@@ -63,7 +63,6 @@ autocmd("BufReadPost", {
 autocmd("FileType", {
     pattern = {
         "qf",
-        "QF",
         "help",
         "man",
         "notify",
@@ -110,13 +109,11 @@ autocmd('FileType', {
     desc = 'Disable focus autoresize for FileType',
 })
 
-
-
 utils.define_augroups({
     _general_settings = {
-        -- BUG: this is not working
-        --        { "TextYankPost", "*",
-        --           "lua vim.highlight.on_yank{higroup = 'Search', timeout = 500}", },
+        -- Highlight on yank
+        { "TextYankPost", "*",
+            "lua vim.highlight.on_yank{higroup = 'HighlightedyankRegion', timeout = 500}", },
 
         -- { "BufWinEnter", file_types, "" },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },

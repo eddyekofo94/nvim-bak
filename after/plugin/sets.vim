@@ -115,14 +115,7 @@ set foldlevelstart=99
 autocmd InsertLeave * set nopaste
 
 highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse
-highlight IncSearch cterm=reverse gui=reverse guifg=reverse guibg=reverse 
 " hi Visual  cterm=reverse gui=reverse guibg=reverse guifg=reverse " INFO: not sure about this!
-
-
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='HighlightedyankRegion', timeout=500 }
-augroup END
 
 function! MaxLineChars()
     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
