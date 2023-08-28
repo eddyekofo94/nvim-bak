@@ -85,6 +85,7 @@ return {
                 -- completeopt = 'menu,menuone,noselect',
                 completeopt = 'menu,menuone,noinsert',
             },
+            preselect = cmp.PreselectMode.None,
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
@@ -121,7 +122,7 @@ return {
                     i = function(fallback)
                         if cmp.visible() and cmp.get_active_entry() then
                             cmp.confirm({
-                                -- For Copilot
+                                -- For Copilot -- INFO: not using this (yet)
                                 behavior = cmp.ConfirmBehavior.Replace,
                                 -- Only when explicitly selected
                                 select = false,
@@ -167,8 +168,6 @@ return {
                         end
                     end,
                 }),
-                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
@@ -235,7 +234,7 @@ return {
                 }),
             },
             sorting = {
-                priority_weight = 1.0,
+                priority_weight = 2,
                 comparators = {
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",

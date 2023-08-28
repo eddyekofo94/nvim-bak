@@ -65,6 +65,7 @@ return {
                     "<leader>snh",
                     function()
                         require("noice").cmd("history")
+
                     end,
                     desc = "Noice History",
                 },
