@@ -3,6 +3,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     keys = {
         { "<leader>T", "<cmd>TodoQuickFix<cr>", desc = "Search TODO" },
+        {"]t", "<cmd>lua require('todo-comments').jump_next()<cr>", { desc = "Next todo comment" }},
+        {"[t", "<cmd>lua require('todo-comments').jump_prev()<cr>", { desc = "Previous todo comment" }},
     },
     opts = {
         -- your configuration comes here

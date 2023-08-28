@@ -48,8 +48,8 @@ return {
 
         ---@type table<integer, integer>
         local modified_priority = {
-            [types.lsp.CompletionItemKind.Snippet] = 0, -- top
             [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Variable,
+            [types.lsp.CompletionItemKind.Snippet] = 1, -- top
             [types.lsp.CompletionItemKind.Keyword] = 1, -- top
             [types.lsp.CompletionItemKind.Text] = 100,  -- bottom
         }
@@ -163,6 +163,7 @@ return {
                     name = "buffer",
                     max_item_count = 3,
                     keyword_length = 3,
+                    dup = 0,
                     option = {
                         get_bufnrs = visible_buffers, -- Suggest words from all visible buffers
                     },
@@ -170,7 +171,6 @@ return {
                 { name = "spell",     keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
                 { name = "calc" },
                 { name = "treesitter" },
-                { name = "crates" },
             },
             window = {
                 completion = cmp.config.window.bordered({
