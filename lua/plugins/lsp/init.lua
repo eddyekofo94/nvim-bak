@@ -20,7 +20,7 @@ return {
                 end,
             },
             -- NOTE: not working as expected
-            { "folke/neodev.nvim", config = true, opts = { experimental = { pathStrict = true } } },
+            { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
             "simrat39/rust-tools.nvim",
             "scalameta/nvim-metals", -- Java
             {
@@ -59,10 +59,7 @@ return {
             },
         },
         config = function()
-            -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-            -- require("neodev").setup({
-            --     -- add any options here, or leave empty to use the default settings
-            -- })
+            -- INFO: this is where the configs are called
             require("plugins.lsp.nvim-lspconfig")
         end,
     },
@@ -106,19 +103,4 @@ return {
     --     opts = {
     --     },
     -- },
-    {
-        "ray-x/go.nvim",
-        dependencies = { -- optional packages
-            "ray-x/guihua.lua",
-            "neovim/nvim-lspconfig",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require("go").setup()
-        end,
-        event = { "CmdlineEnter" },
-        ft = { "go", 'gomod' },
-        build =
-        ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-    },
 }
