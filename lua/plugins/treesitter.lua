@@ -90,10 +90,17 @@ return {
                     enable = true,
                     lookahead = true, -- automatically jump forward to matching textobj
                     keymaps = {
+                        -- You can use the capture groups defined in textobjects.scm
                         ["af"] = "@function.outer",
                         ["if"] = "@function.inner",
                         ["ac"] = "@class.outer",
                         ["ic"] = "@class.inner",
+                        ["al"] = "@loop.outer",
+                        ["il"] = "@loop.inner",
+                        ["ib"] = "@block.inner",
+                        ["ab"] = "@block.outer",
+                        ["ir"] = "@parameter.inner",
+                        ["ar"] = "@parameter.outer",
                     },
                 },
                 swap = {
