@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
+local keymap_set = require("utils").keymap_set
 local navic = require("nvim-navic")
 local wk = require("which-key")
 
@@ -80,18 +81,14 @@ local custom_attach = function(client, bufnr)
 
     local format_code
     if client.supports_method("textDocument/formatting") then
-        format_code = "<cmd>lua vim.lsp.buf.format()<CR>"
-    elseif client.supports_method("textDocument/rangeFormatting") then
-        format_code = "<cmd>lua vim.lsp.buf.range_formatting()<CR>"
-    elseif vim.tbl_contains({ "go", "rust" }, filetype) then
-        format_code = "<cmd>lua vim.lsp.buf.formatting_sync()<CR>"
+        -- format_code = "<cmd>lua vim.lsp.buf.format()<CR>"
+        format_code = "<cmd>lua vim.lsp.buf.format({  async = true })<CR>"
     else
         format_code = "<cmd>Format<CR>"
     end
 
-    wk.register({
-        f = { format_code, "Format code" }, -- create a binding with label
-    }, { prefix = "<leader>" })
+    keymap_set("n", "<leader>f", format_code,
+        { desc = "Format" })
 
     -- Only highlight if compatible with the language
     if client.server_capabilities.documentHighlightProvider then
@@ -380,4 +377,3 @@ if has_metals then
         group = nvim_metals_group,
     })
 end
-
