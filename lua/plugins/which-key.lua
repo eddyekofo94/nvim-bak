@@ -17,7 +17,7 @@ return {
                     function()
                         require('telescope.builtin').buffers({ sort_lastused = true })
                     end,
-                    "list buffers"
+                    "list buffers",
                 },
             },
             c = {
@@ -61,7 +61,7 @@ return {
                 -- L = { "<cmd>Lspsaga show_line_diagnostics<cr>", "line_diagnostics" },
                 p = { "<cmd>lua vim.diagnostic.open_float()<cr>", "preview definition" },
                 q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
-                r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
+                r = { "Rename" },
                 R = { "<cmd>Glance references<cr>", "References" },
                 T = { "<cmd>LspTypeDefinition<cr>", "type definition" }, -- TODO: fix this in the future
                 s = { "<cmd>Telescope lsp_document_symbols<cr>", "document symbols" },
