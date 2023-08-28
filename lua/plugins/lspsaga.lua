@@ -20,6 +20,9 @@ return {
     },
     config = function()
         require("lspsaga").setup({
+            code_action_lightbulb = {
+                enable = false,
+            },
             ui = {
                 kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
             },
