@@ -38,6 +38,10 @@ return {
                 nil
         end
 
+        local t = function(str)
+            return vim.api.nvim_replace_termcodes(str, true, true, true)
+        end
+
         local luasnip = require("luasnip")
         local cmp = require("cmp")
         local lspkind = require("lspkind")
@@ -114,8 +118,54 @@ return {
                 }),
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Insert,
-                    select = true,
+                    i = function(fallback)
+                        if cmp.visible() and cmp.get_active_entry() then
+                            cmp.confirm({
+                                -- For Copilot
+                                behavior = cmp.ConfirmBehavior.Replace,
+                                -- Only when explicitly selected
+                                select = false,
+                            })
+                        else
+                            fallback()
+                        end
+                    end,
+                    s = cmp.mapping.confirm({ select = true }),
+                    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                    -- behavior = cmp.ConfirmBehavior.Insert,
+                    -- select = true,
+                }),
+                ["<C-j>"] = cmp.mapping({
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        else
+                            vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        else
+                            fallback()
+                        end
+                    end,
+                }),
+                ['<C-k>'] = cmp.mapping({
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            fallback()
+                        end
+                    end,
                 }),
                 ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
