@@ -242,7 +242,7 @@ M.search_todos = function()
     vim.fn.setqflist(qf_list)
     vim.cmd("copen")
   else
-    local utils = require("core.utils.functions")
+    local utils = require("utils.functions")
     utils.notify("No results found!", vim.log.levels.INFO, "Search TODOs")
   end
 end

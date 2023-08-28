@@ -9,7 +9,7 @@ return {
         local icons = require("utils.icons")
         require("go").setup({
             -- NOTE: all LSP and formatting related options are disabeld.
-            -- NOTE: is not related to core.plugins.lsp
+            -- NOTE: is not related to plugins.lsp
             -- NOTE: manages LSP on its own
             go = "go",                -- go command, can be go[default] or go1.18beta1
             goimport = "gopls",       -- goimport command, can be gopls[default] or goimport
