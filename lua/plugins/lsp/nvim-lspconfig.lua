@@ -81,7 +81,6 @@ local custom_attach = function(client, bufnr)
 
     local format_code
     if client.supports_method("textDocument/formatting") then
-        -- format_code = "<cmd>lua vim.lsp.buf.format()<CR>"
         format_code = "<cmd>lua vim.lsp.buf.format({  async = true })<CR>"
     else
         format_code = "<cmd>Format<CR>"
