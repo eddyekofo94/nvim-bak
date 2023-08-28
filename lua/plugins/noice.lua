@@ -32,15 +32,15 @@ return {
             messages = {
                 -- NOTE: If you enable messages, then the cmdline is enabled automatically.
                 -- This is a current Neovim limitation.
-                enabled = false,             -- enables the Noice messages UI
+                enabled = true,              -- enables the Noice messages UI
                 view = "notify",             -- default view for messages
-                view_error = "notify",       -- view for errors
+                view_error = "messages",     -- view for errors
                 view_warn = "notify",        -- view for warnings
                 view_history = "messages",   -- view for :messages
                 view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
             },
             popupmenu = {
-                enabled = true,  -- enables the Noice popupmenu UI
+                enabled = false, -- enables the Noice popupmenu UI
                 ---@type 'nui'|'cmp'
                 backend = "nui", -- backend to use to show regular cmdline completions
                 ---@type NoicePopupmenuItemKind|false
@@ -115,16 +115,16 @@ return {
                     -- override the lsp markdown formatter with Noice
                     ["vim.lsp.util.stylize_markdown"] = true,
                     -- override cmp documentation with Noice (needs the other options to work)
-                    ["cmp.entry.get_documentation"] = true,
+                    ["cmp.entry.get_documentation"] = false,
                 },
                 hover = {
-                    enabled = true,
+                    enabled = false,
                     view = nil, -- when nil, use defaults from documentation
                     ---@type NoiceViewOptions
                     opts = {},  -- merged with defaults from documentation
                 },
                 signature = {
-                    enabled = true,
+                    enabled = false,
                     auto_open = {
                         enabled = true,
                         trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
@@ -140,18 +140,6 @@ return {
                     enabled = true,
                     view = "notify",
                     opts = {},
-                },
-                -- defaults for hover and signature help
-                documentation = {
-                    view = "hover",
-                    ---@type NoiceViewOptions
-                    opts = {
-                        lang = "markdown",
-                        replace = true,
-                        render = "plain",
-                        format = { "{message}" },
-                        win_options = { concealcursor = "n", conceallevel = 3 },
-                    },
                 },
             },
             markdown = {
@@ -181,17 +169,25 @@ return {
             presets = {
                 -- you can enable a preset by setting it to true, or a table that will override the preset config
                 -- you can also add custom presets that you can enable/disable with enabled=true
-                bottom_search = true,        -- use a classic bottom cmdline for search
+                bottom_search = true,         -- use a classic bottom cmdline for search
                 command_palette = true,       -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+                inc_rename = true,            -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false,       -- add a border to hover docs and signature help
             },
             throttle = 1000 / 30,             -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
             ---@type NoiceConfigViews
             views = {}, ---@see section on views
             ---@type NoiceRouteConfig[]
-            routes = {}, --- @see section on routes
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                    },
+                    opts = { skip = true },
+                },
+            },           --- @see section on routes
             ---@type table<string, NoiceFilter>
             status = {}, --- @see section on statusline components
             ---@type NoiceFormatOptions
