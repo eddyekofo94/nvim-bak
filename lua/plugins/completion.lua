@@ -49,12 +49,13 @@ return {
         local compare = require('cmp.config.compare')
         local types = require("cmp.types")
 
-
         ---@type table<integer, integer>
         local modified_priority = {
-            [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Variable,
-            [types.lsp.CompletionItemKind.Snippet] = 1, -- top
-            [types.lsp.CompletionItemKind.Keyword] = 1, -- top
+            [types.lsp.CompletionItemKind.Variable] = 1,
+            [types.lsp.CompletionItemKind.Constant] = 1,
+            [types.lsp.CompletionItemKind.Snippet] = 2, -- top
+            [types.lsp.CompletionItemKind.Keyword] = 2, -- top
+            [types.lsp.CompletionItemKind.Function] = types.lsp.CompletionItemKind.Method,
             [types.lsp.CompletionItemKind.Text] = 100,  -- bottom
         }
 
@@ -242,6 +243,9 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
+                    compare.scopes,
+                    -- compare.order,
+                    compare.recently_used,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
@@ -265,11 +269,8 @@ return {
                             return t1 < t2
                         end
                     end,
-                    compare.recently_used,
                     compare.exact,
                     compare.locality,
-                    compare.order,
-                    compare.offset,
                 },
             },
             experimental = {
