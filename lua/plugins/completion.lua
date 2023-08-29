@@ -205,21 +205,27 @@ return {
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "nvim_lsp_signature_help" },
+                {
+                    name = "treesitter",
+                    keyword_length = 3,
+                },
                 { name = "neorg" },
                 { name = "path" },
-                { name = "rg",                     keyword_length = 4, dup = 0 },
                 {
                     name = "buffer",
                     max_item_count = 3,
-                    keyword_length = 3,
+                    keyword_length = 4,
                     dup = 0,
                     option = {
                         get_bufnrs = visible_buffers, -- Suggest words from all visible buffers
                     },
-                },
-                { name = "spell",     keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
+                }, {
+                name = "rg",
+                keyword_length = 4,
+                dup = 0,
+            },
+                { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
                 { name = "calc" },
-                { name = "treesitter" },
             },
             window = {
                 completion = cmp.config.window.bordered({
@@ -236,6 +242,13 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
+                    function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+                        local kind1 = modified_kind(entry1:get_kind())
+                        local kind2 = modified_kind(entry2:get_kind())
+                        if kind1 ~= kind2 then
+                            return kind1 - kind2 < 0
+                        end
+                    end,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -245,16 +258,6 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
-                    compare.exact,
-                    compare.recently_used,
-                    compare.locality,
-                    function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
-                        local kind1 = modified_kind(entry1:get_kind())
-                        local kind2 = modified_kind(entry2:get_kind())
-                        if kind1 ~= kind2 then
-                            return kind1 - kind2 < 0
-                        end
-                    end,
                     function(entry1, entry2) -- score by lsp, if available
                         local t1 = entry1.completion_item.sortText
                         local t2 = entry2.completion_item.sortText
@@ -262,6 +265,9 @@ return {
                             return t1 < t2
                         end
                     end,
+                    compare.recently_used,
+                    compare.exact,
+                    compare.locality,
                     compare.order,
                     compare.offset,
                 },
