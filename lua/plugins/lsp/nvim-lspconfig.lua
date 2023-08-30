@@ -290,6 +290,12 @@ mason_lspconfig.setup_handlers({
             analyses = {
                 unusedparams = true,
             },
+            setting = {
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                },
+            },
             staticcheck = true,
         }
     end,
