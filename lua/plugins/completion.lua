@@ -230,7 +230,7 @@ return {
             },
             window = {
                 completion = cmp.config.window.bordered({
-                    winhighlight = "FloatBorder:FloatBorder,CursorLine:Visual",
+                    winhighlight = "FloatBorder:CmpBorder",
                     col_offset = -3,
                     side_padding = 0,
                 }),
