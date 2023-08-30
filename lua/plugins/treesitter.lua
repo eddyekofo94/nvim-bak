@@ -5,7 +5,6 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
-        'JoosepAlviste/nvim-ts-context-commentstring',
     },
     config = function()
         -- code
@@ -69,11 +68,6 @@ return {
                 end,
             },
             indent = { enable = true },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-                config = { c = "// %s", lua = "-- %s", vim = '" %s' },
-            },
             refactor = {
                 highlight_definitions = { enable = true },
                 highlight_current_scope = { enable = false },
