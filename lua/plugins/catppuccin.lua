@@ -11,10 +11,13 @@ return {
                     MatchParenCur            = { fg = colors.yellow, style = { "bold" } },
                     FloatBorder              = { fg = colors.surface0 }, -- TODO: this seems to not be working
                     WinSeparator             = { fg = colors.surface2 },
-                    LspInlayHint             = { link = "Comment" },
+                    -- Telescope
                     TelescopeBorder          = { fg = colors.surface0 },
                     -- TScontext
-                    TreesitterContextBottom  = { fg = colors.surface0 },
+                    TreesitterContextBottom  = {
+                        sp = colors.surface0, -- INFO: don't know about this
+                        style = { "bold", "italic" },
+                    },
                     -- noice
                     NoiceCmdlinePopupBorder  = { fg = colors.overlay2 },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },

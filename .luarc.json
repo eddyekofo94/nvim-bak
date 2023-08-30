@@ -1,6 +1,7 @@
 {
     "diagnostics.disable": [
-        "redefined-local"
+        "redefined-local",
+        "redundant-parameter"
     ],
     "workspace.checkThirdParty": false,
     "diagnostics.globals": [
