@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
+vim.cmd("set background=dark")
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 

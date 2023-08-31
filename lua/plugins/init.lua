@@ -1,7 +1,6 @@
 require("keymaps")
 require("globals")
 
-vim.cmd("set background=dark")
 return {
     {
         "glepnir/template.nvim",
@@ -49,15 +48,6 @@ return {
         "windwp/nvim-spectre",
         cmd = { "Spectre" },
         opts = { open_cmd = "noswapfile vnew" },
-    },
-    {
-        "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
-        event = "VeryLazy",
-        init = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
-        ft = { "markdown" },
     },
     {
         "norcalli/nvim-terminal.lua",

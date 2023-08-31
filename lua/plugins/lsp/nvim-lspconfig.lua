@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 local keymap_set = require("utils").keymap_set
 local navic = require("nvim-navic")
-local wk = require("which-key")
 
 mason_lspconfig.setup({
     ensure_installed = {
@@ -59,6 +58,7 @@ local custom_attach = function(client, bufnr)
     mapper("n", "<space>di", "vim.lsp.buf.implementation()", "implementation")
     -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
     mapper("n", "<c-]>", "vim.lsp.buf.definition()", "definition")
+    mapper("n", "K", "vim.lsp.buf.hover()", "hover")
     mapper('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', "signature help")
     mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
     mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
@@ -75,9 +75,6 @@ local custom_attach = function(client, bufnr)
     sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
 
     local filetype = vim.api.nvim_buf_get_name(bufnr)
-
-    -- INFO: Use different ways to auto_format
-    -- utils.auto_format()
 
     local format_code
     if client.supports_method("textDocument/formatting") then
@@ -157,9 +154,9 @@ local custom_attach = function(client, bufnr)
         vim.lsp.inlay_hint(bufnr, true)
     end
 
-    if filetype ~= "lua" then
-        mapper("n", "K", "vim.lsp.buf.hover()")
-    end
+    -- if filetype ~= "lua" then
+    --     mapper("n", "K", "vim.lsp.buf.hover()")
+    -- end
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end

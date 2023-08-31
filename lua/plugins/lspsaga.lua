@@ -2,11 +2,11 @@ return {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     keys = {
-        {
-            "K",
-            "<cmd>Lspsaga hover_doc<CR>",
-            desc = "Saga hover",
-        },
+        -- {
+        --     "K",
+        --     "<cmd>Lspsaga hover_doc<CR>",
+        --     desc = "Saga hover",
+        -- },
         {
             "]d",
             "<cmd>Lspsaga diagnostic_jump_next<cr>",
