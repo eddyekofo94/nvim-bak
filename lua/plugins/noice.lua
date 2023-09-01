@@ -40,7 +40,7 @@ return {
                 view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
             },
             popupmenu = {
-                enabled = false, -- enables the Noice popupmenu UI
+                enabled = true, -- enables the Noice popupmenu UI
                 ---@type 'nui'|'cmp'
                 backend = "nui", -- backend to use to show regular cmdline completions
                 ---@type NoicePopupmenuItemKind|false

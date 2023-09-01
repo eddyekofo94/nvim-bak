@@ -11,6 +11,8 @@ return {
                     MatchParenCur            = { fg = colors.yellow, style = { "bold" } },
                     FloatBorder              = { fg = colors.surface0 }, -- TODO: this seems to not be working
                     WinSeparator             = { fg = colors.surface2 },
+                    OverLength               = { fg = colors.red, bg = colors.base },
+
                     -- Telescope
                     TelescopeBorder          = { fg = colors.surface0 },
                     -- TScontext

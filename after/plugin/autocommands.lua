@@ -48,10 +48,10 @@ autocmd("FileType", {
 --     }
 -- )
 
-autocmd(
-    { "BufLeave", "BufWinLeave", "BufDelete" },
-    { pattern = file_types, command = "call clearmatches()", group = general }
-)
+-- autocmd(
+--     { "BufLeave", "BufWinLeave", "BufDelete" },
+--     { pattern = file_types, command = "call clearmatches()", group = general }
+-- )
 
 -- Enable spell checking for certain file types
 autocmd(

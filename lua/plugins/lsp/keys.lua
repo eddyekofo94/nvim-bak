@@ -64,28 +64,28 @@ M._keys = {
         has =
         "signatureHelp",
     },
-    {
-        "]d",
-        vim.diagnostic.goto_next,
-        desc =
-        "Next Diagnostic",
-    },
-    {
-        "[d",
-        vim.diagnostic.goto_prev,
-        desc =
-        "Prev Diagnostic",
-    },
-    {
-        "<leader>la",
-        vim.lsp.buf.code_action,
-        desc =
-        "Code Action",
-        mode = {
-            "n", "v" },
-        has =
-        "codeAction",
-    },
+    -- {
+    --     "]d",
+    --     vim.diagnostic.goto_next,
+    --     desc =
+    --     "Next Diagnostic",
+    -- },
+    -- {
+    --     "[d",
+    --     vim.diagnostic.goto_prev,
+    --     desc =
+    --     "Prev Diagnostic",
+    -- },
+    -- {
+    --     "<leader>la",
+    --     vim.lsp.buf.code_action,
+    --     desc =
+    --     "Code Action",
+    --     mode = {
+    --         "n", "v" },
+    --     has =
+    --     "codeAction",
+    -- },
     {
         "<leader>ls",
         "<cmd>Telescope lsp_document_symbols<cr>",
