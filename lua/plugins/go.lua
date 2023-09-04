@@ -50,7 +50,7 @@ return {
             lsp_codelens = true,                                                           -- set to false to disable codelens, true by default
             lsp_keymaps = true,                                                            -- set to false to disable gopls/lsp keymap
             lsp_diag_hdlr = true,                                                          -- hook lsp diag handler
-            lsp_diag_virtual_text = { space = 0, prefix = icons.arrows.Circle }, -- virtual text setup
+            lsp_diag_virtual_text = { space = 0, prefix = icons.ui.Circle }, -- virtual text setup
             lsp_diag_signs = true,
             lsp_diag_update_in_insert = true,
             lsp_document_formatting = true,

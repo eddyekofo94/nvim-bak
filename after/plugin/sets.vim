@@ -34,7 +34,7 @@ set number
 
 set laststatus=3
 set hlsearch
-set ignorecase " All your searches will be case insensitive
+" set ignorecase " All your searches will be case insensitive
 set smartcase  " Your search will be case sensitive if it contains an uppercase letter
 set hidden     " Keep all the buffers open in the background
 set noerrorbells

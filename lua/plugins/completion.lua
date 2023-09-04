@@ -199,7 +199,7 @@ return {
             sources = {
                 {
                     name = "luasnip",
-                    keyword_length = 2,
+                    keyword_length = 1,
                     option = {
                         show_autosnippets = true },
                 },
@@ -244,7 +244,6 @@ return {
                 priority_weight = 2,
                 comparators = {
                     compare.scopes,
-                    compare.recently_used,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
@@ -261,6 +260,7 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
+                    compare.recently_used,
                     function(entry1, entry2) -- score by lsp, if available
                         local t1 = entry1.completion_item.sortText
                         local t2 = entry2.completion_item.sortText
