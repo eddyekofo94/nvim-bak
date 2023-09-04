@@ -90,18 +90,6 @@ M.toggle_qf = function()
   end
 end
 
--- toggle colorcolumn
-M.toggle_colorcolumn = function()
-  local value = vim.api.nvim_get_option_value("colorcolumn", {})
-  if value == "" then
-    M.notify("Enable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "79", {})
-  else
-    M.notify("Disable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "", {})
-  end
-end
-
 -- move over a closing element in insert mode
 M.escapePair = function()
   local closers = { ")", "]", "}", ">", "'", '"', "`", "," }

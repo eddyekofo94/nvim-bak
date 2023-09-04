@@ -251,6 +251,7 @@ return {
                             return kind1 - kind2 < 0
                         end
                     end,
+                    compare.recently_used,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -260,7 +261,6 @@ return {
                             return len1 - len2 < 0
                         end
                     end,
-                    compare.recently_used,
                     function(entry1, entry2) -- score by lsp, if available
                         local t1 = entry1.completion_item.sortText
                         local t2 = entry2.completion_item.sortText
