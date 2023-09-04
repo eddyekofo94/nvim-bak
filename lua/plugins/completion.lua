@@ -83,7 +83,6 @@ return {
                 end
             end,
             completion = {
-                -- completeopt = 'menu,menuone,noselect',
                 completeopt = 'menu,menuone,noinsert',
             },
             preselect = cmp.PreselectMode.None,
@@ -220,11 +219,12 @@ return {
                     option = {
                         get_bufnrs = visible_buffers, -- Suggest words from all visible buffers
                     },
-                }, {
-                name = "rg",
-                keyword_length = 4,
-                dup = 0,
-            },
+                },
+                {
+                    name = "rg",
+                    keyword_length = 4,
+                    dup = 0,
+                },
                 { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
                 { name = "calc" },
             },
