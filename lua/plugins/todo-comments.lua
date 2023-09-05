@@ -21,7 +21,7 @@ return {
             HACK     = { icon = '󰈸 ', color = 'warning' },
             WARN     = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
             PERF     = { icon = '󰅒 ', alt = { 'REFACTOR', 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-            NOTE     = { icon = '󰆈 ', color = 'hint', alt = { 'INFO' } },
+            NOTE     = { icon = '󰆈 ', color = 'hint', alt = { 'INFO', 'REVIEW' } },
             EXAMPLE  = { icon = '󰄛 ', color = 'hint', alt = { 'E.G.' } },
             CLEAN_UP = { icon = " ", color = 'error', alt = { "CLEAN" } },
             DEBUG    = { icon = ' ', color = 'error' },
