@@ -34,7 +34,6 @@ return {
             desc = "Move next buffer",
         },
         {
-            -- '<leader>\\',
             "<C-\\>",
             "<cmd>FocusAutoresize<cr>",
             desc = "Activate autoresise",
