@@ -33,11 +33,6 @@ return {
             "<cmd>FocusSplitCycle<cr>",
             desc = "Move next buffer",
         },
-        -- {
-        --     "<leader>m",
-        --     "<cmd>FocusSplitCycle<cr>",
-        --     desc = "Move next buffer",
-        -- },
         {
             '<leader>\\',
             "<cmd>FocusAutoresize<cr>",
