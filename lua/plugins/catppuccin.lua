@@ -22,7 +22,6 @@ return {
                     },
 
                     -- Neotree
-                    NeoTreeFileIcon          = { fg = colors.overlay1 }, -- BUG: not working
                     NeoTreeDirectoryIcon  = { fg = colors.overlay1},
 
                     -- noice
