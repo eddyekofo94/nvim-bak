@@ -20,6 +20,11 @@ return {
                         sp = colors.surface0, -- INFO: don't know about this
                         style = { "bold", "italic" },
                     },
+
+                    -- Neotree
+                    NeoTreeFileIcon          = { fg = colors.overlay1 }, -- BUG: not working
+                    NeoTreeDirectoryIcon  = { fg = colors.overlay1},
+
                     -- noice
                     NoiceCmdlinePopupBorder  = { fg = colors.overlay2 },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },
