@@ -97,12 +97,12 @@ mapper("n", "<M-CR>", ":let v:hlsearch=!v:hlsearch<CR>")
 mapper("n", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- I hate escape
-mapper("i", "jk", "<ESC>")
-mapper("i", "kj", "<ESC>")
+-- mapper("i", "jk", "<ESC>")
+-- mapper("i", "kj", "<ESC>")
 mapper("i", "jj", "<ESC>")
 
 -- Very magic by default, got this from thePrimragen (Don't know exactly what it
---- does
+--- does)
 -- vim.cmd("nnoremap ? ?\v")
 -- vim.cmd("nnoremap / /\v")
 -- vim.cmd("cnoremap %s/  %sm/")
