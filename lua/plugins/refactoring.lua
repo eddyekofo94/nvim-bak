@@ -11,7 +11,7 @@ return {
     keys = {
         { '<leader>r',  mode = 'x' , desc = "Refactor"},
         { "<leader>rf", "<cmd>Refactor extract_to_file<cr>", mode = "x" },
-        { "<leader>rv", "<cmd>Refactor extract_var ",     mode = "x" },
+        { "<leader>rv", "<cmd>Refactor extract_var<cr>",     mode = "x" },
         {
             "<leader>ri", "<cmd>Refactor inline_var<cr>", mode = { "n", "x" },
         },
