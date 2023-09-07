@@ -8,15 +8,19 @@ return {
         "TimUntersberger/neogit",
         cmd = "Neogit",
         keys = {
+            {
+                "<leader>gs", "<cmd>Neogit status<CR>", desc = "Git status",
+            },
             "<leader>gC",
-            "<leader>gs",
-            "<leader>gd",
+            {
+                "<leader>gd", "<cmd>Neogit diff<CR>", desc = "Git diff",
+            },
             { "<leader>gc", "<cmd>Neogit commit<CR>", desc = "Git commit" },
-            { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
-            { "<leader>gP", "<cmd>Neogit push<CR>", desc = "Git push" },
+            { "<leader>gp", "<cmd>Neogit pull<CR>",   desc = "Git pull" },
+            { "<leader>gP", "<cmd>Neogit push<CR>",   desc = "Git push" },
             { "<leader>gr", "<cmd>Neogit rebase<CR>", desc = "Git rebase" },
             { "<leader>gl", "<cmd>Neogit log<CR>",    desc = "Git log" },
-            { "gB",         "<cmd>Git blame<CR>",     desc = "Git blame every line" },
+            -- { "gB",         "<cmd>Git blame<CR>",     desc = "Git blame every line" },
         },
         config = function()
             local map = require("utils").map
