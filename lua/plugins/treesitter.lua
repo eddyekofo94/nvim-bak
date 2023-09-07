@@ -27,6 +27,7 @@ return {
                 "python",
                 "cpp",
                 "java",
+                "gitcommit"
             },
             ignore_install = { "haskell" },
             sync_install = false,
