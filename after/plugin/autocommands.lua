@@ -5,8 +5,6 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
--- local file_types = { "cpp","h","hpp","cxx",cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript" }
-local file_types = { "go", "lua" }
 
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
@@ -48,11 +46,6 @@ autocmd("FileType", {
 --     }
 -- )
 
--- autocmd(
---     { "BufLeave", "BufWinLeave", "BufDelete" },
---     { pattern = file_types, command = "call clearmatches()", group = general }
--- )
-
 -- Enable spell checking for certain file types
 autocmd(
     { "BufRead", "BufNewFile" },
@@ -81,6 +74,7 @@ autocmd("FileType", {
     pattern = {
         "qf",
         "help",
+        "neogit",
         "man",
         "notify",
         "lspinfo",
