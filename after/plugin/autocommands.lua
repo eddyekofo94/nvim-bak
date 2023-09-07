@@ -74,7 +74,7 @@ autocmd("FileType", {
     pattern = {
         "qf",
         "help",
-        "neogit",
+        "undotree",
         "man",
         "notify",
         "lspinfo",
