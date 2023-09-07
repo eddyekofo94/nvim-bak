@@ -15,8 +15,8 @@ return {
             { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
             { "<leader>gP", "<cmd>Neogit push<CR>", desc = "Git push" },
             { "<leader>gr", "<cmd>Neogit rebase<CR>", desc = "Git rebase" },
-            { "<leader>gl", "<cmd>Neogit log<CR>", desc = "Git log" },
-            { "gB", "<cmd>Git blame<CR>", desc = "Git blame every line" },
+            { "<leader>gl", "<cmd>Neogit log<CR>",    desc = "Git log" },
+            { "gB",         "<cmd>Git blame<CR>",     desc = "Git blame every line" },
         },
         config = function()
             local map = require("utils").map

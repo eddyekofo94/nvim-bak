@@ -126,6 +126,15 @@ autocmd('FileType', {
     desc = 'Disable focus autoresize for FileType',
 })
 
+-- Delete [No Name] buffers
+autocmd("BufHidden", {
+    callback = function(event)
+        if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
+            vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
+        end
+    end,
+})
+
 utils.define_augroups({
     _general_settings = {
         -- Highlight on yank
