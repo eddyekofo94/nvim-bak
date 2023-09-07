@@ -29,7 +29,7 @@ return {
                 map("n", "<leader>gX", gs.reset_buffer, "Reset Buffer")
                 map("n", "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>",
                     "toggle blame line")
-                map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
+                map("n", "<leader>gv", gs.preview_hunk, "Preview Hunk")
                 map("n", "<leader>gb", function()
                     gs.blame_line({ full = true })
                 end, "Blame Line")
