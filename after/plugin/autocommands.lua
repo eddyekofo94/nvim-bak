@@ -76,6 +76,7 @@ autocmd("FileType", {
         "help",
         "undotree",
         "man",
+        "NeogitStatus",
         "notify",
         "lspinfo",
         "spectre_panel",
