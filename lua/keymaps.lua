@@ -44,7 +44,7 @@ set("n", "[b", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 set("n", "<TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-set("n", "<S-TAB>",   "<cmd>bprev<cr>", { desc = "Prev buffer" })
+set("n", "<S-TAB>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 
 set("v", "/", '"fy/\\V<C-R>f<CR>')
 set("v", "*", '"fy/\\V<C-R>f<CR>')
@@ -53,8 +53,8 @@ set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- move over a closing element in insert mode
 set("i", "<C-l>", function()
-  return require("utils.functions").escapePair()
-end, { desc = "move over a closing element in insert mode"})
+    return require("utils.functions").escapePair()
+end, { desc = "move over a closing element in insert mode" })
 
 
 -- cycle through command history without arrow keys
