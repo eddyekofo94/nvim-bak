@@ -20,6 +20,15 @@ mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE
 mapper("n", "<C-s>", ":w!<CR>")
 
+set({ "n", "v" }, "p", "p=`]", { desc = "Paste should match indentation" })
+set("n", "dd", function()
+    if vim.api.nvim_get_current_line():match("^%s*$") then
+        return '"_dd'
+    else
+        return "dd"
+    end
+end, { expr = true, desc = "Don't yank empty lines into the main register" })
+
 -- don't yank on paste
 mapper("x", "p", '"_dP')
 
