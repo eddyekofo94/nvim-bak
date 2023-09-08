@@ -13,14 +13,22 @@ mapper("n", "<Space>", "<NOP>")
 -- Reconsider this option
 -- Jump to start and end of line using the home row keys
 mapper("n", "H", "^")
-mapper("n", "L", "$")
+mapper("n", "L", "g_")
 
 -- COPY EVERYTHING/ALL
 mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE
 mapper("n", "<C-s>", ":w!<CR>")
 
-set({ "n", "v" }, "p", "p=`]", { desc = "Paste should match indentation" })
+set(nxo, "p", "p=`]", { desc = "Paste should match indentation" })
+set("n", "i", function()
+    if #vim.fn.getline(".") == 0 then
+        return [["_cc]]
+    else
+        return "i"
+    end
+end, { expr = true, desc = "rebind 'i' to do a smart-indent if its a blank line" })
+
 set("n", "dd", function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
         return '"_dd'
@@ -31,6 +39,7 @@ end, { expr = true, desc = "Don't yank empty lines into the main register" })
 
 -- don't yank on paste
 mapper("x", "p", '"_dP')
+-- set("v", "y", "may`a", { desc = "Restore cursor position after yank" })
 
 -- better up/down
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -58,6 +67,7 @@ end, { desc = "move over a closing element in insert mode" })
 
 
 -- cycle through command history without arrow keys
+-- INFO: not sure about this
 mapper("c", "<c-j>", "<down>")
 mapper("c", "<c-k>", "<up>")
 
