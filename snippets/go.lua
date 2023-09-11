@@ -28,6 +28,17 @@ return {
     )
   ),
   env.s(
+    "lpf",
+    env.fmt(
+      [[
+      logrus.Printf({})
+      ]],
+      {
+        env.i(1, "text"),
+      }
+    )
+  ),
+  env.s(
     "sf",
     env.fmt(
       [[
