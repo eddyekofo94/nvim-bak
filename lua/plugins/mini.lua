@@ -99,7 +99,7 @@ return {
     "echasnovski/mini.trailspace",
     version = "*",
     event = "BufEnter",
-    config = function()      
+    config = function()
       require('mini.trailspace').setup()
     end,
   },
