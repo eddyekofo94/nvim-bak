@@ -63,10 +63,6 @@ local custom_attach = function(client, bufnr)
     mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
     mapper('n', '<leader>lr', 'vim.lsp.buf.rename()<cr>', "rename")
 
-    if vim.lsp.inlay_hint then
-        mapper('n', '<leader>uh', function() vim.lsp.inlay_hint(0, nil) end,
-            { desc = 'Toggle Inlay Hints' })
-    end
 
     -- INFO: this is set on Lspsaga
     -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')

@@ -18,6 +18,11 @@ mapper("n", "L", "g_")
 mapper('n', 'gh', 'g^')
 mapper('n', 'gl', 'g$')
 
+--if vim.lsp.inlay_hint then
+--    mapper('n', '<leader>uh', function() vim.lsp.inlay_hint(0, nil) end,
+--        { desc = 'Toggle Inlay Hints' })
+--end
+
 -- Show treesitter nodes under cursor
 -- highlights under cursor
 if vim.fn.has('nvim-0.9') == 1 then

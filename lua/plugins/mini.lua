@@ -96,13 +96,21 @@ return {
     end,
   },
   {
+    "echasnovski/mini.trailspace",
+    version = "*",
+    event = "BufEnter",
+    config = function()      
+      require('mini.trailspace').setup()
+    end,
+  },
+  {
     "echasnovski/mini.move",
     config = function()
       require("mini.move").setup({
         mappings = {
-          right = "", -- noop
-          left = "", -- noop
-          line_left = "", -- noop
+          right = "",      -- noop
+          left = "",       -- noop
+          line_left = "",  -- noop
           line_right = "", -- noop
         },
       })
