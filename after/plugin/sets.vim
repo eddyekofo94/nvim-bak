@@ -102,10 +102,8 @@ set list
 set listchars=tab:→\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»
 
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
-" set guicursor+=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150
 set guicursor+=n-v-c:blinkon10
-" set guicursor+=a:blinkon20
 
 " set foldmethod=expr
 set foldlevelstart=99
@@ -116,18 +114,6 @@ autocmd InsertLeave * set nopaste
 
 highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse
 " hi Visual  cterm=reverse gui=reverse guibg=reverse guifg=reverse " INFO: not sure about this!
-
-" function MaxLineChars()
-"     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-" endfunction
-"
-" augroup MAX_CHARS_COLUMN
-"     autocmd!
-"     autocmd FileType,WinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,rust,typescript,java,php,lua,javascript :call MaxLineChars()
-"     " INFO: moved to lua
-"     " autocmd WinLeave * :call clearmatches()
-" augroup end
-
 
 " Jump to last edit position on opening file
 " if has("autocmd")
@@ -145,42 +131,10 @@ cmap w!! w !sudo tee %
 
 autocmd FileType * setlocal nolinebreak
 
-augroup Terminal
-    au!
-    autocmd TermOpen  * startinsert
-    autocmd FileType term set nonumber
-augroup END
-
 " Resize split windows using arrow keys by pressing:
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 noremap <up> <c-w>+
 noremap <down> <c-w>-
 noremap <left> <c-w>>
 noremap <right> <c-w><
-
-" TODO: Fix this some day
-" disable syntax highlighting in big files
-" function DisableSyntaxTreesitter()
-"     echo("Big file, disabling syntax, treesitter and folding")
-"     if exists(':TSBufDisable')
-"         exec 'TSBufDisable autotag'
-"         exec 'TSBufDisable highlight'
-"         " etc...
-"     endif
-"
-"     set foldmethod=manual
-"     syntax clear
-"     syntax off    " hmmm, which one to use?
-"     filetype off
-"     set noundofile
-"     set noswapfile
-"     set noloadplugins
-" endfunction
-"
-" augroup BigFileDisable
-"     autocmd!
-"     " autocmd BufWinEnter * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
-"     autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 512 * 1024 | exec DisableSyntaxTreesitter() | endif
-"
-" augroup END
 

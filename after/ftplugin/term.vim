@@ -1,4 +1,5 @@
 setlocal norelativenumber
+setlocal modifiable
 setlocal nonumber
 setlocal scrolloff=0
 
@@ -13,4 +14,3 @@ tnoremap ,reload %load_ext autoreload<CR>%autoreload 2<CR>
 
 " For exiting the termial mode. Better than the default config
 tnoremap <Esc> <C-\><C-n><CR>
-

@@ -6,6 +6,9 @@ local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
+local ignore_filetypes = { 'neo-tree' }
+local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
+
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
@@ -53,7 +56,7 @@ autocmd(
         pattern = { "*.txt", "*.md", "*.tex" },
         callback = function()
             vim.opt.spell = true
-            vim.opt.spelllang = "en,fr"
+            vim.opt.spelllang = "en"
         end,
     }
 )
@@ -78,6 +81,7 @@ autocmd("FileType", {
         "man",
         "NeogitStatus",
         "notify",
+        "term",
         "lspinfo",
         "spectre_panel",
         "startuptime",
@@ -89,9 +93,6 @@ autocmd("FileType", {
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
     end,
 })
-
-local ignore_filetypes = { 'neo-tree' }
-local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
 
 local augroup =
     vim.api.nvim_create_augroup('FocusDisable', { clear = true })
@@ -122,13 +123,13 @@ autocmd('FileType', {
 })
 
 -- Delete [No Name] buffers
-autocmd("BufHidden", {
-    callback = function(event)
-        if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
-            vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
-        end
-    end,
-})
+-- autocmd("BufHidden", {
+--     callback = function(event)
+--         if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
+--             vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
+--         end
+--     end,
+-- })
 
 utils.define_augroups({
     _general_settings = {
@@ -154,6 +155,7 @@ utils.define_augroups({
         { "FileType", "markdown", "setlocal spell" }, },
     _buffer_bindings = {
         { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "NeogitStatus", "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "lspinfo",   "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "qf",        "nnoremap <silent> <buffer> q :q<CR>" },
     },
