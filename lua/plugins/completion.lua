@@ -199,18 +199,24 @@ return {
                 {
                     name = "luasnip",
                     keyword_length = 1,
+                    max_item_count = 3,
                     option = {
                         show_autosnippets = true },
                 },
-                { name = "nvim_lsp" },
+                {
+                    name = "nvim_lsp",
+                    priority_weight = 85,
+                    max_item_count = 50,
+                },
                 { name = "nvim_lua" },
                 { name = "nvim_lsp_signature_help" },
                 {
                     name = "treesitter",
-                    keyword_length = 3,
+                    priority_weight = 80,
+                    max_item_count = 5,
                 },
                 { name = "neorg" },
-                { name = "path" },
+                { name = "path", priority_weight = 100, max_item_count = 40 },
                 {
                     name = "buffer",
                     max_item_count = 3,
@@ -222,8 +228,12 @@ return {
                 },
                 {
                     name = "rg",
+                    priority_weight = 60,
+                    max_item_count = 10,
                     keyword_length = 4,
-                    dup = 0,
+                    option = {
+                        additional_arguments = "--smart-case",
+                    },
                 },
                 { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
                 { name = "calc" },
@@ -243,7 +253,6 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
-                    compare.scopes,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
@@ -252,6 +261,7 @@ return {
                         end
                     end,
                     compare.recently_used,
+                    compare.scopes,
                     function(entry1, entry2) -- sort by length ignoring "=~"
                         local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]",
                             ""))
@@ -310,6 +320,7 @@ return {
         cmp.setup.cmdline({ "/", "?" }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
+                { name = 'nvim_lsp_document_symbol' },
                 { name = "buffer" },
             },
         })
@@ -329,10 +340,16 @@ return {
                 return not disabled[cmd] or cmp.close()
             end,
             sources = cmp.config.sources({
-                { name = "cmdline" },
-                { name = "cmdline_history" },
-                { name = "path" },
+                { name = "cmdline",         max_item_count = 30 },
+                { name = "cmdline_history", max_item_count = 10 },
+                { name = "path",            max_item_count = 20 },
             }),
+        })
+
+        cmp.setup.filetype('query', {
+            sources = {
+                { name = 'omni' },
+            },
         })
     end,
 }

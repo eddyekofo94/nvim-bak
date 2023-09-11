@@ -4,8 +4,8 @@ return {
     config = function()
         require('overlength').setup({
             bg                 = "#840000",
-            default_overlength = 80, -- INFO: seems to not work
-            disable_ft         = { "dashboard" },
+            default_overlength = nil, -- INFO: seems to not work
+            disable_ft         = { "dashboard", "which-key", "lazygit" },
         })
         require('overlength').set_overlength({ "go", "lua" }, 120)
         require('overlength').set_overlength({ "cpp", "bash" }, 80)

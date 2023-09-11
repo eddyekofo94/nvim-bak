@@ -19,6 +19,25 @@ return {
                     }
                 end,
             },
+            {
+                "SmiteshP/nvim-navbuddy",
+                dependencies = {
+                    "SmiteshP/nvim-navic",
+                    "MunifTanjim/nui.nvim",
+                },
+                keys = {
+                    {
+                        "<leader>nn",
+                        "<cmd>Navbuddy<CR>",
+                        desc = "Navbuddy open",
+                    },
+                },
+                opts = { lsp = { auto_attach = true } },
+                config = function()
+                    require("plugins.lsp.navbuddy")
+                end,
+            },
+            -- your lsp config or other stuff
             -- NOTE: not working as expected
             { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
             "simrat39/rust-tools.nvim",
@@ -83,12 +102,10 @@ return {
         "j-hui/fidget.nvim",
         tag = "legacy",
         event = "LspAttach",
-        config = function()
-            require("fidget").setup({
-                window = {
-                    blend = 0,
-                },
-            })
-        end,
+        opts = {
+            text = { spinner = "dots_scrolling" },
+            align = { bottom = true },
+            fmt = { stack_upwards = false },
+        },
     },
 }

@@ -1,7 +1,9 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    build = ":TSUpdate",
+    build = function()
+        require('nvim-treesitter.install').update({ with_sync = true })()
+    end,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -10,7 +12,7 @@ return {
         -- code
         require("nvim-treesitter.configs").setup({
             --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-            ensure_installed = {
+            ensure_installed      = {
                 "javascript",
                 "markdown",
                 "yaml",
@@ -27,11 +29,11 @@ return {
                 "python",
                 "cpp",
                 "java",
-                "gitcommit"
+                "gitcommit",
             },
-            ignore_install = { "haskell" },
-            sync_install = false,
-            highlight = {
+            ignore_install        = { "haskell" },
+            sync_install          = true,
+            highlight             = {
                 enable = true, -- false will disable the whole extension
                 disable = function(_, bufnr)
                     if vim.api.nvim_buf_line_count(bufnr) > 50000 then
@@ -47,11 +49,19 @@ return {
                 end,
                 use_languagetree = true,
             },
-            matchup = {
+            matchup               = {
+                enable = true,
+                disable = function(_lang, buffer)
+                    return vim.api.nvim_buf_line_count(buffer) > 20000
+                end,
+            },
+            autopairs             = {
                 enable = true,
             },
-            autopairs = {
-                enable = true,
+            query_linter          = {
+                enable           = true,
+                use_virtual_text = true,
+                lint_events      = { "BufWrite", "CursorHold" },
             },
             incremental_selection = {
                 enable = true,
@@ -62,15 +72,30 @@ return {
                     node_decremental = "grm",
                 },
             },
-            autotag = {
+            autotag               = {
                 enable = true,
-                disable = function()
-                    return vim.b.large_buf
+                disable = function(buffer)
+                    return vim.api.nvim_buf_line_count(buffer) > 20000
                 end,
             },
-            indent = { enable = true },
-            refactor = {
-                highlight_definitions = { enable = true },
+            indent                = { enable = true },
+            refactor              = {
+                highlight_definitions = {
+                    disable = function(lang, buffer)
+                        local skip = { "help" }
+
+                        return vim.api.nvim_buf_line_count(buffer) > 20000 or
+                            vim.tbl_contains(skip, lang)
+                    end,
+                    clear_on_cursor_move = true,
+                    smart_rename = {
+                        enable  = true,
+                        keymaps = {
+                            smart_rename = "R",
+                        },
+                    },
+                    enable = true,
+                },
                 highlight_current_scope = { enable = false },
                 smart_rename = {
                     enable = true,
@@ -80,7 +105,7 @@ return {
                     },
                 },
             },
-            textobjects = {
+            textobjects           = {
                 select = {
                     enable = true,
                     lookahead = true, -- automatically jump forward to matching textobj

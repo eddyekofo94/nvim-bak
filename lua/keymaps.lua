@@ -4,8 +4,7 @@ local set = require("utils").keymap_set
 local utils = require("utils.functions")
 
 vim.g.mapleader = " "
-local nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
-
+local nxo = require("utils").nxo
 vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 
 mapper("n", "<Space>", "<NOP>")

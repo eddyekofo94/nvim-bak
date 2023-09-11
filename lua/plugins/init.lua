@@ -17,11 +17,6 @@ return {
         event = "VeryLazy",
     },
     {
-        "chrisgrieser/nvim-early-retirement",
-        config = true,
-        event = "VeryLazy",
-    },
-    {
         'notjedi/nvim-rooter.lua',
         lazy = false,
         config = function()
@@ -48,12 +43,6 @@ return {
         "windwp/nvim-spectre",
         cmd = { "Spectre" },
         opts = { open_cmd = "noswapfile vnew" },
-    },
-    {
-        "norcalli/nvim-terminal.lua",
-        config = function()
-            require("terminal").setup()
-        end,
     },
     -- json schema provider
     { "b0o/schemastore.nvim", event = "VeryLazy" },

@@ -4,7 +4,13 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         config = function()
             require("colorizer").setup({
-                filetypes = { '*', '!lazy' },
+                filetypes = {
+                    "*",
+                    "!lazy",
+                    "!TelescopePrompt",
+                    "!TelescopeResults",
+                    "!TelescopePreview",
+                },
                 lua = { names = false },
             })
         end,

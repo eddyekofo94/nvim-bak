@@ -1,5 +1,7 @@
 local M = {}
 -- local mapper = require("keymaps").mapper
+M.nxo = { "n", "x", "o" } -- normal, visual, operator (for motion mappings)
+
 M.termcodes = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
