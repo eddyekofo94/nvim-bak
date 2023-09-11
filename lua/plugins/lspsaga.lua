@@ -8,12 +8,12 @@ return {
             desc = "Saga hover",
         },
         {
-            "]d",
+            "<C-j>",
             "<cmd>Lspsaga diagnostic_jump_next<cr>",
             desc = "diagnostic jump next",
         },
         {
-            "[d",
+            "<C-k>",
             "<cmd>Lspsaga diagnostic_jump_prev<cr>",
             desc = "diagnostic jump prev",
         },
@@ -27,10 +27,9 @@ return {
                 kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
             },
         })
-        -- local mapper = require("utils").mapper
-
-        -- mapper("n", "gd", "<cmd>Lspsaga finder<CR>")
-        -- mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+        local mapper = require("utils").keymap_set
+        mapper("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", "Saga show line diagnostics")
+        mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Saga hover")
     end,
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
 }
