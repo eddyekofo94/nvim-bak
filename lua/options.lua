@@ -8,7 +8,6 @@ vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim"
 vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
 vim.cmd("syntax on") -- move to next line with theses keys
-vim.o.cmd("set winbar")
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
