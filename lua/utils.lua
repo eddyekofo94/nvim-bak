@@ -11,6 +11,9 @@ M.map = function(modes, lhs, rhs, opts)
 end
 
 M.nmap = function(tbl)
+    if type(tbl[3]) == 'string' then
+        tbl[3] = { desc = tbl[3] }
+    end
   vim.keymap.set("n", tbl[1], tbl[2], tbl[3])
 end
 

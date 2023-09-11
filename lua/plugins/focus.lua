@@ -71,7 +71,16 @@ return {
             {
                 enable = true,
                 signcolumn = false,
-                excluded_filetypes = { "neogit", "undotree", "neo-tree", "telescope", "toggleterm" },
+                excluded_filetypes = {
+                    "prompt", "term", "neogit", "undotree", "neo-tree",
+                    "telescope",
+                    "toggleterm",
+                    "lazy",
+                    "NeogitStatus",
+                    "TelescopePrompt",
+                    "TelescopeResults",
+                    "TelescopePreview",
+                },
                 compatible_filetrees = { "neo-tree" },
                 ui = {
                     number = true,         -- Display line numbers in the focussed window only
