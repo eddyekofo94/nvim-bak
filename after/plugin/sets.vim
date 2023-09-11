@@ -14,8 +14,8 @@ set fileencoding=utf-8 " The encoding written to file
 set ruler              " Show the cursor position all the time
 set mouse+=a           " Enable your mouse
 
-set splitbelow         " Horizontal splits will automatically be below
 set splitright         " Vertical splits will automatically be to the right
+set splitbelow         " Horizontal splits will automatically be below
 
 set conceallevel=0     " So that I can see `` in markdown files
 set cursorline         " Enable highlighting of the current line
