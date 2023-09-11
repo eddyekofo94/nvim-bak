@@ -94,7 +94,7 @@ return {
             },
             s = {
                 name = "search", -- normally using Telescope
-                ["."] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
+                ["."] = { "<cmd>Telescope git_status<cr>", "git status" },
                 c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
                 B = { "<cmd>Telescope git_branches<cr>", "git branches" },
                 d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },

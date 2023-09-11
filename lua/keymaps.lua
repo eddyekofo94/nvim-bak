@@ -14,6 +14,19 @@ mapper("n", "<Space>", "<NOP>")
 mapper("n", "H", "^")
 mapper("n", "L", "g_")
 
+-- Easier line-wise movement
+mapper('n', 'gh', 'g^')
+mapper('n', 'gl', 'g$')
+
+-- Use backspace key for matching parens
+set({ 'n', 'x' }, '<BS>', '%', { remap = true, desc = 'Jump to Paren' })
+
+-- Show treesitter nodes under cursor
+-- highlights under cursor
+if vim.fn.has('nvim-0.9') == 1 then
+	set('n', '<Leader>ui', vim.show_pos, { desc = 'Show Treesitter Node' })
+end
+
 -- COPY EVERYTHING/ALL
 mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE

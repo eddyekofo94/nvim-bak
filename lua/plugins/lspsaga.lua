@@ -8,12 +8,12 @@ return {
             desc = "Saga hover",
         },
         {
-            "<C-j>",
+            "]d",
             "<cmd>Lspsaga diagnostic_jump_next<cr>",
             desc = "diagnostic jump next",
         },
         {
-            "<C-k>",
+            "[d",
             "<cmd>Lspsaga diagnostic_jump_prev<cr>",
             desc = "diagnostic jump prev",
         },
