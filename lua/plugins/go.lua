@@ -33,6 +33,7 @@ return {
             lsp_on_attach = function(client, bufnr)
                 -- attach my LSP configs keybindings
                 require("plugins.lsp.keys").on_attach(client, bufnr)
+                -- INFO: don't know if this is working :(
                 keymap_set("n", "<leader>f", "<cmd>lua require('go.format').goimport()<CR>",
                     { desc = "Format" })
 

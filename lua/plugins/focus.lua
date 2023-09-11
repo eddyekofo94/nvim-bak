@@ -44,11 +44,11 @@ return {
             "<cmd>FocusSplitUp<cr>",
             desc = "Split Right",
         },
-        -- {
-            -- "<leader>t",
-            -- "<cmd>FocusSplitNicely cmd term<cr>",
-            -- desc = "Terminal",
-        -- },
+        {
+            "<leader>t",
+            "<cmd>FocusSplitNicely cmd term<cr>",
+            desc = "Terminal",
+        },
         {
             "<leader>vv",
             "<cmd>FocusSplitNicely<cr>",
@@ -72,10 +72,15 @@ return {
                 enable = true,
                 signcolumn = false,
                 excluded_filetypes = {
-                    "prompt", "term", "neogit", "undotree", "neo-tree",
+                    "prompt",
+                    "term",
+                    "neogit",
+                    "undotree",
+                    "neo-tree",
                     "telescope",
                     "toggleterm",
                     "lazy",
+                    "Outline",
                     "NeogitStatus",
                     "TelescopePrompt",
                     "TelescopeResults",
