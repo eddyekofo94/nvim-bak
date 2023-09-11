@@ -48,6 +48,7 @@ return {
             end, "Neogit status")
 
             local group = vim.api.nvim_create_augroup('MyCustomNeogitEvents', { clear = true })
+            -- giving me an error
             vim.api.nvim_create_autocmd('User', {
                 pattern = 'NeogitPushComplete',
                 group = group,
