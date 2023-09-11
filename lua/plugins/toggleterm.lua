@@ -1,6 +1,7 @@
 return {
     'akinsho/toggleterm.nvim',
     version = "*",
+    enable = false,
     opts = {
         size = function(term)
             if term.direction == "horizontal" then
@@ -18,11 +19,11 @@ return {
             mode = { 'n', 't' },
             desc = 'Toggle terminal',
         },
-        {
-            "<leader>t",
-            "<cmd>ToggleTerm direction=vertical<cr>",
-            mode = { 'n', 't' },
-            desc = "Terminal",
-        }
+        -- {
+        --     "<leader>t",
+        --     "<cmd>ToggleTerm direction=vertical<cr>",
+        --     mode = { 'n', 't' },
+        --     desc = "Terminal",
+        -- }
     },
 }

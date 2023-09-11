@@ -1,6 +1,6 @@
 setlocal norelativenumber
-setlocal modifiable
 setlocal nonumber
+setlocal modifiable
 setlocal scrolloff=0
 
 augroup terminal_enter
