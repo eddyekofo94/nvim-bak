@@ -21,6 +21,17 @@ autocmd("FileType", {
     desc = "Set shiftwidth to 4 in these filetypes",
 })
 
+-- Remove trailing whitespace on save!
+autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    callback = function(ev)
+        local save_cursor
+        save_cursor = vim.fn.getpos(".")
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.setpos(".", save_cursor)
+    end,
+})
+
 -- TODO: look into converting this to lua
 -- function! MaxLineChars()
 --     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
