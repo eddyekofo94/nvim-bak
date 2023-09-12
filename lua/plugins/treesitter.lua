@@ -40,12 +40,6 @@ return {
                         -- Disable in large number of line
                         return true
                     end
-
-                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-                    if ok and stats and stats.size > 100 * 1024 then
-                        -- Disable in large buffer size
-                        return true
-                    end
                 end,
                 use_languagetree = true,
             },
