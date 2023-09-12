@@ -11,12 +11,12 @@ mapper("n", "<Space>", "<NOP>")
 
 -- Reconsider this option
 -- Jump to start and end of line using the home row keys
-mapper("n", "H", "^")
-mapper("n", "L", "g_")
+set({ "n", "v" }, "H", "^")
+set({ "n", "v" }, "L", "g_")
 
 -- Easier line-wise movement
-mapper('n', 'gh', 'g^')
-mapper('n', 'gl', 'g$')
+set(nxo, 'gh', 'g^')
+set(nxo, 'gl', 'g$')
 
 --if vim.lsp.inlay_hint then
 --    mapper('n', '<leader>uh', function() vim.lsp.inlay_hint(0, nil) end,
@@ -26,7 +26,7 @@ mapper('n', 'gl', 'g$')
 -- Show treesitter nodes under cursor
 -- highlights under cursor
 if vim.fn.has('nvim-0.9') == 1 then
-	set('n', '<Leader>ui', vim.show_pos, { desc = 'Show Treesitter Node' })
+    set('n', '<Leader>ui', vim.show_pos, { desc = 'Show Treesitter Node' })
 end
 
 -- COPY EVERYTHING/ALL

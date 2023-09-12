@@ -14,8 +14,8 @@ set fileencoding=utf-8 " The encoding written to file
 set ruler              " Show the cursor position all the time
 set mouse+=a           " Enable your mouse
 
-set splitright         " Vertical splits will automatically be to the right
-set splitbelow         " Horizontal splits will automatically be below
+" set splitright         " Vertical splits will automatically be to the right
+" set splitbelow         " Horizontal splits will automatically be below
 
 set conceallevel=0     " So that I can see `` in markdown files
 set cursorline         " Enable highlighting of the current line
@@ -50,7 +50,7 @@ set scrolloff=7
 set sidescrolloff=6
 set noshowmode                          " Get rid of --INSERT-- etc... don't need it
 set complete+=kspell                    " INFO: :take a look into this option
-" set pumblend=17 
+" set pumblend=17
 set pumblend=2 ""Enables pseudo-transparency for the popup-menu
 set virtualedit=block
 set signcolumn=yes                      " It sets the collumn in the gutter for linting sake
@@ -138,3 +138,11 @@ noremap <down> <c-w>-
 noremap <left> <c-w>>
 noremap <right> <c-w><
 
+" function! CleanNoNameEmptyBuffers()
+"     let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val) < 0 && (getbufline(v:val, 1, "$") == [""])')
+"     if !empty(buffers)
+"         exe 'bd '.join(buffers, ' ')
+"     endif
+" endfunction
+"
+" au FileType * :call CleanNoNameEmptyBuffers()

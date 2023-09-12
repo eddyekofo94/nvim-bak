@@ -3,6 +3,7 @@ local utils = require("utils")
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
@@ -41,24 +42,6 @@ autocmd({ "BufWritePre" }, {
 --     autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
 --     autocmd BufLeave,BufDelete * :call clearmatches()
 -- augroup end
-
--- REFACTOR: this needs to be worked on and improved upon.
--- autocmd(
---     "WinEnter", {
---         group = general,
---         pattern = { "lua", "go" },
---         callback = function(_)
---             -- vim.cmd([[let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)]])
---             vim.cmd([[
---                 function MaxLineChars()
---                     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
---                 endfunction
---             ]])
---             vim.cmd("MaxLineChars()")
---         end,
---         desc = "Error hl >80",
---     }
--- )
 
 -- Enable spell checking for certain file types
 autocmd(
@@ -165,9 +148,9 @@ utils.define_augroups({
     _markdown = { { "FileType", "markdown", "setlocal wrap" },
         { "FileType", "markdown", "setlocal spell" }, },
     _buffer_bindings = {
-        { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "dashboard",    "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "NeogitStatus", "nnoremap <silent> <buffer> q :q<CR>" },
-        { "FileType", "lspinfo",   "nnoremap <silent> <buffer> q :q<CR>" },
-        { "FileType", "qf",        "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "lspinfo",      "nnoremap <silent> <buffer> q :q<CR>" },
+        { "FileType", "qf",           "nnoremap <silent> <buffer> q :q<CR>" },
     },
 })

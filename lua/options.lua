@@ -14,8 +14,8 @@ vim.o.cmdheight = 2 -- More space for displaying messages
 vim.cmd("set colorcolumn=99999") -- fix indentline for now
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.termguicolors = true -- set term giu colors most terminals support this
-vim.o.splitright = true -- Vertical splits will automatically be to the right
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
+vim.o.splitright = true -- Vertical splits will automatically be to the right
 vim.go.t_Co = "256" -- Support 256 colors
 vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 vim.cmd("set ts=4") -- Insert 2 spaces for a tab
@@ -44,3 +44,28 @@ vim.cmd("set listchars=tab:→\\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends
 -- vim.o.guifont = "UbuntuMono Nerd Font:h17"
 -- vim.o.guifont = "Delugia:h17"
 -- Disable Builtins
+-- INFO: look into this?
+local builtins = {
+  "gzip",
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "logiPat",
+  "matchit",
+  "matchparen",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "rrhelper",
+  "tar",
+  "tarPlugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+-- for _, plugin in ipairs(builtins) do
+--   vim.g["loaded_" .. plugin] = 1
+-- end
