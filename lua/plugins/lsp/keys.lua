@@ -92,12 +92,12 @@ M._keys = {
         desc =
         "Document Symbols",
     },
-    {
-        "<leader>le",
-        "<cmd>Telescope diagnostics bufnr=0<cr>",
-        desc =
-        "Document Diagnostics",
-    },
+    -- {
+    --     "<leader>le",
+    --     "<cmd>Telescope diagnostics bufnr=0<cr>",
+    --     desc =
+    --     "Document Diagnostics",
+    -- },
     {
         "<leader>lq",
         vim.diagnostic.setloclist,

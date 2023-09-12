@@ -15,6 +15,10 @@ return {
                         ensure_installed = {
                             "black",
                             "isort",
+                            "gopls",
+                            "gofumpt",
+                            "goimports",
+                            "glint",
                         },
                     }
                 end,
@@ -48,7 +52,6 @@ return {
                     require("mason").setup()
                 end,
             },
-            "williamboman/mason-lspconfig.nvim",
             {
                 "folke/lsp-trouble.nvim",
                 config = function()

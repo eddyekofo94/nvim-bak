@@ -13,7 +13,7 @@ return {
             -- NOTE: all LSP and formatting related options are disabeld.
             -- NOTE: is not related to plugins.lsp
             -- NOTE: manages LSP on its own
-            go = "go",                -- go command, can be go[default] or go1.18beta1
+            go = { "go", "gomod" },   -- go command, can be go[default] or go1.18beta1
             goimport = "gopls",       -- goimport command, can be gopls[default] or goimport
             fillstruct = "gopls",     -- can be nil (use fillstruct, slower) and gopls
             gofmt = "gofumpt",        -- gofmt cmd,
@@ -48,9 +48,9 @@ return {
             end, -- nil: use on_attach function defined in go/lsp.lua,
             --      when lsp_cfg is true
             -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-            lsp_codelens = true,                                                           -- set to false to disable codelens, true by default
-            lsp_keymaps = true,                                                            -- set to false to disable gopls/lsp keymap
-            lsp_diag_hdlr = true,                                                          -- hook lsp diag handler
+            lsp_codelens = true,                                             -- set to false to disable codelens, true by default
+            lsp_keymaps = true,                                              -- set to false to disable gopls/lsp keymap
+            lsp_diag_hdlr = true,                                            -- hook lsp diag handler
             lsp_diag_virtual_text = { space = 0, prefix = icons.ui.Circle }, -- virtual text setup
             lsp_diag_signs = true,
             lsp_diag_update_in_insert = true,
