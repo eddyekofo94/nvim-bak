@@ -253,6 +253,7 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
+                    compare.exact,
                     function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
                         local kind1 = modified_kind(entry1:get_kind())
                         local kind2 = modified_kind(entry2:get_kind())
@@ -278,7 +279,6 @@ return {
                             return t1 < t2
                         end
                     end,
-                    compare.exact,
                     compare.locality,
                 },
             },
