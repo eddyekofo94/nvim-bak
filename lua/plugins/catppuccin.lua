@@ -8,8 +8,8 @@ return {
             custom_highlights = function(colors)
                 return {
                     -- General
-                    MatchParenCur            = { fg = colors.yellow, style = { "bold" } },
-                    FloatBorder              = { fg = colors.surface0 }, -- TODO: this seems to not be working
+                    MatchParen               = { fg = colors.yellow, style = { "bold" } },
+                    FloatBorder              = { fg = colors.surface0, bg = "NONE" }, -- TODO: this seems to not be working
                     WinSeparator             = { fg = colors.surface2 },
                     OverLength               = { fg = colors.red, bg = colors.base },
 
@@ -22,17 +22,17 @@ return {
                     },
 
                     -- Neotree
-                    NeoTreeDirectoryIcon  = { fg = colors.overlay1},
+                    NeoTreeDirectoryIcon     = { fg = colors.overlay1 },
 
                     -- noice
-                    NoiceCmdlinePopupBorder  = { fg = colors.overlay2 },
+                    NoiceCmdlinePopupBorder  = { fg = colors.overlay2, bg = "NONE" },
                     NoiceCmdlinePopupTitle   = { fg = colors.subtext0 },
                     -- navic
                     NavicText                = { fg = colors.subtext1 },
                     NavicSeparator           = { fg = colors.overlay0 },
                     -- cmp
-                    CmpItemMenu              = { fg = colors.mauve },
-                    CmpBorder                = { fg = colors.surface1 },
+                    CmpItemMenu              = { fg = colors.mauve, bg = "NONE" },
+                    CmpBorder                = { fg = colors.surface1, bg = "NONE" },
                     CmpItemKindSnippet       = { fg = colors.base, bg = colors.mauve },
                     CmpItemKindKeyword       = { fg = colors.base, bg = colors.red },
                     CmpItemKindText          = { fg = colors.base, bg = colors.teal },

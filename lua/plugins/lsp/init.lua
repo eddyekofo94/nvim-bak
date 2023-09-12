@@ -4,7 +4,6 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "neovim/nvim-lspconfig" },             -- Required
-            { "williamboman/mason.nvim" },           -- Optional
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
             {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -13,11 +12,20 @@ return {
                         auto_update = true,
                         debounce_hours = 24,
                         ensure_installed = {
-                            "black",
-                            "isort",
+                            "lua_ls",
+                            "vimls",
+                            "rust_analyzer",
+                            "yamlls",
                             "gopls",
-                            "gofumpt",
-                            "goimports",
+                            "pylsp",
+                            "clangd",
+                            "bashls",
+                            "sqlls",
+                            "cmake",
+                            "gopls",
+                            "glint",
+                            "dockerls",
+                            "gopls",
                             "glint",
                         },
                     }

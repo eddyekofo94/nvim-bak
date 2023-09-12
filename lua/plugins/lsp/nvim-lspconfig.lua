@@ -15,6 +15,8 @@ mason_lspconfig.setup({
         "bashls",
         "sqlls",
         "cmake",
+        "gopls",
+        "glint",
         "dockerls",
     },
 })
@@ -170,7 +172,7 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- Completion configuration
 vim.tbl_deep_extend("force", updated_capabilities, require("cmp_nvim_lsp").default_capabilities())
 updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
-updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 
 updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 
