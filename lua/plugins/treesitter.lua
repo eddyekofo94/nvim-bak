@@ -7,6 +7,7 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "RRethy/nvim-treesitter-textsubjects",
     },
     config = function()
         -- code
@@ -120,16 +121,82 @@ return {
                         ["ar"] = "@parameter.outer",
                     },
                 },
+                move = {
+                    enable = true,
+                    set_jumps = true,
+                    goto_next_start = {
+                        ["]f"] = "@function.outer",
+                        ["]b"] = "@parameter.outer",
+                        ["]d"] = "@block.inner",
+                        ["]e"] = "@function.inner",
+                        ["]a"] = "@attribute.inner",
+                        ["]s"] = "@this_method_call",
+                        ["]c"] = "@method_object_call",
+                        ["]o"] = "@object_declaration",
+                        ["]k"] = "@object_key",
+                        ["]v"] = "@object_value",
+                        ["]w"] = "@method_parameter",
+                    },
+                    goto_next_end = {
+                        ["]F"] = "@function.outer",
+                        ["]B"] = "@parameter.outer",
+                        ["]D"] = "@block.inner",
+                        ["]E"] = "@function.inner",
+                        ["]A"] = "@attribute.inner",
+                        ["]S"] = "@this_method_call",
+                        ["]C"] = "@method_object_call",
+                        ["]O"] = "@object_declaration",
+                        ["]K"] = "@object_key",
+                        ["]V"] = "@object_value",
+                        ["]W"] = "@method_parameter",
+                    },
+                    goto_previous_start = {
+                        ["[f"] = "@function.outer",
+                        ["[b"] = "@parameter.outer",
+                        ["[d"] = "@block.inner",
+                        ["[e"] = "@function.inner",
+                        ["[a"] = "@attribute.inner",
+                        ["[s"] = "@this_method_call",
+                        ["[c"] = "@method_object_call",
+                        ["[o"] = "@object_declaration",
+                        ["[k"] = "@object_key",
+                        ["[v"] = "@object_value",
+                        ["[w"] = "@method_parameter",
+                    },
+                    goto_previous_end = {
+                        ["[F"] = "@function.outer",
+                        ["[B"] = "@parameter.outer",
+                        ["[D"] = "@block.inner",
+                        ["[E"] = "@function.inner",
+                        ["[A"] = "@attribute.inner",
+                        ["[S"] = "@this_method_call",
+                        ["[C"] = "@method_object_call",
+                        ["[O"] = "@object_declaration",
+                        ["[K"] = "@object_key",
+                        ["[V"] = "@object_value",
+                        ["[W"] = "@method_parameter",
+                    },
+                },
                 swap = {
                     enable = false,
                     swap_next = { ["<leader>na"] = "@parameter.inner" },
                     swap_previous = { ["<leader>nA"] = "@parameter.inner" },
                 },
             },
+            textsubjects          = {
+                enable = true,
+                prev_selection = ",",
+                keymaps = {
+                    ["."] = "textsubjects-smart",
+                    [";"] = "textsubjects-container-outer",
+                    ["i;"] = "textsubjects-container-inner",
+                },
+            },
         })
 
         local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
         local map = require("utils").keymap_set
+        local nxo = require("utils").nxo
 
         -- Overwrite fold method using treesitter expression
         vim.opt.foldmethod = 'expr'
@@ -140,9 +207,12 @@ return {
         -- make sure forward function comes first
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(
             gs.next_hunk, gs.prev_hunk)
+
+        map(nxo, ";", ts_repeat_move.repeat_last_move_next)
+        map(nxo, ",", ts_repeat_move.repeat_last_move_previous)
         -- Or, use `make_repeatable_move` or `set_last_move` functions for more control. See the code for instructions.
 
-        map({ "n", "x", "o" }, "]h", next_hunk_repeat)
-        map({ "n", "x", "o" }, "[h", prev_hunk_repeat)
+        map(nxo, "]x", next_hunk_repeat)
+        map(nxo, "[x", prev_hunk_repeat)
     end,
 }
