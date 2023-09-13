@@ -41,14 +41,6 @@ O = {
         autoformat = false,
         diagnostics = { virtual_text = true, signs = true, underline = true },
     },
-    tsserver = {
-        -- @usage can be 'eslint'
-        linter = "",
-        -- @usage can be 'prettier'
-        formatter = "",
-        autoformat = false,
-        diagnostics = { virtual_text = true, signs = true, underline = true },
-    },
     json = {
         -- @usage can be 'prettier'
         formatter = "",

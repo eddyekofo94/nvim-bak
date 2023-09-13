@@ -10,17 +10,17 @@ return {
                 local map = require("utils").keymap_set
 
                 -- Navigation
-                map('n', ']c', function()
-                    if vim.wo.diff then return ']c' end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true })
-
-                map('n', '[c', function()
-                    if vim.wo.diff then return '[c' end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true })
+                -- map('n', ']c', function()
+                --     if vim.wo.diff then return ']c' end
+                --     vim.schedule(function() gs.next_hunk() end)
+                --     return '<Ignore>'
+                -- end, { expr = true })
+                --
+                -- map('n', '[c', function()
+                --     if vim.wo.diff then return '[c' end
+                --     vim.schedule(function() gs.prev_hunk() end)
+                --     return '<Ignore>'
+                -- end, { expr = true })
 
                 map({ "n", "v" }, "<leader>gg", "<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk")
                 map({ "n", "v" }, "<leader>gx", "<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk")

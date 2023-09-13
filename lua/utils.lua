@@ -196,4 +196,15 @@ function M.toggle_diagnostics()
 		Util.warn("Disabled diagnostics", { title = "Diagnostics" })
 	end
 end
+
+M.map_q_to_quit = function(event)
+	vim.bo[event.buf].buflisted = false
+	M.cmd_map("q", "close", "n", { silent = true, noremap = true, buffer = true })
+end
+
+M.create_augroup = function(group, opts)
+	opts = opts or { clear = true }
+	return vim.api.nvim_create_augroup(group, opts)
+end
+
 return M

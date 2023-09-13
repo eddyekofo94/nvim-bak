@@ -1,7 +1,8 @@
+-- INFO: This seems to break Lazygit, we can't have that
 return {
     'akinsho/toggleterm.nvim',
     version = "*",
-    enable = false,
+    enable = true,
     opts = {
         size = function(term)
             if term.direction == "horizontal" then

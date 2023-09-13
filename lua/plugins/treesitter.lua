@@ -11,7 +11,8 @@ return {
     config = function()
         -- code
         require("nvim-treesitter.configs").setup({
-            --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+            auto_install          = true,
+            modules               = {},
             ensure_installed      = {
                 "javascript",
                 "markdown",
@@ -72,7 +73,9 @@ return {
                     return vim.api.nvim_buf_line_count(buffer) > 20000
                 end,
             },
-            indent                = { enable = true },
+            indent                = {
+                enable = true,
+            },
             refactor              = {
                 highlight_definitions = {
                     disable = function(lang, buffer)
@@ -125,12 +128,21 @@ return {
             },
         })
 
+        local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+        local map = require("utils").keymap_set
+
         -- Overwrite fold method using treesitter expression
         vim.opt.foldmethod = 'expr'
         vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+        -- example: make gitsigns.nvim movement repeatable with ; and , keys.
+        local gs = require("gitsigns")
 
-        require("treesitter-context").setup({
-            enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        })
+        -- make sure forward function comes first
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(
+            gs.next_hunk, gs.prev_hunk)
+        -- Or, use `make_repeatable_move` or `set_last_move` functions for more control. See the code for instructions.
+
+        map({ "n", "x", "o" }, "]h", next_hunk_repeat)
+        map({ "n", "x", "o" }, "[h", prev_hunk_repeat)
     end,
 }

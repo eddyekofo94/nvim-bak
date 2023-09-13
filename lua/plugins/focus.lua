@@ -1,3 +1,39 @@
+local ignore_filetypes = {
+    "prompt",
+    "term",
+    "neogit",
+    "undotree",
+    "neo-tree",
+    "telescope",
+    "toggleterm",
+    "lazy",
+    "Outline",
+    "NeogitStatus",
+    "TelescopePrompt",
+    "TelescopeResults",
+    "TelescopePreview",
+}
+
+local opts = {
+    autoresize = {
+        enable = true,
+        quickfixheight = 60,
+    },
+    signcolumn = false,
+    excluded_buftypes = ignore_filetypes,
+    excluded_filetypes = ignore_filetypes,
+    compatible_filetrees = { "neo-tree" },
+    --  INFO: 2023-09-13 - Moved to autocommands
+    -- ui = {
+    --     number = true,         -- Display line numbers in the focussed window only
+    --     relativenumber = true, -- Display relative line numbers in the focussed window only
+    --     hybridnumber = true,   -- Display hybrid line numbers in the focussed window only
+    --     -- BUG: This seems to not be working
+    --     winhighlight = true,   -- Auto highlighting for focussed/unfocussed windows
+    --     cursorline = true,     -- Display a cursorline in the focussed window only
+    -- },
+}
+
 return {
     "beauwilliams/focus.nvim",
     event = "WinEnter",
@@ -67,35 +103,31 @@ return {
         },
     },
     config = function()
-        require("focus").setup(
-            {
-                enable = true,
-                signcolumn = false,
-                excluded_filetypes = {
-                    "prompt",
-                    "term",
-                    "neogit",
-                    "undotree",
-                    "neo-tree",
-                    "telescope",
-                    "toggleterm",
-                    "lazy",
-                    "Outline",
-                    "NeogitStatus",
-                    "TelescopePrompt",
-                    "TelescopeResults",
-                    "TelescopePreview",
-                },
-                compatible_filetrees = { "neo-tree" },
-                ui = {
-                    number = true,         -- Display line numbers in the focussed window only
-                    relativenumber = true, -- Display relative line numbers in the focussed window only
-                    hybridnumber = true,   -- Display hybrid line numbers in the focussed window only
-                    -- BUG: This seems to not be working
-                    winhighlight = true,   -- Auto highlighting for focussed/unfocussed windows
-                    cursorline = true,     -- Display a cursorline in the focussed window only
-                },
-            }
-        )
+        require("focus").setup(opts)
+
+        -- local ignore_filetypes = { "telescope", "harpoon" }
+
+        local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+
+        vim.api.nvim_create_autocmd("WinEnter", {
+            group = augroup,
+            callback = function(_)
+                if vim.tbl_contains(ignore_filetypes, vim.bo.buftype) then
+                    vim.b.focus_disable = true
+                end
+            end,
+            desc = "Disable focus autoresize for BufType",
+        })
+
+        vim.api.nvim_create_autocmd("FileType", {
+            group = augroup,
+            callback = function(_)
+                if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+                    vim.b.focus_disable = true
+                end
+            end,
+            desc = "Disable focus autoresize for FileType",
+        })
+
     end,
 }

@@ -4,6 +4,7 @@ return {
     dependencies = {
         { "lukas-reineke/cmp-rg" },
         { "hrsh7th/cmp-buffer" },       -- Optional
+        { "ray-x/cmp-treesitter" },
         { "hrsh7th/cmp-path" },         -- Optional
         { "saadparwaiz1/cmp_luasnip" }, -- Optional
         { "hrsh7th/cmp-nvim-lua" },     -- Optional
@@ -12,7 +13,6 @@ return {
         { "dmitmel/cmp-cmdline-history" },
         { "onsails/lspkind-nvim" },
         { "hrsh7th/cmp-nvim-lsp" }, -- Required
-        { "hrsh7th/cmp-nvim-lsp" },
         {
             -- Snippets
             "L3MON4D3/LuaSnip",
@@ -27,7 +27,6 @@ return {
                 delete_check_events = "TextChanged",
             },
         },
-        { "rafamadriz/friendly-snippets" },
     },
     config = function()
         -- Setup nvim-cmp.
@@ -68,6 +67,7 @@ return {
             preset = 'codicons',
         })
 
+        ---@diagnostic disable-next-line: missing-fields
         cmp.setup({
             enabled = function()
                 local buftype = vim.api.nvim_buf_get_option(0, "buftype")
@@ -85,7 +85,8 @@ return {
             completion = {
                 completeopt = 'menu,menuone,noinsert',
             },
-            preselect = cmp.PreselectMode.None,
+            keyword_length = 2,
+            preselect = cmp.PreselectMode.Item,
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
@@ -201,7 +202,14 @@ return {
                     keyword_length = 1,
                     max_item_count = 3,
                     option = {
-                        show_autosnippets = true },
+                        use_show_condition = true,
+                        show_autosnippets = true,
+                    },
+                    entry_filter = function()
+                        local context = require("cmp.config.context")
+                        return not context.in_treesitter_capture("string") and
+                            not context.in_syntax_group("String")
+                    end,
                 },
                 {
                     name = "nvim_lsp",
@@ -237,6 +245,9 @@ return {
                 },
                 { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
                 { name = "calc" },
+            },
+            view = {
+                entries = { name = "custom", selection_order = "near_cursor" },
             },
             window = {
                 completion = cmp.config.window.bordered({
@@ -315,7 +326,6 @@ return {
                 -- }),
             },
         })
-
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
         cmp.setup.cmdline({ "/", "?" }, {
             mapping = cmp.mapping.preset.cmdline(),

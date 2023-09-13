@@ -1,14 +1,30 @@
 vim.cmd("set termguicolors")
 local utils = require("utils")
+local opt_local = vim.opt_local
 
 local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
+local augroup = utils.create_augroup
 
 -- General Settings
-local general = augroup("General Settings", { clear = true })
+local general = augroup("General Settings")
 
 local ignore_filetypes = { 'neo-tree' }
 local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
+local file_pattern = {
+    "*.css",
+    "*.fish",
+    "*.html",
+    "*.json",
+    "*.lua",
+    "*.go",
+    "*.md",
+    "*.rb",
+    "*.sh",
+    "*.ts",
+    "Dockerfile",
+    "docker-compose.yaml",
+    "*.cpp",
+}
 
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
@@ -30,6 +46,29 @@ autocmd({ "BufWritePre" }, {
         save_cursor = vim.fn.getpos(".")
         vim.cmd([[%s/\s\+$//e]])
         vim.fn.setpos(".", save_cursor)
+    end,
+})
+
+local cursor_line = augroup("LocalCursorLine")
+autocmd({ "WinEnter", "BufWinEnter" }, {
+    group = cursor_line,
+    pattern = file_pattern,
+    callback = function()
+        opt_local.cursorline = true
+        opt_local.number = true         -- Display line numbers in the focussed window only
+        opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
+        opt_local.cursorline = true     -- Display a cursorline in the focussed window only
+    end,
+})
+
+autocmd({ "WinLeave", "BufWinLeave" }, {
+    group = cursor_line,
+    pattern = file_pattern,
+    callback = function()
+        opt_local.cursorline = false
+        opt_local.number = false         -- Display line numbers in the focussed window only
+        opt_local.relativenumber = false -- Display relative line numbers in the focussed window only
+        opt_local.cursorline = false     -- Display a cursorline in the focussed window only
     end,
 })
 
@@ -88,11 +127,11 @@ autocmd("FileType", {
     end,
 })
 
-local augroup =
+local au =
     vim.api.nvim_create_augroup('FocusDisable', { clear = true })
 
 autocmd('WinEnter', {
-    group = augroup,
+    group = au,
     callback = function(_)
         if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
         then
@@ -104,8 +143,32 @@ autocmd('WinEnter', {
     desc = 'Disable focus autoresize for BufType',
 })
 
+local terminal = augroup("TerminalLocalOptions")
+autocmd({ "TermOpen" }, {
+    group = terminal,
+    pattern = { "*" },
+    callback = function(event)
+        opt_local.number = false
+        opt_local.relativenumber = false
+        opt_local.cursorline = false
+        opt_local.signcolumn = "no"
+        opt_local.statuscolumn = ""
+        for _, key in ipairs({ "h", "j", "k", "l" }) do
+            vim.keymap.set("t", "<C-" .. key .. ">", function()
+                local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+                local code_dir = vim.api.nvim_replace_termcodes("<C-" .. key .. ">", true, true, true)
+                vim.api.nvim_feedkeys(code_term_esc .. code_dir, "t", true)
+            end, { noremap = true })
+        end
+        if vim.bo.filetype == "" then
+            vim.api.nvim_buf_set_option(event.buf, "filetype", "terminal")
+            vim.cmd.startinsert()
+        end
+    end,
+})
+
 autocmd('FileType', {
-    group = augroup,
+    group = general,
     callback = function(_)
         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
             vim.w.focus_disable = true
@@ -129,7 +192,7 @@ utils.define_augroups({
     _general_settings = {
         -- Highlight on yank
         { "TextYankPost", "*",
-            "lua vim.highlight.on_yank{higroup = 'HighlightedyankRegion', timeout = 500}", },
+            "lua vim.highlight.on_yank{higroup = 'HighlightedyankRegion', timeout = 500}" },
 
         -- { "BufWinEnter", file_types, "" },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
@@ -146,7 +209,7 @@ utils.define_augroups({
         { "FileType", "dashboard", "set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2" },
     },
     _markdown = { { "FileType", "markdown", "setlocal wrap" },
-        { "FileType", "markdown", "setlocal spell" }, },
+        { "FileType", "markdown", "setlocal spell" } },
     _buffer_bindings = {
         { "FileType", "dashboard",    "nnoremap <silent> <buffer> q :q<CR>" },
         { "FileType", "NeogitStatus", "nnoremap <silent> <buffer> q :q<CR>" },

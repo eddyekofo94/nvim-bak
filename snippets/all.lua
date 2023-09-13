@@ -1,13 +1,49 @@
--- As defining all of the snippet-constructors (s, c, t, ...) in every file is rather cumbersome,
--- luasnip will bring some globals into scope for executing these files.
--- defined by snip_env in setup
-require("luasnip.loaders.from_lua").lazy_load()
-local env = snip_env
+local ls = require("luasnip")
+local parse = ls.parser.parse_snippet
+local s, t, i, c, r, f, sn =
+	ls.snippet, ls.text_node, ls.insert_node, ls.choice_node, ls.restore_node, ls.function_node,
+	ls.snippet_node
+local fmt = require("luasnip.extras.fmt").fmt
+local u = require("utils.luasnip")
+local today = u.today
+local time = u.time
+local comment_open = u.comment_open
+local comment_close = u.comment_close
 
-return {
-  env.parse("ref", "REFACTOR: "),
-  env.parse("todo", "TODO: "),
-  env.s("date", env.p(os.date, "%Y-%m-%d")),
-  env.s("time", env.p(os.date, "%H:%M")),
-  env.s("htime", env.p(os.date, "%Y-%m-%dT%H:%M:%S+10:00")),
+local snippets = {}
+
+local todos = {
+	"fix",
+	"todo",
+	"info",
+	"hack",
+	"example",
+	"warn",
+	"clean_up",
+	"debug",
+	"perf",
+	"review",
+	"note",
+	"test",
+	"bug",
+	"refc",
+	"question",
 }
+for _, todo in ipairs(todos) do
+	table.insert(
+		snippets,
+		s(
+			todo,
+			fmt([[
+      {} ]] .. string.upper(todo) .. [[: {} - {}{}
+      ]], {
+				f(comment_open),
+				f(today),
+				i(1),
+				f(comment_close),
+			})
+		)
+	)
+end
+
+return snippets
