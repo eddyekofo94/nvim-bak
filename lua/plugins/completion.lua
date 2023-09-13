@@ -85,15 +85,14 @@ return {
             completion = {
                 completeopt = 'menu,menuone,noinsert',
             },
-            keyword_length = 2,
-            preselect = cmp.PreselectMode.Item,
+            preselect = cmp.PreselectMode.None,
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
                 end,
             },
             matching = {
-                disallow_fuzzy_matching = false,
+                disallow_fuzzy_matching = true,
                 disallow_fullfuzzy_matching = false,
                 disallow_partial_fuzzy_matching = false,
             },
@@ -356,10 +355,5 @@ return {
             }),
         })
 
-        cmp.setup.filetype('query', {
-            sources = {
-                { name = 'omni' },
-            },
-        })
     end,
 }
