@@ -172,7 +172,7 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- Completion configuration
 vim.tbl_deep_extend("force", updated_capabilities, require("cmp_nvim_lsp").default_capabilities())
 updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
-updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 
@@ -286,21 +286,24 @@ mason_lspconfig.setup_handlers({
         })
     end,
     ["gopls"] = function()
-        lspconfig.gopls.setup {
-            on_init = custom_init,
-            on_attach = custom_attach,
-            capabilities = updated_capabilities,
-            analyses = {
-                unusedparams = true,
-            },
-            setting = {
-                gopls = {
-                    completeUnimported = true,
-                    usePlaceholders = true,
-                },
-            },
-            staticcheck = true,
-        }
+        local go_cfg = require 'go.lsp'.config() -- config() return the go.nvim gopls setup
+
+        lspconfig.gopls.setup(go_cfg)
+        -- lspconfig.gopls.setup {
+        --     on_init = custom_init,
+        --     on_attach = custom_attach,
+        --     capabilities = updated_capabilities,
+        --     analyses = {
+        --         unusedparams = true,
+        --     },
+        --     setting = {
+        --         gopls = {
+        --             completeUnimported = true,
+        --             usePlaceholders = true,
+        --         },
+        --     },
+        --     staticcheck = true,
+        -- }
     end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup({

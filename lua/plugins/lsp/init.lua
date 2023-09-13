@@ -49,6 +49,19 @@ return {
                     require("plugins.lsp.navbuddy")
                 end,
             },
+            {
+                "ray-x/go.nvim",
+                dependencies = {
+                    "ray-x/guihua.lua",
+                    "nvim-treesitter/nvim-treesitter",
+                },
+                ft = { "go", "gomod" },
+                build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+                config = function()
+                    -- code
+                    require("plugins.lsp.go")
+                end,
+            },
             -- your lsp config or other stuff
             -- NOTE: not working as expected
             { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
