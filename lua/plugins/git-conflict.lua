@@ -17,7 +17,7 @@ return {
         map("n", "gc>", "<Plug>(git-conflict-theirs)", "Git conflict take theirs")
         map("n", "gcb", "<Plug>(git-conflict-both)", "Git conflict take both")
         map("n", "gc0", "<Plug>(git-conflict-none)", "Git conflict take none")
-        map("n", "]x", "<Plug>(git-conflict-next-conflict)", "Next conflict")
-        map("n", "[x", "<Plug>(git-conflict-prev-conflict)", "Previous conflict")
+        map("n", "]c", "<Plug>(git-conflict-next-conflict)", "Next conflict")
+        map("n", "[c", "<Plug>(git-conflict-prev-conflict)", "Previous conflict")
     end,
 }
