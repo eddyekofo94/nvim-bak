@@ -9,5 +9,6 @@
         "use",
         "Util",
         "snip_env"
-    ]
+    ],
+    "completion.autoRequire": false
 }

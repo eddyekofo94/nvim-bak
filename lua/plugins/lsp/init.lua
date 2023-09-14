@@ -108,26 +108,13 @@ return {
         end,
     },
     {
-        "SmiteshP/nvim-navic",
-        config = function()
-            require("nvim-navic").setup {
-                highlight = true,
-                click = true,
-                lsp = {
-                    auto_attach = true,
-                    preference = nil,
-                },
-            }
-            -- This is where I have navic all setup
-            -- require("winbar")
-            -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-        end,
-    },
-    {
         "j-hui/fidget.nvim",
         tag = "legacy",
         event = "LspAttach",
         opts = {
+            window = {
+                relative = "editor"
+            },
             text = { spinner = "dots_scrolling" },
             align = { bottom = true },
             fmt = { stack_upwards = false },

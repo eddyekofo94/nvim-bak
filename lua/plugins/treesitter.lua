@@ -1,12 +1,17 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  lazy = false,
+  event = "BufEnter",
   build = function()
     require("nvim-treesitter.install").update({ with_sync = true })()
   end,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-textobjects",
+
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      init = function()
+      end,
+    },
     "RRethy/nvim-treesitter-textsubjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
@@ -129,7 +134,7 @@ return {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            ["]f"] = "@function.outer",
+            ["]]"] = "@function.outer",
             ["]b"] = "@parameter.outer",
             ["]d"] = "@block.inner",
             ["]e"] = "@function.inner",
@@ -155,7 +160,7 @@ return {
             ["]W"] = "@method_parameter",
           },
           goto_previous_start = {
-            ["[f"] = "@function.outer",
+            ["[["] = "@function.outer",
             ["[b"] = "@parameter.outer",
             ["[d"] = "@block.inner",
             ["[e"] = "@function.inner",
@@ -168,7 +173,7 @@ return {
             ["[w"] = "@method_parameter",
           },
           goto_previous_end = {
-            ["[F"] = "@function.outer",
+            ["[]"] = "@function.outer",
             ["[B"] = "@parameter.outer",
             ["[D"] = "@block.inner",
             ["[E"] = "@function.inner",
@@ -209,7 +214,8 @@ return {
     local gs = require("gitsigns")
 
     -- make sure forward function comes first
-    local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+    local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk,
+      gs.prev_hunk)
 
     -- map(nxo, ";", ts_repeat_move.repeat_last_move_next)
     -- map(nxo, ",", ts_repeat_move.repeat_last_move_previous)
