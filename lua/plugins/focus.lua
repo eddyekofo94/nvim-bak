@@ -1,14 +1,12 @@
 local ignore_filetypes = {
     "prompt",
     "term",
-    "neogit",
     "undotree",
     "neo-tree",
     "telescope",
     "toggleterm",
     "lazy",
     "Outline",
-    "NeogitStatus",
     "TelescopePrompt",
     "TelescopeResults",
     "TelescopePreview",
@@ -37,7 +35,6 @@ local opts = {
 return {
     "beauwilliams/focus.nvim",
     event = "WinEnter",
-
     keys = {
         {
             "<leader>vj",

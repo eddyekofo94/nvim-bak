@@ -47,6 +47,7 @@ return {
         local visible_buffers = require("utils").visible_buffers
         local compare = require('cmp.config.compare')
         local types = require("cmp.types")
+        -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
         ---@type table<integer, integer>
         local modified_priority = {
@@ -250,7 +251,7 @@ return {
             },
             window = {
                 completion = cmp.config.window.bordered({
-                    winhighlight = "FloatBorder:CmpBorder",
+                    winhighlight = "FloatBorder:CmpBorder,Search:None",
                     col_offset = -3,
                     side_padding = 0,
                 }),
@@ -305,24 +306,6 @@ return {
                     kind.menu = "    (" .. (strings[2] or "") .. ")"
                     return kind
                 end,
-                -- format = lspkind.cmp_format({
-                --     with_text = false,
-                --     maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                --     mode = 'symbol_text',  -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-                --     menu = {
-                --         luasnip = "(LuaSnip)",
-                --         nvim_lsp = "(LSP)",
-                --         emoji = "(Emoji)",
-                --         path = "(Path)",
-                --         calc = "(Calc)",
-                --         buffer = "(Buffer)",
-                --     },
-                --     dup = ({
-                --         buffer = 1,
-                --         path = 1,
-                --         nvim_lsp = 0,
-                --     }),
-                -- }),
             },
         })
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -355,5 +338,9 @@ return {
             }),
         })
 
+        -- cmp.event:on(
+        --     'confirm_done',
+        --     cmp_autopairs.on_confirm_done()
+        -- )
     end,
 }
