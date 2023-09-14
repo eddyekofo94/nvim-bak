@@ -50,7 +50,7 @@ autocmd({ "BufWritePre" }, {
 })
 
 local cursor_line = augroup("LocalCursorLine")
-autocmd({ "WinEnter", "BufWinEnter" }, {
+autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
     group = cursor_line,
     pattern = file_pattern,
     callback = function()
@@ -58,6 +58,7 @@ autocmd({ "WinEnter", "BufWinEnter" }, {
         opt_local.number = true         -- Display line numbers in the focussed window only
         opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
         opt_local.cursorline = true     -- Display a cursorline in the focussed window only
+        opt_local.cursorcolumn = true
     end,
 })
 
@@ -69,6 +70,7 @@ autocmd({ "WinLeave", "BufWinLeave" }, {
         opt_local.number = false         -- Display line numbers in the focussed window only
         opt_local.relativenumber = false -- Display relative line numbers in the focussed window only
         opt_local.cursorline = false     -- Display a cursorline in the focussed window only
+        opt_local.cursorcolumn = false
     end,
 })
 
