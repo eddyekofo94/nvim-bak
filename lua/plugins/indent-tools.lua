@@ -3,7 +3,11 @@
 ------------------
 return {
     "arsham/indent-tools.nvim",
-    event = "VeryLazy",
-    dependencies = "arsham/arshlib.nvim",
+    dependencies = {
+        "arsham/arshlib.nvim",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = true,
+    -- or to provide configuration
+    -- config = { normal = {..}, textobj = {..}},
 }

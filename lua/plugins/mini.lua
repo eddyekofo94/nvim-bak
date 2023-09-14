@@ -122,6 +122,14 @@ return {
       require("mini.bufremove").setup({})
     end,
   },
+ {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    version = false,
+    config = function ()
+      require("mini.animate").setup()
+    end,
+  },
   -- {
   --   "echasnovski/mini.bracketed",
   --   config = function()

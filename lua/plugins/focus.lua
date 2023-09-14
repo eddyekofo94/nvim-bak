@@ -1,5 +1,6 @@
 local ignore_filetypes = {
     "prompt",
+    "git-conflict",
     "term",
     "undotree",
     "neo-tree",
@@ -20,7 +21,7 @@ local opts = {
     signcolumn = false,
     excluded_buftypes = ignore_filetypes,
     excluded_filetypes = ignore_filetypes,
-    compatible_filetrees = { "neo-tree" },
+    compatible_filetrees = { "neo-tree", "git-conflict" },
     --  INFO: 2023-09-13 - Moved to autocommands
     -- ui = {
     --     number = true,         -- Display line numbers in the focussed window only
@@ -125,6 +126,5 @@ return {
             end,
             desc = "Disable focus autoresize for FileType",
         })
-
     end,
 }

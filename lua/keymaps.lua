@@ -142,8 +142,8 @@ mapper("i", "jj", "<ESC>")
 mapper("x", "K", ":move '<-2<CR>gv-gv")
 mapper("x", "J", ":move '>+1<CR>gv-gv")
 
-mapper("n", "<leader>/", ":CommentToggle<CR>")
-mapper("v", "<leader>/", ":CommentToggle<CR>")
+-- mapper("n", "<leader>/", ":CommentToggle<CR>")
+-- mapper("v", "<leader>/", ":CommentToggle<CR>")
 
 -- MAPPINGS
 mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]])   -- new tab

@@ -43,7 +43,7 @@ return {
             map("n", "<leader>gs", function()
                 neogit.open({
                     cwd = vim.fn.expand("%:p:h"),
-                    kind = "vsplit",
+                    kind = "auto",
                 })
             end, "Neogit status")
 

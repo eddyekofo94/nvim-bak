@@ -94,15 +94,12 @@ return {
             },
             s = {
                 name = "search", -- normally using Telescope
-                ["."] = { "<cmd>Telescope git_status<cr>", "git status" },
                 c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search current buffer" },
-                B = { "<cmd>Telescope git_branches<cr>", "git branches" },
                 d = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
                 F = { "<cmd>Telescope frecency<cr>", "frecency" },
                 n = { "<cmd>NoiceTelescope<cr>", "noice" },
                 m = { "<cmd>Telescope marks<cr>", "marks" },
                 M = { "<cmd>Telescope man_pages<cr>", "man_pages" },
-                o = { "<cmd>Telescope vim_options<cr>", "vim_options" },
                 p = {
                     -- TODO: learn how to create projects
                     "<cmd>lua require'telescope'.extensions.project.project{}<cr>",
@@ -132,7 +129,7 @@ return {
                     "Don't Save Current Session",
                 },
             },
-            ["/"] = { "<cmd>CommentToggle<CR>", "comment" },
+            -- ["/"] = { "<cmd>CommentToggle<CR>", "comment" },
             -- ["\\"] = { "<cmd>Telescope pickers<cr>", "Searched History" },
             -- [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
             -- ["="] = { "<C-w>=", "balance windows" },
@@ -266,16 +263,17 @@ return {
             z = { "<cmd>ZenMode<cr>", "zen mode" },
         }
 
-        local next_movement_mappings = {
-            ["]"] = { name = "next", c = { "next git hunk" }, d = { "next diagnostic" } },
-        }
+        -- local next_movement_mappings = {
+        --     ["]"] = { name = "next", c = { "next git hunk" }, d = { "next diagnostic" } },
+        -- }
+        --
+        -- local prev_movement_mappings = {
+        --     ["["] = { name = "prev", c = { "prev git hunk" }, d = { "prev diagnostic" } },
+        -- }
 
-        local prev_movement_mappings = {
-            ["["] = { name = "prev", c = { "prev git hunk" }, d = { "prev diagnostic" } },
-        }
+        -- wk.register(prev_movement_mappings, { prefix = "" })
+        -- wk.register(next_movement_mappings, { prefix = "" })
 
         wk.register(leader_mappings, { prefix = "<leader>" })
-        wk.register(prev_movement_mappings, { prefix = "" })
-        wk.register(next_movement_mappings, { prefix = "" })
     end,
 }

@@ -27,15 +27,6 @@ return {
         end,
     },
     {
-        "terrortylor/nvim-comment",
-        event = "VeryLazy",
-        config = function()
-            require("nvim_comment").setup({
-                comment_empty = true,
-            })
-        end,
-    },
-    {
         -- search in many files and replace
         "windwp/nvim-spectre",
         cmd = { "Spectre" },

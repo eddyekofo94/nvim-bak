@@ -14,8 +14,8 @@ vim.o.cmdheight = 2 -- More space for displaying messages
 vim.cmd("set colorcolumn=99999") -- fix indentline for now
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.termguicolors = true -- set term giu colors most terminals support this
-vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.splitright = true -- Vertical splits will automatically be to the right
+vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.go.t_Co = "256" -- Support 256 colors
 vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 vim.cmd("set ts=4") -- Insert 2 spaces for a tab
@@ -27,6 +27,7 @@ vim.cmd("set backspace=indent,eol,start")
 vim.cmd("set scrolloff=8") -- " start scholling when you're near the bottom by 8
 vim.cmd("set sidescrolloff=6")
 vim.wo.cursorline = true -- Enable highlighting of the current line
+vim.wo.cursorcolumn = false
 vim.o.showtabline = 0 -- Always show tabs
 vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
 vim.o.backup = false -- This is recommended by coc
@@ -35,10 +36,15 @@ vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shif
 vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
 vim.cmd("set background=dark")
-vim.opt.sessionoptions = "resize,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-vim.cmd("set listchars=tab:→\\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»")
+vim.opt.listchars = {
+  tab = "→\\ ",
+  trail = "•",
+  precedes = "«",
+  extends = "»",eol = "↲",
+  nbsp = "␣",
+}
 -- vim.o.guifont = "Hack Nerd Font Mono:h18"
 -- vim.o.guifont = "FiraCode Nerd Font:h18"
 -- vim.o.guifont = "UbuntuMono Nerd Font:h17"

@@ -16,11 +16,10 @@ vim.cmd("set listchars=tab:→\\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends
 --   eol = "↲",
 --   nbsp = "␣",
 -- }
--- vim.o.timeoutlen=1000
 vim.cmd([[cmap w!! w !sudo tee %]])
 vim.o.foldnestmax = 4
 vim.o.foldlevel = 1
-vim.opt.list=true
+vim.opt.list = true
 vim.o.foldcolumn = "1"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldmethod = "expr"
@@ -28,9 +27,12 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.ttyfast = true
 vim.opt.showtabline = 0
+
 vim.cmd("set wildmode=longest:full,full")
-vim.cmd("set wildmenu")
-vim.cmd("set wildoptions=pum")
+-- Use menu for command line completion
+vim.o.wildmenu = true
+
+vim.o.wildoptions = "pum"
 vim.opt.updatetime = 300 --Shorter update time for good user experience
 vim.opt.mouse = 'a'
 vim.opt.autoread = true
@@ -47,12 +49,22 @@ vim.opt.swapfile = true
 vim.opt.splitbelow = true
 vim.opt.wrapscan = true
 vim.opt.backup = false
+
+-- Autom. save file before some action
+vim.o.autowrite = true
+
 vim.opt.writebackup = false
 vim.opt.showcmd = true
 vim.opt.showmatch = true
-vim.opt.ignorecase = true
 vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Number of command-lines that are remembered
+vim.o.history = 10000
+
 vim.opt.errorbells = false
 vim.opt.joinspaces = false
 vim.opt.title = true
@@ -64,6 +76,11 @@ vim.opt.timeoutlen = 500
 if vim.fn.has("nvim-0.9.0") == 1 then
   vim.opt.splitkeep = 'screen'
 end
+
+-- Use ripgrep as grep tool
+vim.o.grepprg = 'rg --vimgrep --no-heading'
+vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+
 -- Buffer
 vim.opt.fileformat = 'unix'
 vim.opt.tabstop = 2
@@ -72,10 +89,15 @@ vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.smartindent = true
+vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.inccommand = "split"
+-- Faster scrolling
+vim.o.lazyredraw = true
+-- Decrease redraw time
+vim.o.redrawtime = 100
 -- Window
 vim.opt.number = true
 -- vim.opt.colorcolumn = "+1"
@@ -90,6 +112,8 @@ vim.opt.undodir = "~/.config/nvim/undodir"
 vim.opt.sessionoptions =
 "resize,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- set nowrap                              " Display long lines as just one line
+vim.opt.wrap = false
+vim.cmd([[set nowrap]])
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
@@ -112,7 +136,6 @@ vim.cmd([[highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=revers
 vim.cmd([[set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150]])
 vim.cmd([[
  " Proper search
- set incsearch
  set gdefault
  set path+=**
  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

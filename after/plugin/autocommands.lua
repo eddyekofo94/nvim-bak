@@ -20,6 +20,7 @@ local file_pattern = {
     "*.md",
     "*.rb",
     "*.sh",
+    "*.vim",
     "*.ts",
     "Dockerfile",
     "docker-compose.yaml",
@@ -155,6 +156,7 @@ autocmd({ "TermOpen" }, {
         opt_local.cursorline = false
         opt_local.signcolumn = "no"
         opt_local.statuscolumn = ""
+        opt_local.buflisted = false
         for _, key in ipairs({ "h", "j", "k", "l" }) do
             vim.keymap.set("t", "<C-" .. key .. ">", function()
                 local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
@@ -179,6 +181,20 @@ autocmd('FileType', {
         end
     end,
     desc = 'Disable focus autoresize for FileType',
+})
+
+-- autosave file when buffer leave or focus lost
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
+    callback = function()
+        if
+            vim.bo.modified
+            and not vim.bo.readonly
+            and vim.fn.expand('%') ~= ''
+            and vim.bo.buftype == ''
+        then
+            vim.api.nvim_command('silent update')
+        end
+    end,
 })
 
 -- Delete [No Name] buffers

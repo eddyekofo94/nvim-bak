@@ -2,11 +2,12 @@ setlocal norelativenumber
 setlocal nonumber
 setlocal modifiable
 setlocal scrolloff=0
+setlocal nobuflisted
 
 augroup terminal_enter
     autocmd!
     autocmd TermOpen  * startinsert
-    autocmd TermEnter * setlocal nocursorline nocursorcolumn
+    autocmd TermEnter * setlocal nocursorline nocursorcolumn nobuflisted
     autocmd TermOpen * :call clearmatches()
 augroup END
 

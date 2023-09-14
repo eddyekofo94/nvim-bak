@@ -34,6 +34,7 @@ return {
                 mode = {
                     "n", "x" },
             },
+            { "sk",         "<cmd>Telescope keymaps<cr>",      desc = "Keymaps" },
             {
                 "<leader>sG",
                 Util.telescope("grep_string", { cwd = false }),
@@ -41,6 +42,10 @@ return {
                 mode = {
                     "n", "x" },
             },
+            -- Git
+            { "<leader>s.", "<cmd>Telescope git_status<cr>",   desc = "Open changed file" },
+            { "<leader>sB", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+            { "<leader>so", "<cmd>Telescope git_commits<cr>",  desc = "Checkout commit" },
             {
                 "<leader>sh", "<cmd>Telescope harpoon marks<cr>", desc = "Harpoon menu",
             },
@@ -51,8 +56,8 @@ return {
             {
                 "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Recent File",
             },
-            { "<leader>sS", "<cmd>Telescope persisted<cr>", desc = "Sessions" },
-            {"<leader>g.", "<cmd>Telescope git_status<cr>", desc = "git status"}
+            { "<leader>sS", "<cmd>Telescope persisted<cr>",  desc = "Sessions" },
+            { "<leader>g.", "<cmd>Telescope git_status<cr>", desc = "git status" },
         },
         dependencies = {
             "nvim-lua/popup.nvim",

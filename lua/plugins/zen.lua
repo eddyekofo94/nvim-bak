@@ -41,10 +41,12 @@ return {
                 },
                 on_open = function()
                     -- require("noice").disable()
+                    require("nvim-navic").setup({ enabled = false })
                 end,
                 -- callback where you can add custom code when the Zen window closes
                 on_close = function()
                     -- require("noice").enable()
+                    require("nvim-navic").setup({ enabled = true })
                 end,
             }
 
