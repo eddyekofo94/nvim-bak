@@ -12,9 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 
-vim.cmd("set background=dark")
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
+vim.cmd("set background=dark")
 
 require("keymaps")
 require("globals")
