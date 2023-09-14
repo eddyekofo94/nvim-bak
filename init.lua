@@ -16,4 +16,10 @@ vim.cmd("set background=dark")
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
+require("keymaps")
+require("globals")
+require("settings")
+
+require('utils.hjkl_notifier')
+
 require("lazy").setup("plugins") -- INFO: this should be on the LAST LINE
