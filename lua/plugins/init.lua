@@ -1,7 +1,3 @@
-require("keymaps")
-require("globals")
-require("options")
-
 return {
     {
         "glepnir/template.nvim",

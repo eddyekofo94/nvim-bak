@@ -192,10 +192,6 @@ autocmd('FileType', {
 
 utils.define_augroups({
     _general_settings = {
-        -- Highlight on yank
-        { "TextYankPost", "*",
-            "lua vim.highlight.on_yank{higroup = 'HighlightedyankRegion', timeout = 500}" },
-
         -- { "BufWinEnter", file_types, "" },
         { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufRead",     "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
