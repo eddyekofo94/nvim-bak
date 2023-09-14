@@ -20,7 +20,7 @@ return {
         javascript = { "prettier_d", "prettier" },
         -- Formatters can also be specified with additional options
         python = {
-          formatters = { "isort", "black" },
+          formatters = { "autopep8", "isort", "black" },
           -- Run formatters one after another instead of stopping at the first success
           run_all_formatters = true,
         },
@@ -35,7 +35,9 @@ return {
       },
     })
   end,
-  keys = { { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "Format current file." } },
+  keys = {
+    { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "Format current file." },
+  },
 }
 -- return {
 --     "mhartington/formatter.nvim",
