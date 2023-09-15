@@ -83,8 +83,6 @@ local custom_attach = function(client, bufnr)
     format_code = "<cmd>lua require('conform').format()<cr>"
   elseif filetype == "go" then
     format_code = "<cmd>lua require('go.format').goimport()<CR>"
-  else
-    format_code = "<cmd>Format<CR>"
   end
 
   keymap_set("n", "<leader>f", format_code, { desc = "Format" })
