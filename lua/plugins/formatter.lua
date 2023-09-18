@@ -36,7 +36,7 @@ return {
     })
   end,
   keys = {
-    { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "Format current file." },
+    { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "Format current file" },
   },
 }
 -- return {
