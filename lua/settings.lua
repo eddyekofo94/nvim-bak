@@ -73,9 +73,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.laststatus = 3
 vim.opt.timeoutlen = 500
-if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.splitkeep = 'screen'
-end
+vim.opt.splitkeep = "screen"
 
 -- Use ripgrep as grep tool
 vim.o.grepprg = 'rg --vimgrep --no-heading'
