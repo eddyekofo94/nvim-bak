@@ -14,8 +14,8 @@ set({ "n", "v" }, "H", "^")
 set({ "n", "v" }, "L", "g_")
 
 -- Easier line-wise movement
-set(nxo, 'gh', 'g^')
-set(nxo, 'gl', 'g$')
+set(nxo, "gh", "g^")
+set(nxo, "gl", "g$")
 
 --if vim.lsp.inlay_hint then
 --    mapper('n', '<leader>uh', function() vim.lsp.inlay_hint(0, nil) end,
@@ -24,8 +24,8 @@ set(nxo, 'gl', 'g$')
 
 -- Show treesitter nodes under cursor
 -- highlights under cursor
-if vim.fn.has('nvim-0.9') == 1 then
-    set('n', '<Leader>ui', vim.show_pos, { desc = 'Show Treesitter Node' })
+if vim.fn.has("nvim-0.9") == 1 then
+  set("n", "<Leader>ui", vim.show_pos, { desc = "Show Treesitter Node" })
 end
 
 -- COPY EVERYTHING/ALL
@@ -35,19 +35,19 @@ mapper("n", "<C-s>", ":w!<CR>")
 
 set(nxo, "p", "p=`]", { desc = "Paste should match indentation" })
 set("n", "i", function()
-    if #vim.fn.getline(".") == 0 then
-        return [["_cc]]
-    else
-        return "i"
-    end
+  if #vim.fn.getline(".") == 0 then
+    return [["_cc]]
+  else
+    return "i"
+  end
 end, { expr = true, desc = "rebind 'i' to do a smart-indent if its a blank line" })
 
 set("n", "dd", function()
-    if vim.api.nvim_get_current_line():match("^%s*$") then
-        return '"_dd'
-    else
-        return "dd"
-    end
+  if vim.api.nvim_get_current_line():match("^%s*$") then
+    return '"_dd'
+  else
+    return "dd"
+  end
 end, { expr = true, desc = "Don't yank empty lines into the main register" })
 
 -- don't yank on paste
@@ -75,15 +75,13 @@ set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- move over a closing element in insert mode
 set("i", "<C-l>", function()
-    return require("utils.functions").escapePair()
+  return require("utils.functions").escapePair()
 end, { desc = "move over a closing element in insert mode" })
-
 
 -- cycle through command history without arrow keys
 -- INFO: not sure about this
 mapper("c", "<c-j>", "<down>")
 mapper("c", "<c-k>", "<up>")
-
 
 -- Search always center
 mapper("n", "n", "nzzzv")
@@ -92,6 +90,8 @@ mapper("n", "{", "{zzzv")
 mapper("n", "}", "}zzzv")
 mapper("n", "<C-d>", "<C-d>zzzv")
 mapper("n", "<C-u>", "<C-u>zzzv")
+mapper("n", "<C-o>", "<C-o>zzzv")
+mapper("n", "<C-i>", "<C-i>zzzv")
 
 -- better window movement
 mapper("n", "<C-h>", "<C-w>h")
@@ -105,10 +105,10 @@ mapper("n", "<Down>", "<Nop>")
 mapper("n", "<Left>", "<Nop>")
 mapper("n", "<Right>", "<Nop>")
 
+mapper("i", "<right>", "<nop>")
 mapper("i", "<up>", "<nop>")
 mapper("i", "<down>", "<nop>")
 mapper("i", "<left>", "<nop>")
-mapper("i", "<right>", "<nop>")
 -- " Move selected line / block of text in visual mode
 -- " shift + k to move up
 -- " shift + j to move down
@@ -141,11 +141,6 @@ mapper("i", "jj", "<ESC>")
 mapper("x", "K", ":move '<-2<CR>gv-gv")
 mapper("x", "J", ":move '>+1<CR>gv-gv")
 
--- mapper("n", "<leader>/", ":CommentToggle<CR>")
--- mapper("v", "<leader>/", ":CommentToggle<CR>")
-
--- MAPPINGS
-mapper("n", "<S-t>", [[<Cmd>tabnew<CR>]])   -- new tab
 mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 
 -- Diffview
@@ -156,6 +151,7 @@ mapper("n", "<leader>gH", "<cmd>DiffviewFileHistory %<CR>")
 set({ "n", "x" }, "c", '"_c')
 set(nxo, "%", "gg0vG$")
 set({ "n", "x" }, "C", '"_C')
+set({ "n", "x" }, "S", '"_S', "Don't save to register")
 
 set({ "n", "x" }, "x", '"_x')
 set("x", "X", '"_c')
