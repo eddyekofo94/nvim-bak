@@ -83,7 +83,7 @@ vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 -- Buffer
 vim.opt.fileformat = "unix"
 vim.opt.tabstop = 2
-vim.opt.spelllang = "en"
+vim.opt.spelllang = "en_gb"
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.undofile = true
@@ -107,6 +107,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.sidescroll = 6
 -- vim.opt.undodir = "~/.config/nvim/undodir"
+vim.opt.undodir = vim.fn.expand("~/.config/nvim/undodir")
 vim.opt.sessionoptions = "resize,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.wrap = false
 vim.cmd([[set nowrap]]) -- Display long lines as just one line
