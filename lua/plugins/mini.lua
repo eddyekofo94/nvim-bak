@@ -125,10 +125,21 @@ return {
   {
     "echasnovski/mini.animate",
     event = "VeryLazy",
-    enabled = false,
+    enabled = true,
     version = false,
     config = function()
-      require("mini.animate").setup()
+      require("mini.animate").setup({
+        -- Window resize
+        resize = {
+          -- Whether to enable this animation
+          enable = false,
+        },
+        -- Vertical scroll
+        scroll = {
+          -- Whether to enable this animation
+          enable = true,
+        },
+      })
     end,
   },
   -- {
