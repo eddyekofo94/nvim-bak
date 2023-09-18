@@ -100,7 +100,7 @@ return {
     version = "*",
     event = "BufEnter",
     config = function()
-      require('mini.trailspace').setup()
+      require("mini.trailspace").setup()
     end,
   },
   {
@@ -108,9 +108,9 @@ return {
     config = function()
       require("mini.move").setup({
         mappings = {
-          right = "",      -- noop
-          left = "",       -- noop
-          line_left = "",  -- noop
+          right = "", -- noop
+          left = "", -- noop
+          line_left = "", -- noop
           line_right = "", -- noop
         },
       })
@@ -122,11 +122,12 @@ return {
       require("mini.bufremove").setup({})
     end,
   },
- {
+  {
     "echasnovski/mini.animate",
     event = "VeryLazy",
+    enabled = false,
     version = false,
-    config = function ()
+    config = function()
       require("mini.animate").setup()
     end,
   },

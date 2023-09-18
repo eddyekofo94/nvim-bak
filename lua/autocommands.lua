@@ -1,5 +1,7 @@
 local utils = require("utils")
 local opt_local = vim.opt_local
+local contains = vim.tbl_contains
+local keymap_set = require("utils").keymap_set
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = utils.create_augroup
@@ -10,6 +12,8 @@ local general = augroup("General Settings")
 local ignore_filetypes = { "neo-tree" }
 local ignore_buftypes = { "nofile", "prompt", "popup" }
 local file_pattern = {
+  "*.py",
+  "*.zsh",
   "*.css",
   "*.fish",
   "*.html",
@@ -27,7 +31,10 @@ local file_pattern = {
 }
 
 -- Check if we need to reload the file when it changed
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+autocmd(
+  { "WinEnter", "BufWinEnter", "BufWinLeave", "BufRead", "BufEnter", "FocusGained" },
+  { command = "silent! checktime" }
+)
 
 autocmd("FileType", {
   pattern = { "go", "c", "cpp", "py", "java", "cs" },
@@ -105,24 +112,49 @@ autocmd("BufReadPost", {
 })
 
 -- close some filetypes with <q>
+local smart_close_filetypes = {
+  "qf",
+  "help",
+  "undotree",
+  "man",
+  "NeogitStatus",
+  "notify",
+  "term",
+  "lspinfo",
+  "spectre_panel",
+  "startuptime",
+  "tsplayground",
+  "PlenaryTestPopup",
+}
+
+-- autocmd("FileType", {
+--   pattern = smart_close_filetypes,
+--   callback = function(event)
+--     vim.bo[event.buf].buflisted = false
+--     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+--   end,
+-- })
+
+local smart_close_buftypes = {}
+local function smart_close()
+  if vim.fn.winnr("$") ~= 1 then
+    vim.api.nvim_win_close(0, true)
+    vim.cmd("wincmd p")
+  end
+end
+
+-- Close certain filetypes by pressing q.
 autocmd("FileType", {
-  pattern = {
-    "qf",
-    "help",
-    "undotree",
-    "man",
-    "NeogitStatus",
-    "notify",
-    "term",
-    "lspinfo",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "PlenaryTestPopup",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  pattern = { "*" },
+  callback = function()
+    local is_unmapped = vim.fn.hasmapto("q", "n") == 0
+    local is_eligible = is_unmapped
+      or vim.wo.previewwindow
+      or contains(smart_close_buftypes, vim.bo.buftype)
+      or contains(smart_close_filetypes, vim.bo.filetype)
+    if is_eligible then
+      keymap_set("n", "q", smart_close, { buffer = 0, nowait = true })
+    end
   end,
 })
 

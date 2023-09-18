@@ -9,8 +9,7 @@ return {
 
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      init = function()
-      end,
+      init = function() end,
     },
     "RRethy/nvim-treesitter-textsubjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -136,7 +135,7 @@ return {
           goto_next_start = {
             ["]]"] = "@function.outer",
             ["]b"] = "@parameter.outer",
-            ["]d"] = "@block.inner",
+            ["]l"] = "@block.inner",
             ["]e"] = "@function.inner",
             ["]a"] = "@attribute.inner",
             ["]s"] = "@this_method_call",
@@ -149,7 +148,7 @@ return {
           goto_next_end = {
             ["]F"] = "@function.outer",
             ["]B"] = "@parameter.outer",
-            ["]D"] = "@block.inner",
+            ["]L"] = "@block.inner",
             ["]E"] = "@function.inner",
             ["]A"] = "@attribute.inner",
             ["]S"] = "@this_method_call",
@@ -214,8 +213,7 @@ return {
     local gs = require("gitsigns")
 
     -- make sure forward function comes first
-    local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk,
-      gs.prev_hunk)
+    local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
 
     -- map(nxo, ";", ts_repeat_move.repeat_last_move_next)
     -- map(nxo, ",", ts_repeat_move.repeat_last_move_previous)
