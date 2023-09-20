@@ -93,7 +93,7 @@ vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.inccommand = "split"
 -- Faster scrolling
-vim.o.lazyredraw = true
+vim.o.lazyredraw = false
 -- Decrease redraw time
 vim.o.redrawtime = 100
 -- Window
