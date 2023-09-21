@@ -71,7 +71,7 @@ vim.opt.title = true
 vim.opt.encoding = "UTF-8"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.clipboard = "unnamedplus"
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 vim.opt.timeoutlen = 500
 vim.opt.splitkeep = "screen"
 vim.opt.startofline = true
@@ -129,8 +129,35 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+local function status_line()
+  local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
+  local file_name = "%-.16t"
+  local buf_nr = "[%n]"
+  local modified = " %-m"
+  local file_type = " %y"
+  local right_align = "%="
+  local line_no = "%10([%l/%L%)]"
+  local pct_thru_file = "%5p%%"
+
+  return string.format(
+    "%s%s%s%s%s%s%s%s",
+    mode,
+    file_name,
+    buf_nr,
+    modified,
+    file_type,
+    right_align,
+    line_no,
+    pct_thru_file
+  )
+end
+
+-- vim.opt.statusline = status_line()
+vim.opt.winbar = status_line()
+
 vim.cmd([[highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse]])
 vim.cmd([[set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150]])
+vim.cmd([[set guicursor+=n-v-c:blinkon10]])
 vim.cmd([[
  " Proper search
  set gdefault
