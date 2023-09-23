@@ -68,6 +68,7 @@ vim.o.history = 10000
 vim.opt.errorbells = false
 vim.opt.joinspaces = false
 vim.opt.title = true
+vim.o.titlestring = "%<%F%=%l/%L - nvim"
 vim.opt.encoding = "UTF-8"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.clipboard = "unnamedplus"
