@@ -31,6 +31,9 @@ return {
         json = {
           formatters = { "jq" },
         },
+        zsh = {
+          "beautysh",
+        },
         ["*"] = { "trim_whitespace" },
       },
     })

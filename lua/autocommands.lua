@@ -14,6 +14,8 @@ local ignore_buftypes = { "nofile", "prompt", "popup" }
 local file_pattern = {
   "*.py",
   "*.zsh",
+  ".zshrc",
+  "*.yaml",
   "*.css",
   "*.fish",
   "*.html",
@@ -26,7 +28,6 @@ local file_pattern = {
   "*.vim",
   "*.ts",
   "Dockerfile",
-  "docker-compose.yaml",
   "*.cpp",
 }
 
@@ -66,6 +67,7 @@ autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
     opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
     opt_local.cursorline = true -- Display a cursorline in the focussed window only
     opt_local.cursorcolumn = true
+    -- opt_local.winbar = true
   end,
 })
 
@@ -210,6 +212,14 @@ autocmd("FileType", {
     end
   end,
   desc = "Disable focus autoresize for FileType",
+})
+
+-- use bash-treesitter-parser for zsh
+local zsh_as_bash = augroup("zshAsBash")
+autocmd("BufWinEnter", {
+  group = zsh_as_bash,
+  pattern = { "*.sh", "*.zsh" },
+  command = "silent! set filetype=sh",
 })
 
 -- autosave file when buffer leave or focus lost
