@@ -1,4 +1,6 @@
 --  INFO: 2023-09-23 - not sure if this is working
+--  INFO: 2023-09-23 - https://github.com/mfussenegger/nvim-lint
+
 return {
   "mfussenegger/nvim-lint",
   config = function()
@@ -7,7 +9,7 @@ return {
       go = { "golint" },
       lua = { "luacheck" },
       cpp = { "clang-tidy" },
-      zsh = { "shellcheck" },
+      sh = { "shellcheck" },
       yaml = { "yamllint" },
     }
   end,
