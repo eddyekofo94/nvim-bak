@@ -87,9 +87,9 @@ vim.opt.tabstop = 2
 vim.opt.spelllang = "en_gb"
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
-vim.opt.undofile = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
+vim.opt.autochdir = true
 vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
 vim.opt.inccommand = "split"
@@ -99,7 +99,7 @@ vim.o.lazyredraw = false
 vim.o.redrawtime = 100
 -- Window
 vim.opt.number = true
--- vim.opt.colorcolumn = "+1"
+vim.opt.colorcolumn = "99999"
 vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
@@ -107,7 +107,8 @@ vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.sidescroll = 6
-vim.opt.undodir = vim.fn.expand("~/.config/nvim/undodir")
+vim.opt.undodir = vim.fn.stdpath("data") .. "undo"
+vim.opt.undofile = true
 vim.opt.sessionoptions = "resize,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.wrap = false
 vim.cmd([[set nowrap]]) -- Display long lines as just one line
@@ -154,7 +155,7 @@ local function status_line()
 end
 
 -- vim.opt.statusline = status_line()
-vim.opt.winbar = status_line()
+-- vim.opt.winbar = status_line()
 
 vim.cmd([[highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse]])
 vim.cmd([[set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150]])
