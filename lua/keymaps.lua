@@ -3,7 +3,27 @@ local mapper = require("utils").mapper
 local set = require("utils").keymap_set
 local utils = require("utils.functions")
 
+local Keymap = {}
+Keymap.__index = Keymap
+function Keymap.new(mode, lhs, rhs, opts)
+  local action = function()
+    local merged_opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+    vim.keymap.set(mode, lhs, rhs, merged_opts)
+  end
+  return setmetatable({ action = action }, Keymap)
+end
+
+function Keymap:bind(nextMapping)
+  self.action()
+  return nextMapping
+end
+
+function Keymap:execute()
+  self.action()
+end
+
 local nxo = require("utils").nxo
+
 vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
 
 mapper("n", "<Space>", "<NOP>")
@@ -84,31 +104,40 @@ mapper("c", "<c-j>", "<down>")
 mapper("c", "<c-k>", "<up>")
 
 -- Search always center
-mapper("n", "n", "nzzzv")
-mapper("n", "N", "Nzzzv")
-mapper("n", "{", "{zzzv")
-mapper("n", "}", "}zzzv")
-mapper("n", "<C-d>", "<C-d>zzzv")
-mapper("n", "<C-u>", "<C-u>zzzv")
-mapper("n", "<C-o>", "<C-o>zzzv")
-mapper("n", "<C-i>", "<C-i>zzzv")
+
+Keymap.new("n", "<C-u>", "<C-u>zz")
+  :bind(Keymap.new("n", "<C-d>", "<C-d>zz"))
+  :bind(Keymap.new("n", "{", "{zz"))
+  :bind(Keymap.new("n", "}", "}zz"))
+  :bind(Keymap.new("n", "n", "nzz"))
+  :bind(Keymap.new("n", "N", "Nzz"))
+  :bind(Keymap.new("n", "G", "Gzz"))
+  :bind(Keymap.new("n", "gg", "ggzz"))
+  :bind(Keymap.new("n", "<C-i>", "<C-i>zz"))
+  :bind(Keymap.new("n", "<C-o>", "<C-o>zz"))
+  :bind(Keymap.new("n", "%", "%zz"))
+  :bind(Keymap.new("n", "*", "*zz"))
+  :bind(Keymap.new("n", "#", "#zz"))
+  :execute()
 
 -- better window movement
-mapper("n", "<C-h>", "<C-w>h")
-mapper("n", "<C-j>", "<C-w>j")
-mapper("n", "<C-k>", "<C-w>k")
-mapper("n", "<C-l>", "<C-w>l")
+Keymap.new("n", "<C-h>", "<C-w>h")
+  :bind(Keymap.new("n", "<C-j>", "<C-w>j"))
+  :bind(Keymap.new("n", "<C-k>", "<C-w>k"))
+  :bind(Keymap.new("n", "<C-l>", "<C-w>l"))
+  :execute()
 
 -- " HARD MODE - Disabled arrows
-mapper("n", "<Up>", "<Nop>")
-mapper("n", "<Down>", "<Nop>")
-mapper("n", "<Left>", "<Nop>")
-mapper("n", "<Right>", "<Nop>")
+Keymap.new("n", "<Up>", "<Nop>")
+  :bind(Keymap.new("n", "<Down>", "<Nop>"))
+  :bind(Keymap.new("n", "<Left>", "<Nop>"))
+  :bind(Keymap.new("n", "<Right>", "<Nop>"))
+  :bind(Keymap.new("i", "<right>", "<nop>"))
+  :bind(Keymap.new("i", "<up>", "<nop>"))
+  :bind(Keymap.new("i", "<down>", "<nop>"))
+  :bind(Keymap.new("i", "<left>", "<nop>"))
+  :execute()
 
-mapper("i", "<right>", "<nop>")
-mapper("i", "<up>", "<nop>")
-mapper("i", "<down>", "<nop>")
-mapper("i", "<left>", "<nop>")
 -- " Move selected line / block of text in visual mode
 -- " shift + k to move up
 -- " shift + j to move down

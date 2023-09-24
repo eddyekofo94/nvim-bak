@@ -222,6 +222,12 @@ autocmd("BufWinEnter", {
   command = "silent! set filetype=sh",
 })
 
+-- Center the buffer after search in cmd mode
+autocmd("CmdLineLeave", {
+  callback = function()
+    vim.api.nvim_feedkeys("zz", "n", false)
+  end,
+})
 -- autosave file when buffer leave or focus lost
 -- vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
 --     callback = function()
