@@ -218,7 +218,7 @@ autocmd("FileType", {
 local zsh_as_bash = augroup("zshAsBash")
 autocmd("BufWinEnter", {
   group = zsh_as_bash,
-  pattern = { "*.sh", "*.zsh", ".zshrc" },
+  pattern = { ".zprofile", "*.zsh", ".zshrc" },
   command = "silent! set filetype=sh",
 })
 
