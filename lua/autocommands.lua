@@ -15,6 +15,7 @@ local file_pattern = {
   "*.py",
   "*.zsh",
   ".zshrc",
+  ".zprofile",
   "*.yaml",
   "*.css",
   "*.fish",
