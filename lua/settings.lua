@@ -16,11 +16,11 @@ vim.cmd("set listchars=tab:→\\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends
 --   eol = "↲",
 --   nbsp = "␣",
 -- }
-vim.cmd([[cmap w!! w !sudo tee %]])
-vim.o.foldnestmax = 4
-vim.o.foldlevel = 1
+-- vim.cmd([[cmap w!! w !sudo tee %]])
+-- vim.o.foldnestmax = 4
+-- vim.o.foldlevel = 1
 vim.opt.list = true
-vim.o.foldcolumn = "1"
+vim.o.foldcolumn = "0" --  NOTE: 2023-09-25 - change to 1 if you wish to have fold colums
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldmethod = "expr"
 vim.o.foldlevelstart = 99

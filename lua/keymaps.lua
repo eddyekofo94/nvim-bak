@@ -95,16 +95,10 @@ set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- move over a closing element in insert mode
 set("i", "<C-l>", function()
-  return require("utils.functions").escapePair()
+  return utils.escapePair()
 end, { desc = "move over a closing element in insert mode" })
 
--- cycle through command history without arrow keys
--- INFO: not sure about this
-mapper("c", "<c-j>", "<down>")
-mapper("c", "<c-k>", "<up>")
-
 -- Search always center
-
 Keymap
   .new("n", "<C-u>", "<C-u>zz")
   :bind(Keymap.new("n", "<C-d>", "<C-d>zz"))
