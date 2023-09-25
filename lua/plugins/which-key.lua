@@ -83,7 +83,6 @@ return {
         h = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature help" },
         i = { "<cmd>Glance implementations<cr>", "implementations" },
         I = { "<cmd>LspInfo<cr>", "lsp info" },
-        v = { "<cmd>LspVirtualTextToggle<cr>", "lsp toggle virtual text" },
         --l = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
         -- L = { "<cmd>Lspsaga show_line_diagnostics<cr>", "line_diagnostics" },
         p = { "<cmd>lua vim.diagnostic.open_float()<cr>", "preview definition" },
