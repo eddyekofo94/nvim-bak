@@ -84,16 +84,6 @@ autocmd({ "BufLeave", "WinLeave", "BufWinLeave" }, {
   end,
 })
 
--- TODO: look into converting this to lua
--- function! MaxLineChars()
---     let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
--- endfunction
--- augroup MAX_CHARS_COLUMN
---     autocmd!
---     autocmd FileType,BufWinEnter cpp,h,hpp,cxx,cs,fish,shell,bash,go,rust,typescript,java,php,lua,javascript :call MaxLineChars()
---     autocmd BufLeave,BufDelete * :call clearmatches()
--- augroup end
-
 -- Enable spell checking for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.tex" },
@@ -129,14 +119,6 @@ local smart_close_filetypes = {
   "tsplayground",
   "PlenaryTestPopup",
 }
-
--- autocmd("FileType", {
---   pattern = smart_close_filetypes,
---   callback = function(event)
---     vim.bo[event.buf].buflisted = false
---     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
---   end,
--- })
 
 local smart_close_buftypes = {}
 local function smart_close()
@@ -254,7 +236,6 @@ autocmd("CmdLineLeave", {
 
 utils.define_augroups({
   _general_settings = {
-    -- { "BufWinEnter", file_types, "" },
     { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
     { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
     { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
@@ -275,4 +256,5 @@ utils.define_augroups({
     { "FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>" },
     { "FileType", "qf", "nnoremap <silent> <buffer> q :q<CR>" },
   },
+  _telescope = { { "User", "TelescopePreviewerLoaded", ":setlocal wrap" } },
 })
