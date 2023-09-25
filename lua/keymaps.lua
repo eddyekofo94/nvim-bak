@@ -105,15 +105,18 @@ mapper("c", "<c-k>", "<up>")
 
 -- Search always center
 
-Keymap.new("n", "<C-u>", "<C-u>zz")
+Keymap
+  .new("n", "<C-u>", "<C-u>zz")
   :bind(Keymap.new("n", "<C-d>", "<C-d>zz"))
   :bind(Keymap.new("n", "{", "{zz"))
   :bind(Keymap.new("n", "}", "}zz"))
   :bind(Keymap.new("n", "n", "nzz"))
   :bind(Keymap.new("n", "N", "Nzz"))
-  :bind(Keymap.new("n", "G", "Gzz"))
-  :bind(Keymap.new("n", "gg", "ggzz"))
-  :bind(Keymap.new("n", "<C-i>", "<C-i>zz"))
+  -- :bind(Keymap.new("n", "G", "Gzz"))
+  -- :bind(Keymap.new("n", "gg", "ggzz"))
+  :bind(
+    Keymap.new("n", "<C-i>", "<C-i>zz")
+  )
   :bind(Keymap.new("n", "<C-o>", "<C-o>zz"))
   :bind(Keymap.new("n", "%", "%zz"))
   :bind(Keymap.new("n", "*", "*zz"))

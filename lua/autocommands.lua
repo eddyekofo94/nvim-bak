@@ -59,7 +59,7 @@ autocmd({ "BufWritePre" }, {
 })
 
 local cursor_line = augroup("LocalCursorLine")
-autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
+autocmd({ "VimEnter", "BufEnter", "WinEnter", "BufWinEnter" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function()
@@ -72,7 +72,7 @@ autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
   end,
 })
 
-autocmd({ "WinLeave", "BufWinLeave" }, {
+autocmd({ "BufLeave", "WinLeave", "BufWinLeave" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function()
