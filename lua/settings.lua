@@ -8,6 +8,16 @@ vim.opt.fillchars = {
   eob = " ",
 }
 vim.cmd("set listchars=tab:→\\ ,nbsp:␣,trail:•,eol:↵,precedes:«,extends:»")
+
+-- vim.opt.shortmess:append({ c = true, S = true })
+vim.opt.shortmess = {
+  A = true, -- ignore annoying swap file messages
+  c = true, -- Do not show completion messages in command line
+  F = true, -- Do not show file info when editing a file, in the command line
+  I = true, -- Do not show the intro message
+  W = true, -- Do not show "written" in command line when writing
+}
+
 -- vim.opt.listchars = {
 --   tab = "→\\ ",
 --   trail = "•",
@@ -41,7 +51,6 @@ vim.opt.conceallevel = 0
 vim.opt.pumheight = 10 -- Makes popup menu smaller
 vim.opt.backupcopy = "yes"
 vim.opt.undolevels = 1000
-vim.opt.shortmess:append({ c = true, S = true })
 vim.opt.showmode = false
 vim.opt.hidden = true
 vim.opt.splitright = true
