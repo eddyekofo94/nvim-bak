@@ -33,7 +33,19 @@ vim.cmd([[
 tnoremap <Esc> <C-\><C-n><CR>
 ]])
 
--- local terminal = augroup("TerminalLocalOptions")
+-- @trial this (or move it to `term.lua`?)
+local terminal = augroup("TerminalLocalOptions")
+autocmd({ "TermClose" }, {
+  group = terminal,
+  pattern = { "*" },
+  callback = function()
+    --- automatically close a terminal if the job was successful
+    -- if not vim.v.event.status == 0 then vim.cmd.bdelete({ fn.expand("<abuf>"), bang = true }) end
+    if vim.v.event.status == 0 then
+      vim.cmd.bdelete({ vim.fn.expand("<abuf>"), bang = true })
+    end
+  end,
+})
 -- autocmd({ "TermClose" }, {
 --   group = terminal,
 --   pattern = { "*" },
