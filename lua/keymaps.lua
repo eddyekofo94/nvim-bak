@@ -88,6 +88,8 @@ set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<TAB>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 set("n", "<S-TAB>", "<cmd>bprev<cr>", { desc = "Prev buffer" })
 
+mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close all other buffers but this one
+
 set("v", "/", '"fy/\\V<C-R>f<CR>')
 set("v", "*", '"fy/\\V<C-R>f<CR>')
 
@@ -166,8 +168,6 @@ mapper("i", "jj", "<ESC>")
 -- Move selected line / block of text in visual mode
 mapper("x", "K", ":move '<-2<CR>gv-gv")
 mapper("x", "J", ":move '>+1<CR>gv-gv")
-
-mapper("n", "<S-x>", [[<Cmd>bdelete!<CR>]]) -- close tab
 
 -- Diffview
 mapper("n", "<leader>gD", "<cmd>DiffviewOpen --untracked-files=no<CR>")

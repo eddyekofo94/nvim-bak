@@ -157,33 +157,33 @@ autocmd("WinEnter", {
   desc = "Disable focus autoresize for BufType",
 })
 
-local terminal = augroup("TerminalLocalOptions")
-autocmd({ "TermOpen" }, {
-  group = terminal,
-  pattern = { "*" },
-  callback = function(event)
-    opt_local.number = false
-    opt_local.relativenumber = false
-    opt_local.cursorline = false
-    opt_local.signcolumn = "no"
-    opt_local.statuscolumn = ""
-    opt_local.buflisted = false
-    for _, key in ipairs({ "h", "j", "k", "l" }) do
-      vim.keymap.set("t", "<C-" .. key .. ">", function()
-        local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
-        local code_dir = vim.api.nvim_replace_termcodes("<C-" .. key .. ">", true, true, true)
-        vim.api.nvim_feedkeys(code_term_esc .. code_dir, "t", true)
-      end, { noremap = true })
-    end
-    if not vim.g.SessionLoad then
-      vim.cmd(":startinsert")
-    end
-    if vim.bo.filetype == "" then
-      vim.api.nvim_buf_set_option(event.buf, "filetype", "terminal")
-      vim.cmd.startinsert()
-    end
-  end,
-})
+-- local terminal = augroup("TerminalLocalOptions")
+-- autocmd({ "TermOpen" }, {
+--   group = terminal,
+--   pattern = { "*" },
+--   callback = function(event)
+--     opt_local.number = false
+--     opt_local.relativenumber = false
+--     opt_local.cursorline = false
+--     opt_local.signcolumn = "no"
+--     opt_local.statuscolumn = ""
+--     opt_local.buflisted = false
+--     for _, key in ipairs({ "h", "j", "k", "l" }) do
+--       vim.keymap.set("t", "<C-" .. key .. ">", function()
+--         local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+--         local code_dir = vim.api.nvim_replace_termcodes("<C-" .. key .. ">", true, true, true)
+--         vim.api.nvim_feedkeys(code_term_esc .. code_dir, "t", true)
+--       end, { noremap = true })
+--     end
+--     if not vim.g.SessionLoad then
+--       vim.cmd(":startinsert")
+--     end
+--     if vim.bo.filetype == "" then
+--       vim.api.nvim_buf_set_option(event.buf, "filetype", "term")
+--       vim.cmd.startinsert()
+--     end
+--   end,
+-- })
 
 autocmd("FileType", {
   group = general,
