@@ -84,6 +84,7 @@ vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 -- Buffer
 vim.opt.fileformat = "unix"
 vim.opt.tabstop = 2
+vim.opt.spelllang = "en_gb"
 vim.opt.softtabstop = 2
 vim.opt.spelllang = "en_gb"
 vim.opt.swapfile = false
