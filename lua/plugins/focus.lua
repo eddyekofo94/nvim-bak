@@ -78,9 +78,9 @@ return {
       desc = "Split Right",
     },
     {
-      "<leader>t",
-      "<cmd>FocusSplitNicely cmd ToggleTerm direction=vertical<cr>",
-      desc = "Terminal",
+      "<leader>tn",
+      "<cmd>FocusSplitNicely cmd term<cr>",
+      desc = "Terminal Nicely",
     },
     {
       "<leader>vv",

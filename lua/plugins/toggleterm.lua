@@ -19,6 +19,16 @@ return {
   cmd = "ToggleTerm",
   keys = {
     {
+      "<leader>tt",
+      "<cmd>ToggleTerm<cr>",
+      "Toggle Term",
+    },
+    {
+      "<leader>tv",
+      "<cmd>ToggleTerm direction=vertical<cr>",
+      "Terminal vertical",
+    },
+    {
       "<A-i>",
       vim.cmd.ToggleTerm,
       mode = { "n", "t" },
