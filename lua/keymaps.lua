@@ -1,7 +1,7 @@
 -- Mapping helper
 local mapper = require("utils").mapper
 local set = require("utils").keymap_set
-local utils = require("utils.functions")
+local utils_functions = require("utils.functions")
 
 local Keymap = {}
 Keymap.__index = Keymap
@@ -95,7 +95,7 @@ set("v", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
 -- move over a closing element in insert mode
 set("i", "<C-l>", function()
-  return utils.escapePair()
+  return utils_functions.escapePair()
 end, { desc = "move over a closing element in insert mode" })
 
 -- Search always center
