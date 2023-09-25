@@ -29,6 +29,11 @@ return {
       "Terminal vertical",
     },
     {
+      "<leader>th",
+      "<cmd>ToggleTerm direction=horizontal<cr>",
+      "Terminal horizontal",
+    },
+    {
       "<A-i>",
       vim.cmd.ToggleTerm,
       mode = { "n", "t" },
