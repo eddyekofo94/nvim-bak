@@ -16,6 +16,7 @@ local file_pattern = {
   "*.zsh",
   ".zshrc",
   ".zprofile",
+  ".zshenv",
   "*.yaml",
   "*.css",
   "*.fish",
@@ -59,7 +60,7 @@ autocmd({ "BufWritePre" }, {
 })
 
 local cursor_line = augroup("LocalCursorLine")
-autocmd({ "VimEnter", "BufEnter", "WinEnter", "BufWinEnter" }, {
+autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function()
@@ -201,7 +202,7 @@ autocmd("FileType", {
 local zsh_as_bash = augroup("zshAsBash")
 autocmd("BufWinEnter", {
   group = zsh_as_bash,
-  pattern = { ".zprofile", "*.zsh", ".zshrc" },
+  pattern = { ".zprofile", "*.zsh", ".zshenv", ".zshrc" },
   command = "silent! set filetype=sh",
 })
 

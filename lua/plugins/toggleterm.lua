@@ -21,17 +21,17 @@ return {
     {
       "<leader>tt",
       "<cmd>ToggleTerm<cr>",
-      "Toggle Term",
+      desc = "Toggle Term",
     },
     {
       "<leader>tv",
       "<cmd>ToggleTerm direction=vertical<cr>",
-      "Terminal vertical",
+      desc = "Terminal vertical",
     },
     {
       "<leader>th",
       "<cmd>ToggleTerm direction=horizontal<cr>",
-      "Terminal horizontal",
+      desc = "Terminal horizontal",
     },
     {
       "<A-i>",

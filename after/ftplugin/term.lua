@@ -34,6 +34,7 @@ tnoremap <Esc> <C-\><C-n><CR>
 ]])
 
 -- @trial this (or move it to `term.lua`?)
+-- This seems to properly remove the Terminal when closed. so KEEP IT!
 local terminal = augroup("TerminalLocalOptions")
 autocmd({ "TermClose" }, {
   group = terminal,
@@ -46,10 +47,3 @@ autocmd({ "TermClose" }, {
     end
   end,
 })
--- autocmd({ "TermClose" }, {
---   group = terminal,
---   pattern = { "*" },
---   callback = function(event)
---     vim.cmd([[:term ++kill=term]])
---   end,
--- })
