@@ -6,3 +6,6 @@ plugged/**
 plugin/packer_compiled.vim
 sessions/**
 lua/packer_compiled.lua
+core.**
+spell/**.sug
+spell/**.spl

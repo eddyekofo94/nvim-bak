@@ -1,0 +1,14 @@
+{
+    "diagnostics.disable": [
+        "redefined-local",
+        "redundant-parameter"
+    ],
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "vim",
+        "use",
+        "Util",
+        "snip_env"
+    ],
+    "completion.autoRequire": false
+}
