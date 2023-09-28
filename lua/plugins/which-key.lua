@@ -143,7 +143,7 @@ return {
       M = { "<cmd>Mason<cr>", "Mason" },
       N = { "<cmd>Noice<cr>", "Noice" },
       F = { "<cmd>FormatWrite<cr>", "Format & Save File" },
-      G = { "<cmd>LazyGit<cr>", "Lazygit" },
+      -- G = { "<cmd>LazyGit<cr>", "Lazygit" },
       -- e = { "Explorer" },
       L = { "<cmd>Lazy<cr>", "Lazy" },
       o = {

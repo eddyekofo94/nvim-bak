@@ -2,47 +2,6 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  enable = true,
-  opts = {
-    size = function(term)
-      if term.direction == "horizontal" then
-        return 15
-      elseif term.direction == "vertical" then
-        return vim.o.columns * 0.4
-      end
-    end,
-    start_in_insert = true,
-    insert_mappings = true,
-    direction = "float",
-    close_on_exit = true,
-  },
-  config = function()
-    -- code
-    local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit = Terminal:new({
-      cmd = "lazygit",
-      dir = "git_dir",
-      direction = "float",
-      float_opts = {
-        border = "single",
-        width = 250,
-        height = 250,
-      },
-      -- function to run on opening the terminal
-      on_open = function(term)
-        vim.cmd("startinsert!")
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-      end,
-      -- function to run on closing the terminal
-      on_close = function(term)
-        vim.cmd("startinsert!")
-      end,
-    })
-
-    function _lazygit_toggle()
-      lazygit:toggle()
-    end
-  end,
   cmd = "ToggleTerm",
   keys = {
     {
@@ -73,11 +32,49 @@ return {
       mode = { "n", "t" },
       desc = "Toggle terminal",
     },
-    -- {
-    --     "<leader>t",
-    --     "<cmd>ToggleTerm direction=vertical<cr>",
-    --     mode = { 'n', 't' },
-    --     desc = "Terminal",
-    -- }
   },
+  config = function()
+    require("toggleterm").setup({
+      size = function(term)
+        if term.direction == "horizontal" then
+          return 20
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.4
+        end
+      end,
+      start_in_insert = true,
+      insert_mappings = true,
+      direction = "float",
+      close_on_exit = true,
+      float_opts = {
+        border = "single",
+        width = 180,
+        height = 90,
+      },
+    })
+    local Terminal = require("toggleterm.terminal").Terminal
+    local lazygit = Terminal:new({
+      cmd = "lazygit",
+      dir = "git_dir",
+      direction = "float",
+      float_opts = {
+        border = "single",
+        width = 250,
+        height = 250,
+      },
+      -- function to run on opening the terminal
+      on_open = function(term)
+        vim.cmd("startinsert!")
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+      end,
+      -- function to run on closing the terminal
+      on_close = function(term)
+        vim.cmd("startinsert!")
+      end,
+    })
+
+    function _lazygit_toggle()
+      lazygit:toggle()
+    end
+  end,
 }
