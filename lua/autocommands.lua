@@ -73,7 +73,7 @@ autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
   end,
 })
 
-autocmd({ "BufLeave", "WinLeave", "BufWinLeave" }, {
+autocmd({ "BufLeave", "BufWinLeave" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function()
