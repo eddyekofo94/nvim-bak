@@ -7,6 +7,7 @@ return {
 
       local wk = require("which-key")
       local harpoon = require("harpoon")
+      local mark = require("harpoon.mark")
 
       harpoon.setup({})
 
@@ -18,6 +19,7 @@ return {
 
       nmap({ "<c-p>", require("harpoon.ui").nav_prev, "Harpoon previous file" })
       nmap({ "<c-n>", require("harpoon.ui").nav_next, "Harpoon next file" })
+      nmap({ "<leader>bd", mark.rm_file, "Harpoon remove file" })
 
       for i = 1, 5 do
         nmap({
