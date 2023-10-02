@@ -34,10 +34,7 @@ local file_pattern = {
 }
 
 -- Check if we need to reload the file when it changed
-autocmd(
-  { "WinEnter", "BufWinEnter", "BufWinLeave", "BufRead", "BufEnter", "FocusGained" },
-  { command = "silent! checktime" }
-)
+autocmd({ "BufWinEnter", "BufWinLeave", "BufRead", "BufEnter", "FocusGained" }, { command = "silent! checktime" })
 
 autocmd("FileType", {
   pattern = { "go", "c", "cpp", "py", "java", "cs" },
