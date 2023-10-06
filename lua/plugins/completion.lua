@@ -130,7 +130,13 @@ return {
                 select = false,
               })
             else
-              fallback()
+              -- fallback()
+              cmp.confirm({
+                -- For Copilot -- INFO: not using this (yet)
+                behavior = cmp.ConfirmBehavior.Replace,
+                -- Only when explicitly selected
+                select = false,
+              })
             end
           end,
           s = cmp.mapping.confirm({ select = true }),
