@@ -44,9 +44,7 @@ set(nxo, "gl", "g$")
 
 -- Show treesitter nodes under cursor
 -- highlights under cursor
-if vim.fn.has("nvim-0.9") == 1 then
-  set("n", "<Leader>ui", vim.show_pos, { desc = "Show Treesitter Node" })
-end
+set("n", "<Leader>ui", vim.show_pos, { desc = "Show Treesitter Node" })
 
 -- COPY EVERYTHING/ALL
 mapper("n", "<C-a>", ": %y+<CR>")
