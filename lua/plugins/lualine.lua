@@ -98,6 +98,8 @@ return {
             "telescope",
             "TelescopePrompt",
             "noice",
+            "lazy",
+            "mason",
             "qf",
             "help",
             "nofile",
