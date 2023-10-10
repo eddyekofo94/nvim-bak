@@ -31,15 +31,7 @@ local custom_init = function(client)
   client.config.flags.allow_incremental_sync = true
 end
 
-local signs_defined = {
-  error = "",
-  warn = "",
-  hint = "⚑",
-  info = "",
-  code_action_icon = " ",
-  rename_prompt_prefix = ">",
-  priority = 9999,
-}
+local signs_defined = O.icons
 
 local sign = function(opts)
   vim.fn.sign_define(opts.name, {
@@ -71,10 +63,10 @@ local custom_attach = function(client, bufnr)
   -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
   -- mapper("n", "]d", "vim.diagnostic.goto_next()")
 
-  sign({ name = "DiagnosticSignError", text = signs_defined.error })
-  sign({ name = "DiagnosticSignWarn", text = signs_defined.warn })
-  sign({ name = "DiagnosticSignHint", text = signs_defined.hint })
-  sign({ name = "DiagnosticSignInfo", text = signs_defined.info })
+  sign({ name = "DiagnosticSignError", text = signs_defined.lsp.error })
+  sign({ name = "DiagnosticSignWarn", text = signs_defined.lsp.warning })
+  sign({ name = "DiagnosticSignHint", text = signs_defined.lsp.hint })
+  sign({ name = "DiagnosticSignInfo", text = signs_defined.lsp.info })
 
   local filetype = vim.api.nvim_buf_get_name(bufnr)
 

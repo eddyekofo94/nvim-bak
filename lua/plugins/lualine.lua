@@ -62,24 +62,7 @@ return {
       t = colors.red,
     }
 
-    local assets = {
-      mode_icon = "",
-      dir = "󰉖",
-      modified = "󰈙",
-      lsp = {
-        erver = "󰅡",
-        error = "",
-        warning = "",
-        info = "",
-        hint = "",
-      },
-      git = {
-        branch = "",
-        added = "",
-        changed = "",
-        removed = "",
-      },
-    }
+    local assets = O.icons
 
     -- config
     local config = {

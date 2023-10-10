@@ -57,7 +57,7 @@ go_cfg.setup({
     hdlr = true, -- hook lsp diag handler
     underline = true,
     -- virtual text setup
-    virtual_text = { space = 0, prefix = "■" },
+    virtual_text = { space = 0, prefix = O.icons.lsp.warning },
     signs = true,
     update_in_insert = false,
   },
