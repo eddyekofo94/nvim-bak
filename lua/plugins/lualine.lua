@@ -256,12 +256,6 @@ return {
     })
 
     active_left({
-      "searchcount",
-      color = { bg = colors.cyan, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-    active_left({
       "location",
       color = { bg = colors.grey, fg = colors.white },
       padding = { left = 1, right = 1 },
@@ -277,6 +271,12 @@ return {
       padding = { left = 1, right = 1 },
       cond = conditions.hide_in_width,
       separator = { right = "▓▒░" },
+    })
+    active_left({
+      "searchcount",
+      color = { bg = colors.cyan, fg = colors.black },
+      padding = { left = 1, right = 1 },
+      separator = { right = "▓▒░", left = "░▒▓" },
     })
 
     -- active right section
