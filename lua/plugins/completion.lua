@@ -84,6 +84,16 @@ return {
       end,
       completion = {
         completeopt = "menu,menuone,noinsert",
+        autocomplete = { types.cmp.TriggerEvent.TextChanged },
+        keyword_length = 2,
+      },
+      -- explanations: https://github.com/hrsh7th/nvim-cmp/blob/main/doc/cmp.txt#L425
+      performance = {
+        debounce = 30,
+        throttle = 20,
+        async_budget = 0.8,
+        max_view_entries = 10,
+        fetching_timeout = 250,
       },
       preselect = cmp.PreselectMode.None,
       snippet = {
@@ -94,7 +104,7 @@ return {
       matching = {
         disallow_fuzzy_matching = true,
         disallow_fullfuzzy_matching = true,
-        disallow_partial_fuzzy_matching = false,
+        disallow_partial_fuzzy_matching = true,
         disallow_partial_matching = false,
         disallow_prefix_unmatching = true,
       },
@@ -294,7 +304,8 @@ return {
               return t1 < t2
             end
           end,
-          compare.locality,
+          compare.order,
+          compare.sort_text,
         },
       },
       experimental = {
@@ -309,9 +320,6 @@ return {
           local meta_type = vim_item.kind
 
           local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-          if entry.source.name == "treesitter" then
-            kind.kind = lspkind.symbol_map["Struct"]
-          end
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
 
           kind.kind = " " .. (strings[1] or "") .. " "
