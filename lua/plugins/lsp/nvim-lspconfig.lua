@@ -63,10 +63,10 @@ local custom_attach = function(client, bufnr)
   -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
   -- mapper("n", "]d", "vim.diagnostic.goto_next()")
 
-  sign({ name = "DiagnosticSignError", text = signs_defined.lsp.error })
-  sign({ name = "DiagnosticSignWarn", text = signs_defined.lsp.warning })
-  sign({ name = "DiagnosticSignHint", text = signs_defined.lsp.hint })
-  sign({ name = "DiagnosticSignInfo", text = signs_defined.lsp.info })
+  sign({ name = "DiagnosticSignError", text = signs_defined.small_dot })
+  sign({ name = "DiagnosticSignWarn", text = signs_defined.small_dot })
+  sign({ name = "DiagnosticSignHint", text = signs_defined.small_dot })
+  sign({ name = "DiagnosticSignInfo", text = signs_defined.small_dot })
 
   local filetype = vim.api.nvim_buf_get_name(bufnr)
 
@@ -118,9 +118,9 @@ local custom_attach = function(client, bufnr)
     virtual_text = {
       prefix = "",
       severity_limit = "Warning",
+      spacing = 4,
     },
-    signs = vim.b[bufnr].show_signs == true,
-    -- Increase diagnostic signs priority
+    signs = true,
     update_in_insert = true,
   })
 

@@ -72,10 +72,10 @@ O = {
   },
   catppuccin_colors = mocha,
   icons = {
-
     mode_icon = "",
     dir = "󰉖",
     modified = "󰈙",
+    small_dot = "",
     lsp = {
       erver = "󰅡",
       error = "",
