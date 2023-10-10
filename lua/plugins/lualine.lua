@@ -72,6 +72,22 @@ return {
           normal = { c = { fg = colors.fg, bg = colors.bg } },
           inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },
+        disabled_filetypes = {
+          statusline = {
+            "neo-tree",
+            "telescope",
+            "TelescopePrompt",
+            "qf",
+            "help",
+            "nofile",
+            "prompt",
+            "popup",
+            "term",
+            "toggleterm",
+            "undotree",
+          },
+          winbar = {},
+        },
       },
       sections = {
         -- clear defaults
@@ -215,7 +231,7 @@ return {
     active_left({
       "location",
       color = { bg = colors.grey, fg = colors.white },
-      padding = { left = 1, right = 0 },
+      padding = { left = 1, right = 1 },
       separator = { left = "░▒▓" },
     })
     active_left({
