@@ -304,8 +304,6 @@ return {
               return t1 < t2
             end
           end,
-          compare.order,
-          compare.sort_text,
         },
       },
       experimental = {
