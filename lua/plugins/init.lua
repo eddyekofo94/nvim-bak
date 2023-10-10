@@ -21,6 +21,9 @@ return {
     "notjedi/nvim-rooter.lua",
     lazy = false,
     config = function()
+      require("nvim-rooter").setup({
+        fallback_to_parent = true,
+      })
       require("neo-tree").setup({
         update_cwd = true,
         update_focused_file = {
