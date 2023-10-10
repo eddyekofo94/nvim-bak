@@ -4,20 +4,20 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
     -- disable until lualine loads
-    vim.opt.laststatus = 0
+    vim.opt.laststatus = 3
   end,
   opts = function()
     -- miasma colors
     local mocha = O.catppuccin_colors
     local colors = {
-      bg = mocha.base.hex,
+      bg = mocha.mantle.hex,
       black = mocha.crust.hex,
       grey = mocha.overlay1.hex,
       red = mocha.red.hex,
       green = mocha.green.hex,
       yellow = mocha.yellow.hex,
       blue = mocha.blue.hex,
-      magenta = mocha.mauve.hex,
+      mauve = mocha.mauve.hex,
       cyan = mocha.sapphire.hex,
       white = mocha.text.hex,
     }
@@ -40,12 +40,12 @@ return {
     }
     -- auto change color according to neovims mode
     local mode_color = {
-      n = colors.red,
+      n = colors.mauve,
       i = colors.green,
       v = colors.blue,
       [""] = colors.blue,
       V = colors.blue,
-      c = colors.magenta,
+      c = colors.red,
       no = colors.red,
       s = colors.orange,
       S = colors.orange,
@@ -152,7 +152,7 @@ return {
         return icon:gsub("%s+", "")
       end,
       color = function()
-        return { bg = mode_color[vim.fn.mode()], fg = colors.base }
+        return { bg = mode_color[vim.fn.mode()], fg = colors.black }
       end,
       padding = { left = 1, right = 1 },
       separator = { right = "▓▒░" },
@@ -161,7 +161,7 @@ return {
       "filename",
       cond = conditions.buffer_not_empty,
       color = function()
-        return { bg = mode_color[vim.fn.mode()], fg = colors.base }
+        return { bg = mode_color[vim.fn.mode()], fg = colors.black }
       end,
       padding = { left = 1, right = 1 },
       separator = { right = "▓▒░" },
@@ -171,13 +171,6 @@ return {
         unnamed = " ",
         newfile = " ",
       },
-    })
-    active_left({
-      "branch",
-      icon = "",
-      color = { bg = colors.blue, fg = colors.black },
-      padding = { left = 0, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
     })
 
     -- inactive left section
@@ -203,10 +196,44 @@ return {
       },
     })
 
+    active_left({
+      "diagnostics",
+      sources = { "nvim_diagnostic" },
+      symbols = { error = " ", warn = " ", info = " " },
+      colored = true,
+      color = { bg = colors.bg, fg = colors.black },
+      padding = { left = 1, right = 1 },
+      separator = { right = "▓▒░", left = "░▒▓" },
+    })
+
+    active_left({
+      "searchcount",
+      color = { bg = colors.cyan, fg = colors.black },
+      padding = { left = 1, right = 1 },
+      separator = { right = "▓▒░", left = "░▒▓" },
+    })
+    active_left({
+      "location",
+      color = { bg = colors.grey, fg = colors.white },
+      padding = { left = 1, right = 0 },
+      separator = { left = "░▒▓" },
+    })
+    active_left({
+      function()
+        local cur = vim.fn.line(".")
+        local total = vim.fn.line("$")
+        return string.format("%2d%%%%", math.floor(cur / total * 100))
+      end,
+      color = { bg = colors.grey, fg = colors.white },
+      padding = { left = 1, right = 1 },
+      cond = conditions.hide_in_width,
+      separator = { right = "▓▒░" },
+    })
+
     -- active right section
     active_right({
       function()
-        local clients = vim.lsp.get_active_clients()
+        local clients = vim.lsp.get_clients()
         local clients_list = {}
         for _, client in pairs(clients) do
           if not clients_list[client.name] then
@@ -222,38 +249,18 @@ return {
       cond = conditions.hide_in_width_first,
       separator = { right = "▓▒░", left = "░▒▓" },
     })
+    active_right({
+      "branch",
+      color = { bg = colors.blue, fg = colors.black },
+      padding = { left = 1, right = 1 },
+      separator = { right = "▓▒░", left = "░▒▓" },
+    })
 
     active_right({
-      "diagnostics",
-      sources = { "nvim_diagnostic" },
-      symbols = { error = " ", warn = " ", info = " " },
-      colored = false,
-      color = { bg = colors.magenta, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-    active_right({
-      "searchcount",
-      color = { bg = colors.cyan, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-    active_right({
-      "location",
-      color = { bg = colors.red, fg = colors.white },
-      padding = { left = 1, right = 0 },
-      separator = { left = "░▒▓" },
-    })
-    active_right({
-      function()
-        local cur = vim.fn.line(".")
-        local total = vim.fn.line("$")
-        return string.format("%2d%%%%", math.floor(cur / total * 100))
-      end,
-      color = { bg = colors.red, fg = colors.white },
-      padding = { left = 1, right = 1 },
-      cond = conditions.hide_in_width,
+      "diff",
+      color = { bg = colors.bg, fg = colors.black },
       separator = { right = "▓▒░" },
+      padding = { left = 1, right = 1 },
     })
     active_right({
       "o:encoding",
