@@ -257,7 +257,7 @@ return {
 
     active_left({
       "location",
-      color = { bg = colors.grey, fg = colors.white },
+      color = { bg = colors.bg, fg = colors.white },
       padding = { left = 1, right = 1 },
       separator = { left = "░▒▓" },
     })
@@ -267,7 +267,7 @@ return {
         local total = vim.fn.line("$")
         return string.format("%2d%%%%", math.floor(cur / total * 100))
       end,
-      color = { bg = colors.grey, fg = colors.white },
+      color = { bg = colors.bg, fg = colors.white },
       padding = { left = 1, right = 1 },
       cond = conditions.hide_in_width,
       separator = { right = "▓▒░" },
