@@ -61,6 +61,26 @@ return {
       ["!"] = colors.red,
       t = colors.red,
     }
+
+    local assets = {
+      mode_icon = "",
+      dir = "󰉖",
+      modified = "󰈙",
+      lsp = {
+        erver = "󰅡",
+        error = "",
+        warning = "",
+        info = "",
+        hint = "",
+      },
+      git = {
+        branch = "",
+        added = "",
+        changed = "",
+        removed = "",
+      },
+    }
+
     -- config
     local config = {
       options = {
@@ -88,6 +108,7 @@ return {
           },
           winbar = {},
         },
+        disabled_buftypes = { "quickfix", "prompt" },
       },
       sections = {
         -- clear defaults
@@ -175,6 +196,7 @@ return {
     })
     active_left({
       "filename",
+      path = 1,
       cond = conditions.buffer_not_empty,
       color = function()
         return { bg = mode_color[vim.fn.mode()], fg = colors.black }
@@ -182,11 +204,17 @@ return {
       padding = { left = 1, right = 1 },
       separator = { right = "▓▒░" },
       symbols = {
-        modified = "󰶻 ",
+        modified = assets.modified,
         readonly = " ",
         unnamed = " ",
         newfile = " ",
       },
+    })
+
+    active_right({
+      "datetime",
+      -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+      style = "default",
     })
 
     -- inactive left section
@@ -215,7 +243,12 @@ return {
     active_left({
       "diagnostics",
       sources = { "nvim_diagnostic" },
-      symbols = { error = " ", warn = " ", info = " " },
+      symbols = {
+        error = " " .. assets.lsp.error .. " ",
+        warn = " " .. assets.lsp.warning .. " ",
+        info = " " .. assets.lsp.info .. " ",
+        hint = " " .. assets.lsp.hint .. " ",
+      },
       colored = true,
       color = { bg = colors.bg, fg = colors.black },
       padding = { left = 1, right = 1 },
@@ -268,6 +301,7 @@ return {
     active_right({
       "branch",
       color = { bg = colors.blue, fg = colors.black },
+      icon = { assets.git.branch },
       padding = { left = 1, right = 1 },
       separator = { right = "▓▒░", left = "░▒▓" },
     })
