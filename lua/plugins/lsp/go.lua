@@ -4,6 +4,7 @@ local go_cfg = require("go")
 
 -- INFO: don't know if this is working :(
 set_keymap("n", "<leader>f", "<cmd>lua require('go.format').goimport()<CR>", { desc = "Format" })
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -39,7 +40,10 @@ go_cfg.setup({
   comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. 󰟓       
   icons = { breakpoint = icons.arrows.SmallArrowRight, currentpos = "🏃" }, -- setup to `false` to disable icons setup
   verbose = false, -- output loginf in messages
-  lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
+  -- lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
+  lsp_cfg = {
+    capabilities = capabilities,
+  },
   -- false: do nothing
   -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
   --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
@@ -68,7 +72,7 @@ go_cfg.setup({
   lsp_inlay_hints = {
     enable = false,
     -- Only show inlay hints for the current line
-    only_current_line = false,
+    only_current_line = true,
     -- Event which triggers a refersh of the inlay hints.
     -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
     -- not that this may cause higher CPU usage.
@@ -96,7 +100,7 @@ go_cfg.setup({
   },
   gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
   gopls_remote_auto = true, -- add -remote=auto to gopls
-  gocoverage_sign = "█",
+  gocoverage_sign = "│",
   sign_priority = 5, -- change to a higher number to override other signs
   dap_debug = true, -- set to false to disable dap
   dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
