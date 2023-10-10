@@ -97,6 +97,7 @@ return {
             "neo-tree",
             "telescope",
             "TelescopePrompt",
+            "noice",
             "qf",
             "help",
             "nofile",
