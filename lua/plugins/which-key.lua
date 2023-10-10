@@ -111,7 +111,6 @@ return {
         -- S = { "<cmd>Telescope persisted<cr>", "Sessions" },
         T = { "<cmd>TodoTelescope<cr>", "TODO" },
         -- w = { "<cmd>lua require'telescope.builtin'.grep_string()<CR>", "word under cursor" },
-        r = { "<cmd>Telescope registers<cr>", "registers" },
         u = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
         z = { "<cmd>Telescope zoxide list<cr>", "zoxide" },
       },

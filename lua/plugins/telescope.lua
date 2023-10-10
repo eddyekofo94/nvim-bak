@@ -68,7 +68,7 @@ return {
       {
         "<leader>sr",
         "<cmd>Telescope resume<cr>",
-        desc = "Recent File",
+        desc = "Resume search",
       },
       { "<leader>sS", "<cmd>Telescope persisted<cr>", desc = "Sessions" },
       { "<leader>g.", "<cmd>Telescope git_status<cr>", desc = "git status" },
