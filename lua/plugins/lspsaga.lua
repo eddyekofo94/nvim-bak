@@ -3,11 +3,6 @@ return {
   event = "BufWinEnter",
   keys = {
     {
-      "K",
-      "<cmd>Lspsaga hover_doc<CR>",
-      desc = "Saga hover",
-    },
-    {
       "]d",
       "<cmd>Lspsaga diagnostic_jump_next<cr>",
       desc = "diagnostic jump next",
@@ -32,7 +27,7 @@ return {
     })
     local mapper = require("utils").keymap_set
     mapper("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", "Saga show line diagnostics")
-    mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Saga hover")
+    -- mapper("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Saga hover")
   end,
   dependencies = { { "nvim-tree/nvim-web-devicons" } },
 }
