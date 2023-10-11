@@ -119,7 +119,7 @@ return {
             "--column",
             "--smart-case",
           },
-          prompt_prefix = " ",
+          prompt_prefix = " ",
           selection_caret = "契",
           path_display = { "truncate" },
           selection_strategy = "reset",

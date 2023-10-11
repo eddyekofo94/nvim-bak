@@ -38,6 +38,7 @@ return {
     Project = " ",
     RunningMan = "🏃",
     Search = " ",
+    SearchBold = " ",
     SignIn = " ",
     Table = " ",
     Telescope = " ",

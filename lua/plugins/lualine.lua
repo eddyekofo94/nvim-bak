@@ -190,7 +190,7 @@ return {
       padding = { left = 1, right = 1 },
       separator = { right = "▓▒░" },
       symbols = {
-        modified = assets.modified,
+        modified = " ",
         readonly = " ",
         unnamed = " ",
         newfile = " ",
