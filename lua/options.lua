@@ -6,9 +6,9 @@ vim.o.title = true
 TERMINAL = vim.fn.expand("$TERMINAL")
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
 vim.o.titlestring = "%<%F%=%l/%L - nvim"
-vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
-vim.cmd("syntax on") -- move to next line with theses keys
-vim.o.pumheight = 10 -- Makes popup menu smaller
+vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with these keys
+vim.cmd("syntax on")
+vim.o.pumheight = 10 -- Makes popup menu smaller IMPORTANT
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
 vim.cmd("set colorcolumn=99999") -- fix indentline for now
