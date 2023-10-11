@@ -24,8 +24,11 @@ mason_lspconfig.setup({
   },
 })
 
-local mapper = function(mode, key, result, desc)
-  vim.api.nvim_set_keymap(mode, key, "<cmd>lua " .. result .. "<CR>", { noremap = true, silent = true, desc = desc })
+local mapper = function(mode, key, result, opts)
+  if type(opts) == "string" then
+    opts = { desc = opts, noremap = true, silent = true, buffer = 0 }
+  end
+  vim.api.nvim_set_keymap(mode, key, "<cmd>lua " .. result .. "<CR>", opts)
 end
 -- local mapper = require("utils")
 
@@ -57,11 +60,11 @@ local custom_attach = function(client, bufnr)
   mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
   mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
   mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
+  mapper("n", "K", "vim.lsp.buf.hover()", "hover")
   keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
 
   -- INFO: this is set on Lspsaga
   -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-  -- mapper("n", "K", "vim.lsp.buf.hover()", "hover")
   -- mapper('n', '<leader>dl', 'vim.diagnostic.open_float()<cr>', "open float")
   -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
   -- mapper("n", "]d", "vim.diagnostic.goto_next()")
@@ -126,6 +129,13 @@ local custom_attach = function(client, bufnr)
     signs = true,
     update_in_insert = true,
   })
+
+  -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
   vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
     local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id, _)
@@ -351,16 +361,6 @@ mason_lspconfig.setup_handlers({
       },
     })
   end,
-  vim.diagnostic.config({
-    virtual_text = false,
-    severity_sort = true,
-    float = {
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }),
 })
 
 local has_metals = pcall(require, "metals")
