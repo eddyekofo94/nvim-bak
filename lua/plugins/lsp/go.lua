@@ -4,7 +4,7 @@ local go_cfg = require("go")
 
 -- INFO: don't know if this is working :(
 set_keymap("n", "<leader>f", "<cmd>lua require('go.format').goimport()<CR>", { desc = "Format" })
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "go",
   callback = function()
@@ -40,10 +41,8 @@ go_cfg.setup({
   comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. 󰟓       
   icons = { breakpoint = icons.arrows.SmallArrowRight, currentpos = "🏃" }, -- setup to `false` to disable icons setup
   verbose = false, -- output loginf in messages
-  -- lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
-  lsp_cfg = {
-    capabilities = capabilities,
-  },
+  lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
+
   -- false: do nothing
   -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
   --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
@@ -70,7 +69,7 @@ go_cfg.setup({
   -- set to true: use gopls to format
   -- false if you want to use other formatter tool(e.g. efm, nulls)
   lsp_inlay_hints = {
-    enable = false,
+    enable = true,
     -- Only show inlay hints for the current line
     only_current_line = true,
     -- Event which triggers a refersh of the inlay hints.

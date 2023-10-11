@@ -5,6 +5,9 @@ local navic = require("nvim-navic")
 
 mason_lspconfig.setup({
   ensure_installed = {
+    "eslint",
+    "jsonls",
+    "marksman",
     "lua_ls",
     "vimls",
     "rust_analyzer",
@@ -49,12 +52,12 @@ local custom_attach = function(client, bufnr)
   -- set up mappings (only apply when LSP client attached)
   mapper("n", "<space>dD", "vim.lsp.buf.declaration()", "declaration")
   mapper("n", "<space>di", "vim.lsp.buf.implementation()", "implementation")
-  mapper("n", "<c-]>", "vim.lsp.buf.definition()", "definition")
   mapper("n", "gs", "vim.lsp.buf.signature_help()<cr>", "signature help")
   mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
   mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
   mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
   mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
+  keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
 
   -- INFO: this is set on Lspsaga
   -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
@@ -267,24 +270,40 @@ mason_lspconfig.setup_handlers({
     })
   end,
   ["gopls"] = function()
-    local go_cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+    -- local go_cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
 
-    lspconfig.gopls.setup(go_cfg)
-    -- lspconfig.gopls.setup {
-    --     on_init = custom_init,
-    --     on_attach = custom_attach,
-    --     capabilities = updated_capabilities,
-    --     analyses = {
-    --         unusedparams = true,
-    --     },
-    --     setting = {
-    --         gopls = {
-    --             completeUnimported = true,
-    --             usePlaceholders = true,
-    --         },
-    --     },
-    --     staticcheck = true,
-    -- }
+    -- lspconfig.gopls.setup(go_cfg)
+    lspconfig.gopls.setup({
+      on_init = custom_init,
+      on_attach = custom_attach,
+      capabilities = updated_capabilities,
+      analyses = {
+        shadow = true,
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      experimentalPostfixCompletions = true,
+      gofumpt = true,
+      setting = {
+        gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+        },
+      },
+      usePlaceholders = true,
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      staticcheck = true,
+    })
   end,
   ["lua_ls"] = function()
     lspconfig.lua_ls.setup({
