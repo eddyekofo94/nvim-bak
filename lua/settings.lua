@@ -168,7 +168,7 @@ end
 -- vim.opt.winbar = status_line()
 
 vim.cmd([[highlight HighlightedyankRegion cterm=reverse gui=reverse guifg=reverse guibg=reverse]])
-vim.cmd([[set guicursor+=i-ci:ver30-Cursor-blinkwait300-blinkon200-blinkoff150]])
+vim.cmd([[set guicursor+=i-ci:ver30-Cursor-blinkwait500-blinkon400-blinkoff300]])
 vim.cmd([[set guicursor+=n-v-c:blinkon10]])
 vim.cmd([[
  " Proper search
