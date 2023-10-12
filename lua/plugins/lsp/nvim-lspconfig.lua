@@ -26,7 +26,7 @@ mason_lspconfig.setup({
 
 local mapper = function(mode, key, result, opts)
   if type(opts) == "string" then
-    opts = { desc = opts, noremap = true, silent = true, buffer = 0 }
+    opts = { desc = opts, noremap = true, silent = true }
   end
   vim.api.nvim_set_keymap(mode, key, "<cmd>lua " .. result .. "<CR>", opts)
 end
