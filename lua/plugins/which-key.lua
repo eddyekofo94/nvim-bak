@@ -116,16 +116,20 @@ return {
       },
       S = {
         name = "+Session",
+        s = {
+          "<cmd>SessionSave<cr>",
+          "Save Session",
+        },
         r = {
-          '<cmd>lua require("persistence").load()<cr>',
-          "Restore Session",
+          "<cmd>SessionLoad<cr>",
+          "Restore Load",
         },
         l = {
           '<cmd>lua require("persistence").load({ last = true })<cr>',
           "Restore Last Session",
         },
         x = {
-          '<cmd>lua require("persistence").stop()<cr>',
+          "<cmd>SessionDelete<cr>",
           "Don't Save Current Session",
         },
       },

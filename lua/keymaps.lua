@@ -38,8 +38,9 @@ set(nxo, "gh", "g^")
 set(nxo, "gl", "g$")
 
 --if vim.lsp.inlay_hint then
---    mapper('n', '<leader>uh', function() vim.lsp.inlay_hint(0, nil) end,
---        { desc = 'Toggle Inlay Hints' })
+--  mapper("n", "<leader>uh", function()
+--    vim.lsp.inlay_hint(0, nil)
+--  end, { desc = "Toggle Inlay Hints" })
 --end
 
 -- Show treesitter nodes under cursor
