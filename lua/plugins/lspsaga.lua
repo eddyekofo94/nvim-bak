@@ -1,6 +1,6 @@
 return {
   "nvimdev/lspsaga.nvim",
-  event = "BufWinEnter",
+  event = "LspAttach",
   keys = {
     {
       "]d",

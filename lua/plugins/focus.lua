@@ -3,6 +3,7 @@ local ignore_filetypes = {
   "git-conflict",
   "term",
   "undotree",
+  "Trouble",
   "neo-tree",
   "telescope",
   "toggleterm",
@@ -88,7 +89,7 @@ return {
       desc = "Split Nicely",
     },
     {
-      "<leader>w",
+      "<leader>ww",
       "<cmd>FocusMaxOrEqual<cr>",
       desc = "Max window",
     },

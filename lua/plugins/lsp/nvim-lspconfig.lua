@@ -62,6 +62,7 @@ local custom_attach = function(client, bufnr)
   mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
   mapper("n", "K", "vim.lsp.buf.hover()", "hover")
   keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
+  -- keymap_set("n", "<c-]>", "<Cmd>FocusSplitNicely lua vim.lsp.buf.definition()<CR>", "definition")
 
   -- INFO: this is set on Lspsaga
   -- mapper('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
@@ -121,11 +122,11 @@ local custom_attach = function(client, bufnr)
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     -- Hide/Show virtual text
-    virtual_text = {
-      prefix = "",
-      severity_limit = "Warning",
-      spacing = 4,
-    },
+    -- virtual_text = {
+    --   prefix = "",
+    --   severity_limit = "Warning",
+    --   spacing = 4,
+    -- },
     signs = true,
     update_in_insert = true,
   })
