@@ -42,7 +42,6 @@ return {
     SignIn = " ",
     Table = " ",
     Telescope = " ",
-    Yoga = "🧘",
     Xmark = "✗",
   },
   diagnostics = {

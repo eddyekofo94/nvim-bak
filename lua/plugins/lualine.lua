@@ -154,10 +154,10 @@ return {
             "filename",
             path = 1,
             symbols = {
-              modified = " ",
+              modified = " ",
               readonly = " ",
-              unnamed = " ",
-              newfile = " ",
+              unnamed = " ",
+              newFile = " ",
             },
           },
         },
@@ -205,7 +205,14 @@ return {
             color = { fg = colours.blue },
             icon = { assets.git.branch },
           },
-          { "diff" },
+          {
+            "diff",
+            symbols = {
+              added = " ",
+              modified = " ",
+              removed = " ",
+            },
+          },
         },
         lualine_y = {
           {
