@@ -146,7 +146,7 @@ return {
             color = function()
               return { bg = mode_color[vim.fn.mode()], fg = colours.black }
             end,
-            padding = { left = 1, right = 1 },
+            padding = { left = 1, right = 2 },
             separator = { right = "▓▒░" },
           },
           -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
