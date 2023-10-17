@@ -99,9 +99,27 @@ return {
             z = { fg = colours.grey, bg = colours.bg },
           },
         },
-
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+        disabled_filetypes = {
+          statusline = {
+            "neo-tree",
+            "dashboard",
+            "alpha",
+            "telescope",
+            "TelescopePrompt",
+            "noice",
+            "lazy",
+            "mason",
+            "qf",
+            "help",
+            "nofile",
+            "prompt",
+            "popup",
+            "term",
+            "toggleterm",
+            "undotree",
+          },
+        },
       },
       sections = {
         lualine_a = {
