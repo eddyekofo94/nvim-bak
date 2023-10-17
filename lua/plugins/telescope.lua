@@ -10,6 +10,11 @@ return {
         desc = "Find Files (current)",
       },
       {
+        "<leader>sk",
+        "<cmd>Telescope keymaps<cr>",
+        desc = "Keymaps",
+      },
+      {
         "<leader>st",
         "<cmd>Telescope help_tags<cr>",
         desc = "Vim Help Tags",

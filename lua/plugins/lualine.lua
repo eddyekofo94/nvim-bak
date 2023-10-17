@@ -1,27 +1,22 @@
 return {
   "nvim-lualine/lualine.nvim",
-  -- event = "VeryLazy",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  init = function()
-    -- disable until lualine loads
-    vim.opt.laststatus = 3
-  end,
+  event = "VeryLazy",
   opts = function()
-    -- miasma colors
-    local mocha = O.catppuccin_colors
-    local colors = {
-      bg = mocha.mantle.hex,
-      black = mocha.crust.hex,
-      orange = mocha.peach.hex,
-      grey = mocha.overlay1.hex,
-      red = mocha.red.hex,
-      green = mocha.green.hex,
-      yellow = mocha.yellow.hex,
-      blue = mocha.blue.hex,
-      mauve = mocha.mauve.hex,
-      cyan = mocha.sapphire.hex,
-      white = mocha.text.hex,
-    }
+    -- dump object contents
+    local function dump(o)
+      if type(o) == "table" then
+        local s = ""
+        for k, v in pairs(o) do
+          if type(k) ~= "number" then
+            k = '"' .. k .. '"'
+          end
+          s = s .. dump(v) .. ","
+        end
+        return s
+      else
+        return tostring(o)
+      end
+    end
 
     local conditions = {
       buffer_not_empty = function()
@@ -39,307 +34,178 @@ return {
         return gitdir and #gitdir > 0 and #gitdir < #filepath
       end,
     }
-    -- auto change color according to neovims mode
-    local mode_color = {
-      n = colors.mauve,
-      i = colors.green,
-      v = colors.blue,
-      [""] = colors.blue,
-      V = colors.blue,
-      c = colors.orange,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [""] = colors.red,
-      ic = colors.yellow,
-      R = colors.yellow,
-      Rv = colors.yellow,
-      cv = colors.yellow,
-      ce = colors.yellow,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ["r?"] = colors.cyan,
-      ["!"] = colors.red,
-      t = colors.red,
+    -- local get_hlgroup = require("core.utils").get_hlgroup
+    local assets = O.icons
+    local mocha = O.catppuccin_colors
+    local colours = {
+      bg = mocha.mantle.hex,
+      black = mocha.crust.hex,
+      orange = mocha.peach.hex,
+      grey = mocha.overlay1.hex,
+      red = mocha.red.hex,
+      green = mocha.green.hex,
+      yellow = mocha.yellow.hex,
+      blue = mocha.blue.hex,
+      mauve = mocha.mauve.hex,
+      cyan = mocha.sapphire.hex,
+      white = mocha.text.hex,
     }
 
-    local assets = O.icons
-
-    -- config
-    local config = {
+    local mode_color = {
+      n = colours.mauve,
+      i = colours.green,
+      v = colours.orange,
+      [""] = colours.yellow,
+      V = colours.yellow,
+      c = colours.orange,
+      no = colours.red,
+      s = colours.orange,
+      S = colours.orange,
+      [""] = colours.red,
+      ic = colours.yellow,
+      R = colours.yellow,
+      Rv = colours.yellow,
+      cv = colours.yellow,
+      ce = colours.yellow,
+      r = colours.cyan,
+      rm = colours.cyan,
+      ["r?"] = colours.cyan,
+      ["!"] = colours.red,
+      t = colours.red,
+    }
+    return {
       options = {
-        -- remove default sections and component separators
-        component_separators = "",
-        section_separators = "",
+        component_separators = { left = " ", right = " " },
         theme = {
-          -- setting defaults to statusline
-          normal = { c = { fg = colors.fg, bg = colors.bg } },
-          inactive = { c = { fg = colors.fg, bg = colors.bg } },
-        },
-        disabled_filetypes = {
-          statusline = {
-            "neo-tree",
-            "telescope",
-            "TelescopePrompt",
-            "noice",
-            "lazy",
-            "mason",
-            "qf",
-            "help",
-            "nofile",
-            "prompt",
-            "popup",
-            "term",
-            "toggleterm",
-            "undotree",
+          normal = {
+            a = { fg = colours.fg, bg = colours.bg },
+            b = { fg = colours.cyan, bg = colours.bg },
+            c = { fg = colours.fg, bg = colours.bg },
+            x = { fg = colours.fg, bg = colours.bg },
+            y = { fg = colours.mauve, bg = colours.bg },
+            z = { fg = colours.grey, bg = colours.bg },
           },
-          winbar = {},
+          insert = {
+            a = { fg = colours.green, bg = colours.bg },
+            -- a = { fg = mode_color[vim.fn.mode()], bg = colours.bg },
+            z = { fg = colours.grey, bg = colours.bg },
+          },
+          visual = {
+            a = { fg = colours.orange, bg = colours.bg },
+            z = { fg = colours.grey, bg = colours.bg },
+          },
+          terminal = {
+            a = { fg = colours.orange, bg = colours.bg },
+            z = { fg = colours.grey, bg = colours.bg },
+          },
         },
-        disabled_buftypes = { "quickfix", "prompt" },
+
+        globalstatus = true,
+        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
       },
       sections = {
-        -- clear defaults
-        lualine_a = {},
-        lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
-        -- clear for later use
-        lualine_c = {},
-        lualine_x = {},
+        lualine_a = {
+          -- { "mode", icon = "" },
+          {
+            function()
+              local icon
+              local ok, devicons = pcall(require, "nvim-web-devicons")
+              if ok then
+                icon = devicons.get_icon(vim.fn.expand("%:t"))
+                if icon == nil then
+                  icon = devicons.get_icon_by_filetype(vim.bo.filetype)
+                end
+              else
+                if vim.fn.exists("*WebDevIconsGetFileTypeSymbol") > 0 then
+                  icon = vim.fn.WebDevIconsGetFileTypeSymbol()
+                end
+              end
+              if icon == nil then
+                icon = ""
+              end
+              return icon:gsub("%s+", "")
+            end,
+            color = function()
+              return { bg = mode_color[vim.fn.mode()], fg = colours.black }
+            end,
+            padding = { left = 1, right = 1 },
+            separator = { right = "▓▒░" },
+          },
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          {
+            "filename",
+            path = 1,
+            symbols = {
+              modified = " ",
+              readonly = " ",
+              unnamed = " ",
+              newfile = " ",
+            },
+          },
+        },
+        lualine_b = {
+          {
+            "diagnostics",
+            symbols = {
+              error = " " .. assets.lsp.error .. " ",
+              warn = " " .. assets.lsp.warning .. " ",
+              info = " " .. assets.lsp.info .. " ",
+              hint = " " .. assets.lsp.hint .. " ",
+            },
+            colored = true,
+          },
+        },
+        lualine_c = {
+          { "searchcount", color = { bg = colours.bg, fg = colours.grey } },
+        },
+        lualine_x = {
+          {
+            require("lazy.status").updates,
+            cond = require("lazy.status").has_updates,
+            color = { fg = colours.green },
+          },
+          {
+            function()
+              local clients = vim.lsp.get_clients()
+              local clients_list = {}
+              for _, client in pairs(clients) do
+                if not clients_list[client.name] then
+                  table.insert(clients_list, client.name)
+                end
+              end
+              local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")
+              return lsp_lbl:gsub(",", ", ")
+            end,
+            icon = " ",
+            color = { fg = colours.grey },
+            padding = { left = 1, right = 1 },
+            cond = conditions.hide_in_width_first,
+            -- separator = { right = "▓▒░", left = "░▒▓" },
+          },
+          {
+            "branch",
+            color = { fg = colours.blue },
+            icon = { assets.git.branch },
+          },
+          { "diff" },
+        },
+        lualine_y = {
+          {
+            "progress",
+          },
+          {
+            "location",
+            color = { fg = colours.cyan, bg = colours.bg },
+          },
+        },
+        lualine_z = {
+          function()
+            return "  " .. os.date("%X") .. " 📎"
+          end,
+        },
       },
-      inactive_sections = {
-        -- clear defaults
-        lualine_a = {},
-        lualine_b = {},
-        lualine_y = {},
-        lualine_z = {},
-        -- clear for later use
-        lualine_c = {},
-        lualine_x = {},
-      },
+
+      extensions = { "lazy" },
     }
-
-    -- insert active component in lualine_c at left section
-    local function active_left(component)
-      table.insert(config.sections.lualine_c, component)
-    end
-
-    -- insert inactive component in lualine_c at left section
-    local function inactive_left(component)
-      table.insert(config.inactive_sections.lualine_c, component)
-    end
-
-    -- insert active component in lualine_x at right section
-    local function active_right(component)
-      table.insert(config.sections.lualine_x, component)
-    end
-
-    -- insert inactive component in lualine_x at right section
-    local function inactive_right(component)
-      table.insert(config.inactive_sections.lualine_x, component)
-    end
-
-    -- dump object contents
-    local function dump(o)
-      if type(o) == "table" then
-        local s = ""
-        for k, v in pairs(o) do
-          if type(k) ~= "number" then
-            k = '"' .. k .. '"'
-          end
-          s = s .. dump(v) .. ","
-        end
-        return s
-      else
-        return tostring(o)
-      end
-    end
-
-    -- active left section
-    active_left({
-      function()
-        local icon
-        local ok, devicons = pcall(require, "nvim-web-devicons")
-        if ok then
-          icon = devicons.get_icon(vim.fn.expand("%:t"))
-          if icon == nil then
-            icon = devicons.get_icon_by_filetype(vim.bo.filetype)
-          end
-        else
-          if vim.fn.exists("*WebDevIconsGetFileTypeSymbol") > 0 then
-            icon = vim.fn.WebDevIconsGetFileTypeSymbol()
-          end
-        end
-        if icon == nil then
-          icon = ""
-        end
-        return icon:gsub("%s+", "")
-      end,
-      color = function()
-        return { bg = mode_color[vim.fn.mode()], fg = colors.black }
-      end,
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░" },
-    })
-    active_left({
-      "filename",
-      path = 1,
-      cond = conditions.buffer_not_empty,
-      color = function()
-        return { bg = mode_color[vim.fn.mode()], fg = colors.black }
-      end,
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░" },
-      symbols = {
-        modified = " ",
-        readonly = " ",
-        unnamed = " ",
-        newfile = " ",
-      },
-    })
-
-    active_right({
-      "datetime",
-      -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-      style = "default",
-    })
-
-    -- inactive left section
-    inactive_left({
-      function()
-        return ""
-      end,
-      cond = conditions.buffer_not_empty,
-      color = { bg = colors.black, fg = colors.grey },
-      padding = { left = 1, right = 1 },
-    })
-    inactive_left({
-      "filename",
-      cond = conditions.buffer_not_empty,
-      color = { bg = colors.black, fg = colors.grey },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░" },
-      symbols = {
-        modified = "",
-        readonly = "",
-        unnamed = "",
-        newfile = "",
-      },
-    })
-
-    active_left({
-      "diagnostics",
-      sources = { "nvim_diagnostic" },
-      symbols = {
-        error = " " .. assets.lsp.error .. " ",
-        warn = " " .. assets.lsp.warning .. " ",
-        info = " " .. assets.lsp.info .. " ",
-        hint = " " .. assets.lsp.hint .. " ",
-      },
-      colored = true,
-      color = { bg = colors.bg, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-
-    active_left({
-      "location",
-      color = { bg = colors.bg, fg = colors.white },
-      padding = { left = 1, right = 1 },
-      separator = { left = "░▒▓" },
-    })
-    active_left({
-      function()
-        local cur = vim.fn.line(".")
-        local total = vim.fn.line("$")
-        return string.format("%2d%%%%", math.floor(cur / total * 100))
-      end,
-      color = { bg = colors.bg, fg = colors.white },
-      padding = { left = 1, right = 1 },
-      cond = conditions.hide_in_width,
-      separator = { right = "▓▒░" },
-    })
-    active_left({
-      "searchcount",
-      color = { bg = colors.cyan, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-
-    -- active right section
-    active_right({
-      function()
-        local clients = vim.lsp.get_clients()
-        local clients_list = {}
-        for _, client in pairs(clients) do
-          if not clients_list[client.name] then
-            table.insert(clients_list, client.name)
-          end
-        end
-        local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")
-        return lsp_lbl:gsub(",", ", ")
-      end,
-      icon = " ",
-      color = { bg = colors.green, fg = colors.black },
-      padding = { left = 1, right = 1 },
-      cond = conditions.hide_in_width_first,
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-    active_right({
-      "branch",
-      color = { bg = colors.blue, fg = colors.black },
-      icon = { assets.git.branch },
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░", left = "░▒▓" },
-    })
-
-    active_right({
-      "diff",
-      color = { bg = colors.bg, fg = colors.black },
-      separator = { right = "▓▒░" },
-      padding = { left = 1, right = 1 },
-    })
-    active_right({
-      "o:encoding",
-      fmt = string.upper,
-      cond = conditions.hide_in_width,
-      padding = { left = 1, right = 1 },
-      color = { bg = colors.blue, fg = colors.black },
-    })
-    active_right({
-      "fileformat",
-      fmt = string.lower,
-      icons_enabled = false,
-      cond = conditions.hide_in_width,
-      color = { bg = colors.blue, fg = colors.black },
-      separator = { right = "▓▒░" },
-      padding = { left = 0, right = 1 },
-    })
-
-    -- inactive right section
-    inactive_right({
-      "location",
-      color = { bg = colors.black, fg = colors.grey },
-      padding = { left = 1, right = 0 },
-      separator = { left = "░▒▓" },
-    })
-    inactive_right({
-      "progress",
-      color = { bg = colors.black, fg = colors.grey },
-      cond = conditions.hide_in_width,
-      padding = { left = 1, right = 1 },
-      separator = { right = "▓▒░" },
-    })
-    inactive_right({
-      "fileformat",
-      fmt = string.lower,
-      icons_enabled = false,
-      cond = conditions.hide_in_width,
-      color = { bg = colors.black, fg = colors.grey },
-      separator = { right = "▓▒░" },
-      padding = { left = 0, right = 1 },
-    })
-    --
-    return config
   end,
 }

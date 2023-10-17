@@ -22,6 +22,6 @@ require("globals")
 require("settings")
 require("autocommands")
 
-require("utils.hjkl_notifier")
+-- require("utils.hjkl_notifier")
 
 require("lazy").setup("plugins") -- INFO: this should be on the LAST LINE

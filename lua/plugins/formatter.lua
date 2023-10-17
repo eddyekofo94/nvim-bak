@@ -26,6 +26,7 @@ return {
         },
         go = {
           formatters = { "gofumpt", "goimports", "golines" },
+          go = { "goimports_reviser", "gofmt", "golines" },
           run_all_formatters = true,
         },
         json = {
