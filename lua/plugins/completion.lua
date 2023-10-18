@@ -13,20 +13,6 @@ return {
     { "dmitmel/cmp-cmdline-history" },
     { "onsails/lspkind-nvim" },
     { "hrsh7th/cmp-nvim-lsp" }, -- Required
-    {
-      -- Snippets
-      "L3MON4D3/LuaSnip",
-      dependencies = {
-        "rafamadriz/friendly-snippets",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-      },
-      opts = {
-        history = true,
-        delete_check_events = "TextChanged",
-      },
-    },
   },
   config = function()
     -- Setup nvim-cmp.

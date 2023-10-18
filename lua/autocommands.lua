@@ -66,6 +66,7 @@ autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
     opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
     opt_local.cursorline = true -- Display a cursorline in the focussed window only
     opt_local.cursorcolumn = true
+    require("utils.hjkl_notifier")
     -- opt_local.winbar = true
   end,
 })

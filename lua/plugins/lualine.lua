@@ -18,10 +18,16 @@ return {
       end
     end
 
+    local utils = require("utils.functions")
+    local clients = vim.lsp.get_clients()
+
     local conditions = {
       buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
       end,
+      -- lsp_on_attach = function()
+      --   return utils.on_attach(0)
+      -- end,
       hide_in_width_first = function()
         return vim.fn.winwidth(0) > 80
       end,
@@ -34,11 +40,12 @@ return {
         return gitdir and #gitdir > 0 and #gitdir < #filepath
       end,
     }
-    -- local get_hlgroup = require("core.utils").get_hlgroup
+
     local assets = O.icons
     local mocha = O.catppuccin_colors
     local colours = {
       bg = mocha.mantle.hex,
+      fg = mocha.lavender.hex,
       black = mocha.crust.hex,
       orange = mocha.peach.hex,
       grey = mocha.overlay1.hex,
@@ -102,11 +109,11 @@ return {
         globalstatus = true,
         disabled_filetypes = {
           statusline = {
-            "neo-tree",
+            -- "neo-tree",
             "dashboard",
             "alpha",
-            "telescope",
-            "TelescopePrompt",
+            -- "telescope",
+            -- "TelescopePrompt",
             "noice",
             "lazy",
             "mason",
@@ -184,21 +191,28 @@ return {
           },
           {
             function()
-              local clients = vim.lsp.get_clients()
-              local clients_list = {}
-              for _, client in pairs(clients) do
-                if not clients_list[client.name] then
-                  table.insert(clients_list, client.name)
+              local buf_clients = vim.lsp.get_clients()
+              local null_ls_installed, null_ls = pcall(require, "null-ls")
+              local buf_client_names = {}
+              for _, client in pairs(buf_clients) do
+                if client.name == "null-ls" then
+                  if null_ls_installed then
+                    for _, source in ipairs(null_ls.get_source({ filetype = vim.bo.filetype })) do
+                      table.insert(buf_client_names, source.name)
+                    end
+                  end
+                else
+                  table.insert(buf_client_names, client.name)
                 end
               end
-              local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")
+              local lsp_lbl = dump(buf_client_names):gsub("(.*),", "%1")
               return lsp_lbl:gsub(",", ", ")
             end,
             icon = " ",
             color = { fg = colours.grey },
             padding = { left = 1, right = 1 },
-            cond = conditions.hide_in_width_first,
-            -- separator = { right = "▓▒░", left = "░▒▓" },
+            --   cond = conditions.lsp_on_attach,
+            --   -- separator = { right = "▓▒░", left = "░▒▓" },
           },
           {
             "branch",

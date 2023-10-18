@@ -123,7 +123,7 @@ local custom_attach = function(client, bufnr)
     underline = true,
     -- Hide/Show virtual text
     -- virtual_text = {
-    --   prefix = "",
+    --   prefix = " ",
     --   severity_limit = "Warning",
     --   spacing = 4,
     -- },

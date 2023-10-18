@@ -1,6 +1,7 @@
 return {
   -- LSP VIRTUAL TEXT
   "Maan2003/lsp_lines.nvim",
+  event = "LspAttach",
   config = function()
     require("lsp_lines").setup()
     local keymap_set = require("utils").keymap_set

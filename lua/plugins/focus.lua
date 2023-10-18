@@ -3,6 +3,7 @@ local ignore_filetypes = {
   "git-conflict",
   "term",
   "undotree",
+  "noice",
   "Trouble",
   "neo-tree",
   "telescope",
