@@ -50,6 +50,8 @@ return {
         end,
       },
       {
+        --  INFO: 2023-10-19 - this temporarily disables lsp to save the
+        --  CPU usage...
         "hinell/lsp-timeout.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
         init = function()
