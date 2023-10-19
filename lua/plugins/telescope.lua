@@ -179,8 +179,8 @@ return {
               show_scores = true, -- TODO: remove when satisfied
               ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
               workspaces = {
-                ["nvim"] = "~/.config/nvim/",
-                ["dotfiles"] = "~/.dotfiles/",
+                ["nvim"] = vim.fn.stdpath("config"),
+                ["dotfiles"] = os.getenv("HOME") .. "/.dotfiles/",
               },
             },
           },
