@@ -30,7 +30,7 @@ mapper("n", "<Space>", "<NOP>")
 
 -- Reconsider this option
 -- Jump to start and end of line using the home row keys
-set({ "n", "v" }, "H", "^")
+set({ "n", "v" }, "H", "_")
 set({ "n", "v" }, "L", "g_")
 
 -- Easier line-wise movement
