@@ -22,10 +22,6 @@ local programs = {
     required = false,
     desc = "some Rust related features might not work and tools that are built by cargo cannot be installed",
   },
-  trash = {
-    required = true,
-    desc = "Neo-tree requires 'trash-cli' to be able to move files to the trash",
-  },
   rg = {
     required = true,
     desc = "a highly recommended grep alternative (ripgrep is the package name)",

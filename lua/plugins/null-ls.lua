@@ -22,7 +22,8 @@ return {
           --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
           --   timeout = 30000 -- 30 seconds
           -- }), -- https://semgrep.dev/
-          null_ls.builtins.diagnostics.staticcheck, -- https://github.com/dominikh/go-tools
+          --  BUG: 2023-10-18 - This is breaking things up! disabled for NOW!
+          -- null_ls.builtins.diagnostics.staticcheck, -- https://github.com/dominikh/go-tools
           null_ls.builtins.diagnostics.write_good, -- https://github.com/btford/write-good
           null_ls.builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
           null_ls.builtins.formatting.black, -- https://github.com/psf/black

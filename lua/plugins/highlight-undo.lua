@@ -20,7 +20,7 @@ return {
       highlight_for_count = true,
     })
     local colors = O.catppuccin_colors
-    vim.api.nvim_set_hl(0, "HighlightUndo", { fg = colors.peach.hex, bg = colors.overlay0.hex })
+    vim.api.nvim_set_hl(0, "HighlightUndo", { fg = colors.mantle.hex, bg = colors.overlay1.hex })
   end,
   event = { "BufReadPre" },
 }

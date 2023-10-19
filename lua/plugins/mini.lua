@@ -96,6 +96,15 @@ return {
     end,
   },
   {
+    "echasnovski/mini.completion",
+    version = "*",
+    event = "InsertEnter",
+    enabled = false,
+    config = function()
+      require("mini.completion").setup()
+    end,
+  },
+  {
     "echasnovski/mini.trailspace",
     version = "*",
     event = "BufEnter",

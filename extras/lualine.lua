@@ -78,7 +78,6 @@ return {
         },
         disabled_filetypes = {
           statusline = {
-            "neo-tree",
             "telescope",
             "TelescopePrompt",
             "noice",
