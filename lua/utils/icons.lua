@@ -50,6 +50,7 @@ return {
     Information = " ",
     Question = " ",
     Warning = " ",
+    BoldBWarning = " ",
   },
   git = {
     Add = " ",
