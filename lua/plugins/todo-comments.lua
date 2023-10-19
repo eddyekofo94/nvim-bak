@@ -24,7 +24,7 @@ return {
       NOTE = { icon = "󰆈 ", color = "hint", alt = { "INFO", "REVIEW" } },
       EXAMPLE = { icon = "󰄛 ", color = "hint", alt = { "E.G." } },
       CLEAN_UP = { icon = " ", color = "error", alt = { "CLEAN" } },
-      DEBUG = { icon = "  ", color = "error" },
+      DEBUG = { icon = " ", color = "error" },
       TEST = { icon = "󰙨 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
     },
   },
