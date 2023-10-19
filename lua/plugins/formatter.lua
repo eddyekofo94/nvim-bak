@@ -1,7 +1,6 @@
 return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
-  -- enabled = false,
   config = function()
     -- code
     require("conform").setup({
