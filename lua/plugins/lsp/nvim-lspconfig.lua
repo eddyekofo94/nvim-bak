@@ -122,11 +122,11 @@ local custom_attach = function(client, bufnr)
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     -- Hide/Show virtual text
-    -- virtual_text = {
-    --   prefix = " ",
-    --   severity_limit = "Warning",
-    --   spacing = 4,
-    -- },
+    virtual_text = {
+      prefix = " ",
+      severity_limit = "Warning",
+      spacing = 4,
+    },
     signs = true,
     update_in_insert = true,
   })
