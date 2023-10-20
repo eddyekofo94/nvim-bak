@@ -109,12 +109,14 @@ vim.o.lazyredraw = false
 -- Decrease redraw time
 vim.o.redrawtime = 100
 -- Window
-vim.opt.number = true
 vim.opt.colorcolumn = "99999"
 vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
-vim.opt.relativenumber = true
+
+--  INFO: 2023-10-19 - Using autocommands to set numbers to specific filetypes
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.sidescroll = 6
