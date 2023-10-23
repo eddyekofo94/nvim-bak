@@ -5,11 +5,11 @@ return {
   event = { "WinNew" },
   opts = {
     highlight = {
-      bg = vim.api.nvim_get_hl_by_name("Normal", true)["background"],
+      bg = vim.api.nvim_get_hl(0, { name = "Normal" })["background"],
       fg = "#c099ff",
     },
     -- interval = 50,
-    no_exec_files = { "neo-tree", "TelescopePrompt" },
+    no_exec_files = { "noice", "notify", "TelescopePrompt" },
 
     -- disable if I only have 2 files open
     create_event = function()

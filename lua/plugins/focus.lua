@@ -20,7 +20,7 @@ local opts = {
     enable = true,
     quickfixheight = 60,
   },
-  signcolumn = false,
+  signcolumn = true,
   excluded_buftypes = ignore_filetypes,
   excluded_filetypes = ignore_filetypes,
   compatible_filetrees = { "git-conflict" },
