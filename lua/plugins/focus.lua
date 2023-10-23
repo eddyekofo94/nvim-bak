@@ -23,7 +23,7 @@ local opts = {
   signcolumn = false,
   excluded_buftypes = ignore_filetypes,
   excluded_filetypes = ignore_filetypes,
-  compatible_filetrees = { "neo-tree", "git-conflict" },
+  compatible_filetrees = { "git-conflict" },
   --  INFO: 2023-09-13 - Moved to autocommands
   -- ui = {
   --     number = true,         -- Display line numbers in the focussed window only
