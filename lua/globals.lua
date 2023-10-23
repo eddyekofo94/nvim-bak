@@ -70,7 +70,7 @@ O = {
       error = "",
       warning = "",
       info = "",
-      hint = "",
+      hint = "",
     },
     git = {
       branch = "",

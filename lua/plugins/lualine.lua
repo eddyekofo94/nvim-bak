@@ -1,6 +1,9 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  dependencies = {
+    "WhoIsSethDaniel/lualine-lsp-progress.nvim",
+  },
   opts = function()
     -- dump object contents
     local function dump(o)
@@ -187,6 +190,60 @@ return {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
             color = { fg = colours.green },
+          },
+          {
+            "lsp_progress",
+            colors = {
+              percentage = colours.cyan,
+              spinner_symbols = {
+                "",
+                "󰀚",
+                "",
+              },
+              max_message_length = 15,
+              title = colours.cyan,
+              -- message = colours.cyan,
+              spinner = colours.cyan,
+              lsp_client_name = colours.yellow,
+              use = true,
+            },
+            message = {
+              initializing = "Initializing…",
+              commenced = "In Progress",
+              completed = "Completed",
+            },
+            separators = {
+              component = " ",
+              progress = " | ",
+              message = { pre = "(", post = ")" },
+              percentage = { pre = "", post = "%% " },
+              title = { pre = "", post = ": " },
+              lsp_client_name = { pre = "[", post = "]" },
+              spinner = { pre = "", post = "" },
+            },
+            -- never show status for this list of servers;
+            -- can be useful if your LSP server does not emit
+            -- status messages
+            hide = { "null-ls", "pyright" },
+            -- by default this is false. If set to true will
+            -- only show the status of LSP servers attached
+            -- to the currently active buffer
+            only_show_attached = true,
+            display_components = {
+              "lsp_client_name",
+              "spinner",
+              {
+                "title",
+                "percentage",
+                "message",
+              },
+            },
+            timer = {
+              progress_enddelay = 500,
+              spinner = 1000,
+              lsp_client_name_enddelay = 1000,
+              attached_delay = 3000,
+            },
           },
           {
             function()

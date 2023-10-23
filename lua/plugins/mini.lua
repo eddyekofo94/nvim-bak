@@ -137,17 +137,20 @@ return {
     enabled = true,
     version = false,
     config = function()
-      require("mini.animate").setup({
-        -- Window resize
+      local animate = require("mini.animate")
+      local timing = animate.gen_timing.linear({ duration = 60, unit = "total" })
+      animate.setup({
+        cursor = {
+          timing = timing,
+        },
         resize = {
-          -- Whether to enable this animation
           enable = false,
         },
-        -- Vertical scroll
         scroll = {
-          -- Whether to enable this animation
-          enable = true,
+          timing = timing,
         },
+        open = { enable = false },
+        close = { enable = false },
       })
     end,
   },
