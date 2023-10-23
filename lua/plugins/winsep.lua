@@ -11,6 +11,8 @@ return {
     -- interval = 50,
     no_exec_files = { "noice", "notify", "TelescopePrompt" },
 
+    --  NOTE: 2023-10-23 13:03 PM - "⎯"
+    symbols = { "─", "│", "┌", "┐", "└", "┘" },
     -- disable if I only have 2 files open
     create_event = function()
       local winsep = require("colorful-winsep")
