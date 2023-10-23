@@ -75,6 +75,24 @@ local custom_attach = function(client, bufnr)
   sign({ name = "DiagnosticSignHint", text = signs_defined.small_dot })
   sign({ name = "DiagnosticSignInfo", text = signs_defined.small_dot })
 
+  -- sign({ name = "DiagnosticUnderlineError", text = "undercurl" })
+
+  --  NOTE: 2023-10-23 15:23 PM - You should do this in able to
+  --   have undercurl
+  --   LINK: https://wezfurlong.org/wezterm/faq.html#how-do-i-enable-undercurl-curly-underlines
+  --   tempfile=$(mktemp) \
+  --   && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
+  --   && tic -x -o ~/.terminfo $tempfile \
+  --   && rm $tempfile
+
+  vim.cmd([[
+    let &t_Cs = "\e[4:3m"
+    let &t_Ce = "\e[4:0m"
+  ]])
+
+  vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
+  vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
+
   local filetype = vim.api.nvim_buf_get_name(bufnr)
 
   local format_code
