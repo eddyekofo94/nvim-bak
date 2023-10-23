@@ -132,7 +132,6 @@ return {
       },
       sections = {
         lualine_a = {
-          -- { "mode", icon = "" },
           {
             function()
               local icon
@@ -250,9 +249,6 @@ return {
               local buf_clients = vim.lsp.get_clients()
               local null_ls_installed, null_ls = pcall(require, "null-ls")
               local buf_client_names = {}
-              -- if rawequal(buf_clients, nil) then
-              --   return
-              -- end
               for _, client in pairs(buf_clients) do
                 if client.name == "null-ls" then
                   if null_ls_installed then
