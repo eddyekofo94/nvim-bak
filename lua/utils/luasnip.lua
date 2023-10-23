@@ -42,7 +42,7 @@ end
 
 M.time = function()
   -- code
-  return os.date("%H:%M")
+  return os.date("%H:%M %p")
 end
 
 M.capitalize = function(node_index)
