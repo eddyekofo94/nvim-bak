@@ -46,6 +46,11 @@ return {
       insert_mappings = true,
       direction = "float",
       close_on_exit = true,
+      highlights = {
+        FloatBorder = {
+          guifg = "#c099ff",
+        },
+      },
       float_opts = {
         border = "single",
         width = 180,
