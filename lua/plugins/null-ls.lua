@@ -20,6 +20,18 @@ return {
         },
         sources = {
           null_ls.builtins.code_actions.shellcheck, -- https://www.shellcheck.net/
+          null_ls.builtins.diagnostics.shellcheck.with({
+            diagnostics_format = "[#{c}] #{m} (#{s})",
+            diagnostic_config = {
+              virtual_text = {
+                prefix = "  ",
+                severity_limit = "Warning",
+                spacing = 8,
+              },
+              signs = true,
+              update_in_insert = true,
+            },
+          }),
           null_ls.builtins.diagnostics.checkmake, -- https://github.com/mrtazz/checkmake
           -- null_ls.builtins.diagnostics.codespell,
           --  INFO: 2023-10-11 - install pip3 install codespell
@@ -35,8 +47,9 @@ return {
           -- }), -- https://semgrep.dev/
           --  BUG: 2023-10-18 - This is breaking things up! disabled for NOW!
           -- null_ls.builtins.diagnostics.staticcheck, -- https://github.com/dominikh/go-tools
-          null_ls.builtins.diagnostics.write_good, -- https://github.com/btford/write-good
-          null_ls.builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
+
+          -- null_ls.builtins.diagnostics.write_good, -- https://github.com/btford/write-good
+          -- null_ls.builtins.diagnostics.zsh, -- https://www.zsh.org/ (uses zsh command's -n option to evaluate code, not execute it)
           null_ls.builtins.formatting.black, -- https://github.com/psf/black
           null_ls.builtins.formatting.autopep8, -- https://github.com/hhatto/autopep8
           -- DISABLED: Because it auto-formats code and ends up breaking code.
