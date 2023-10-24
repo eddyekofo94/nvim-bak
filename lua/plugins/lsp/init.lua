@@ -110,6 +110,7 @@ return {
           require("trouble").setup({
             height = 12, -- height of the trouble list
             mode = "document_diagnostics",
+            use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
             action_keys = {
               -- key mappings for actions in the trouble list
               close = "q", -- close the list
