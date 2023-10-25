@@ -238,7 +238,7 @@ mason_lspconfig.setup_handlers({
       on_init = custom_init,
       on_attach = custom_attach,
       capabilities = updated_capabilities,
-      filetypes = { "sh", "zsh", "bash", ".zshrc" },
+      filetypes = { "sh", "bash", ".zshrc" },
     })
   end,
   -- BUG: this seems to not be working
