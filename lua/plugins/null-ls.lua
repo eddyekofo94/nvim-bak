@@ -39,7 +39,6 @@ return {
             extra_args = { "-L", "noice,crate" },
           }), -- https://github.com/codespell-project/codespell
           null_ls.builtins.diagnostics.golangci_lint, -- https://github.com/golangci/golangci-lint (~/.golangci.yml)
-          null_ls.builtins.completion.spell,
           -- require("null-ls").builtins.diagnostics.semgrep.with({
           --   args = { "--config", "auto", "-q", "--json", "$FILENAME" },
           --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
