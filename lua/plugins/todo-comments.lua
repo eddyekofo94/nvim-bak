@@ -17,11 +17,11 @@ return {
         alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "ERROR" }, -- a set of other keywords that all map to this FIX keywords
         -- signs = false, -- configure signs for some keywords individually
       },
-      TODO = { icon = " ", color = "info" },
+      TODO = { icon = " ", color = "info" },
       HACK = { icon = " ", color = "warning" },
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
       PERF = { icon = " ", alt = { "REFACTOR", "REFC", "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = "󰆈 ", color = "hint", alt = { "INFO", "REVIEW" } },
+      NOTE = { icon = " ", color = "hint", alt = { "INFO", "REVIEW" } },
       EXAMPLE = { icon = "󰄛 ", color = "hint", alt = { "E.G." } },
       CLEAN_UP = { icon = " ", color = "error", alt = { "CLEAN" } },
       DEBUG = { icon = " ", color = "error" },
