@@ -1,10 +1,11 @@
 local ignore_filetypes = {
   "prompt",
   "git-conflict",
-  "term",
+  -- "term",
   "undotree",
   "noice",
   "Trouble",
+  "diffview",
   "neo-tree",
   "telescope",
   "toggleterm",

@@ -43,7 +43,6 @@ return {
         disable_commit_confirmation = true,
       })
 
-      map("n", "<leader>gco", require("telescope.builtin").git_branches, "Git checkout")
       map("n", "<leader>gss", function()
         neogit.open({
           cwd = vim.fn.expand("%:p:h"),
