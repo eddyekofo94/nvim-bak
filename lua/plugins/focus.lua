@@ -1,6 +1,11 @@
 local ignore_filetypes = {
   "prompt",
   "git-conflict",
+  "dap-repl",
+  "dapui_scopes",
+  "dapui_stacks",
+  "dapui_watches",
+  "dapui_repl",
   -- "term",
   "undotree",
   "noice",
