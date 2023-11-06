@@ -208,7 +208,8 @@ return {
 
     -- Overwrite fold method using treesitter expression
     vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.treesitter.foldtext()
+    -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     -- example: make gitsigns.nvim movement repeatable with ; and , keys.
     local gs = require("gitsigns")
 
