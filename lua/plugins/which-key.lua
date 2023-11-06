@@ -199,13 +199,13 @@ return {
           end,
           "Step Into",
         },
-        -- g = {
-        --     function()
-        --         require("dap-go").debug_test()
-        --         require("dapui").toggle()
-        --     end,
-        --     "Debug Go Test",
-        -- },
+        g = {
+          function()
+            require("dap-go").debug_test()
+            require("dapui").toggle()
+          end,
+          "Debug Go Test",
+        },
         l = {
           function()
             require("dapui").float_element("breakpoints")

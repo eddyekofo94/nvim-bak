@@ -10,6 +10,20 @@ return {
         desc = "Find Files (current)",
       },
       {
+        "<Leader>gwc",
+        function()
+          return require("telescope").extensions.git_worktree.create_git_worktree()
+        end,
+        "create worktree",
+      },
+      {
+        "<Leader>gww",
+        function()
+          return require("telescope").extensions.git_worktree.git_worktrees()
+        end,
+        "worktree",
+      },
+      {
         "<leader>sk",
         "<cmd>Telescope keymaps<cr>",
         desc = "Keymaps",
@@ -81,7 +95,13 @@ return {
     dependencies = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      {
+
+        "ThePrimeagen/git-worktree.nvim",
+        config = function()
+          require("telescope").load_extension("git_worktree")
+        end,
+      },
       {
         "nvim-telescope/telescope-fzy-native.nvim",
         config = function()
@@ -113,6 +133,8 @@ return {
       local cfg_telescope = require("telescope")
       local actions = require("telescope.actions")
       local Util = require("utils")
+
+      -- cfg_telescope.load_extension("git_worktree")
 
       cfg_telescope.setup({
         defaults = {

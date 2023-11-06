@@ -5,6 +5,7 @@ return {
     require("nvim-treesitter.install").update({ with_sync = true })()
   end,
   dependencies = {
+    "lewis6991/gitsigns.nvim",
     "nvim-treesitter/nvim-treesitter-context",
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
