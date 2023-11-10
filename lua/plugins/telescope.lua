@@ -96,6 +96,12 @@ return {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       {
+        "jay-babu/mason-nvim-dap.nvim",
+        config = function()
+          require("telescope").load_extension("dap")
+        end,
+      },
+      {
 
         "ThePrimeagen/git-worktree.nvim",
         config = function()

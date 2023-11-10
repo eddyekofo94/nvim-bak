@@ -6,6 +6,28 @@ local env = snip_env
 
 return {
   env.s(
+    "return",
+    env.fmt(
+      [[
+      return {}
+      ]],
+      {
+        env.i(1, "nil"),
+      }
+    )
+  ),
+  env.s(
+    "fe",
+    env.fmt(
+      [[
+      fmt.Errorf({})
+      ]],
+      {
+        env.i(1, "text"),
+      }
+    )
+  ),
+  env.s(
     "ff",
     env.fmt(
       [[

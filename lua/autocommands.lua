@@ -107,6 +107,7 @@ autocmd("BufReadPost", {
 local smart_close_filetypes = {
   "qf",
   "help",
+  "oil",
   "undotree",
   "man",
   "NeogitStatus",
