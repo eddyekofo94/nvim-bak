@@ -121,7 +121,7 @@ return {
             if cmp.visible() and cmp.get_active_entry() then
               cmp.confirm({
                 -- For Copilot -- INFO: not using this (yet)
-                behavior = cmp.ConfirmBehavior.Replace,
+                behavior = cmp.ConfirmBehavior.Insert,
                 -- Only when explicitly selected
                 select = false,
               })
@@ -129,7 +129,7 @@ return {
               -- fallback()
               cmp.confirm({
                 -- For Copilot -- INFO: not using this (yet)
-                behavior = cmp.ConfirmBehavior.Replace,
+                behavior = cmp.ConfirmBehavior.Insert,
                 -- Only when explicitly selected
                 select = false,
               })
