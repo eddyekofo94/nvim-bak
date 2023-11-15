@@ -209,4 +209,42 @@ M.create_augroup = function(group, opts)
   return vim.api.nvim_create_augroup(group, opts)
 end
 
+local function get_bufs_loaded()
+  local bufs_loaded = {}
+
+  for i, buf_hndl in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf_hndl) then
+      bufs_loaded[i] = buf_hndl
+    end
+  end
+
+  return bufs_loaded
+end
+
+M.closeOtherBuffers = function()
+  for _, buffer in ipairs(get_bufs_loaded()) do
+    vim.schedule(function()
+      if buffer == vim.api.nvim_get_current_buf() then
+        return
+      elseif pcall(require, "mini.bufremove") then
+        require("mini.bufremove").delete(buffer, false)
+      else
+        vim.cmd("bd " .. buffer)
+      end
+    end)
+  end
+end
+
+M.log = function(message, title)
+  require("notify")(message, "info", { title = title or "Info" })
+end
+
+M.warnlog = function(message, title)
+  require("notify")(message, "warn", { title = title or "Warning" })
+end
+
+M.errorlog = function(message, title)
+  require("notify")(message, "error", { title = title or "Error" })
+end
+
 return M

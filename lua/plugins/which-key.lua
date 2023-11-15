@@ -65,6 +65,7 @@ return {
         n = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "diagnostics next" },
         p = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "diagnostics prev" },
         t = { "<cmd>TroubleToggle<cr>", "trouble" },
+        w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
       },
       g = {
         name = "+Git",
@@ -129,7 +130,6 @@ return {
       t = {
         name = "+Terminal",
       },
-      ["?"] = { "<cmd>Telescope help_tags<cr>", "find current file" },
       ["~"] = { "<cmd>NvimTreeRefresh<cr>", "refresh tree" },
       h = { ':let @/ = ""<cr>', "Clear Highlight" },
       M = { "<cmd>Mason<cr>", "Mason" },

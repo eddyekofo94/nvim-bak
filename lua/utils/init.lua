@@ -1,16 +1,5 @@
 local M = {}
 local fn = vim.fn
-M.log = function(message, title)
-  require("notify")(message, "info", { title = title or "Info" })
-end
-
-M.warnlog = function(message, title)
-  require("notify")(message, "warn", { title = title or "Warning" })
-end
-
-M.errorlog = function(message, title)
-  require("notify")(message, "error", { title = title or "Error" })
-end
 
 M.get_relative_fname = function()
   local fname = vim.fn.expand("%:p")
@@ -31,20 +20,6 @@ M.toggle_quicklist = function()
     vim.cmd("copen")
   else
     vim.cmd("cclose")
-  end
-end
-
-M.closeOtherBuffers = function()
-  for _, e in ipairs(require("bufferline").get_elements().elements) do
-    vim.schedule(function()
-      if e.id == vim.api.nvim_get_current_buf() then
-        return
-      elseif pcall(require, "mini.bufremove") then
-        require("mini.bufremove").delete(e.id, false)
-      else
-        vim.cmd("bd " .. e.id)
-      end
-    end)
   end
 end
 

@@ -37,11 +37,11 @@ set({ "n", "v" }, "L", "g_")
 set(nxo, "gh", "g^")
 set(nxo, "gl", "g$")
 
---if vim.lsp.inlay_hint then
---  mapper("n", "<leader>uh", function()
---    vim.lsp.inlay_hint(0, nil)
---  end, { desc = "Toggle Inlay Hints" })
---end
+if vim.lsp.inlay_hint then
+  set("n", "<leader>?", function()
+    vim.lsp.inlay_hint(0, nil)
+  end, { desc = "Toggle Inlay Hints" })
+end
 
 -- Show treesitter nodes under cursor
 -- highlights under cursor
@@ -52,7 +52,9 @@ mapper("n", "<C-a>", ": %y+<CR>")
 -- SAVE
 mapper("n", "<C-s>", ":w!<CR>")
 
-set(nxo, "p", "p=`]", { desc = "Paste should match indentation" })
+--  REFC: 2023-11-15 11:56 AM - Bring this back maybe?
+--  set(nxo, "p", "p=`]", { desc = "Paste should match indentation" })
+--  set("v", "y", "may`a", { desc = "Restore cursor position after yank" })
 set("n", "i", function()
   if #vim.fn.getline(".") == 0 then
     return [["_cc]]
@@ -71,7 +73,6 @@ end, { expr = true, desc = "Don't yank empty lines into the main register" })
 
 -- don't yank on paste
 mapper("x", "p", '"_dP')
--- set("v", "y", "may`a", { desc = "Restore cursor position after yank" })
 
 -- better up/down
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
