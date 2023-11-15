@@ -14,6 +14,7 @@ local ignore_buftypes = { "nofile", "prompt", "popup" }
 local file_pattern = {
   "*.py",
   "*.zsh",
+  ".groovy",
   ".zshrc",
   ".zprofile",
   ".zshenv",
