@@ -4,11 +4,10 @@ return {
   dependencies = {
     "theHamsta/nvim-dap-virtual-text",
     "nvim-telescope/telescope-dap.nvim",
-    "jay-babu/mason-nvim-dap.nvim",
+    -- "jay-babu/mason-nvim-dap.nvim",
     "nvim-telescope/telescope-dap.nvim",
-    --  Adaparter configuration for specific languages
-    { "leoluz/nvim-dap-go" },
-    { "mfussenegger/nvim-dap-python" },
+    "leoluz/nvim-dap-go",
+    "mfussenegger/nvim-dap-python",
     "jbyuki/one-small-step-for-vimkind",
     "mfussenegger/nvim-dap",
     "Weissle/persistent-breakpoints.nvim",

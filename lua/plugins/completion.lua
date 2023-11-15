@@ -265,8 +265,6 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
-          compare.locality,
-          compare.exact,
           function(entry1, entry2) -- sort by compare kind (Variable, Function etc)
             local kind1 = modified_kind(entry1:get_kind())
             local kind2 = modified_kind(entry2:get_kind())
@@ -274,8 +272,6 @@ return {
               return kind1 - kind2 < 0
             end
           end,
-          compare.recently_used,
-          compare.scopes,
           function(entry1, entry2) -- sort by length ignoring "=~"
             local len1 = string.len(string.gsub(entry1.completion_item.label, "[=~()]", ""))
             local len2 = string.len(string.gsub(entry2.completion_item.label, "[=~()]", ""))
@@ -283,6 +279,10 @@ return {
               return len1 - len2 < 0
             end
           end,
+          compare.exact,
+          compare.locality,
+          compare.recently_used,
+          compare.scopes,
           function(entry1, entry2) -- score by lsp, if available
             local t1 = entry1.completion_item.sortText
             local t2 = entry2.completion_item.sortText
