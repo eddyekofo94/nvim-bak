@@ -75,8 +75,17 @@ end, { expr = true, desc = "Don't yank empty lines into the main register" })
 mapper("x", "p", '"_dP')
 
 -- better up/down
-set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
+  desc = "Move cursor down (display and real line)",
+  expr = true,
+  silent = true,
+})
+
+set("n", "k", "v:count == 0 ? 'gk' : 'k'", {
+  desc = "Move cursor up (display and real line)",
+  expr = true,
+  silent = true,
+})
 
 -- Don't know what this is doing exactly!
 set("x", "v", "$h")
@@ -151,9 +160,6 @@ mapper("n", "<M-CR>", ":let v:hlsearch=!v:hlsearch<CR>")
 -- "   Auto places you into the spot where you can start typing to change it.
 mapper("n", "<c-r>w", ":%s/<c-r><c-w>//g<left><left>")
 
--- I hate escape
-mapper("i", "jj", "<ESC>")
-
 -- Very magic by default, got this from thePrimragen (Don't know exactly what it
 --- does)
 -- vim.cmd("nnoremap ? ?\v")
@@ -176,5 +182,23 @@ set({ "n", "x" }, "S", '"_S', "Don't save to register")
 
 set({ "n", "x" }, "x", '"_x')
 set("x", "X", '"_c')
+
+-- I hate escape
+mapper("i", "jj", "<ESC>")
+set({ "i", "t" }, "<C-f>", "<Right>", { desc = "Move cursor right one letter" })
+set({ "i", "t", "c" }, "<C-b>", "<Left>", { desc = "Move cursor left one letter" })
+set({ "i", "t", "c" }, "<C-.>", "<S-Right>", { desc = "Move cursor right on word" })
+set({ "i", "t", "c" }, "<C-,>", "<S-Left>", { desc = "Move cursor left on word" })
+set({ "i", "t" }, "<C-p>", "<Up>", { desc = "Move cursor up one line" })
+set({ "i", "t" }, "<C-n>", "<Down>", { desc = "Move cursor down one line" })
+set({ "i", "t" }, "<C-a>", "<Home>", { desc = "Move cursor to start of the line" })
+set({ "i", "t" }, "<C-e>", "<End>", { desc = "Move cursor to end of the line" })
+set({ "i", "t" }, "<C-d>", "<Delete>", { desc = "Delete one letter after cursor" })
+set({ "i" }, "<C-k>", "<Esc>C", { desc = "Delete one letter after cursor" })
+
+set({ "n", "x" }, "*", "*N", { desc = "Search word or selection" })
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+set({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+set({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 return mapper

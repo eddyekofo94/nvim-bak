@@ -212,6 +212,28 @@ autocmd("CmdLineLeave", {
     vim.api.nvim_feedkeys("zz", "n", false)
   end,
 })
+
+vim.api.nvim_create_autocmd("BufHidden", {
+  desc = "Delete [No Name] buffers",
+  callback = function(data)
+    if data.file == "" and vim.bo[data.buf].buftype == "" and not vim.bo[data.buf].modified then
+      vim.schedule(function()
+        pcall(vim.api.nvim_buf_delete, data.buf, {})
+      end)
+    end
+  end,
+})
+
+-- TODO: delete when core team fix auto start treesitter
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(event)
+    local ok, _ = pcall(vim.treesitter.get_parser, event.buf)
+    if ok then
+      vim.treesitter.start()
+    end
+  end,
+})
+
 -- autosave file when buffer leave or focus lost
 -- vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
 --     callback = function()
