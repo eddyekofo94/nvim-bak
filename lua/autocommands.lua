@@ -12,9 +12,10 @@ local general = augroup("General Settings")
 local ignore_filetypes = { "neo-tree" }
 local ignore_buftypes = { "nofile", "prompt", "popup" }
 local file_pattern = {
+  "*.xml",
   "*.py",
   "*.zsh",
-  ".groovy",
+  "*.groovy",
   ".zshrc",
   ".zprofile",
   ".zshenv",
@@ -215,6 +216,7 @@ autocmd("CmdLineLeave", {
 
 vim.api.nvim_create_autocmd("BufHidden", {
   desc = "Delete [No Name] buffers",
+  pattern = "VeryLazy",
   callback = function(data)
     if data.file == "" and vim.bo[data.buf].buftype == "" and not vim.bo[data.buf].modified then
       vim.schedule(function()

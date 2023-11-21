@@ -11,6 +11,11 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       init = function() end,
     },
+    {
+      "chrisgrieser/nvim-various-textobjs",
+      lazy = false,
+      opts = { useDefaultKeymaps = true },
+    },
     "RRethy/nvim-treesitter-textsubjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
