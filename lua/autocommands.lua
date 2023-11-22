@@ -58,21 +58,21 @@ autocmd({ "BufWritePre" }, {
   end,
 })
 
---  INFO: 2023-11-22 09:47 AM - put it back if needed
--- local cursor_line = augroup("LocalCursorLine")
--- autocmd({ "BufEnter", "WinEnter", "BufWinEnter" }, {
---   group = cursor_line,
---   pattern = file_pattern,
---   callback = function()
---     opt_local.cursorline = true
---     opt_local.number = true -- Display line numbers in the focussed window only
---     opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
---     opt_local.cursorline = true -- Display a cursorline in the focussed window only
---     opt_local.cursorcolumn = true
---     require("after.hjkl_notifier")
---     -- opt_local.winbar = true
---   end,
--- })
+local cursor_line = augroup("LocalCursorLine")
+autocmd({ "BufEnter", "VimEnter", "BufWinEnter" }, {
+  group = cursor_line,
+  pattern = file_pattern,
+  callback = function()
+    opt_local.cursorline = true
+    opt_local.number = true -- Display line numbers in the focussed window only
+    opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
+    opt_local.cursorline = true -- Display a cursorline in the focussed window only
+    opt_local.cursorcolumn = true
+    -- INFO: 2023-11-22 09:47 AM - put it back if needed
+    -- require("after.hjkl_notifier")
+    -- opt_local.winbar = true
+  end,
+})
 
 autocmd({ "BufLeave", "BufWinLeave" }, {
   group = cursor_line,
