@@ -58,11 +58,20 @@ autocmd({ "BufWritePre" }, {
   end,
 })
 
+local disable_codespell = augroup("DisableCodespell")
+autocmd({ "BufEnter" }, {
+  group = disable_codespell,
+  pattern = "*.log",
+  callback = function()
+    vim.diagnostic.disable()
+  end,
+})
+
 local cursor_line = augroup("LocalCursorLine")
 autocmd({ "BufEnter", "VimEnter", "BufWinEnter" }, {
   group = cursor_line,
   pattern = file_pattern,
-  callback = function()
+  callback = function(event)
     opt_local.cursorline = true
     opt_local.number = true -- Display line numbers in the focussed window only
     opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
@@ -71,6 +80,10 @@ autocmd({ "BufEnter", "VimEnter", "BufWinEnter" }, {
     -- INFO: 2023-11-22 09:47 AM - put it back if needed
     -- require("after.hjkl_notifier")
     -- opt_local.winbar = true
+    local ok, _ = pcall(vim.treesitter.get_parser, event.buf)
+    if ok then
+      vim.treesitter.start()
+    end
   end,
 })
 
