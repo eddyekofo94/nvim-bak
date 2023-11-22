@@ -127,7 +127,7 @@ vim.opt.sessionoptions = "resize,buffers,curdir,folds,help,tabpages,winsize,winp
 vim.opt.wrap = false
 vim.cmd([[set nowrap]]) -- Display long lines as just one line
 
--- Bring back to the last possition
+-- Bring back to the last position
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local last_pos = vim.fn.line("'\"")
