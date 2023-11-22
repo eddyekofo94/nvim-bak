@@ -137,18 +137,6 @@ local custom_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(0, "n", "<s-f>", "<cmd>ClangdSwitchSourceHeader<CR>", { noremap = true, silent = true })
   end
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    -- Hide/Show virtual text
-    virtual_text = {
-      prefix = " ",
-      severity_limit = "Warning",
-      spacing = 4,
-    },
-    signs = true,
-    update_in_insert = true,
-  })
-
   -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
@@ -172,12 +160,27 @@ local custom_attach = function(client, bufnr)
     vim.lsp.inlay_hint(bufnr, true)
   end
 
-  -- if filetype ~= "lua" then
-  --     mapper("n", "K", "vim.lsp.buf.hover()")
-  -- end
-
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
+
+vim.diagnostic.config({
+  underline = true,
+  -- Hide/Show virtual text
+  virtual_text = {
+    prefix = " ",
+    severity_limit = "Warning",
+    spacing = 4,
+  },
+  signs = true,
+  update_in_insert = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+    focusable = false,
+  },
+})
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -332,6 +335,18 @@ mason_lspconfig.setup_handlers({
         rangeVariableTypes = true,
       },
       staticcheck = true,
+    })
+  end,
+  ["jsonls"] = function()
+    lspconfig.jsonls.setup({
+      on_attach = custom_attach,
+      capabilities = updated_capabilities,
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
+      },
     })
   end,
   ["lua_ls"] = function()
