@@ -10,18 +10,20 @@ return {
         desc = "Find Files (current)",
       },
       {
+        --  BUG: 2023-11-22 09:08 AM - This is somehow not working,
+        -- it is listing the branches instead
         "<Leader>gwc",
         function()
           return require("telescope").extensions.git_worktree.create_git_worktree()
         end,
-        "create worktree",
+        desc = "create worktree",
       },
       {
         "<Leader>gww",
         function()
           return require("telescope").extensions.git_worktree.git_worktrees()
         end,
-        "worktree",
+        desc = "Git worktree list",
       },
       {
         "<leader>sk",
