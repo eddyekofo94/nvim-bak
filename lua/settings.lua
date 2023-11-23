@@ -85,7 +85,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.laststatus = 0
 vim.opt.timeoutlen = 500
-vim.opt.splitkeep = "screen"
+vim.opt.splitkeep = "topline"
 vim.opt.startofline = true
 
 -- Use ripgrep as grep tool
