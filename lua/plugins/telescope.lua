@@ -72,7 +72,7 @@ return {
         },
       },
       -- Git
-      { "<leader>s.", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+      { "<leader>sx", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
       { "<leader>sB", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
       { "<leader>so", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
       {

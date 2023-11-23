@@ -18,7 +18,6 @@ mason_lspconfig.setup({
     "bashls",
     "sqlls",
     "cmake",
-    "gopls",
     "glint",
     "dockerls",
   },
@@ -70,11 +69,6 @@ local custom_attach = function(client, bufnr)
   -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
   -- mapper("n", "]d", "vim.diagnostic.goto_next()")
 
-  sign({ name = "DiagnosticSignError", text = signs_defined.small_dot })
-  sign({ name = "DiagnosticSignWarn", text = signs_defined.small_dot })
-  sign({ name = "DiagnosticSignHint", text = signs_defined.small_dot })
-  sign({ name = "DiagnosticSignInfo", text = signs_defined.small_dot })
-
   -- sign({ name = "DiagnosticUnderlineError", text = "undercurl" })
 
   --  NOTE: 2023-10-23 15:23 PM - You should do this in able to
@@ -84,14 +78,6 @@ local custom_attach = function(client, bufnr)
   --   && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
   --   && tic -x -o ~/.terminfo $tempfile \
   --   && rm $tempfile
-
-  vim.cmd([[
-    let &t_Cs = "\e[4:3m"
-    let &t_Ce = "\e[4:0m"
-  ]])
-
-  vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
-  vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
 
   local filetype = vim.api.nvim_buf_get_name(bufnr)
 
@@ -157,11 +143,27 @@ local custom_attach = function(client, bufnr)
   end
 
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
+    vim.lsp.inlay_hint.enable()
   end
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-end
+end -- END
+
+-------------------------------------------
+--- diagnostics: linting and formatting ---
+-------------------------------------------
+vim.cmd([[
+    let &t_Cs = "\e[4:3m"
+    let &t_Ce = "\e[4:0m"
+]])
+
+vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
+vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
+
+sign({ name = "DiagnosticSignError", text = signs_defined.small_dot })
+sign({ name = "DiagnosticSignWarn", text = signs_defined.small_dot })
+sign({ name = "DiagnosticSignHint", text = signs_defined.small_dot })
+sign({ name = "DiagnosticSignInfo", text = signs_defined.small_dot })
 
 vim.diagnostic.config({
   underline = true,
@@ -182,6 +184,9 @@ vim.diagnostic.config({
   },
 })
 
+-------------------------------------------
+--- lsp setting                         ---
+-------------------------------------------
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Completion configuration
