@@ -51,16 +51,6 @@ local custom_attach = function(client, bufnr)
     client.config.flags.allow_incremental_sync = true
   end
 
-  -- set up mappings (only apply when LSP client attached)
-  mapper("n", "<space>dD", "vim.lsp.buf.declaration()", "declaration")
-  mapper("n", "<space>di", "vim.lsp.buf.implementation()", "implementation")
-  mapper("n", "gs", "vim.lsp.buf.signature_help()<cr>", "signature help")
-  mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
-  mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
-  mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
-  mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
-  mapper("n", "K", "vim.lsp.buf.hover()", "hover")
-  keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
   -- keymap_set("n", "<c-]>", "<Cmd>FocusSplitNicely lua vim.lsp.buf.definition()<CR>", "definition")
 
   -- INFO: this is set on Lspsaga
@@ -149,6 +139,16 @@ local custom_attach = function(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end -- END
 
+-- set up mappings (only apply when LSP client attached)
+mapper("n", "<space>dD", "vim.lsp.buf.declaration()", "declaration")
+mapper("n", "<space>di", "vim.lsp.buf.implementation()", "implementation")
+mapper("n", "gs", "vim.lsp.buf.signature_help()<cr>", "signature help")
+mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
+mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
+mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
+mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
+mapper("n", "K", "vim.lsp.buf.hover()", "hover")
+keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
 -------------------------------------------
 --- diagnostics: linting and formatting ---
 -------------------------------------------
