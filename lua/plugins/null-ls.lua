@@ -25,7 +25,7 @@ return {
             diagnostics_format = "[#{c}] #{m} (#{s})",
             diagnostic_config = {
               virtual_text = {
-                prefix = "  ",
+                prefix = "» ",
                 severity_limit = "Warning",
                 spacing = 8,
               },

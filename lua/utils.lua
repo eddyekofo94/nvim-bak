@@ -221,6 +221,8 @@ local function get_bufs_loaded()
   return bufs_loaded
 end
 
+--  BUG: 2023-11-24 13:23 PM - Not removing
+--  folders accurately
 M.closeOtherBuffers = function()
   for _, buffer in ipairs(get_bufs_loaded()) do
     vim.schedule(function()

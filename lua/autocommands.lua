@@ -38,6 +38,17 @@ local file_pattern = {
 -- Check if we need to reload the file when it changed
 autocmd({ "BufWinEnter", "BufWinLeave", "BufRead", "BufEnter", "FocusGained" }, { command = "silent! checktime" })
 
+autocmd("FocusGained", {
+  callback = function()
+    vim.g.nvim_focused = true
+  end,
+})
+autocmd("FocusLost", {
+  callback = function()
+    vim.g.nvim_focused = false
+  end,
+})
+
 autocmd("FileType", {
   pattern = { "go", "c", "cpp", "py", "java", "cs" },
   callback = function()
@@ -68,7 +79,7 @@ autocmd({ "BufEnter" }, {
 })
 
 local cursor_line = augroup("LocalCursorLine")
-autocmd({ "BufEnter", "VimEnter", "BufWinEnter" }, {
+autocmd({ "BufEnter", "BufWinEnter" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function(event)
