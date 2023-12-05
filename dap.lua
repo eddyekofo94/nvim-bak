@@ -13,30 +13,30 @@ return {
     "Weissle/persistent-breakpoints.nvim",
   },
   config = function()
-    vim.fn.sign_define("DapBreakpoint", { text = "→", texthl = "Error", linehl = "", numhl = "" })
-    vim.fn.sign_define("DapStopped", { text = "→", texthl = "Success", linehl = "", numhl = "" })
-
     local keymap = require("utils").keymap_set
     require("dapui").setup()
-    require("dap-go").setup()
-    require("nvim-dap-virtual-text").setup()
+    local dap = require("dap")
+
+    -- require("mason-nvim-dap").setup({
+    --   ensure_installed = { "python", "delve" },
+    --   handlers = {
+    --     function(config)
+    --       require("mason-nvim-dap").default_setup(config)
+    --     end,
+    --   },
+    -- })
+
     require("persistent-breakpoints").setup({
       load_breakpoints_event = { "BufReadPost" },
     })
 
-    require("debugger.cpp")
-    -- require("debugger.go")
+    require("nvim-dap-virtual-text").setup({})
 
-    local dap, dapui = require("dap"), require("dapui")
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
+    vim.fn.sign_define(
+      "DapBreakpoint",
+      { text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+    )
+    vim.fn.sign_define("DapStopped", { text = "▶", texthl = "Green", linehl = "ColorColumn", numhl = "Green" })
 
     keymap("n", "<Leader>xx", function()
       require("dap").continue()

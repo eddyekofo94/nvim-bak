@@ -122,12 +122,12 @@ return {
           require("telescope").load_extension("project")
         end,
       },
-      {
-        "nvim-telescope/telescope-frecency.nvim",
-        config = function()
-          require("telescope").load_extension("frecency")
-        end,
-      },
+      -- {
+      --   "nvim-telescope/telescope-frecency.nvim",
+      --   config = function()
+      --     require("telescope").load_extension("frecency")
+      --   end,
+      -- },
       {
         "jvgrootveld/telescope-zoxide",
         config = function()
@@ -205,14 +205,14 @@ return {
               override_generic_sorter = false,
               override_file_sorter = true,
             },
-            frecency = {
-              show_scores = true, -- TODO: remove when satisfied
-              ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
-              workspaces = {
-                ["nvim"] = vim.fn.stdpath("config"),
-                ["dotfiles"] = os.getenv("HOME") .. "/.dotfiles/",
-              },
-            },
+            -- frecency = {
+            --   show_scores = true, -- TODO: remove when satisfied
+            --   ignore_patterns = { "*.git/*", "*/tmp/*", "*/undodir/*" },
+            --   workspaces = {
+            --     ["nvim"] = vim.fn.stdpath("config"),
+            --     ["dotfiles"] = os.getenv("HOME") .. "/.dotfiles/",
+            --   },
+            -- },
           },
           mappings = {
             i = {

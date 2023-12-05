@@ -22,10 +22,8 @@ return {
               "bashls",
               "sqlls",
               "cmake",
-              "gopls",
               "glint",
               "dockerls",
-              "gopls",
               "glint",
             },
           })
@@ -78,23 +76,32 @@ return {
       {
         "smjonas/inc-rename.nvim",
         config = true,
-        -- keys = {
-        --     {
-        --         "<leader>lr",
-        --         function()
-        --             return "<cmd>IncRename " .. vim.fn.expand("<cword>")
-        --         end,
-        --         {
-        --             expr = true,
-        --             desc = "Rename",
-        --         },
-        --     }
-        -- },
+        keys = {
+          {
+            "<leader>lr",
+            function()
+              return "<cmd>IncRename " .. vim.fn.expand("<cword>")
+            end,
+            {
+              expr = true,
+              desc = "Rename",
+            },
+          },
+        },
       },
       -- your lsp config or other stuff
       -- NOTE: not working as expected
-      { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
-      "simrat39/rust-tools.nvim",
+      {
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup({
+            library = { plugins = { "nvim-dap-ui" }, types = true },
+          })
+        end,
+        lazy = true,
+        ft = "lua",
+      },
+      -- "simrat39/rust-tools.nvim",
       "scalameta/nvim-metals", -- Java
       {
         "williamboman/mason.nvim",

@@ -4,6 +4,8 @@ local ignore_filetypes = {
   "dap-repl",
   "dapui_scopes",
   "dapui_stacks",
+  "dapui_breakpoints",
+  "dapui_console",
   "dapui_watches",
   "dapui_repl",
   -- "term",

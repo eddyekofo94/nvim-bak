@@ -88,6 +88,9 @@ local custom_attach = function(client, bufnr)
             hi! LspReferenceWrite cterm=bold ctermbg=None gui=underline guibg=#45475a guifg=None
         ]])
 
+    vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
+    vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
+
     local api = vim.api
     local lsp = vim.lsp
     local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
@@ -157,9 +160,6 @@ vim.cmd([[
     let &t_Ce = "\e[4:0m"
 ]])
 
-vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
-vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
-
 sign({ name = "DiagnosticSignError", text = signs_defined.small_dot })
 sign({ name = "DiagnosticSignWarn", text = signs_defined.small_dot })
 sign({ name = "DiagnosticSignHint", text = signs_defined.small_dot })
@@ -209,7 +209,7 @@ mason_lspconfig.setup_handlers({
   -- Next, you can provide a dedicated handler for specific servers.
   -- For example, a handler override for the `rust_analyzer`:
   ["rust_analyzer"] = function()
-    require("rust-tools").setup({})
+    -- require("rust-tools").setup({})
     lspconfig.rust_analyzer.setup({
       cmd = { "rust-analyzer" },
       filetypes = { "rust" },

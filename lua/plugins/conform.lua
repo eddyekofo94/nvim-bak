@@ -21,7 +21,10 @@ return {
           end
         end,
         sh = {
-          "beautysh",
+          {
+            "beautysh",
+            "shfmt",
+          },
         },
         zsh = {
           "beautysh",
