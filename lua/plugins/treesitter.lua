@@ -17,7 +17,23 @@ return {
       opts = { useDefaultKeymaps = true },
     },
     "RRethy/nvim-treesitter-textsubjects",
-    "JoosepAlviste/nvim-ts-context-commentstring",
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      config = function()
+        require("ts_context_commentstring").setup({
+          enable_autocmd = false,
+          languages = {
+            typescript = "// %s",
+            javascript = "// %s",
+            cpp = "// %s",
+            fish = "# ",
+            html = "<!-- ",
+            query = "; ",
+          },
+        })
+        vim.g.skip_ts_context_commentstring_module = true
+      end,
+    },
   },
   config = function()
     -- code
@@ -60,10 +76,6 @@ return {
         disable = function(_lang, buffer)
           return vim.api.nvim_buf_line_count(buffer) > 20000
         end,
-      },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
       },
       autopairs = {
         enable = true,

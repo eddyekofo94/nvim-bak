@@ -22,16 +22,16 @@ for _, key in ipairs({ "h", "j", "k", "l" }) do
   end, { noremap = true })
 end
 if not vim.g.SessionLoad then
-  vim.cmd(":startinsert")
+  vim.cmd.startinsert()
 end
 vim.cmd.startinsert()
 
 vim.cmd([[tnoremap ,reload %load_ext autoreload<CR>%autoreload 2<CR>]])
 
--- For exiting the termial mode. Better than the default config
-vim.cmd([[
-tnoremap <Esc> <C-\><C-n><CR>
-]])
+-- For exiting the terminal mode. Better than the default config
+-- vim.cmd([[
+--  tnoremap <Esc> <C-\><C-n><CR>
+-- ]])
 
 -- @trial this (or move it to `term.lua`?)
 -- This seems to properly remove the Terminal when closed. so KEEP IT!
