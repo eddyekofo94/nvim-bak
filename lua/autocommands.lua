@@ -11,6 +11,38 @@ local general = augroup("General Settings")
 
 local ignore_filetypes = { "neo-tree" }
 local ignore_buftypes = { "nofile", "prompt", "popup" }
+local smart_close_filetypes = {
+  "prompt",
+  "qf",
+  "git-conflict",
+  "term",
+  "lazygit",
+  "dap-repl",
+  "dapui_scopes",
+  "dapui_stacks",
+  "dapui_breakpoints",
+  "dapui_console",
+  "dapui_watches",
+  "dapui_repl",
+  "undotree",
+  "noice",
+  "man",
+  "messages",
+  "undotree",
+  "help",
+  "NeogitStatus",
+  "notify",
+  "Trouble",
+  "diffview",
+  "oil",
+  "telescope",
+  -- "toggleterm",
+  "lazy",
+  "Outline",
+  "TelescopePrompt",
+  "TelescopeResults",
+  "TelescopePreview",
+}
 local file_pattern = {
   "*.xml",
   "*.py",
@@ -32,7 +64,10 @@ local file_pattern = {
   "*.vim",
   "*.ts",
   "Dockerfile",
+  "Jenkinsfile",
+  ".gitconfig",
   "*.cpp",
+  "",
 }
 
 -- Check if we need to reload the file when it changed
@@ -72,44 +107,58 @@ autocmd({ "BufWritePre" }, {
 local disable_codespell = augroup("DisableCodespell")
 autocmd({ "BufEnter" }, {
   group = disable_codespell,
-  pattern = "*.log",
+  pattern = { "*.log", "" },
   callback = function()
     vim.diagnostic.disable()
   end,
 })
 
 local cursor_line = augroup("LocalCursorLine")
-autocmd({ "BufEnter", "BufWinEnter" }, {
-  group = cursor_line,
-  pattern = file_pattern,
-  callback = function(event)
-    opt_local.cursorline = true
-    opt_local.number = true -- Display line numbers in the focussed window only
-    opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
-    opt_local.cursorline = true -- Display a cursorline in the focussed window only
-    opt_local.cursorcolumn = true
-    -- INFO: 2023-11-22 09:47 AM - put it back if needed
-    -- require("after.hjkl_notifier")
-    -- opt_local.winbar = true
-    local ok, _ = pcall(vim.treesitter.get_parser, event.buf)
-    if ok then
-      vim.treesitter.start()
-    end
-  end,
-})
 
 autocmd({ "BufLeave", "BufWinLeave" }, {
   group = cursor_line,
   pattern = file_pattern,
   callback = function()
+    opt_local.signcolumn = "yes"
     opt_local.cursorline = false
-    opt_local.number = false -- Display line numbers in the focussed window only
+    opt_local.number = true -- Display line numbers in the focussed window only
     opt_local.relativenumber = false -- Display relative line numbers in the focussed window only
     opt_local.cursorline = false -- Display a cursorline in the focussed window only
     opt_local.cursorcolumn = false
   end,
 })
 
+autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = cursor_line,
+  pattern = smart_close_filetypes,
+  callback = function()
+    opt_local.cursorline = false
+    opt_local.number = true -- Display line numbers in the focussed window only
+    opt_local.relativenumber = false -- Display relative line numbers in the focussed window only
+    opt_local.cursorline = false -- Display a cursorline in the focussed window only
+    opt_local.cursorcolumn = false
+  end,
+})
+
+autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = cursor_line,
+  pattern = file_pattern,
+  callback = function()
+    opt_local.cursorline = true
+    opt_local.number = true -- Display line numbers in the focussed window only
+    opt_local.signcolumn = "yes"
+    opt_local.relativenumber = true -- Display relative line numbers in the focussed window only
+    opt_local.cursorline = true -- Display a cursorline in the focussed window only
+    opt_local.cursorcolumn = true
+    -- INFO: 2023-11-22 09:47 AM - put it back if needed
+    -- require("after.hjkl_notifier")
+    -- opt_local.winbar = true
+    -- local ok, _ = pcall(vim.treesitter.get_parser, event.buf)
+    -- if ok then
+    --   vim.treesitter.start()
+    -- end
+  end,
+})
 -- Enable spell checking for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.tex" },
@@ -131,21 +180,6 @@ autocmd("BufReadPost", {
 })
 
 -- close some filetypes with <q>
-local smart_close_filetypes = {
-  "qf",
-  "help",
-  "oil",
-  "undotree",
-  "man",
-  "NeogitStatus",
-  "notify",
-  "term",
-  "lspinfo",
-  "spectre_panel",
-  "startuptime",
-  "tsplayground",
-  "PlenaryTestPopup",
-}
 
 local smart_close_buftypes = {}
 local function smart_close()
@@ -225,11 +259,13 @@ autocmd("FileType", {
 })
 
 -- use bash-treesitter-parser for zsh
-local zsh_as_bash = augroup("zshAsBash")
-autocmd("BufWinEnter", {
-  group = zsh_as_bash,
-  pattern = { ".zprofile", "*.zsh", ".zshenv", ".zshrc" },
-  command = "silent! set filetype=sh",
+local ft_as_bash = augroup("ftAsBash")
+autocmd("BufRead", {
+  group = ft_as_bash,
+  pattern = { "*.env", ".zprofile", "*.zsh", ".zshenv", ".zshrc" },
+  callback = function()
+    vim.bo.filetype = "sh"
+  end,
 })
 
 -- Center the buffer after search in cmd mode
