@@ -24,8 +24,6 @@ end
 
 local nxo = require("utils").nxo
 
-vim.cmd("tnoremap <Esc> <C-\\><C-n><CR>")
-
 mapper("n", "<Space>", "<NOP>")
 
 -- Reconsider this option

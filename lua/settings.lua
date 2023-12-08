@@ -95,7 +95,6 @@ vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 -- Buffer
 vim.opt.fileformat = "unix"
 vim.opt.tabstop = 2
-vim.opt.spelllang = "en_gb"
 vim.opt.softtabstop = 2
 vim.opt.spelllang = "en_gb"
 vim.opt.swapfile = false
@@ -115,7 +114,6 @@ vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
 
---  INFO: 2023-10-19 - Using autocommands to set numbers to specific filetypes
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
 vim.opt.cursorline = true
