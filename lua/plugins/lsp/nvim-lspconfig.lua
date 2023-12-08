@@ -59,16 +59,6 @@ local custom_attach = function(client, bufnr)
   -- mapper("n", "[d", "vim.diagnostic.goto_prev()")
   -- mapper("n", "]d", "vim.diagnostic.goto_next()")
 
-  -- sign({ name = "DiagnosticUnderlineError", text = "undercurl" })
-
-  --  NOTE: 2023-10-23 15:23 PM - You should do this in able to
-  --   have undercurl
-  --   LINK: https://wezfurlong.org/wezterm/faq.html#how-do-i-enable-undercurl-curly-underlines
-  --   tempfile=$(mktemp) \
-  --   && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
-  --   && tic -x -o ~/.terminfo $tempfile \
-  --   && rm $tempfile
-
   local filetype = vim.api.nvim_buf_get_name(bufnr)
 
   local format_code
@@ -152,6 +142,7 @@ mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
 mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
 mapper("n", "K", "vim.lsp.buf.hover()", "hover")
 keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
+
 -------------------------------------------
 --- diagnostics: linting and formatting ---
 -------------------------------------------
