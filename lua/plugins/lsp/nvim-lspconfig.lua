@@ -2,6 +2,8 @@ local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 local keymap_set = require("utils").keymap_set
 local navic = require("nvim-navic")
+local api = vim.api
+local lsp = vim.lsp
 
 mason_lspconfig.setup({
   ensure_installed = {
@@ -81,11 +83,17 @@ local custom_attach = function(client, bufnr)
     vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
     vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
 
-    local api = vim.api
-    local lsp = vim.lsp
     local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 
     api.nvim_create_autocmd("CursorHold", {
+      group = gid,
+      buffer = bufnr,
+      callback = function()
+        lsp.buf.document_highlight()
+      end,
+    })
+
+    api.nvim_create_autocmd("CursorHoldI", {
       group = gid,
       buffer = bufnr,
       callback = function()

@@ -14,7 +14,6 @@ local ignore_filetypes = {
   "man",
   "messages",
   "undotree",
-  "help",
   "NeogitStatus",
   "notify",
   "Trouble",
