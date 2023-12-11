@@ -7,7 +7,7 @@ local config = function()
     },
     delay = 100,
     filetypes_denylist = {
-      "neo-tree",
+      "noice",
       "prompt",
       "TelescopePrompt",
       "TelescopeResults",
