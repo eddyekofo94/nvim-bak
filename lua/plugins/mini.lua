@@ -138,10 +138,10 @@ return {
     version = false,
     config = function()
       local animate = require("mini.animate")
-      local timing = animate.gen_timing.linear({ duration = 60, unit = "total" })
+      local timing = animate.gen_timing.linear({ duration = 100, unit = "total" })
       animate.setup({
         cursor = {
-          timing = timing,
+          timing = animate.gen_timing.linear({ duration = 10, unit = "total" }),
         },
         resize = {
           enable = true,
@@ -150,7 +150,7 @@ return {
         scroll = {
           timing = timing,
         },
-        open = { enable = false },
+        open = { enable = true },
         close = { enable = false },
       })
     end,
