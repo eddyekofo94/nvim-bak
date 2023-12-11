@@ -28,9 +28,9 @@ local config = function()
     providers_regex_syntax_allowlist = {},
     under_cursor = true,
   })
-  vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#45475a", underline = true })
-  vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bold = true, underline = true })
-  vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { underline = true })
+  vim.api.nvim_set_hl(0, "IlluminatedWordText", { underline = true })
+  vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#313244", bold = true, underline = true })
+  vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#313244", underline = true })
 end
 
 return {

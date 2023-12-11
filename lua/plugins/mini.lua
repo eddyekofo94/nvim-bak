@@ -144,7 +144,7 @@ return {
           timing = animate.gen_timing.linear({ duration = 10, unit = "total" }),
         },
         resize = {
-          enable = true,
+          enable = false,
           timing = animate.gen_timing.linear({ duration = 10, unit = "total" }),
         },
         scroll = {

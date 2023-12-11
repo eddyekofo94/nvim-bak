@@ -83,31 +83,31 @@ local custom_attach = function(client, bufnr)
     vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl") -- use undercurl for error, if supported by terminal
     vim.cmd.highlight("DiagnosticUnderlineWarn  gui=undercurl") -- use undercurl for warning, if supported by terminal
 
-    local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    -- local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 
-    api.nvim_create_autocmd("CursorHold", {
-      group = gid,
-      buffer = bufnr,
-      callback = function()
-        lsp.buf.document_highlight()
-      end,
-    })
-
-    api.nvim_create_autocmd("CursorHoldI", {
-      group = gid,
-      buffer = bufnr,
-      callback = function()
-        lsp.buf.document_highlight()
-      end,
-    })
-
-    api.nvim_create_autocmd("CursorMoved", {
-      group = gid,
-      buffer = bufnr,
-      callback = function()
-        lsp.buf.clear_references()
-      end,
-    })
+    -- api.nvim_create_autocmd("CursorHold", {
+    --   group = gid,
+    --   buffer = bufnr,
+    --   callback = function()
+    --     lsp.buf.document_highlight()
+    --   end,
+    -- })
+    --
+    -- api.nvim_create_autocmd("CursorHoldI", {
+    --   group = gid,
+    --   buffer = bufnr,
+    --   callback = function()
+    --     lsp.buf.document_highlight()
+    --   end,
+    -- })
+    --
+    -- api.nvim_create_autocmd("CursorMoved", {
+    --   group = gid,
+    --   buffer = bufnr,
+    --   callback = function()
+    --     lsp.buf.clear_references()
+    --   end,
+    -- })
   end
 
   if filetype == "cpp" then
@@ -147,7 +147,11 @@ mapper("n", "gs", "vim.lsp.buf.signature_help()<cr>", "signature help")
 mapper("n", "<space>dR", "vim.lsp.buf.references()", "references")
 mapper("n", "<space>dc", "vim.lsp.buf.incoming_calls()", "incoming calls")
 mapper("n", "<space>da", "vim.diagnostic.setloclist()", "setloclist")
-mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
+keymap_set("n", "<leader>lr", function()
+  require("inc_rename")
+  return "<cmd>IncRename " .. vim.fn.expand("<cword>")
+end, "IncRename")
+-- mapper("n", "<leader>lr", "vim.lsp.buf.rename()<cr>", "rename")
 mapper("n", "K", "vim.lsp.buf.hover()", "hover")
 keymap_set("n", "<c-]>", "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>", "definition")
 
@@ -322,6 +326,11 @@ mason_lspconfig.setup_handlers({
       },
       experimentalPostfixCompletions = true,
       gofumpt = true,
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = false,
+        },
+      },
       setting = {
         gopls = {
           completeUnimported = true,
@@ -390,6 +399,9 @@ mason_lspconfig.setup_handlers({
             workspace = {
               library = vim.api.nvim_get_runtime_file("", true),
               checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
+              didChangeWatchedFiles = {
+                dynamicRegistration = false,
+              },
             },
           },
           telemetry = {
